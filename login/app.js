@@ -2,7 +2,7 @@
 import { supabase } from '../shared/supabase.js';
 import { initAuth, signInWithGoogle, signInWithPassword, signUpWithPassword, signOut, getAuthState, onAuthStateChange } from '../shared/auth.js';
 
-const CACHED_AUTH_KEY = 'your-project-cached-auth';
+const CACHED_AUTH_KEY = 'awkn-ranch-cached-auth';
 
 // DOM elements
 const loginContent = document.getElementById('loginContent');
@@ -25,7 +25,7 @@ const signUpPane = document.getElementById('signUpPane');
 // Get redirect URL from query params or localStorage (survives OAuth round-trip)
 const urlParams = new URLSearchParams(window.location.search);
 const redirectUrl = urlParams.get('redirect')
-  || localStorage.getItem('your-project-login-redirect')
+  || localStorage.getItem('awkn-ranch-login-redirect')
   || '/spaces/admin/';
 
 console.log('[LOGIN]', 'Page loaded', { redirectUrl, href: window.location.href });
