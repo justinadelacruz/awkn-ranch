@@ -1,12 +1,12 @@
 {
-  "version": "v260326.05 7:15p",
-  "release": 5,
-  "sha": "53a2cae",
-  "fullSha": "53a2caed4d375e9822c1fca8857da9f44b0bf7c4",
+  "version": "v260326.06 7:39p",
+  "release": 6,
+  "sha": "ac62bef",
+  "fullSha": "ac62befc9620eec2f96de9a0167cb8a2016d89ac",
   "actor": "justinwithin",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-26T14:14:58-05:00",
-  "commits": [{"sha":"53a2cae","message":"Add photos from awknranch.com and GitHub Pages deploy workflow","author":"Justin DeLaCruz"}]
+  "machine": "runnervm46oaq",
+  "pushedAt": "2026-03-26T14:39:40-05:00",
+  "commits": [{"sha":"ac62bef","message":"Add Google Auth, login page, and Supabase config for AWKN Ranch","author":"Justin DeLaCruz"}]
 }
