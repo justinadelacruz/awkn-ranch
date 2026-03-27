@@ -11,28 +11,28 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            /* Light sanctuary — cream, forest green & copper */
-            --bg-primary: #FAF7F2;
-            --bg-secondary: #F2EDE5;
-            --bg-card: #FFFFFF;
-            --bg-card-hover: #F8F5EF;
-            --text-primary: #2C3228;
-            --text-secondary: #5A6356;
-            --text-muted: #8E9589;
-            --accent-gold: #B8860B;
-            --accent-gold-dim: rgba(184, 134, 11, 0.1);
-            --accent-green: #2D5A3D;
-            --accent-green-dim: rgba(45, 90, 61, 0.08);
-            --accent-purple: #9B6B5A;
-            --accent-purple-dim: rgba(155, 107, 90, 0.1);
-            --accent-blue: #5B8A7A;
-            --accent-blue-dim: rgba(91, 138, 122, 0.1);
-            --accent-terracotta: #C4836A;
-            --accent-terracotta-dim: rgba(196, 131, 106, 0.1);
-            --accent-sage: #6B8F71;
-            --accent-sage-dim: rgba(107, 143, 113, 0.1);
-            --border: rgba(45, 90, 61, 0.1);
-            --border-light: rgba(45, 90, 61, 0.18);
+            /* Dark sanctuary — deep charcoal, warm amber & sage */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242420;
+            --bg-card: #2a2a26;
+            --bg-card-hover: #333330;
+            --text-primary: #f0ebe3;
+            --text-secondary: #bfb8a8;
+            --text-muted: #8a8474;
+            --accent-gold: #d4a055;
+            --accent-gold-dim: rgba(212, 160, 85, 0.12);
+            --accent-green: #7a9e6d;
+            --accent-green-dim: rgba(122, 158, 109, 0.1);
+            --accent-purple: #c49a7c;
+            --accent-purple-dim: rgba(196, 154, 124, 0.1);
+            --accent-blue: #8aab9a;
+            --accent-blue-dim: rgba(138, 171, 154, 0.1);
+            --accent-terracotta: #c4836a;
+            --accent-terracotta-dim: rgba(196, 131, 106, 0.12);
+            --accent-sage: #92ad7e;
+            --accent-sage-dim: rgba(146, 173, 126, 0.1);
+            --border: rgba(240, 235, 227, 0.08);
+            --border-light: rgba(240, 235, 227, 0.15);
             --radius: 16px;
             --radius-sm: 10px;
         }
@@ -53,8 +53,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: radial-gradient(ellipse at 30% 20%, rgba(45, 90, 61, 0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 80%, rgba(184, 134, 11, 0.05) 0%, transparent 50%),
+            background: radial-gradient(ellipse at 30% 20%, rgba(122, 158, 109, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(212, 160, 85, 0.06) 0%, transparent 50%),
                         var(--bg-primary);
         }
 
@@ -62,10 +62,10 @@
             text-align: center;
             max-width: 440px;
             padding: 56px 44px;
-            background: #fff;
-            border: 1px solid var(--border);
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
             border-radius: var(--radius);
-            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
         }
 
         .login-logo {
@@ -96,9 +96,9 @@
             align-items: center;
             gap: 12px;
             padding: 14px 36px;
-            background: #fff;
-            color: #333;
-            border: 1px solid rgba(0,0,0,0.12);
+            background: rgba(240, 235, 227, 0.08);
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
             border-radius: 8px;
             font-size: 15px;
             font-weight: 500;
@@ -108,15 +108,15 @@
         }
 
         .google-btn:hover {
-            background: #f5f5f5;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(240, 235, 227, 0.14);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transform: translateY(-1px);
         }
 
         .google-btn svg { width: 20px; height: 20px; }
 
         .login-note { color: var(--text-muted); font-size: 12px; margin-top: 24px; }
-        .login-error { color: #c4836a; font-size: 13px; margin-top: 16px; display: none; }
+        .login-error { color: var(--accent-terracotta); font-size: 13px; margin-top: 16px; display: none; }
 
         /* ===== MAIN CONTENT ===== */
         #app { display: none; }
@@ -125,7 +125,7 @@
 
         .topbar {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(250, 247, 242, 0.95);
+            background: rgba(26, 26, 26, 0.92);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
             padding: 0 40px;
@@ -147,7 +147,7 @@
         /* Hero */
         .hero {
             padding: 100px 40px 80px; text-align: center;
-            background: radial-gradient(ellipse at 50% 0%, rgba(45, 90, 61, 0.06) 0%, transparent 60%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(212, 160, 85, 0.06) 0%, transparent 60%);
         }
         .hero-badge { display: inline-block; padding: 8px 20px; background: var(--accent-gold-dim); color: var(--accent-gold); border-radius: 20px; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
@@ -184,14 +184,14 @@
         .data-table th { color: var(--text-muted); font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
         .data-table td:last-child { text-align: right; font-weight: 600; }
         .data-table .total td { border-top: 2px solid var(--accent-gold); border-bottom: none; font-weight: 700; color: var(--accent-gold); font-size: 16px; }
-        .data-table .highlight td { background: rgba(45, 90, 61, 0.04); }
+        .data-table .highlight td { background: rgba(122, 158, 109, 0.06); }
 
         /* Comparison table */
         .comp-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
         .comp-table th, .comp-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; }
         .comp-table th { color: var(--text-muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
-        .comp-table .old td:nth-child(2) { color: #c4836a; opacity: 0.8; }
-        .comp-table .old td:nth-child(3) { color: var(--accent-sage); }
+        .comp-table .old td:nth-child(2) { color: #c4836a; opacity: 0.7; }
+        .comp-table .old td:nth-child(3) { color: var(--accent-sage); font-weight: 500; }
 
         /* Funds - Donut Chart */
         .funds-layout { display: grid; grid-template-columns: 340px 1fr; gap: 56px; align-items: start; margin-top: 40px; }
@@ -213,7 +213,7 @@
         .funds-cat-total { font-size: 22px; font-weight: 800; }
         .funds-cat-pct { font-size: 11px; color: var(--text-muted); text-align: right; }
         .funds-items { display: flex; flex-direction: column; gap: 10px; }
-        .funds-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(45, 90, 61, 0.03); border-radius: 8px; border: 1px solid rgba(45, 90, 61, 0.06); }
+        .funds-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; background: rgba(240, 235, 227, 0.03); border-radius: 8px; border: 1px solid rgba(240, 235, 227, 0.05); }
         .funds-item-left { display: flex; align-items: center; gap: 10px; }
         .funds-item-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
         .funds-item-name { font-size: 13px; color: var(--text-secondary); }
@@ -245,22 +245,22 @@
         /* Scenario cards */
         .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 32px; }
         .scenario-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; text-align: center; }
-        .scenario-card.featured { border-color: rgba(45, 90, 61, 0.25); background: linear-gradient(135deg, rgba(45, 90, 61, 0.05), rgba(184, 134, 11, 0.04)); }
+        .scenario-card.featured { border-color: rgba(212, 160, 85, 0.3); background: linear-gradient(135deg, rgba(122, 158, 109, 0.08), rgba(212, 160, 85, 0.06)); }
         .scenario-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
         .scenario-revenue { font-size: 14px; color: var(--text-secondary); margin-bottom: 4px; }
         .scenario-profit { font-size: 32px; font-weight: 800; color: var(--accent-gold); margin-bottom: 4px; }
         .scenario-sub { font-size: 12px; color: var(--text-muted); }
 
         /* CTA */
-        .cta-section { text-align: center; padding: 100px 40px; background: radial-gradient(ellipse at 50% 100%, rgba(45, 90, 61, 0.06) 0%, transparent 60%); }
+        .cta-section { text-align: center; padding: 100px 40px; background: radial-gradient(ellipse at 50% 100%, rgba(212, 160, 85, 0.06) 0%, transparent 60%); }
         .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 42px; margin-bottom: 16px; }
         .cta-section p { color: var(--text-secondary); font-size: 16px; margin-bottom: 32px; }
-        .cta-btn { display: inline-block; padding: 16px 44px; background: var(--accent-green); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
-        .cta-btn:hover { background: #1e4a2e; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(45, 90, 61, 0.25); }
+        .cta-btn { display: inline-block; padding: 16px 44px; background: var(--accent-gold); color: #1a1a1a; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .cta-btn:hover { background: #e0b06a; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212, 160, 85, 0.3); }
 
         .footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px; }
 
-        .watermark { position: fixed; bottom: 20px; right: 20px; font-size: 10px; color: rgba(45, 90, 61, 0.12); text-transform: uppercase; letter-spacing: 2px; pointer-events: none; z-index: 1000; }
+        .watermark { position: fixed; bottom: 20px; right: 20px; font-size: 10px; color: rgba(240, 235, 227, 0.1); text-transform: uppercase; letter-spacing: 2px; pointer-events: none; z-index: 1000; }
 
         .quote-block { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: var(--text-secondary); text-align: center; max-width: 700px; margin: 0 auto; padding: 40px 0; line-height: 1.6; }
 
@@ -268,6 +268,108 @@
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 24px; }
         .feature-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-secondary); padding: 10px 14px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border); }
         .feature-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-sage); flex-shrink: 0; }
+
+        /* ===== PHOTO SLIDESHOW ===== */
+        .slideshow-section {
+            padding: 0;
+            max-width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #111;
+        }
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            min-height: 400px;
+            max-height: 700px;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slideshow-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(26,26,26,0.1) 0%, rgba(26,26,26,0) 30%, rgba(26,26,26,0) 60%, rgba(26,26,26,0.7) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .slideshow-caption {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            right: 40px;
+            z-index: 3;
+            color: #f0ebe3;
+        }
+        .slideshow-caption h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .slideshow-caption p {
+            font-size: 15px;
+            opacity: 0.85;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+        }
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            z-index: 3;
+            display: flex;
+            gap: 8px;
+        }
+        .slideshow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(240, 235, 227, 0.35);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            padding: 0;
+        }
+        .slideshow-dot.active {
+            background: var(--accent-gold);
+            transform: scale(1.3);
+        }
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            background: rgba(26, 26, 26, 0.5);
+            color: #f0ebe3;
+            border: 1px solid rgba(240, 235, 227, 0.15);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s;
+            backdrop-filter: blur(8px);
+        }
+        .slideshow-nav:hover {
+            background: rgba(212, 160, 85, 0.4);
+            border-color: rgba(212, 160, 85, 0.5);
+        }
+        .slideshow-nav.prev { left: 20px; }
+        .slideshow-nav.next { right: 20px; }
 
         @media (max-width: 768px) {
             .topbar { padding: 0 20px; }
@@ -280,6 +382,11 @@
             .scenario-grid { grid-template-columns: 1fr; }
             .comp-table { font-size: 12px; }
             .comp-table th, .comp-table td { padding: 10px 8px; }
+            .slideshow-container { height: 50vh; min-height: 280px; }
+            .slideshow-caption { bottom: 24px; left: 20px; right: 20px; }
+            .slideshow-caption h3 { font-size: 22px; }
+            .slideshow-nav { width: 36px; height: 36px; font-size: 16px; }
+            .slideshow-dots { right: 20px; bottom: 12px; }
         }
     </style>
 </head>
@@ -315,6 +422,7 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#pivot">The Pivot</a></li>
                 <li><a href="#property">Property</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#revenue">Revenue</a></li>
                 <li><a href="#financials">Financials</a></li>
                 <li><a href="#market">Market</a></li>
@@ -495,6 +603,78 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Photo Slideshow -->
+    <section class="slideshow-section" id="gallery">
+        <div class="slideshow-container">
+            <div class="slide active">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/74275719-a42c-4085-a6e5-760cec8840a5/PC230132-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/00a9898d-0acd-426d-ab05-d62946ea1e25/PC210078-Enhanced-SR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/8ae4d0d4-452e-429a-8810-0c715e2ad617/PC210129-Enhanced-SR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/9c02b482-9f5b-4a91-afd1-6d9577d484a5/PC230006-Enhanced-SR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/1928b524-1d88-4c5d-9546-93f09b213117/IMG_1333+%281%29.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/97caf18d-46bc-4111-8bdf-a16123492647/AWKN-73.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/46409d61-27ae-41da-b86b-264186759239/PC230312-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/82c84654-8b43-456e-b0ea-acbefa0500c3/PC230157-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/1767918125877-8LXT4HMEEMZJFRBEEYVG/63f6816a-ff5c-489b-a879-20f5f386d54c.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/f315b5c1-751f-468b-b5d8-f3eb9b1bc544/PC230159-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/48be3fcf-4256-446f-8a0a-dbbb67cd8ff7/PC230205-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/0f8aaf11-9f95-4169-a201-9e375d6be6ca/PC230168-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/5a6e8b15-0c43-4597-9df5-048894a6f231/PC230243-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/5077ee92-f1f0-4a15-95b8-12c54d3b1f9b/PC230198-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/1767918081544-KXH0FYDBN5NZ9KQJ2T01/DSC06085.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/4db977b7-d52f-41ff-973f-d8c29874ca47/PC230302-Enhanced-NR.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/b184c812-77b8-4ed0-89a8-f603776d7f72/P2281879.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/08ba6f16-c0db-4bac-8b1a-6d9cd9db4612/ad6a0bb1-34dc-44b5-af8a-91dc12e360c4.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+            <div class="slide">
+                <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/788a9657-04b1-480f-a0f1-5eec1bb90d80/IMG_0415.jpg" alt="AWKN Ranch" loading="lazy">
+            </div>
+
+            <div class="slideshow-overlay"></div>
+            <div class="slideshow-caption">
+                <h3>The Sanctuary</h3>
+                <p>12 acres of sacred space &mdash; yurts, domes, temple, pool, saunas &amp; more</p>
+            </div>
+            <button class="slideshow-nav prev" onclick="changeSlide(-1)">&#x2039;</button>
+            <button class="slideshow-nav next" onclick="changeSlide(1)">&#x203a;</button>
+            <div class="slideshow-dots" id="slideshow-dots"></div>
         </div>
     </section>
 
@@ -1106,6 +1286,50 @@
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
+
+    // ===== SLIDESHOW =====
+    let currentSlide = 0;
+    let slideInterval;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('slideshow-dots');
+
+    function initSlideshow() {
+        if (!slides.length) return;
+        // Create dots
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(i);
+            dotsContainer.appendChild(dot);
+        });
+        startAutoPlay();
+    }
+
+    function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        const dots = dotsContainer.querySelectorAll('.slideshow-dot');
+        if (dots[currentSlide]) dots[currentSlide].classList.remove('active');
+        currentSlide = ((index % slides.length) + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+        if (dots[currentSlide]) dots[currentSlide].classList.add('active');
+    }
+
+    function changeSlide(dir) {
+        stopAutoPlay();
+        goToSlide(currentSlide + dir);
+        startAutoPlay();
+    }
+
+    function startAutoPlay() {
+        stopAutoPlay();
+        slideInterval = setInterval(() => goToSlide(currentSlide + 1), 4500);
+    }
+
+    function stopAutoPlay() {
+        if (slideInterval) clearInterval(slideInterval);
+    }
+
+    initSlideshow();
 </script>
 </body>
 </html>
