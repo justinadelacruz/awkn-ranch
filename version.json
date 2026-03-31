@@ -1,12 +1,12 @@
 {
-  "version": "v260331.04 5:53p",
-  "release": 4,
-  "sha": "2937988",
-  "fullSha": "2937988df61e64e7c25eaf30162fabb449bbc513",
+  "version": "v260331.05 6:21p",
+  "release": 5,
+  "sha": "60a4d05",
+  "fullSha": "60a4d059727b9204b892f30460fadb7aa1e42345",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-31T12:53:21-05:00",
-  "commits": [{"sha":"2937988","message":"Move honeycomb gallery to revenue section, update bunk room and retreat house photos","author":"Lauren Burandt"}]
+  "pushedAt": "2026-03-31T13:20:58-05:00",
+  "commits": [{"sha":"60a4d05","message":"Reframe lodging around wellness retreats with 2-night minimum, move gallery to property section","author":"Lauren Burandt"}]
 }
