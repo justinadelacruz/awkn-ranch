@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>AWKN Ranch — Hospitality Operations Plan</title>
+    <title>AWKN Ranch — Retreat Operations Logistics</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -42,7 +42,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -55,7 +55,7 @@
             padding: 0 40px;
         }
         .topbar-inner {
-            max-width: 1200px; margin: 0 auto;
+            max-width: 900px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between; height: 64px;
         }
         .topbar-brand {
@@ -67,163 +67,103 @@
             color: var(--text-secondary); text-decoration: none; font-size: 11px; font-weight: 500;
             letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s;
         }
-        .topbar-nav a:hover, .topbar-nav a.active { color: var(--accent-green); }
+        .topbar-nav a:hover { color: var(--accent-green); }
+
+        /* ===== CONTENT ===== */
+        .content { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* ===== HERO ===== */
         .hero {
-            padding: 80px 40px 60px; text-align: center;
-            background: radial-gradient(ellipse at 50% 0%, rgba(122, 158, 109, 0.08) 0%, transparent 60%);
+            padding: 72px 40px 56px; text-align: center;
+            background: radial-gradient(ellipse at 50% 0%, rgba(122, 158, 109, 0.06) 0%, transparent 60%);
         }
+        .hero-inner { max-width: 900px; margin: 0 auto; }
         .hero-badge {
             display: inline-block; padding: 8px 20px;
             background: var(--accent-gold-dim); color: var(--accent-gold);
-            border-radius: 20px; font-size: 13px; font-weight: 600;
-            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px;
+            border-radius: 20px; font-size: 12px; font-weight: 600;
+            letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 24px;
         }
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 52px);
-            font-weight: 700; line-height: 1.15; margin-bottom: 20px;
+            font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 44px);
+            font-weight: 700; line-height: 1.2; margin-bottom: 20px;
         }
         .hero h1 .gold { color: var(--accent-gold); }
         .hero-sub {
-            font-size: 17px; color: var(--text-secondary); max-width: 720px;
-            margin: 0 auto 48px; line-height: 1.7;
-        }
-        .hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
-        .hero-stat { text-align: center; }
-        .hero-stat-value { font-size: 34px; font-weight: 800; color: var(--accent-gold); }
-        .hero-stat-label {
-            font-size: 11px; color: var(--text-muted); text-transform: uppercase;
-            letter-spacing: 1.5px; margin-top: 4px;
+            font-size: 16px; color: var(--text-secondary); max-width: 660px;
+            margin: 0 auto; line-height: 1.8;
         }
 
         /* ===== SECTIONS ===== */
-        .section { padding: 72px 40px; max-width: 1200px; margin: 0 auto; }
-        .section-label {
-            font-size: 12px; font-weight: 600; letter-spacing: 2px;
-            text-transform: uppercase; color: var(--accent-gold); margin-bottom: 12px;
+        .section { padding: 64px 0; }
+        .section-number {
+            font-size: 11px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--accent-gold); margin-bottom: 8px;
         }
         .section h2 {
-            font-family: 'Playfair Display', serif; font-size: 32px;
-            font-weight: 600; margin-bottom: 16px;
+            font-family: 'Playfair Display', serif; font-size: 28px;
+            font-weight: 600; margin-bottom: 20px; line-height: 1.3;
         }
-        .section-desc {
-            font-size: 15px; color: var(--text-secondary); max-width: 700px;
-            margin-bottom: 40px; line-height: 1.7;
-        }
-        .sub-heading {
-            font-size: 18px; font-weight: 600; margin-bottom: 20px;
+        .section-intro {
+            font-size: 15px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8;
         }
 
-        .divider { height: 1px; background: var(--border); max-width: 1200px; margin: 0 auto; }
+        .divider { height: 1px; background: var(--border); max-width: 900px; margin: 0 auto; }
 
-        /* ===== CARDS ===== */
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-        .cards-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-        .cards-grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
-        .card {
+        /* ===== PRINCIPLE BLOCK ===== */
+        .principle {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 28px; transition: all 0.3s; box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+            padding: 28px 32px; margin-bottom: 20px; transition: all 0.2s;
         }
-        .card:hover {
-            border-color: var(--border-light); background: var(--bg-card-hover);
-            transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-        }
-        .card-icon {
-            width: 44px; height: 44px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; margin-bottom: 18px;
-        }
-        .card-icon.gold { background: var(--accent-gold-dim); }
-        .card-icon.green { background: var(--accent-green-dim); }
-        .card-icon.purple { background: var(--accent-purple-dim); }
-        .card-icon.blue { background: var(--accent-blue-dim); }
-        .card-icon.terracotta { background: var(--accent-terracotta-dim); }
-        .card-icon.sage { background: var(--accent-sage-dim); }
-        .card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
-        .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
-        .card-stat { font-size: 26px; font-weight: 800; color: var(--accent-gold); margin-bottom: 4px; }
+        .principle:hover { border-color: var(--border-light); }
+        .principle h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .principle p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
-        /* ===== ROLE CARDS ===== */
-        .role-card {
+        /* ===== DECISION BLOCK ===== */
+        .decision {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
+        }
+        .decision-option {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 28px; transition: all 0.3s;
+            padding: 24px;
         }
-        .role-card:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
-        .role-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-        .role-icon {
-            width: 40px; height: 40px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 18px;
+        .decision-option h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+        .decision-option p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+        .decision-label {
+            display: inline-block; padding: 3px 10px; border-radius: 4px;
+            font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+            margin-bottom: 10px;
         }
-        .role-title { font-size: 16px; font-weight: 600; }
-        .role-type { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-        .role-details { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-        .role-salary {
-            display: inline-block; margin-top: 12px; padding: 6px 14px;
-            background: var(--accent-gold-dim); color: var(--accent-gold);
-            border-radius: 6px; font-size: 13px; font-weight: 600;
-        }
+        .decision-label.hire { background: var(--accent-green-dim); color: var(--accent-green); }
+        .decision-label.outsource { background: var(--accent-gold-dim); color: var(--accent-gold); }
+        .decision-label.automate { background: var(--accent-blue-dim); color: var(--accent-blue); }
+        .decision-label.consider { background: var(--accent-purple-dim); color: var(--accent-purple); }
 
-        /* ===== TABLES ===== */
-        .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        .data-table th, .data-table td {
-            padding: 14px 16px; text-align: left;
-            border-bottom: 1px solid var(--border); font-size: 14px;
+        /* ===== ITEM LIST ===== */
+        .item-list { list-style: none; padding: 0; margin-bottom: 24px; }
+        .item-list li {
+            display: flex; align-items: flex-start; gap: 14px;
+            padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 14px;
+            color: var(--text-secondary); line-height: 1.7;
         }
-        .data-table th {
-            color: var(--text-muted); font-weight: 500; font-size: 11px;
-            text-transform: uppercase; letter-spacing: 1px;
+        .item-list li:last-child { border-bottom: none; }
+        .item-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 8px;
         }
-        .data-table td:last-child { text-align: right; font-weight: 600; }
-        .data-table .total td {
-            border-top: 2px solid var(--accent-gold); border-bottom: none;
-            font-weight: 700; color: var(--accent-gold); font-size: 15px;
-        }
+        .item-dot.gold { background: var(--accent-gold); }
+        .item-dot.green { background: var(--accent-green); }
+        .item-dot.blue { background: var(--accent-blue); }
+        .item-dot.terracotta { background: var(--accent-terracotta); }
+        .item-dot.purple { background: var(--accent-purple); }
 
-        /* ===== CHECKLIST ===== */
-        .checklist { list-style: none; padding: 0; }
-        .checklist li {
-            display: flex; align-items: flex-start; gap: 12px;
-            padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .checklist li:last-child { border-bottom: none; }
-        .check-icon {
-            width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0; margin-top: 1px;
-            display: flex; align-items: center; justify-content: center; font-size: 12px;
-        }
-        .check-icon.required { background: var(--accent-terracotta-dim); color: var(--accent-terracotta); }
-        .check-icon.recommended { background: var(--accent-gold-dim); color: var(--accent-gold); }
-        .check-icon.done { background: var(--accent-green-dim); color: var(--accent-green); }
-
-        /* ===== TIMELINE ===== */
-        .timeline { position: relative; padding-left: 32px; margin-top: 24px; }
-        .timeline::before {
-            content: ''; position: absolute; left: 11px; top: 0; bottom: 0;
-            width: 2px; background: var(--border-light);
-        }
-        .timeline-item { position: relative; padding-bottom: 32px; }
-        .timeline-item:last-child { padding-bottom: 0; }
-        .timeline-dot {
-            position: absolute; left: -32px; top: 4px;
-            width: 22px; height: 22px; border-radius: 50%;
-            background: var(--bg-card); border: 2px solid var(--accent-gold);
-            display: flex; align-items: center; justify-content: center; font-size: 10px;
-        }
-        .timeline-dot.green { border-color: var(--accent-green); }
-        .timeline-dot.terracotta { border-color: var(--accent-terracotta); }
-        .timeline-dot.blue { border-color: var(--accent-blue); }
-        .timeline-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .timeline-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
-
-        /* ===== CALLOUT BOX ===== */
+        /* ===== CALLOUT ===== */
         .callout {
             background: linear-gradient(135deg, rgba(122, 158, 109, 0.08), rgba(212, 160, 85, 0.06));
             border: 1px solid rgba(122, 158, 109, 0.2);
-            border-radius: var(--radius); padding: 28px 32px;
-            margin: 32px 0;
+            border-radius: var(--radius); padding: 24px 28px;
+            margin: 28px 0;
         }
-        .callout h4 { font-size: 15px; font-weight: 600; color: var(--accent-green); margin-bottom: 10px; }
+        .callout h4 { font-size: 14px; font-weight: 600; color: var(--accent-green); margin-bottom: 8px; }
         .callout p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
         .callout.gold {
             background: linear-gradient(135deg, rgba(212, 160, 85, 0.08), rgba(196, 154, 124, 0.06));
@@ -236,26 +176,7 @@
         }
         .callout.warning h4 { color: var(--accent-terracotta); }
 
-        /* ===== TAG ===== */
-        .tag {
-            display: inline-block; padding: 4px 10px; border-radius: 4px;
-            font-size: 12px; font-weight: 600; margin: 2px;
-        }
-        .tag.gold { background: var(--accent-gold-dim); color: var(--accent-gold); }
-        .tag.green { background: var(--accent-green-dim); color: var(--accent-green); }
-        .tag.blue { background: var(--accent-blue-dim); color: var(--accent-blue); }
-        .tag.purple { background: var(--accent-purple-dim); color: var(--accent-purple); }
-        .tag.terracotta { background: var(--accent-terracotta-dim); color: var(--accent-terracotta); }
-
-        /* ===== MENU ITEM ===== */
-        .menu-item {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 20px; transition: all 0.3s;
-        }
-        .menu-item:hover { border-color: var(--border-light); background: var(--bg-card-hover); }
-        .menu-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .menu-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-        .menu-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 8px; }
+        .hl { color: var(--accent-gold); }
 
         /* ===== FOOTER ===== */
         .footer {
@@ -263,32 +184,20 @@
             border-top: 1px solid var(--border); color: var(--text-muted); font-size: 12px;
         }
 
-        /* ===== UTILITIES ===== */
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-        .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; align-items: start; }
-        .mt-24 { margin-top: 24px; }
-        .mt-32 { margin-top: 32px; }
-        .mt-40 { margin-top: 40px; }
-        .mb-24 { margin-bottom: 24px; }
-        .mb-32 { margin-bottom: 32px; }
-        .mb-40 { margin-bottom: 40px; }
-
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .topbar { padding: 0 20px; }
             .topbar-nav { gap: 10px; }
-            .topbar-nav a { font-size: 10px; }
-            .hero { padding: 60px 20px 40px; }
-            .hero-stats { gap: 24px; }
-            .section { padding: 48px 20px; }
-            .cards-grid, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
-            .two-col, .three-col { grid-template-columns: 1fr; gap: 24px; }
+            .hero { padding: 48px 20px 40px; }
+            .content { padding: 0 20px; }
+            .section { padding: 48px 0; }
+            .decision { grid-template-columns: 1fr; }
         }
 
         @media print {
             .topbar { display: none; }
             body { background: #fff; color: #222; }
-            .card, .role-card, .menu-item { border-color: #ddd; background: #fafafa; break-inside: avoid; }
+            .principle, .decision-option, .callout { border-color: #ddd; background: #fafafa; break-inside: avoid; }
         }
     </style>
 </head>
@@ -300,16 +209,15 @@
         <a href="../" class="topbar-brand">AWKN Ranch</a>
         <nav>
             <ul class="topbar-nav">
-                <li><a href="#guest-journey">Guest Journey</a></li>
-                <li><a href="#rooms">Rooms & Domes</a></li>
-                <li><a href="#food">Food Program</a></li>
-                <li><a href="#housekeeping">Housekeeping</a></li>
-                <li><a href="#staffing">Staffing</a></li>
-                <li><a href="#revenue">Revenue</a></li>
-                <li><a href="#amenities">Amenities</a></li>
-                <li><a href="#property">Property Ops</a></li>
+                <li><a href="#before-open">Before You Open</a></li>
+                <li><a href="#lean-team">Lean Team</a></li>
+                <li><a href="#daily-ops">Daily Ops</a></li>
+                <li><a href="#food">Food</a></li>
+                <li><a href="#systems">Systems</a></li>
+                <li><a href="#property">Property</a></li>
+                <li><a href="#vendors">Vendors</a></li>
                 <li><a href="#compliance">Compliance</a></li>
-                <li><a href="#budget">Budget</a></li>
+                <li><a href="#what-breaks">What Breaks</a></li>
             </ul>
         </nav>
     </div>
@@ -317,106 +225,13 @@
 
 <!-- ===== HERO ===== -->
 <section class="hero">
-    <div class="hero-badge">Hospitality Operations</div>
-    <h1>The Guest Experience <span class="gold">Comes First</span></h1>
-    <p class="hero-sub">
-        AWKN Ranch is a hospitality business. Every system, every hire, and every dollar flows toward one goal:
-        guests arrive stressed and leave transformed. This is the operational playbook to make that happen
-        across 12 acres, 18 beds, and 365 days a year.
-    </p>
-    <div class="hero-stats">
-        <div class="hero-stat">
-            <div class="hero-stat-value">18</div>
-            <div class="hero-stat-label">Beds</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-value">6</div>
-            <div class="hero-stat-label">Lodging Domes</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-value">$275</div>
-            <div class="hero-stat-label">Avg Nightly Rate</div>
-        </div>
-        <div class="hero-stat">
-            <div class="hero-stat-value">72%</div>
-            <div class="hero-stat-label">Target Occupancy</div>
-        </div>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 1: GUEST JOURNEY
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="guest-journey">
-    <div class="section-label">Section 1</div>
-    <h2>The Guest Journey</h2>
-    <p class="section-desc">
-        From first click to post-stay follow-up. Every touchpoint is designed, automated where possible,
-        and personal where it matters. AI handles logistics so the team can focus on hospitality.
-    </p>
-
-    <div class="two-col mb-40">
-        <div>
-            <h3 class="sub-heading" style="color:var(--accent-green);">Pre-Arrival (Booking to Check-In)</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot green"></div>
-                    <div class="timeline-title">Online Booking</div>
-                    <div class="timeline-desc">Guest books via website or phone. Selects dome, dates, and optional add-on packages (therapy, IV drips, meal plan). Square processes payment — 50% deposit at booking, balance due 7 days before arrival.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot green"></div>
-                    <div class="timeline-title">Confirmation & Intake</div>
-                    <div class="timeline-desc">Automated email: booking confirmation, property guide PDF, dietary restriction form, liability waiver (SignWell), and intake questionnaire for any clinical add-ons. All digital, all mobile-friendly.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-title">7 Days Before</div>
-                    <div class="timeline-desc">Balance charged automatically. Welcome email with packing suggestions, what to expect, directions, and a personal note from the ranch manager. Any incomplete forms trigger a reminder SMS.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-title">24 Hours Before</div>
-                    <div class="timeline-desc">SMS with unique smart lock code (activates at 3pm check-in), WiFi password, property map, parking instructions, and emergency contacts. Guest's dome is prepped and confirmed ready.</div>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <h3 class="sub-heading" style="color:var(--accent-gold);">Arrival Through Departure</h3>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-title">Self Check-In (3pm)</div>
-                    <div class="timeline-desc">Guest enters dome via smart lock code. Welcome basket on the nightstand: water, tea, local snacks, handwritten welcome card, printed week schedule. Ranch manager available for a personal greeting — not required, but offered.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-title">Evening Orientation</div>
-                    <div class="timeline-desc">Casual group gathering at the fire circle or communal dining room. Property walkthrough, safety briefing, weekly schedule overview, introductions. Sets the tone: warm, grounded, unhurried.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot blue"></div>
-                    <div class="timeline-title">During Stay</div>
-                    <div class="timeline-desc">Daily schedule accessible via SMS or printed card. Meals at set times. Add-on services booked through the front desk or app. Mid-stay check-in from ranch manager on Day 3-4: "How's everything? Anything you need?"</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot terracotta"></div>
-                    <div class="timeline-title">Checkout (11am)</div>
-                    <div class="timeline-desc">Day-before SMS reminder with checkout steps. Guest completes digital condition report. Smart lock code deactivates. System dispatches housekeeping. Post-checkout: feedback survey + integration resources email.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="callout">
-        <h4>The 3 Moments That Matter Most</h4>
-        <p>
-            Hospitality research is clear: guests judge their entire stay on <strong>arrival first impression</strong>,
-            <strong>the lowest point</strong> (any problem, however small), and <strong>the final moment</strong> (checkout/goodbye).
-            Nail the welcome basket, respond instantly to any issue, and send them off with a genuine farewell + a follow-up gift (discount code, branded item, or handwritten note mailed 1 week later).
+    <div class="hero-inner">
+        <div class="hero-badge">Operations Playbook</div>
+        <h1>What to Consider Before <span class="gold">Opening the Doors</span></h1>
+        <p class="hero-sub">
+            A working checklist of everything that needs to be set up, solved, or thought through
+            to run a wellness retreat as a hospitality business — lean, efficient, and guest-ready
+            from day one. 18 beds, 12 acres, the smallest team that can pull it off.
         </p>
     </div>
 </section>
@@ -424,914 +239,752 @@
 <div class="divider"></div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 2: ROOMS & DOMES
+     1: BEFORE YOU OPEN
      ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="rooms">
-    <div class="section-label">Section 2</div>
-    <h2>Rooms & Dome Inventory</h2>
-    <p class="section-desc">
-        Six geodesic domes, each sleeping up to 3 guests. Premium glamping meets boutique hotel comfort.
-        Every dome is a revenue unit — occupancy, rate, and turnover speed drive the entire business.
+<div class="content">
+<section class="section" id="before-open">
+    <div class="section-number">01</div>
+    <h2>Before You Open — What Has to Be in Place</h2>
+    <p class="section-intro">
+        These are the things that need to be done, purchased, permitted, or contracted before a single
+        guest walks on property. Missing any one of them means you're either operating illegally,
+        offering a bad experience, or both.
     </p>
 
-    <div class="cards-grid-3 mb-40">
-        <div class="card">
-            <div class="card-icon gold">&#x1F3D5;</div>
-            <h3>Dome Standard</h3>
-            <div class="card-stat">$225/night</div>
-            <p>Queen bed + single daybed. Private bathroom with rainfall shower. AC/heat, USB outlets, reading lamps, blackout curtains. ~350 sq ft interior.</p>
-            <div style="margin-top:12px;">
-                <span class="tag gold">3 Units</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon green">&#x2B50;</div>
-            <h3>Dome Premium</h3>
-            <div class="card-stat">$325/night</div>
-            <p>King bed + sitting area. Upgraded bathroom with soaking tub + shower. Private outdoor deck with fire pit. Mini-fridge, Bluetooth speaker, premium linens. ~450 sq ft.</p>
-            <div style="margin-top:12px;">
-                <span class="tag green">2 Units</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-icon purple">&#x1F451;</div>
-            <h3>The Sanctuary Dome</h3>
-            <div class="card-stat">$425/night</div>
-            <p>King bed, private hot tub, panoramic stargazing window, outdoor shower, full kitchenette. The flagship unit — always booked first. ~550 sq ft + 200 sq ft deck.</p>
-            <div style="margin-top:12px;">
-                <span class="tag purple">1 Unit</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Room Amenities Standard -->
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Every Dome Includes</h3>
-    <div class="cards-grid-4 mb-32">
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F512;</div>
-            <p style="font-size:13px;">Smart lock<br>keyless entry</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x2744;&#xFE0F;</div>
-            <p style="font-size:13px;">Climate control<br>AC + heat</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F4F6;</div>
-            <p style="font-size:13px;">High-speed WiFi<br>mesh coverage</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F6BF;</div>
-            <p style="font-size:13px;">Private bathroom<br>hot water</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F9F4;</div>
-            <p style="font-size:13px;">Premium toiletries<br>locally sourced</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x2615;</div>
-            <p style="font-size:13px;">Tea + coffee<br>in-room kettle</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F9FA;</div>
-            <p style="font-size:13px;">Premium linens<br>bath towels</p>
-        </div>
-        <div class="card" style="padding:18px; text-align:center;">
-            <div style="font-size:24px; margin-bottom:8px;">&#x1F50B;</div>
-            <p style="font-size:13px;">USB + outlets<br>bedside charging</p>
-        </div>
-    </div>
-
-    <!-- Revenue Math -->
-    <div class="callout gold">
-        <h4>Lodging Revenue Math</h4>
+    <div class="principle">
+        <h3>Permits & Licensing</h3>
         <p>
-            Blended average nightly rate: <strong style="color:var(--accent-gold);">$275</strong> across all 6 domes.
-            At 72% occupancy = 4.3 domes sold per night = <strong style="color:var(--accent-gold);">$1,183/night</strong> or
-            <strong style="color:var(--accent-gold);">$35,500/month</strong> in lodging revenue alone. Peak season (spring/fall) pushes to $42,000-$48,000/mo.
-            Add-on services (therapy, IV, meal plans) layer another 40-60% on top.
-        </p>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 3: FOOD PROGRAM
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="food">
-    <div class="section-label">Section 3</div>
-    <h2>Food & Dining Program</h2>
-    <p class="section-desc">
-        Food is medicine, food is community, food is memory. The dining program is
-        anti-inflammatory, gut-friendly, and brain-supportive — served family-style at a communal table.
-        This is where guests bond.
-    </p>
-
-    <!-- Meal Structure -->
-    <h3 class="sub-heading" style="color:var(--accent-green);">Daily Meal Structure</h3>
-    <div class="three-col mb-40">
-        <div class="card">
-            <div class="card-icon green">&#x1F305;</div>
-            <h3>Breakfast (7-10am)</h3>
-            <p style="margin-bottom:12px;">Self-serve spread in the communal kitchen. Beautiful, grazing-style. Guests come and go at their own pace.</p>
-            <ul class="checklist">
-                <li><span class="check-icon done">&#x2713;</span> 24/7 bone broth pot (signature item)</li>
-                <li><span class="check-icon done">&#x2713;</span> Coffee, matcha, golden milk station</li>
-                <li><span class="check-icon done">&#x2713;</span> Overnight oats + chia pudding</li>
-                <li><span class="check-icon done">&#x2713;</span> Egg muffin cups (rotated daily)</li>
-                <li><span class="check-icon done">&#x2713;</span> Avocado toast board with toppings</li>
-                <li><span class="check-icon done">&#x2713;</span> Smoothie jar station (blend-your-own)</li>
-                <li><span class="check-icon done">&#x2713;</span> Seasonal fruit platter</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <div class="card-icon gold">&#x1F966;</div>
-            <h3>Lunch (12-2pm)</h3>
-            <p style="margin-bottom:12px;">Build-your-own bowl bar. Everything prepped, guests assemble. Quick, nourishing, not heavy — guests are often between sessions.</p>
-            <ul class="checklist">
-                <li><span class="check-icon done">&#x2713;</span> Base: wild rice, cauliflower rice, greens</li>
-                <li><span class="check-icon done">&#x2713;</span> Proteins: grilled chicken, salmon, tempeh</li>
-                <li><span class="check-icon done">&#x2713;</span> Roasted seasonal vegetables</li>
-                <li><span class="check-icon done">&#x2713;</span> Toppings: avocado, kimchi, seeds, herbs</li>
-                <li><span class="check-icon done">&#x2713;</span> House sauces: tahini, chimichurri, ginger-tamari</li>
-                <li><span class="check-icon done">&#x2713;</span> Soup of the day</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <div class="card-icon purple">&#x1F56F;</div>
-            <h3>Dinner (6:30pm)</h3>
-            <p style="margin-bottom:12px;">The main event. Communal table, family-style, candlelit. Rotating themed menus. This is where the retreat magic happens.</p>
-            <ul class="checklist">
-                <li><span class="check-icon done">&#x2713;</span> 3 courses, shared platters</li>
-                <li><span class="check-icon done">&#x2713;</span> Themed nights (see rotation below)</li>
-                <li><span class="check-icon done">&#x2713;</span> Private chef or catering partner</li>
-                <li><span class="check-icon done">&#x2713;</span> Always GF base, dairy-optional</li>
-                <li><span class="check-icon done">&#x2713;</span> Vegan option every night</li>
-                <li><span class="check-icon done">&#x2713;</span> No processed sugar, no seed oils</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Dinner Rotation -->
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Weekly Dinner Rotation</h3>
-    <div class="cards-grid-3 mb-32">
-        <div class="menu-item">
-            <h4>Monday — Mediterranean</h4>
-            <p>Mezze board, herb-crusted lamb chops, roasted beet-citrus salad, fresh figs with honey</p>
-            <div class="menu-label">Starter + Main + Side + Dessert</div>
-        </div>
-        <div class="menu-item">
-            <h4>Tuesday — Pacific Rim</h4>
-            <p>Miso soup, ginger-glazed wild salmon, coconut rice, sesame bok choy, coconut panna cotta</p>
-            <div class="menu-label">Starter + Main + Side + Dessert</div>
-        </div>
-        <div class="menu-item">
-            <h4>Wednesday — Texas Night</h4>
-            <p>Smoked queso, braised short ribs, sweet potato mash, collard greens, dark chocolate mousse</p>
-            <div class="menu-label">Starter + Main + Side + Dessert</div>
-        </div>
-        <div class="menu-item">
-            <h4>Thursday — Garden Harvest</h4>
-            <p>Butternut squash soup, stuffed portobellos with wild rice, arugula-pear salad, baked pears</p>
-            <div class="menu-label">Fully Vegetarian</div>
-        </div>
-        <div class="menu-item">
-            <h4>Friday — Celebration Feast</h4>
-            <p>Charcuterie board, herb-roasted whole chicken, garlic potatoes, flourless chocolate cake</p>
-            <div class="menu-label">End-of-Week Feature</div>
-        </div>
-        <div class="menu-item">
-            <h4>Saturday — Fire Circle</h4>
-            <p>Outdoor grilled skewers, foil-packet sweet potatoes, grilled peaches, dark chocolate s'mores</p>
-            <div class="menu-label">Cook-at-the-Fire Experience</div>
-        </div>
-    </div>
-
-    <p style="font-size:14px; color:var(--text-secondary); margin-bottom:8px;"><strong>Sunday</strong> — Integration Brunch replaces breakfast + lunch. Frittata bar, smoked salmon board, grain-free pancakes, fruit, mimosas.</p>
-
-    <!-- Signature Items -->
-    <div class="callout mt-32">
-        <h4>Signature Items Guests Remember</h4>
-        <p>
-            <strong style="color:var(--accent-gold);">The AWKN Bone Broth</strong> — 24-hour simmered, turmeric, ginger, black pepper. Available 24/7. The comfort anchor.
-            &nbsp;&middot;&nbsp;
-            <strong style="color:var(--accent-gold);">Golden Milk Nightcap</strong> — Oat milk, turmeric, ashwagandha, cinnamon. Served after evening sessions.
-            &nbsp;&middot;&nbsp;
-            <strong style="color:var(--accent-gold);">The Recovery Bowl</strong> — White rice, miso salmon, steamed greens, soft-boiled egg. Post-session nourishment.
-            &nbsp;&middot;&nbsp;
-            <strong style="color:var(--accent-gold);">Fire Circle S'mores</strong> — Dark chocolate, homemade marshmallows. The one indulgence. On purpose.
+            <strong>Short-Term Rental permit</strong> — required by City of Austin or Travis County before operating. Application process takes 2-6 weeks.
+            <strong>Hotel Occupancy Tax (HOT) registration</strong> — you must collect 6% state + local on every booking and remit monthly. Register with Texas Comptroller and the city.
+            <strong>Business license / DBA</strong> — file with the county.
+            <strong>Fire inspection</strong> — every structure where guests sleep needs to pass. Smoke detectors, fire extinguishers, posted evacuation routes, exit signage.
+            <strong>Commercial pool permit</strong> — if you're letting guests use the pool, it's commercial. Requires permit, CPO certification, daily chemical logs, depth markers, safety equipment.
+            <strong>Septic capacity assessment</strong> — have an engineer confirm your system can handle 25+ daily users. If it was designed for a single-family home, you likely need an upgrade before opening.
         </p>
     </div>
 
-    <!-- Food Cost -->
-    <h3 class="sub-heading mt-40" style="color:var(--accent-green);">Food Service Model & Cost</h3>
-    <div class="two-col">
-        <div>
-            <table class="data-table">
-                <thead><tr><th>Meal</th><th>Cost / Guest / Day</th></tr></thead>
-                <tbody>
-                    <tr><td>Breakfast spread</td><td>$6 - $8</td></tr>
-                    <tr><td>Lunch bowl bar</td><td>$8 - $12</td></tr>
-                    <tr><td>Dinner (communal)</td><td>$18 - $25</td></tr>
-                    <tr><td>Snacks, pantry, broth</td><td>$4 - $6</td></tr>
-                    <tr class="total"><td>Daily Total / Guest</td><td>$36 - $51</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <div class="card" style="padding:24px;">
-                <h4 style="font-size:15px; font-weight:600; margin-bottom:12px;">Phased Approach</h4>
-                <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:10px;">
-                    <strong style="color:var(--accent-gold);">Phase 1 (Launch):</strong> Curated meal delivery partner + stocked pantry + private chef for dinners 3x/week. No commercial kitchen needed. ~$15,000/mo at avg occupancy.
-                </p>
-                <p style="font-size:13px; color:var(--text-secondary); line-height:1.7; margin-bottom:10px;">
-                    <strong style="color:var(--accent-green);">Phase 2 (6-12 months):</strong> Private chef 5x/week for dinners. Breakfast/lunch stay self-serve. Kitchen assistant for daily prep. ~$18,000-$22,000/mo.
-                </p>
-                <p style="font-size:13px; color:var(--text-secondary); line-height:1.7;">
-                    <strong style="color:var(--accent-blue);">Phase 3 (Year 2+):</strong> On-site commercial kitchen, dedicated cook, full meal program included in all packages. Revenue opportunity: cooking classes, juice bar. Buildout: $15K-$30K.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="callout gold mt-32">
-        <h4>Pricing Strategy: Build It Into the Rate</h4>
+    <div class="principle">
+        <h3>Insurance Coverage — All Policies Active Before Guest One</h3>
         <p>
-            Don't charge for meals separately — include a $50/night "Nourishment Fee" in the room rate.
-            At 72% occupancy that's <strong style="color:var(--accent-gold);">$6,570/mo</strong> in food revenue against $13K-$18K in food cost.
-            The gap is made up by therapy/add-on margin. Guests perceive "all-inclusive meals" as premium, not an extra charge. It's a booking differentiator.
+            <strong>General liability ($2M-$5M)</strong> — covers guest injuries, slip-and-falls, property damage.
+            <strong>Commercial property</strong> — covers all structures, contents, equipment. Must specify "glamping" / temporary structures. Wildfire rider essential in Austin.
+            <strong>Workers' comp</strong> — required the moment you have employees.
+            <strong>Professional liability / malpractice</strong> — if offering clinical services, each clinician needs coverage plus entity coverage.
+            <strong>Umbrella ($5M+)</strong> — excess liability above everything else. One bad lawsuit can exceed primary limits.
+            <strong>Cyber / HIPAA breach</strong> — if handling medical records.
+            All in: <strong class="hl">$18,000-$40,000/year</strong>. Get a broker who specializes in hospitality + behavioral health — a standard commercial broker won't know how to cover a property that does both lodging and ketamine therapy.
         </p>
     </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 4: HOUSEKEEPING & TURNOVER
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="housekeeping">
-    <div class="section-label">Section 4</div>
-    <h2>Housekeeping & Turnover</h2>
-    <p class="section-desc">
-        Turnover speed = revenue. A dome sitting empty and dirty is a dome not earning money.
-        Target: 3-hour full turnover from checkout to next-guest ready.
-    </p>
-
-    <div class="two-col mb-40">
-        <div class="card" style="padding:24px;">
-            <h4 style="font-size:15px; font-weight:600; margin-bottom:14px; color:var(--accent-gold);">Guest Checkout Checklist</h4>
-            <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">Printed in-dome + sent via SMS the morning of checkout</p>
-            <ul class="checklist">
-                <li><span class="check-icon required">!</span> Remove all personal belongings — room, bathroom, outdoor areas</li>
-                <li><span class="check-icon required">!</span> Place used towels and linens in the laundry basket by the door</li>
-                <li><span class="check-icon recommended">~</span> Rinse any used dishes, place in sink or dish bin</li>
-                <li><span class="check-icon recommended">~</span> Dispose of trash in provided bins (separate recycling)</li>
-                <li><span class="check-icon required">!</span> Turn off all lights, fans, AC/heater</li>
-                <li><span class="check-icon required">!</span> Close and latch all windows and main door</li>
-                <li><span class="check-icon recommended">~</span> Return borrowed items (blankets, books, yoga mats) to welcome shelf</li>
-                <li><span class="check-icon required">!</span> Check safe and under bed for forgotten items</li>
-                <li><span class="check-icon recommended">~</span> Complete the digital checkout form (condition report + feedback)</li>
-            </ul>
-        </div>
-
-        <div class="card" style="padding:24px;">
-            <h4 style="font-size:15px; font-weight:600; margin-bottom:14px; color:var(--accent-green);">Staff Turnover Checklist</h4>
-            <p style="font-size:13px; color:var(--text-muted); margin-bottom:14px;">2-person team per dome &middot; Target: 3 hours &middot; Quality walkthrough before "Ready" status</p>
-            <ul class="checklist">
-                <li><span class="check-icon required">!</span> Strip all linens — bed, pillowcases, mattress protector</li>
-                <li><span class="check-icon required">!</span> Fresh linens — hospital corners, decorative pillows staged</li>
-                <li><span class="check-icon required">!</span> Deep clean bathroom — toilet, shower, sink, mirror, floor</li>
-                <li><span class="check-icon required">!</span> Restock: 2 bath towels, 2 hand towels, 2 washcloths, toiletries, TP</li>
-                <li><span class="check-icon required">!</span> Vacuum/sweep all floors, mop hard surfaces</li>
-                <li><span class="check-icon required">!</span> Wipe all surfaces — nightstands, desk, shelves, switches, handles</li>
-                <li><span class="check-icon required">!</span> Restock welcome basket — water, tea, snacks, welcome card</li>
-                <li><span class="check-icon required">!</span> Test HVAC, smart lock, WiFi, all lights</li>
-                <li><span class="check-icon required">!</span> Inspect for damage — log and report to ranch manager</li>
-                <li><span class="check-icon required">!</span> Spot check: open every drawer, check under bed, behind bathroom door</li>
-                <li><span class="check-icon done">&#x2713;</span> Mark dome as "Ready" in system — triggers next guest SMS notification</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Turnover Workflow -->
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Automated Turnover Workflow</h3>
-    <div class="timeline mb-32">
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-title">11:00am — Checkout</div>
-            <div class="timeline-desc">Smart lock code deactivates. System marks dome as "Departed." If guest hasn't completed digital checkout by 11:15am, ranch manager gets an alert.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot terracotta"></div>
-            <div class="timeline-title">11:15am — Housekeeping Dispatched</div>
-            <div class="timeline-desc">Automated SMS to cleaning team with dome assignment, any special notes (damage, extra mess, late checkout). Cleaning supplies pre-staged in the housekeeping closet.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-title">11:30am - 2:00pm — Full Turnover</div>
-            <div class="timeline-desc">2-person team executes the full checklist. Deep clean, linen change, amenity restock, quality walkthrough. Ranch manager does final spot-check on any flagged units.</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot green"></div>
-            <div class="timeline-title">2:00pm — "Ready" Confirmed</div>
-            <div class="timeline-desc">Housekeeping marks dome as ready in the system. Automated SMS to incoming guest: "Your dome is ready! Your access code will activate at 3pm. See you soon."</div>
-        </div>
-        <div class="timeline-item">
-            <div class="timeline-dot green"></div>
-            <div class="timeline-title">3:00pm — Check-In Opens</div>
-            <div class="timeline-desc">Smart lock code activates. Guest arrives, enters, finds a perfect space. No front desk needed.</div>
-        </div>
-    </div>
-
-    <div class="callout">
-        <h4>Linen & Laundry</h4>
+    <div class="principle">
+        <h3>Infrastructure Readiness</h3>
         <p>
-            At 18 beds, that's 36 sheet sets + 108 towels in rotation minimum (3x inventory: one on the bed, one in the wash, one in reserve).
-            <strong>Option A:</strong> Commercial laundry service — pickup/delivery 3x/week, $600-$1,200/mo.
-            <strong>Option B:</strong> On-site commercial washer/dryer ($3,000-$5,000 equipment) + housekeeping handles it. Break-even at 8 months. Go with Option A at launch, switch when volume justifies.
+            <strong>Every dome must have:</strong> functioning HVAC (tested), private bathroom with hot water, working smart lock,
+            WiFi coverage, smoke/CO detector, fire extinguisher, posted emergency info (property address + 911), bedside lighting, power outlets.
+            <strong>The property must have:</strong> reliable internet (Starlink + cellular backup), generator for essential systems (well pump, smart locks, one heated common area), lit pathways between all structures, emergency supply closet stocked, first aid kits in every building, posted property map with evacuation routes.
+            <strong>Before opening weekend:</strong> do a full test — have 4-6 friends stay overnight and pretend to be guests. Every system, every lock, every shower. You'll find 20 things that don't work. Fix them before paying guests arrive.
         </p>
     </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 5: STAFFING
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="staffing">
-    <div class="section-label">Section 5</div>
-    <h2>Staffing</h2>
-    <p class="section-desc">
-        A hospitality team first, clinical team second. The guest-facing roles drive the business —
-        clinical staff are specialists who plug into scheduled sessions.
-    </p>
-
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Hospitality Team (Day-to-Day)</h3>
-    <div class="cards-grid mb-40">
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-gold-dim);">&#x1F3E0;</div>
-                <div>
-                    <div class="role-title">Ranch Manager / GM</div>
-                    <div class="role-type">Full-time &middot; The Most Important Hire</div>
-                </div>
-            </div>
-            <div class="role-details">
-                Runs the entire guest experience. Staff scheduling, vendor management, guest relations, problem-solving, property oversight. The face of the ranch. Hospitality or boutique hotel background — someone who genuinely loves making people feel welcome.
-            </div>
-            <div class="role-salary">$65,000 - $85,000/yr</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-green-dim);">&#x1F9F9;</div>
-                <div>
-                    <div class="role-title">Housekeeping Team (2-3)</div>
-                    <div class="role-type">Part-time / Hourly</div>
-                </div>
-            </div>
-            <div class="role-details">
-                Dome turnover, common area cleaning, laundry, restocking. 2 staff handles normal flow, scale to 3 during peak season or heavy turnover days. Reliable, detail-oriented, takes pride in the space.
-            </div>
-            <div class="role-salary">$16 - $20/hr</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-blue-dim);">&#x1F373;</div>
-                <div>
-                    <div class="role-title">Kitchen Assistant</div>
-                    <div class="role-type">Part-time (5 hrs/day)</div>
-                </div>
-            </div>
-            <div class="role-details">
-                Daily breakfast/lunch prep, dining area setup, dish management, pantry restocking, receiving deliveries. Works alongside the private chef on dinner nights. Food handler certification required.
-            </div>
-            <div class="role-salary">$16 - $20/hr</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-sage-dim);">&#x1F527;</div>
-                <div>
-                    <div class="role-title">Grounds & Maintenance</div>
-                    <div class="role-type">Part-time / Contract</div>
-                </div>
-            </div>
-            <div class="role-details">
-                12-acre upkeep: landscaping, trail maintenance, dome/yurt repairs, HVAC, plumbing, septic, pool. Start as a contracted service, move in-house when volume justifies. Must be responsive — broken AC in summer is an emergency.
-            </div>
-            <div class="role-salary">$1,500 - $3,000/mo</div>
-        </div>
-    </div>
-
-    <h3 class="sub-heading" style="color:var(--accent-green);">Clinical Team (Add-On Services)</h3>
-    <div class="cards-grid mb-32">
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-green-dim);">&#x1F9D1;&#x200D;&#x2695;&#xFE0F;</div>
-                <div>
-                    <div class="role-title">Medical Director</div>
-                    <div class="role-type">Part-time Retainer</div>
-                </div>
-            </div>
-            <div class="role-details">
-                MD/DO with DEA registration. Oversees ketamine protocols, signs standing orders, medical screenings. On-site 1-2 days/week during sessions, available by phone otherwise.
-            </div>
-            <div class="role-salary">$3,000 - $5,000/mo</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-purple-dim);">&#x1F9E0;</div>
-                <div>
-                    <div class="role-title">Lead Therapist</div>
-                    <div class="role-type">Full-time</div>
-                </div>
-            </div>
-            <div class="role-details">
-                Licensed therapist (LPC/LCSW/PsyD). Leads KAT sessions, manages clinical calendar, supervises coaches. The clinical anchor — not guest-facing for hospitality, only for scheduled therapy.
-            </div>
-            <div class="role-salary">$85,000 - $110,000/yr</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-blue-dim);">&#x1F91D;</div>
-                <div>
-                    <div class="role-title">Integration Coaches (2)</div>
-                    <div class="role-type">Full-time</div>
-                </div>
-            </div>
-            <div class="role-details">
-                Breathwork, somatic work, group circles, wellness check-ins. These are the bridge between clinical and hospitality — they feel like part of the retreat experience, not a doctor's office.
-            </div>
-            <div class="role-salary">$55,000 - $70,000/yr each</div>
-        </div>
-
-        <div class="role-card">
-            <div class="role-header">
-                <div class="role-icon" style="background:var(--accent-terracotta-dim);">&#x1F489;</div>
-                <div>
-                    <div class="role-title">IV Drip Nurse (RN)</div>
-                    <div class="role-type">Per-Session / On-Call</div>
-                </div>
-            </div>
-            <div class="role-details">
-                NAD+, vitamin drips, hydration therapy. Also assists with vitals during KAT sessions. Can contract through a mobile IV company or hire per diem. Only on-site when sessions are booked.
-            </div>
-            <div class="role-salary">$40 - $60/hr</div>
-        </div>
-    </div>
-
-    <div class="callout">
-        <h4>Monthly Payroll Summary</h4>
+    <div class="principle">
+        <h3>Vendor Relationships Locked In</h3>
         <p>
-            <strong>Hospitality team:</strong> ~$14,000-$18,000/mo (ranch manager, housekeeping, kitchen, grounds)<br>
-            <strong>Clinical team:</strong> ~$22,000-$28,000/mo (medical director, therapist, coaches, per-session nurse)<br>
-            <strong>Total staffing:</strong> <strong style="color:var(--accent-gold);">$36,000-$46,000/mo</strong><br><br>
-            Key insight: The hospitality team runs even at 0% therapy bookings. The clinical team scales with demand.
-            Lodging revenue alone must cover hospitality payroll — clinical revenue covers clinical payroll.
+            You don't want to be searching for a plumber at 9pm on a Saturday. Before opening, have confirmed
+            relationships with: <strong>HVAC contractor</strong> (same-day emergency service),
+            <strong>plumber</strong> (same-day),
+            <strong>electrician</strong>,
+            <strong>pest control</strong> (monthly service scheduled),
+            <strong>landscaping crew</strong> (weekly service scheduled),
+            <strong>laundry service</strong> (3x/week pickup scheduled),
+            <strong>pool service / CPO</strong> (2-3x/week scheduled),
+            <strong>private chef</strong> (dinner nights confirmed),
+            <strong>meal prep / catering partner</strong> (for non-chef nights),
+            <strong>handyman</strong> (on-call retainer).
+            Save every number in the ranch manager's phone and in a shared emergency contacts doc.
         </p>
     </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 6: REVENUE & PRICING
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="revenue">
-    <div class="section-label">Section 6</div>
-    <h2>Revenue & Pricing</h2>
-    <p class="section-desc">
-        Three revenue layers: lodging (base), meal plans (bundled), and clinical add-ons (high margin).
-        The business works on lodging alone — everything else is upside.
-    </p>
-
-    <div class="three-col mb-40">
-        <div class="card" style="text-align:center;">
-            <div class="card-icon gold" style="margin:0 auto 18px;">&#x1F3E0;</div>
-            <h3>Lodging</h3>
-            <div class="card-stat">$35,500/mo</div>
-            <p>Base revenue at 72% occupancy, $275 blended rate. This covers hospitality payroll + property costs. The foundation.</p>
-            <div style="margin-top:12px;"><span class="tag gold">Base Revenue</span></div>
-        </div>
-
-        <div class="card" style="text-align:center;">
-            <div class="card-icon green" style="margin:0 auto 18px;">&#x1F372;</div>
-            <h3>Meal Plans</h3>
-            <div class="card-stat">$6,500/mo</div>
-            <p>$50/night nourishment fee bundled into rate. Doesn't fully cover food cost at launch — subsidized by clinical margin.</p>
-            <div style="margin-top:12px;"><span class="tag green">Bundled</span></div>
-        </div>
-
-        <div class="card" style="text-align:center;">
-            <div class="card-icon purple" style="margin:0 auto 18px;">&#x2728;</div>
-            <h3>Clinical Add-Ons</h3>
-            <div class="card-stat">$18,000-$30,000/mo</div>
-            <p>KAT sessions ($600-$900 ea), IV drips ($200-$350), coaching packages, group programs. 60-80% gross margin. This is the profit engine.</p>
-            <div style="margin-top:12px;"><span class="tag purple">High Margin</span></div>
-        </div>
-    </div>
-
-    <!-- Packages -->
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Guest Packages</h3>
-    <div class="cards-grid mb-32">
-        <div class="card">
-            <h3>Lodging Only</h3>
-            <div class="card-stat">$225 - $425/night</div>
-            <p>Dome accommodations, all meals included, access to pool, fire circle, meditation garden, walking trails, weekly group circles. No clinical services.</p>
-            <div style="margin-top:12px;"><span class="tag gold">Nightly</span></div>
-        </div>
-
-        <div class="card">
-            <h3>7-Day Heal Package</h3>
-            <div class="card-stat">$3,495</div>
-            <p>7 nights, all meals, 2 KAT sessions, 2 integration coaching sessions, 1 IV drip, access to all group programming and amenities. ~$499/night value.</p>
-            <div style="margin-top:12px;"><span class="tag green">Most Popular</span></div>
-        </div>
-
-        <div class="card">
-            <h3>14-Day AWKN Transformation</h3>
-            <div class="card-stat">$8,900</div>
-            <p>14 nights, all meals, 4 KAT sessions, 4 integration sessions, 2 IV drips, weekly group circles, 2-month AWKN Ranch membership, custom integration plan. ~$636/night value.</p>
-            <div style="margin-top:12px;"><span class="tag purple">Premium</span></div>
-        </div>
-    </div>
-
-    <!-- Revenue Summary -->
-    <table class="data-table">
-        <thead>
-            <tr><th>Revenue Stream</th><th>Monthly (72% Occ.)</th><th>Annual</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Lodging (6 domes, blended $275/night)</td><td>$35,500</td><td>$426,000</td></tr>
-            <tr><td>Meal plans ($50/night bundled)</td><td>$6,500</td><td>$78,000</td></tr>
-            <tr><td>KAT sessions (~30 sessions/mo @ $750 avg)</td><td>$22,500</td><td>$270,000</td></tr>
-            <tr><td>IV drips (~20/mo @ $275 avg)</td><td>$5,500</td><td>$66,000</td></tr>
-            <tr><td>Coaching packages & group programs</td><td>$4,000</td><td>$48,000</td></tr>
-            <tr><td>Memberships & day passes</td><td>$2,000</td><td>$24,000</td></tr>
-            <tr class="total"><td>Total Revenue</td><td>$76,000</td><td>$912,000</td></tr>
-        </tbody>
-    </table>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 7: AMENITIES & PROGRAMMING
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="amenities">
-    <div class="section-label">Section 7</div>
-    <h2>Amenities & Guest Programming</h2>
-    <p class="section-desc">
-        Amenities drive bookings. Programming drives length of stay.
-        A guest who came for 3 nights and extends to 7 is the most profitable guest you'll ever have.
-    </p>
-
-    <h3 class="sub-heading" style="color:var(--accent-green);">Included Amenities (All Guests)</h3>
-    <div class="cards-grid-4 mb-40">
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F3CA;</div>
-            <h3 style="font-size:15px;">Pool & Cold Plunge</h3>
-            <p style="font-size:12px;">Heated pool + cold plunge for contrast therapy. Open 7am-9pm. Towels provided poolside.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F525;</div>
-            <h3 style="font-size:15px;">Fire Circle</h3>
-            <p style="font-size:12px;">Nightly gathering space. S'mores on Saturdays. Blankets and seating for 20+. The social heart of the ranch.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F9D8;</div>
-            <h3 style="font-size:15px;">Meditation Garden</h3>
-            <p style="font-size:12px;">Quiet space with cushions, shade structures, and a small water feature. No phones policy.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F6E4;</div>
-            <h3 style="font-size:15px;">Walking Trails</h3>
-            <p style="font-size:12px;">1.5 miles of maintained trails through the 12-acre property. Lit pathways at night. Nature immersion.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F3CB;</div>
-            <h3 style="font-size:15px;">Yoga & Movement</h3>
-            <p style="font-size:12px;">Daily morning yoga or movement class. Outdoor deck or yurt depending on weather. Mats provided.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F4DA;</div>
-            <h3 style="font-size:15px;">Lending Library</h3>
-            <p style="font-size:12px;">Curated collection: wellness, psychology, spirituality, nature, fiction. Take one, leave one. Hammock reading nook.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F30C;</div>
-            <h3 style="font-size:15px;">Stargazing Deck</h3>
-            <p style="font-size:12px;">Elevated platform with zero light pollution views. Lounge chairs and blankets. One of the most mentioned features in reviews.</p>
-        </div>
-        <div class="card" style="padding:20px;">
-            <div style="font-size:28px; margin-bottom:10px;">&#x1F3B6;</div>
-            <h3 style="font-size:15px;">Sound Bath Sessions</h3>
-            <p style="font-size:12px;">Weekly sound healing with singing bowls, gongs, and crystal bowls. Deeply restorative. Held in the main yurt.</p>
-        </div>
-    </div>
-
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Sample Weekly Schedule</h3>
-    <div class="card mb-32" style="overflow-x:auto;">
-        <table class="data-table" style="margin-top:0; min-width:700px;">
-            <thead>
-                <tr>
-                    <th>Time</th>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    <th>Sun</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">7:00am</td>
-                    <td style="text-align:left; font-weight:400;">Yoga</td>
-                    <td style="text-align:left; font-weight:400;">Breathwork</td>
-                    <td style="text-align:left; font-weight:400;">Yoga</td>
-                    <td style="text-align:left; font-weight:400;">Meditation</td>
-                    <td style="text-align:left; font-weight:400;">Yoga</td>
-                    <td style="text-align:left; font-weight:400;">Nature Walk</td>
-                    <td style="text-align:left; font-weight:400;">Rest</td>
-                </tr>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">10:00am</td>
-                    <td style="text-align:left; font-weight:400;">KAT Block</td>
-                    <td style="text-align:left; font-weight:400;">Integration</td>
-                    <td style="text-align:left; font-weight:400;">KAT Block</td>
-                    <td style="text-align:left; font-weight:400;">Integration</td>
-                    <td style="text-align:left; font-weight:400;">IV Drips</td>
-                    <td style="text-align:left; font-weight:400;">Free Time</td>
-                    <td style="text-align:left; font-weight:400;">Brunch</td>
-                </tr>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">2:00pm</td>
-                    <td style="text-align:left; font-weight:400;">Free Time</td>
-                    <td style="text-align:left; font-weight:400;">Pool / Trail</td>
-                    <td style="text-align:left; font-weight:400;">Free Time</td>
-                    <td style="text-align:left; font-weight:400;">Coaching</td>
-                    <td style="text-align:left; font-weight:400;">Pool / Trail</td>
-                    <td style="text-align:left; font-weight:400;">Pool / Trail</td>
-                    <td style="text-align:left; font-weight:400;">Free Time</td>
-                </tr>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">4:00pm</td>
-                    <td style="text-align:left; font-weight:400;">Group Circle</td>
-                    <td style="text-align:left; font-weight:400;">Journaling</td>
-                    <td style="text-align:left; font-weight:400;">Sound Bath</td>
-                    <td style="text-align:left; font-weight:400;">Group Circle</td>
-                    <td style="text-align:left; font-weight:400;">Art / Music</td>
-                    <td style="text-align:left; font-weight:400;">Free Time</td>
-                    <td style="text-align:left; font-weight:400;">Closing Circle</td>
-                </tr>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">6:30pm</td>
-                    <td style="text-align:left; font-weight:400;">Dinner</td>
-                    <td style="text-align:left; font-weight:400;">Dinner</td>
-                    <td style="text-align:left; font-weight:400;">Dinner</td>
-                    <td style="text-align:left; font-weight:400;">Dinner</td>
-                    <td style="text-align:left; font-weight:400;">Dinner</td>
-                    <td style="text-align:left; font-weight:400;">Fire Circle</td>
-                    <td style="text-align:left; font-weight:400;">Farewell Dinner</td>
-                </tr>
-                <tr>
-                    <td style="font-weight:600; text-align:left;">8:30pm</td>
-                    <td style="text-align:left; font-weight:400;">Golden Milk</td>
-                    <td style="text-align:left; font-weight:400;">Stargazing</td>
-                    <td style="text-align:left; font-weight:400;">Golden Milk</td>
-                    <td style="text-align:left; font-weight:400;">Stargazing</td>
-                    <td style="text-align:left; font-weight:400;">Golden Milk</td>
-                    <td style="text-align:left; font-weight:400;">S'mores</td>
-                    <td style="text-align:left; font-weight:400;">Golden Milk</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="callout">
-        <h4>The "Nothing to Do" Problem</h4>
+    <div class="principle">
+        <h3>Guest-Facing Collateral</h3>
         <p>
-            Retreat guests have two modes: overscheduled and bored. The schedule above fills every slot but marks
-            afternoons as "Free Time" — this is intentional. Guests need unstructured time to process, nap, journal, or just sit by the pool.
-            Never schedule more than 2 structured activities between meals. The white space is the product.
+            <strong>Before first booking:</strong> website with online booking/payment (Square), liability waiver (SignWell for digital signing), intake/dietary restriction form, property guide PDF (sent at booking), welcome card template, checkout instructions.
+            <strong>In each dome:</strong> printed property map, WiFi password, emergency contacts, weekly schedule, checkout instructions.
+            <strong>In the common area:</strong> posted house rules, meal times, quiet hours policy, pool rules, fire circle guidelines.
+            None of this is hard. All of it gets forgotten in the rush to open.
         </p>
-    </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 8: PROPERTY OPERATIONS
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="property">
-    <div class="section-label">Section 8</div>
-    <h2>Property Operations</h2>
-    <p class="section-desc">
-        12 acres of Texas hill country with 10+ structures requires active maintenance year-round.
-        Deferred maintenance compounds fast — fix it the day it breaks.
-    </p>
-
-    <div class="cards-grid-3 mb-32">
-        <div class="card">
-            <div class="card-icon terracotta">&#x1F321;</div>
-            <h3>HVAC</h3>
-            <p>6 domes + 3 yurts + retreat house = 10 HVAC systems. Quarterly servicing. Filter changes monthly May-Sep. Summer failure = guest refund + lost revenue. Budget $800-$1,500/mo maintenance.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon blue">&#x1F4A7;</div>
-            <h3>Water & Septic</h3>
-            <p>Well pump or municipal hookup for 18+ guests daily. Septic system sized for 25+ capacity. Pump every 2-3 years ($400-$600). Grease trap if commercial kitchen. Water heaters per dome.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon green">&#x1F333;</div>
-            <h3>Grounds</h3>
-            <p>Mowing, trail maintenance, tree trimming, fire mitigation (30ft defensible space around structures). Irrigation for garden/landscaping. Pest control monthly (fire ants, scorpions, snakes).</p>
-        </div>
-        <div class="card">
-            <div class="card-icon gold">&#x1F3CA;</div>
-            <h3>Pool & Plunge</h3>
-            <p>Daily chemical testing and balancing. Weekly cleaning. Commercial pool permit required. Certified Pool Operator (CPO) on staff or contracted. Liability signage. Budget $400-$800/mo.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon purple">&#x1F50C;</div>
-            <h3>Electrical & Internet</h3>
-            <p>10+ structures need reliable power. Generator backup for essential systems (well pump, smart locks, security). Starlink primary + cellular backup. Mesh WiFi nodes per dome. Budget $200-$400/mo.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon sage">&#x1F6E1;</div>
-            <h3>Security</h3>
-            <p>Cameras on common areas (never private spaces). Motion-activated trail lighting. Smart lock audit logs. Fire/smoke detection in every structure. Emergency call stations at pool and trailheads.</p>
-        </div>
     </div>
 
     <div class="callout warning">
-        <h4>Seasonal Threats</h4>
+        <h4>If You're Offering Clinical Services (KAT)</h4>
         <p>
-            <strong>Summer (Jun-Aug):</strong> 100+ degree days. HVAC is your biggest expense and risk. Schedule outdoor activities before 10am or after 6pm.
-            <strong>Winter (Dec-Feb):</strong> Ice storms can shut property access for 2-3 days (see Feb 2021). Generator, pipe insulation, and guest communication plans critical.
-            <strong>Year-round:</strong> Wildfire risk in drought conditions. Maintain defensible space, keep fire extinguishers in every structure, have evacuation route posted in every dome.
+            Add to the above: DEA Schedule III registration (medical director), Texas Medical Board supervision agreement,
+            licensed pharmacy relationship, attorney-reviewed informed consent forms, HIPAA-compliant EHR system with BAAs
+            for all vendors, emergency protocols with crash cart and AED on-site, clinical SOPs documented and staff-trained.
+            Budget $5,000-$10,000 for the initial legal compliance review alone. This is non-negotiable — administering
+            ketamine without proper licensing is a federal offense.
         </p>
     </div>
 </section>
+</div>
 
 <div class="divider"></div>
 
 <!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 9: COMPLIANCE
+     2: THE LEAN TEAM
      ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="compliance">
-    <div class="section-label">Section 9</div>
-    <h2>Licensing & Compliance</h2>
-    <p class="section-desc">
-        Two compliance tracks: hospitality (permits, taxes, safety) and clinical (DEA, medical board, HIPAA).
-        Both must be airtight before opening day.
+<div class="content">
+<section class="section" id="lean-team">
+    <div class="section-number">02</div>
+    <h2>The Lean Team — Minimum Viable Staff</h2>
+    <p class="section-intro">
+        The instinct is to hire for every function. Don't. At 18 beds you can't afford a hotel-sized
+        staff and you don't need one. The question for every role: <strong class="hl">can a vendor, a system,
+        or a smarter process do this instead of a W-2 employee?</strong>
     </p>
 
-    <div class="two-col mb-32">
-        <div class="card" style="padding:24px;">
-            <h4 style="font-size:15px; font-weight:600; margin-bottom:14px; color:var(--accent-gold);">Hospitality Compliance</h4>
-            <ul class="checklist">
-                <li><span class="check-icon required">!</span> Short-Term Rental (STR) permit — City of Austin or Travis County</li>
-                <li><span class="check-icon required">!</span> Hotel Occupancy Tax (HOT) — 6% state + local, collected per booking</li>
-                <li><span class="check-icon required">!</span> Business license / DBA registration</li>
-                <li><span class="check-icon required">!</span> Fire safety inspection — each dome and yurt</li>
-                <li><span class="check-icon required">!</span> Commercial pool permit + CPO certification</li>
-                <li><span class="check-icon required">!</span> Septic capacity permit for guest volume</li>
-                <li><span class="check-icon required">!</span> Food handler certifications (kitchen staff)</li>
-                <li><span class="check-icon recommended">~</span> Commercial kitchen license (Phase 3)</li>
-                <li><span class="check-icon recommended">~</span> ADA accessibility (at least 1 dome + paths)</li>
-                <li><span class="check-icon required">!</span> Workers' compensation insurance</li>
-                <li><span class="check-icon required">!</span> Background checks — all staff with guest access</li>
-            </ul>
-        </div>
-
-        <div class="card" style="padding:24px;">
-            <h4 style="font-size:15px; font-weight:600; margin-bottom:14px; color:var(--accent-green);">Clinical Compliance</h4>
-            <ul class="checklist">
-                <li><span class="check-icon required">!</span> DEA Schedule III registration (medical director)</li>
-                <li><span class="check-icon required">!</span> Texas Medical Board supervision agreement</li>
-                <li><span class="check-icon required">!</span> Licensed pharmacy relationship (ketamine sourcing)</li>
-                <li><span class="check-icon required">!</span> Informed consent forms (attorney-reviewed)</li>
-                <li><span class="check-icon required">!</span> HIPAA compliance — EHR, BAAs with all vendors</li>
-                <li><span class="check-icon required">!</span> Emergency protocols — crash cart, AED on-site</li>
-                <li><span class="check-icon required">!</span> Clinical SOPs documented + staff-trained</li>
-                <li><span class="check-icon required">!</span> Professional liability / malpractice insurance</li>
-                <li><span class="check-icon recommended">~</span> Voluntary accreditation (JCAHO or similar)</li>
-                <li><span class="check-icon required">!</span> Drug testing + EMR documentation protocols</li>
-                <li><span class="check-icon required">!</span> Quarterly compliance audits</li>
-            </ul>
-        </div>
+    <div class="principle">
+        <h3>Ranch Manager — The Only Day-One Full-Time Hire</h3>
+        <p>
+            This person <em>is</em> the operation. They greet guests, manage housekeeping, receive deliveries,
+            handle complaints, coordinate vendors, troubleshoot the smart lock that isn't working, and make
+            the place feel like someone gives a damn. Hospitality background — boutique hotel, Airbnb superhost,
+            event management. Not clinical. Pay well ($65K-$85K) because replacing them costs more. They should
+            be CPR/First Aid certified, comfortable with basic maintenance, and genuinely enjoy people. This
+            role covers 80% of what a 5-person hotel staff does.
+        </p>
     </div>
 
-    <!-- Insurance Summary -->
-    <h3 class="sub-heading" style="color:var(--accent-gold);">Insurance Portfolio</h3>
-    <table class="data-table">
-        <thead>
-            <tr><th>Coverage</th><th>Limit</th><th>Annual Cost</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>General Liability</td><td>$2M - $5M</td><td>$3,000 - $6,000</td></tr>
-            <tr><td>Professional / Malpractice</td><td>$1M - $3M</td><td>$5,000 - $12,000</td></tr>
-            <tr><td>Commercial Property (all structures)</td><td>Full replacement</td><td>$4,000 - $8,000</td></tr>
-            <tr><td>Workers' Compensation</td><td>State minimum</td><td>$3,000 - $5,000</td></tr>
-            <tr><td>Umbrella</td><td>$5M+</td><td>$2,000 - $5,000</td></tr>
-            <tr><td>Cyber / HIPAA Breach</td><td>$1M</td><td>$1,000 - $2,500</td></tr>
-            <tr class="total"><td>Total Annual Insurance</td><td></td><td>$18,000 - $38,500</td></tr>
-        </tbody>
-    </table>
-</section>
-
-<div class="divider"></div>
-
-<!-- ═══════════════════════════════════════════════════════════════════
-     SECTION 10: FULL BUDGET
-     ═══════════════════════════════════════════════════════════════════ -->
-<section class="section" id="budget">
-    <div class="section-label">Section 10</div>
-    <h2>Monthly Operating Budget</h2>
-    <p class="section-desc">
-        Everything in one place. What it costs to keep the doors open, guests happy, and the lights on.
-    </p>
-
-    <div class="two-col mb-32">
-        <div>
-            <h3 class="sub-heading" style="color:var(--accent-gold);">Fixed Monthly Costs</h3>
-            <table class="data-table">
-                <thead><tr><th>Expense</th><th>Monthly</th></tr></thead>
-                <tbody>
-                    <tr><td>Hospitality payroll (GM, housekeeping, kitchen, grounds)</td><td>$14,000 - $18,000</td></tr>
-                    <tr><td>Clinical payroll (MD, therapist, coaches, nurse)</td><td>$22,000 - $28,000</td></tr>
-                    <tr><td>Food program (meals, chef, pantry)</td><td>$13,000 - $18,000</td></tr>
-                    <tr><td>Insurance (all policies, amortized)</td><td>$1,500 - $3,200</td></tr>
-                    <tr><td>Utilities (electric, water, propane)</td><td>$2,000 - $4,000</td></tr>
-                    <tr><td>Internet (Starlink + backup)</td><td>$150 - $250</td></tr>
-                    <tr><td>Pool maintenance</td><td>$400 - $800</td></tr>
-                    <tr><td>Laundry service</td><td>$600 - $1,200</td></tr>
-                    <tr><td>Pest control</td><td>$150 - $300</td></tr>
-                    <tr><td>Bookkeeping + accounting</td><td>$500 - $1,000</td></tr>
-                    <tr><td>Legal retainer</td><td>$500 - $1,500</td></tr>
-                    <tr><td>Software (POS, SMS, EHR, smart locks)</td><td>$300 - $600</td></tr>
-                    <tr><td>Marketing + paid ads</td><td>$1,000 - $3,000</td></tr>
-                    <tr><td>Guest amenities + consumables</td><td>$400 - $800</td></tr>
-                    <tr><td>Maintenance reserve</td><td>$1,000 - $2,000</td></tr>
-                    <tr class="total"><td>Total Monthly Operating</td><td>$57,500 - $82,650</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div>
-            <h3 class="sub-heading" style="color:var(--accent-green);">One-Time Setup Costs</h3>
-            <table class="data-table">
-                <thead><tr><th>Expense</th><th>Cost</th></tr></thead>
-                <tbody>
-                    <tr><td>Legal compliance review (clinical + hospitality)</td><td>$5,000 - $10,000</td></tr>
-                    <tr><td>DEA registration + pharmacy setup</td><td>$1,000 - $3,000</td></tr>
-                    <tr><td>Smart locks (10 units + install)</td><td>$2,000 - $3,500</td></tr>
-                    <tr><td>Security cameras + install</td><td>$2,000 - $4,000</td></tr>
-                    <tr><td>Internet infrastructure (mesh, APs)</td><td>$500 - $1,000</td></tr>
-                    <tr><td>Initial linen inventory (3x sets)</td><td>$3,000 - $5,000</td></tr>
-                    <tr><td>Welcome basket supplies (initial stock)</td><td>$500 - $1,000</td></tr>
-                    <tr><td>Kitchen equipment (if Phase 2)</td><td>$5,000 - $15,000</td></tr>
-                    <tr><td>Fire safety systems (all structures)</td><td>$3,000 - $6,000</td></tr>
-                    <tr><td>Signage and wayfinding</td><td>$1,500 - $3,000</td></tr>
-                    <tr><td>Website + booking portal</td><td>$2,000 - $5,000</td></tr>
-                    <tr><td>Initial marketing launch</td><td>$3,000 - $8,000</td></tr>
-                    <tr class="total"><td>Total One-Time Setup</td><td>$28,500 - $64,500</td></tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="principle">
+        <h3>Housekeeping — 2 Part-Timers, Scheduled to Occupancy</h3>
+        <p>
+            One person can't flip 3-4 domes between 11am and 3pm. Two people can. But on low-occupancy days,
+            you only need one person for a few hours of common area cleaning. Two part-time staff at $17/hr,
+            scheduled based on that week's turnover count. Heavy turnover day (Friday/Sunday)? Both come in.
+            Tuesday with one checkout? One person, 3 hours. Keep a third person on your "call when needed"
+            list for peak weeks. Pay slightly above market — reliability is the only thing that matters here.
+        </p>
     </div>
 
-    <!-- P&L Summary -->
+    <div class="principle">
+        <h3>Kitchen Assistant — Part-Time, 5 Hours/Day</h3>
+        <p>
+            Preps the breakfast spread (6-7am), maintains the lunch station (10-11am), handles dishes and
+            cleanup, restocks pantry, receives food deliveries. This person is not a chef — they're prepping
+            simple items (overnight oats, egg muffins, cutting fruit, reheating soups, building a bowl bar).
+            $17/hr, 25-30 hrs/week. Food handler certification required. They do not cook dinner — that's
+            the private chef's job.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Everything Else Is Contracted</h3>
+        <p>
+            Private chef (dinners, 3-4x/week). Landscaping crew (weekly). Handyman (on-call). Pool service (2-3x/week).
+            Pest control (monthly). Laundry service (3x/week pickup). HVAC service (quarterly + emergency).
+            Bookkeeper (monthly). Legal counsel (retainer). None of these need to be on payroll.
+            Clinical staff (medical director, therapist, coaches, IV nurse) scale with bookings — if there are no
+            therapy sessions this week, clinical labor cost drops.
+        </p>
+    </div>
+
     <div class="callout gold">
-        <h4>Monthly P&L at 72% Occupancy</h4>
+        <h4>Lean Payroll Target</h4>
         <p>
-            <strong>Revenue:</strong> $76,000/mo (lodging + meals + clinical + memberships)<br>
-            <strong>Operating costs:</strong> $57,500 - $82,650/mo<br>
-            <strong>Net operating income:</strong> <strong style="color:var(--accent-gold);">-$6,650 to +$18,500/mo</strong><br><br>
-            Breakeven is around <strong>65% occupancy</strong> with moderate clinical bookings. At 80% occupancy (peak season),
-            monthly profit pushes to <strong style="color:var(--accent-green);">$20,000-$30,000</strong>. The business gets profitable in months 4-6 as
-            occupancy ramps and clinical word-of-mouth builds.
+            <strong>Fixed W-2 payroll: $12,000-$15,000/mo</strong> — ranch manager + 2 PT housekeepers + PT kitchen assistant.<br>
+            <strong>Variable contracted: $10,000-$25,000/mo</strong> — chef, clinical, maintenance, all vendors.<br>
+            Total labor should flex with occupancy: a slow month costs ~$28K, a full month costs ~$40K.
+            If your labor bill is the same regardless of how many guests you have, your structure is wrong.
         </p>
     </div>
 </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     3: THE DAILY OPERATION
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="daily-ops">
+    <div class="section-number">03</div>
+    <h2>Daily Operations — What Actually Happens Every Day</h2>
+    <p class="section-intro">
+        This is what a typical operating day looks like with 10-14 guests on property. Every task has
+        an owner. If a task doesn't have a name next to it, it won't get done.
+    </p>
+
+    <ul class="item-list">
+        <li>
+            <span class="item-dot green"></span>
+            <div><strong>6:00am — Kitchen assistant arrives.</strong> Starts coffee. Puts out the breakfast spread: overnight oats, egg muffins (baked night before), fruit platter, yogurt + granola, smoothie fixings. Turns on the bone broth pot. Stocks the tea/matcha/golden milk station.</div>
+        </li>
+        <li>
+            <span class="item-dot green"></span>
+            <div><strong>7:00am — Breakfast opens.</strong> Self-serve. Kitchen assistant is available but not standing over it. Guests graze at their own pace. Morning yoga or movement class starts at 7:30 (led by a coach or contractor, not the ranch manager).</div>
+        </li>
+        <li>
+            <span class="item-dot gold"></span>
+            <div><strong>8:00am — Ranch manager starts the day.</strong> Checks the dashboard: today's arrivals, departures, maintenance tickets, any messages from overnight. Reviews housekeeping assignments. Walks the common areas — is everything clean, stocked, in order? This 30-minute walk-through catches problems before guests find them.</div>
+        </li>
+        <li>
+            <span class="item-dot gold"></span>
+            <div><strong>10:00am — Kitchen assistant preps lunch.</strong> Bowl bar components: cook the grain, portion the proteins, chop the vegetables, make the sauces. By 11:30 everything is in containers ready to set out. Cleans breakfast dishes during downtime.</div>
+        </li>
+        <li>
+            <span class="item-dot terracotta"></span>
+            <div><strong>11:00am — Checkout window.</strong> Departing guests leave. System deactivates their smart lock codes. Automated SMS goes to housekeeping with assignments. Ranch manager does a quick check of departed domes — any damage? Left items? Notes for cleaning team.</div>
+        </li>
+        <li>
+            <span class="item-dot terracotta"></span>
+            <div><strong>11:30am-2:30pm — Turnover window.</strong> Housekeeping team strips, deep cleans, restocks, makes beds, tests systems. Ranch manager spot-checks each dome before marking "Ready." This is the most operationally intense part of the day.</div>
+        </li>
+        <li>
+            <span class="item-dot blue"></span>
+            <div><strong>12:00pm — Lunch available.</strong> Bowl bar set out in the communal kitchen. Self-serve until 2pm. Kitchen assistant cleans up by 2:30pm and is done for the day (6 hours total).</div>
+        </li>
+        <li>
+            <span class="item-dot gold"></span>
+            <div><strong>2:00pm — Ranch manager handles admin.</strong> Responds to booking inquiries, confirms upcoming reservations, coordinates with vendors, processes any maintenance requests. Orders supplies if needed. This is the "office hours" block.</div>
+        </li>
+        <li>
+            <span class="item-dot green"></span>
+            <div><strong>3:00pm — Check-in window opens.</strong> Smart lock codes activate. Arriving guests enter their dome, find the welcome basket, settle in. Ranch manager is available for a personal greeting — not required, but offered. First-time guests get a brief property orientation.</div>
+        </li>
+        <li>
+            <span class="item-dot purple"></span>
+            <div><strong>3:00-5:00pm — Private chef arrives (on chef nights).</strong> Receives ingredients (pre-ordered or brought), preps dinner. Kitchen is theirs. Ranch manager sets the communal table — candles, place settings, water carafes.</div>
+        </li>
+        <li>
+            <span class="item-dot purple"></span>
+            <div><strong>6:30pm — Communal dinner.</strong> Family-style. The chef plates, ranch manager may welcome the table, guests serve themselves. This is the social anchor of the day. Chef cleans their station after service.</div>
+        </li>
+        <li>
+            <span class="item-dot blue"></span>
+            <div><strong>8:00pm — Evening wind-down.</strong> Fire circle, stargazing, golden milk service, sound bath (on scheduled nights). Ranch manager confirms the property is secured, outdoor lights are on, pool area is clear. Done for the day by 9pm unless there's an issue.</div>
+        </li>
+    </ul>
+
+    <div class="callout">
+        <h4>Total Daily Labor Hours</h4>
+        <p>
+            Ranch manager: ~12 hours (8am-9pm with a break). Kitchen assistant: ~6 hours. Housekeeping: ~3-6 hours depending on turnovers. Private chef: ~4 hours (on chef nights).
+            <strong>Total: 25-28 labor hours/day.</strong> At an average cost of $25/hr blended, that's $625-$700/day in labor to run the entire operation. That's the target.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     4: FOOD LOGISTICS
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="food">
+    <div class="section-number">04</div>
+    <h2>Food — What to Consider</h2>
+    <p class="section-intro">
+        Food is the second biggest operational consideration after housing. Guests expect meals at a retreat.
+        The question is how to deliver them <strong class="hl">without building a restaurant or hiring a full kitchen staff.</strong>
+    </p>
+
+    <div class="principle">
+        <h3>Don't Hire a Full-Time Cook</h3>
+        <p>
+            This is the biggest payroll trap for small retreats. A full-time cook is $40K-$55K/yr plus benefits,
+            sick days, off-days, and opinions. Instead: a <strong>part-time kitchen assistant</strong> handles
+            simple breakfast/lunch prep, and a <strong>contracted private chef</strong> handles the one meal that
+            matters as an event (dinner). The chef is $300-$500/night including ingredients. You get restaurant-quality
+            food with zero benefits overhead, zero downtime, and you can swap chefs if quality drops.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Breakfast and Lunch Are Prep, Not Cooking</h3>
+        <p>
+            Both meals are self-serve. Breakfast is a spread: overnight oats, egg muffins (baked the night before),
+            fruit, yogurt, coffee station. Lunch is a build-your-own bowl bar: a grain, 2 proteins, roasted vegetables,
+            toppings, sauces. All of this is prep work, not cooking. One person handles both meals in 5-6 hours.
+            No commercial kitchen needed — a residential kitchen handles this volume for 18 guests.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Dietary Restrictions — Design Around Them, Don't Accommodate After</h3>
+        <p>
+            Don't make 4 versions of every meal. Make the base menu <strong>gluten-free and dairy-optional</strong>
+            by default. Every meal has a protein, a starch, and vegetables available separately so anyone can
+            build a plate. Vegan path always available. Nuts are toppings (separate), never baked into mains.
+            Collect restrictions at booking, flag in the system, brief the chef 48 hours before new guests arrive.
+            The only true danger is anaphylaxis-level allergies — that requires a phone call, not a form.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Consider: Where Does the Food Come From?</h3>
+        <p>
+            You need a reliable supply chain for fresh ingredients on a rural property. Options to think through:
+            <strong>Grocery delivery</strong> (Instacart/HEB delivery, 2-3x/week).
+            <strong>Restaurant supply account</strong> (Sysco or US Foods for bulk staples — rice, oils, canned goods, paper products).
+            <strong>Local farm partnerships</strong> (eggs, produce, meat — great for the brand story, but unreliable as sole source).
+            <strong>Chef brings their own ingredients</strong> (common arrangement, built into their per-dinner rate).
+            Don't over-complicate this. HEB delivery + a Costco run once a week covers 90% of your needs.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Consider: The Commercial Kitchen Question</h3>
+        <p>
+            A commercial kitchen buildout is $15,000-$30,000 plus permits, hood venting, grease trap, fire
+            suppression, and health department inspections. You do <strong>not</strong> need this at launch.
+            A residential kitchen handles breakfast/lunch prep for 18 guests. The private chef brings their tools.
+            Revisit at Year 2 only if you want to add cooking classes, a juice bar, or in-house catering as a
+            revenue line. Until then, it's capital spent with no return.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Consider: What Happens on Non-Chef Nights?</h3>
+        <p>
+            If the chef comes 3-4 nights/week, what about the other nights? Options: (1) Kitchen assistant preps
+            something simple — hearty soup + fresh bread, a grain bowl with pre-made proteins, or a casserole the
+            chef prepared in advance. (2) Cater from a local restaurant — family-style delivery, $15-$20/person.
+            (3) "Free night" — give guests a list of recommended restaurants in town, provide basic kitchen access.
+            Option 1 or 2 for retreat guests who expect all-inclusive. Option 3 only if you're running a lodging-only model.
+        </p>
+    </div>
+
+    <div class="callout">
+        <h4>Food Cost Target</h4>
+        <p>
+            $35-$50 per guest per day covers all three meals, snacks, and pantry. At 12 average guests (72% occupancy),
+            that's <strong class="hl">$12,600-$18,000/month</strong> in food cost. Build $50/night into the package rate as a "nourishment fee."
+            Guests perceive "all-inclusive meals" as premium — it's a booking differentiator, not an add-on.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     5: SYSTEMS THAT REPLACE PEOPLE
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="systems">
+    <div class="section-number">05</div>
+    <h2>Systems — What Replaces Headcount</h2>
+    <p class="section-intro">
+        Every system below exists so you <strong class="hl">don't have to hire a person</strong>. A front desk is an employee.
+        A smart lock is $200 and never calls in sick. Automate every logistics task that doesn't
+        need a human face, so the humans you have can focus on the experience.
+    </p>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label automate">Replaces: Front Desk</div>
+            <h4>Smart Locks + Automated Codes</h4>
+            <p>Unique codes per guest, auto-generated at booking, activate at check-in time, deactivate at checkout.
+               No key handoff, no lost keys, no front desk shift. Guest gets their code via SMS 24 hours before arrival.
+               Entry/exit logged for security. Ranch manager carries master key as backup.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label automate">Replaces: Concierge / Admin</div>
+            <h4>Automated Guest Communication</h4>
+            <p>Booking confirmation, intake forms, pre-arrival info, check-in code, mid-stay check-in, checkout
+               reminder, post-stay survey — all automated SMS/email sequences triggered by booking dates. Ranch
+               manager only steps in for exceptions and personal touches.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label automate">Replaces: Dispatcher</div>
+            <h4>Housekeeping Dispatch</h4>
+            <p>Guest checks out, lock code deactivates, system texts housekeeping their assignment with notes and deadline.
+               When marked "Ready," incoming guest gets a "your dome is prepared" SMS. No clipboard, no walkie-talkie.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label automate">Replaces: Billing Dept</div>
+            <h4>Automated Payments</h4>
+            <p>Square handles deposits at booking, auto-charges balance 7 days before arrival, processes add-on services.
+               HOT tax calculated automatically. Refund policy enforced by the system, not a person.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label automate">Replaces: Reservations</div>
+            <h4>Online Booking Calendar</h4>
+            <p>Real-time dome availability. Guests book and pay without calling anyone. Therapy, IV drips, and coaching
+               bookable through the same portal. No phone tag, no double-bookings.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label consider">Consider</div>
+            <h4>Operations Dashboard</h4>
+            <p>Real-time view: who's arriving today, who's leaving, which domes need turnover, any open maintenance tickets,
+               this week's revenue. Ranch manager checks this every morning instead of juggling spreadsheets and texts.</p>
+        </div>
+    </div>
+
+    <div class="callout">
+        <h4>The Internet Problem</h4>
+        <p>
+            Every system above requires reliable internet on a rural 12-acre property. Smart locks, SMS triggers,
+            payment processing, cameras, guest WiFi. Budget for <strong>Starlink Business</strong> ($120/mo) as primary
+            and a <strong>cellular failover</strong> that kicks in automatically. Mesh WiFi nodes near each dome cluster.
+            If the internet dies and smart locks go offline, you need a manual override plan (physical backup keys
+            held by ranch manager). <strong>Test this scenario before you open.</strong>
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     6: PROPERTY CONSIDERATIONS
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="property">
+    <div class="section-number">06</div>
+    <h2>Property — The Things Nobody Thinks About</h2>
+    <p class="section-intro">
+        Nobody starts a retreat because they're excited about septic systems. But a septic backup on a
+        Saturday with 16 guests on property will ruin your month faster than an empty booking calendar.
+    </p>
+
+    <ul class="item-list">
+        <li>
+            <span class="item-dot terracotta"></span>
+            <div><strong>HVAC is your most critical and most expensive system.</strong> 10 climate-controlled spaces in Central Texas. Quarterly servicing, monthly filter changes May-September. A broken AC in a guest dome in July is an immediate refund or relocation. Have a 24-hour HVAC contractor relationship before you open. Budget $800-$1,500/mo for maintenance and emergency calls.</div>
+        </li>
+        <li>
+            <span class="item-dot terracotta"></span>
+            <div><strong>Septic capacity.</strong> 18 guests + staff = 25+ people using water daily. If the septic was designed for a single-family home, it won't handle this. Get an engineer assessment before opening. Pump every 2-3 years. Grease trap required if you're doing any serious cooking. Failure mode: sewage backup, immediate property shutdown.</div>
+        </li>
+        <li>
+            <span class="item-dot blue"></span>
+            <div><strong>Hot water for everyone at 7am.</strong> 6 domes with private showers, all potentially running at the same time. If you're on a central water heater, someone's getting a cold shower. Tankless water heaters per dome ($1,200-$2,000 installed each) solve this. Consider this before opening, not after the first complaint.</div>
+        </li>
+        <li>
+            <span class="item-dot gold"></span>
+            <div><strong>The pool is a compliance liability.</strong> Commercial permit, daily chemical testing and logging, CPO on staff or contracted, depth markers, no-diving signage, emergency phone, life ring, self-closing fence/gate. If a guest gets hurt in an unpermitted pool, your insurance won't cover it. $400-$800/mo for maintenance and compliance.</div>
+        </li>
+        <li>
+            <span class="item-dot green"></span>
+            <div><strong>Vegetation management is year-round.</strong> Mowing, brush clearing, trail maintenance, tree trimming after storms. In drought months, fire mitigation becomes critical — 30 feet of defensible space around every structure, cleared of dead brush. Not optional in Austin's wildfire zone. Weekly landscaping: $400-$600/mo.</div>
+        </li>
+        <li>
+            <span class="item-dot terracotta"></span>
+            <div><strong>Pest control is monthly, not quarterly.</strong> Fire ants, scorpions, wasps, spiders, mice, snakes. A scorpion in a dome is a 1-star review. Monthly interior treatment + perimeter spray: $150-$300/mo. City guests will not handle a single bug gracefully. Over-invest here.</div>
+        </li>
+        <li>
+            <span class="item-dot gold"></span>
+            <div><strong>Pathway lighting after dark.</strong> Guests walk between domes, the retreat house, fire circle, and pool at night. They need lit, even pathways. Solar path lights are cheap and unreliable. Low-voltage landscape lighting on main paths ($2,000-$4,000 installed). Motion-activated at dome entrances and parking. Safety issue and ambiance issue.</div>
+        </li>
+        <li>
+            <span class="item-dot blue"></span>
+            <div><strong>Parking for 10-15 vehicles.</strong> Guests drive in. Where do they park? Is the surface gravel, dirt, or paved? Does it flood? Is it lit at night? Is there a clear path from parking to their dome? If it rains and the parking area turns to mud, you have a problem. Consider gravel at minimum, directional signage, and a clear walking path.</div>
+        </li>
+        <li>
+            <span class="item-dot purple"></span>
+            <div><strong>Trash and recycling.</strong> 18 guests generate a lot of waste. Where do the dumpsters go? How often is pickup? Do guests carry their own trash out or does housekeeping handle it? Consider bear/animal-proof containers if wildlife is a factor. Recycling separates you from an Airbnb — have it available, labeled clearly.</div>
+        </li>
+        <li>
+            <span class="item-dot green"></span>
+            <div><strong>Noise and neighbors.</strong> 12 acres gives you buffer, but fire circle gatherings, music, and pool activity carry. Know your property line setbacks. Know your noise ordinances. Have quiet hours (10pm) posted and enforced. One neighbor complaint to the city can trigger an STR permit review.</div>
+        </li>
+    </ul>
+
+    <div class="callout warning">
+        <h4>Weather Scenarios to Plan For</h4>
+        <p>
+            <strong>Summer heat (Jun-Aug):</strong> 100+ degree days. HVAC costs spike. Outdoor activities before 10am or after 6pm only. Pool becomes the primary amenity.
+            <strong>Thunderstorms:</strong> 3+ inches in an hour. Know where the property floods — don't put domes there. Trim overhanging tree limbs.
+            <strong>Ice storms (Dec-Feb):</strong> Can cut power and road access for 2-3 days (Feb 2021). Generator for well pump, smart locks, and one heated common space. Pipe insulation on all exposed plumbing. Communication plan for 18 stranded guests.
+            <strong>Wildfire:</strong> Defensible space, fire extinguishers in every structure, evacuation plan posted in every dome. Have this plan before you need it.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     7: VENDOR STRATEGY
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="vendors">
+    <div class="section-number">07</div>
+    <h2>The Vendor Map — Hire vs. Contract vs. Automate</h2>
+    <p class="section-intro">
+        The rule: <strong class="hl">hire for daily, contract for weekly, call for monthly.</strong>
+        If someone needs to show up every day, they're an employee. If they come on a schedule, they're a vendor.
+        If they only come when something breaks, they're on-call.
+    </p>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label hire">Hire (W-2)</div>
+            <h4>Ranch Manager</h4>
+            <p>Daily. The one person who makes every other system work. $65K-$85K/yr.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label hire">Hire (W-2)</div>
+            <h4>Housekeeping (2 PT)</h4>
+            <p>3-5 days/week based on occupancy. Must be available same-day when scheduled. $17/hr.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label hire">Hire (W-2)</div>
+            <h4>Kitchen Assistant (PT)</h4>
+            <p>Daily, 5-6 hours. Breakfast/lunch prep and cleanup. Needs to be there every morning. $17/hr.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label outsource">Contract</div>
+            <h4>Private Chef</h4>
+            <p>3-4 dinners/week. Flat rate per dinner ($300-$500 incl. ingredients). No benefits, swap if quality drops.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label outsource">Contract (Weekly)</div>
+            <h4>Landscaping / Grounds</h4>
+            <p>Weekly mowing, edging, trail maintenance. Monthly brush clearing and fire mitigation. $400-$600/mo.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label outsource">Contract (2-3x/week)</div>
+            <h4>Pool Service + CPO</h4>
+            <p>Chemical balancing, cleaning, compliance logging. CPO cert required by permit. $400-$800/mo.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label outsource">Contract (3x/week)</div>
+            <h4>Laundry Service</h4>
+            <p>Pickup, wash, fold, deliver. 54 sheet sets + 108 towels in rotation. $600-$1,200/mo.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label outsource">Contract (Monthly)</div>
+            <h4>Pest Control</h4>
+            <p>Interior treatment + perimeter spray. Non-negotiable on rural property. $150-$300/mo.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label outsource">On-Call</div>
+            <h4>Handyman / Maintenance</h4>
+            <p>$50-$75/hr when needed. Optional $500/mo retainer for priority response. Ranch manager handles small fixes.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label outsource">On-Call + Quarterly</div>
+            <h4>HVAC Contractor</h4>
+            <p>Quarterly preventive maintenance on all 10 units. Same-day emergency service agreement. Most critical vendor relationship.</p>
+        </div>
+    </div>
+
+    <div class="decision">
+        <div class="decision-option">
+            <div class="decision-label outsource">Monthly</div>
+            <h4>Bookkeeper / Accountant</h4>
+            <p>HOT tax filing, payroll processing, expense tracking, quarterly estimates. $500-$1,000/mo. Don't do your own books.</p>
+        </div>
+        <div class="decision-option">
+            <div class="decision-label outsource">Retainer</div>
+            <h4>Legal Counsel</h4>
+            <p>Waivers, employment questions, compliance reviews, incident response. $500-$1,500/mo. You'll use it more than you think.</p>
+        </div>
+    </div>
+
+    <div class="callout gold">
+        <h4>The 1099 vs W-2 Trap</h4>
+        <p>
+            The IRS cares about one thing: do you control when, where, and how they work? If yes, they're W-2.
+            Ranch manager, housekeeping, kitchen assistant — W-2. Chef (sets own methods, serves other clients),
+            landscaper, handyman, pool service — 1099. Misclassifying saves money short-term and costs a fortune
+            in an audit. Ask your accountant before you make the hire.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     8: COMPLIANCE CHECKLIST
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="compliance">
+    <div class="section-number">08</div>
+    <h2>Compliance — What Can Shut You Down</h2>
+    <p class="section-intro">
+        Two tracks: hospitality compliance (permits, taxes, safety) and clinical compliance (if offering therapy services).
+        Both need to be airtight before day one. An unpermitted operation gets one complaint and you're done.
+    </p>
+
+    <div class="principle">
+        <h3>Hospitality Track</h3>
+        <p>
+            <strong>STR permit</strong> — application + inspection, 2-6 week process. <strong>HOT tax registration</strong> — Texas Comptroller + city, file monthly. <strong>Fire inspections</strong> — every guest structure. <strong>Commercial pool permit</strong> — with CPO. <strong>Septic permit</strong> — capacity rated for guest volume. <strong>Business license / DBA</strong>. <strong>Food handler certifications</strong> — required for anyone preparing food. <strong>Workers' comp insurance</strong> — active before first employee starts. <strong>Background checks</strong> — all staff with guest access. <strong>ADA consideration</strong> — at least one accessible dome + pathway (not always legally required for small operators, but smart to have).
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Clinical Track (If Offering KAT / Therapy)</h3>
+        <p>
+            <strong>DEA registration</strong> (medical director). <strong>TX Medical Board supervision agreement</strong>. <strong>Licensed pharmacy relationship</strong>. <strong>Attorney-reviewed informed consent</strong>. <strong>HIPAA compliance</strong> — EHR system, BAAs with every vendor that touches patient data. <strong>Crash cart + AED on-site</strong>. <strong>Clinical SOPs documented</strong>. <strong>Malpractice insurance</strong>. <strong>Quarterly compliance audits</strong>. Budget $5K-$10K for initial legal review of clinical setup. This is not optional — ketamine without proper licensing is a federal offense.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Tax Considerations</h3>
+        <p>
+            <strong>Hotel Occupancy Tax</strong> — collected from every guest, filed and remitted monthly. Track this from booking one.
+            <strong>Sales tax on services</strong> — therapy, IV drips, coaching may be taxable depending on classification. Ask your accountant.
+            <strong>Quarterly estimated taxes</strong> — you're running a business with variable income. Under-estimating quarterly payments = penalties in April.
+            <strong>Depreciation on structures</strong> — domes, yurts, fixtures, equipment are all depreciable assets. Capture this for tax savings.
+            <strong>Meals and entertainment deductions</strong> — communal dinners for guests are a business expense. Document everything.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Insurance — The Full Portfolio</h3>
+        <p>
+            General liability ($2M-$5M): $3K-$6K/yr. Professional/malpractice ($1M-$3M): $5K-$12K/yr. Commercial property (all structures): $4K-$8K/yr. Workers' comp: $3K-$5K/yr. Umbrella ($5M+): $2K-$5K/yr. Cyber/HIPAA breach: $1K-$2.5K/yr. <strong class="hl">Total: $18,000-$38,500/year.</strong> Get a broker who understands both hospitality and behavioral health. Standard commercial brokers won't know how to cover this hybrid model.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     9: WHAT BREAKS
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" id="what-breaks">
+    <div class="section-number">09</div>
+    <h2>What Breaks — And the Plan Before It Does</h2>
+    <p class="section-intro">
+        Every scenario below will happen in Year 1. The difference between a well-run retreat and a
+        stressful one is whether the plan exists before the crisis or gets invented in the moment.
+    </p>
+
+    <div class="principle">
+        <h3>AC goes out in a dome in July</h3>
+        <p>
+            Ranch manager responds in 15 minutes. Check thermostat/breaker first. If compressor: call HVAC for same-day service.
+            If it can't be fixed today: move the guest to an empty dome. No empty dome? Deploy a portable AC unit
+            from the emergency closet (buy 2, keep them stored). Genuinely uninhabitable overnight? Refund that night,
+            comp a future stay. Never let a guest sweat through the night while you "work on it."
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Housekeeper no-shows on a heavy turnover day</h3>
+        <p>
+            Ranch manager cleans alongside the one housekeeper who showed up. This is why you pay them well — they
+            have to be willing to do this. Always have a third person on your "call for extra shifts" list.
+            If you still can't finish, delay check-in by one hour and communicate <em>before</em> the guest
+            arrives: "Your dome will be ready at 4pm. We want to make sure it's perfect." Most people are fine
+            with this. The ones who aren't were going to be difficult regardless.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Smart lock won't open and a guest is standing outside</h3>
+        <p>
+            Ranch manager carries a physical master key for every dome. Always. Walk over, let them in, apologize,
+            swap the battery (most common cause). Keep 2 spare smart locks in storage. Give the guest a temporary
+            manual key while you fix it. Never leave a guest locked out for more than 10 minutes.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Internet goes down</h3>
+        <p>
+            Cellular backup should auto-failover. Smart locks still work locally (codes are stored on-device).
+            POS goes offline — log the transaction and process later. Guest WiFi: be upfront ("Starlink is being
+            restored, here's a hotspot for urgent use"). Keep 2 portable hotspots charged. If both Starlink and
+            cellular are down, you have a bigger problem (likely weather) — shift to emergency mode.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Guest finds a scorpion / spider / snake in their dome</h3>
+        <p>
+            Ranch manager goes immediately. Removes it. Does a thorough dome check with the guest watching.
+            Apologize genuinely. Explain that monthly pest control is active but nature is nature on 12 acres.
+            Offer to move them if they're uncomfortable. Leave a small apology gift (wine, a comp service, something
+            tangible). Follow up the next day. Most guests are fine. The few who aren't were going to leave a
+            bad review regardless.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Medical emergency (non-clinical — fall, allergic reaction, pool incident)</h3>
+        <p>
+            Call 911 first. Ranch manager administers first aid (CPR/First Aid cert is required for this role).
+            Every dome and common area has the property address and emergency number posted. Know the nearest ER
+            and drive time (under 25 minutes). Document everything in writing same day. Contact insurance carrier
+            within 24 hours. Do not admit fault or make promises — just take care of the person.
+        </p>
+    </div>
+
+    <div class="principle">
+        <h3>Ice storm / power outage shuts down the property</h3>
+        <p>
+            Mass text all guests at first weather warning. Stock the retreat house: extra blankets, bottled water,
+            non-perishable food, flashlights. Generator powers well pump, one common heated space, and smart locks.
+            Close the pool. Salt walkways. If roads are impassable, guests can't leave — make the retreat house
+            a comfortable shelter. If guests are inbound and can't arrive, proactively offer to reschedule or refund.
+            Don't wait for them to ask.
+        </p>
+    </div>
+
+    <div class="callout">
+        <h4>The $1,500 Emergency Closet</h4>
+        <p>
+            Stock one locked storage area with: 2 portable AC units, 2 space heaters, 2 spare smart locks,
+            extra linens, flashlights + batteries, first aid kit, fire extinguishers, bottled water (2 cases),
+            non-perishable snacks, 2 portable WiFi hotspots, spare toiletries, manual card imprinter, and a
+            guest apology kit (wine, chocolate, handwritten cards). Costs $1,500 to set up. Will save $15,000
+            in refunds and bad reviews in Year 1.
+        </p>
+    </div>
+</section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     CLOSING
+     ═══════════════════════════════════════════════════════════════════ -->
+<div class="content">
+<section class="section" style="padding-bottom:32px;">
+    <div class="section-number">The Takeaway</div>
+    <h2>It's a Hospitality Business First</h2>
+    <p class="section-intro" style="margin-bottom:0;">
+        A retreat with 18 beds needs <strong class="hl">3-4 reliable people, a map of vendors for everything else,
+        and systems that handle the logistics no human should be doing manually.</strong> The ranch manager is the
+        linchpin. The housekeepers make the revenue possible. The kitchen assistant feeds people. Everyone else
+        is a contractor who shows up when needed and doesn't cost money when they're not. Automate the logistics.
+        Keep the warmth human. Think about what breaks before it breaks. That's the whole model.
+    </p>
+</section>
+</div>
 
 <div class="divider"></div>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
-    <p>AWKN Ranch — Hospitality Operations Plan &middot; Confidential &middot; March 2026</p>
-    <p style="margin-top:8px; opacity:0.5;">Built with purpose. Deployed on GitHub Pages.</p>
+    <p>AWKN Ranch — Operations Logistics &middot; Internal Document &middot; March 2026</p>
 </footer>
 
 </body>
