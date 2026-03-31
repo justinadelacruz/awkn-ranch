@@ -523,6 +523,9 @@
       margin-bottom: 1.5rem; opacity: 0.5;
     }
 
+    /* ── MOBILE TABLES ─────────────────────────────── */
+    .mobile-cards { display: none; }
+
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 900px) {
       .pillars, .tech-grid { grid-template-columns: repeat(2, 1fr); }
@@ -531,17 +534,84 @@
       .phase2-stats { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .hero h1 { font-size: 2.6rem; }
+      section { padding: 4rem 1.25rem; }
+      .hero h1 { font-size: 2.4rem; letter-spacing: 0.02em; }
+      .hero .subtitle { font-size: 0.95rem; }
+      .hero-eyebrow { font-size: 0.55rem; padding: 5px 16px; }
+      .s-title { font-size: 1.6rem; }
+      .s-desc { font-size: 0.88rem; }
       .split, .highlight-pair, .fund-grid { grid-template-columns: 1fr; }
       .market-trio, .traction-grid { grid-template-columns: 1fr 1fr; }
-      .hex-cell { width: 155px; height: 170px; }
-      .bar-label { width: 110px; font-size: 0.65rem; }
-      .waterfall { gap: 0.75rem; }
-      .wf-bar { width: 80px; }
+      .hex-cell { width: 145px; height: 158px; }
+      .honeycomb { gap: 5px; }
+      .hex-label { font-size: 0.5rem; padding: 3px 10px; }
+      .bar-label { width: 90px; font-size: 0.6rem; }
+      .bar-fill { font-size: 0.6rem; padding-left: 6px; }
+      .waterfall { gap: 0.5rem; height: 200px; }
+      .wf-bar { width: 75px; font-size: 0.75rem; }
+      .chart-row { gap: 2rem; }
+      .donut-wrap { width: 200px; height: 200px; }
+      .donut-wrap svg { width: 200px; height: 200px; }
+      .legend li { font-size: 0.72rem; }
+      .legend-range { font-size: 0.68rem; }
+      .phase2-banner { padding: 2rem 1.5rem; }
+      .phase2-banner h3 { font-size: 1.3rem; }
+      .card { padding: 1.5rem 1.25rem; }
+
+      /* Hide wide tables, show card layout on mobile */
+      .desktop-table { display: none; }
+      .mobile-cards { display: block; }
+      .m-card {
+        background: var(--white);
+        border-radius: 10px;
+        padding: 1.15rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+      }
+      .m-card:last-child { margin-bottom: 0; }
+      .m-card-title {
+        font-weight: 600;
+        font-size: 0.88rem;
+        margin-bottom: 0.5rem;
+        color: var(--dark);
+      }
+      .m-card-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.2rem 0;
+        font-size: 0.8rem;
+      }
+      .m-card-row .m-label { color: var(--grey); }
+      .m-card-total {
+        background: rgba(201,148,62,0.06);
+        border-radius: 10px;
+        padding: 1.15rem;
+        margin-top: 0.75rem;
+      }
+      .m-card-total .m-card-title { color: var(--gold-dark); }
     }
     @media (max-width: 500px) {
-      .pillars, .tech-grid, .market-trio, .traction-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2rem; }
+      .hero-content { padding: 1.5rem; }
+      .hero-metric .value { font-size: 1.3rem; }
+      .hero-metric .label { font-size: 0.5rem; }
+      .hero-metric { padding: 1rem 0.5rem; }
+      .pillars, .tech-grid { grid-template-columns: 1fr; }
+      .market-trio, .traction-grid { grid-template-columns: 1fr; }
       .hero-metrics { grid-template-columns: 1fr 1fr; }
+      .hex-cell { width: 120px; height: 131px; }
+      .s-title { font-size: 1.4rem; }
+      .phase2-stats { grid-template-columns: 1fr 1fr; }
+      .phase2-stat .value { font-size: 1.4rem; }
+      .bar-label { width: 75px; font-size: 0.55rem; }
+      .donut-wrap { width: 170px; height: 170px; }
+      .donut-wrap svg { width: 170px; height: 170px; }
+      .donut-center .value { font-size: 1.1rem; }
+      .fund-card .amount { font-size: 1.1rem; }
+      .fund-card .desc { font-size: 0.75rem; }
+      .wf-bar { width: 60px; font-size: 0.65rem; }
+      .waterfall { height: 170px; gap: 0.4rem; }
     }
   </style>
 </head>
@@ -650,7 +720,7 @@
     <div class="s-title">Within Center</div>
     <div class="s-desc">Ketamine and psychedelic integration programs operating twice weekly at the ranch. Independent branding protects the established five-star referral network while driving cross-revenue between clinical services and hospitality.</div>
 
-    <div class="card" style="overflow-x:auto;">
+    <div class="card desktop-table" style="overflow-x:auto;">
       <table>
         <thead>
           <tr><th>Package</th><th>Includes</th><th>Price</th></tr>
@@ -673,6 +743,20 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="mobile-cards">
+      <div class="m-card">
+        <div class="m-card-title">AWKN Package <span class="num-gold" style="float:right;">$5,500</span></div>
+        <div style="font-size:0.78rem;color:var(--grey);line-height:1.55;">6 ketamine sessions, 6 coaching, 6 IV vitamin, 2 months ranch access, weekly group therapy</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">HEAL Package <span class="num-gold" style="float:right;">$3,300</span></div>
+        <div style="font-size:0.78rem;color:var(--grey);line-height:1.55;">3 ketamine sessions, 3 coaching, 3 IV vitamin, 1 month ranch access, weekly group therapy</div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">DISCOVER Package <span class="num-gold" style="float:right;">$1,250</span></div>
+        <div style="font-size:0.78rem;color:var(--grey);line-height:1.55;">1 ketamine session + 1 coaching session</div>
+      </div>
     </div>
     <div class="callout">Within clients receive <strong>10% discounts</strong> on nightly lodging, creating direct cross-selling between clinical and hospitality revenues.</div>
   </div>
@@ -730,7 +814,7 @@
     <div class="s-title">18-Bed Tiered Accommodation</div>
     <div class="s-desc">All bookings carry a 2-night minimum stay, designed around immersive wellness retreats rather than single-night tourism. Multiple accommodation tiers serve individual guests, couples, and group retreat bookings.</div>
 
-    <div class="card" style="overflow-x:auto;">
+    <div class="card desktop-table" style="overflow-x:auto;">
       <table>
         <thead>
           <tr><th>Accommodation</th><th>Beds</th><th>Rate</th><th>Occupancy</th><th>Monthly Projection</th></tr>
@@ -762,6 +846,34 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="mobile-cards">
+      <div class="m-card">
+        <div class="m-card-title">Retreat House</div>
+        <div class="m-card-row"><span class="m-label">Beds</span><span>10</span></div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$349-$499/night</span></div>
+        <div class="m-card-row"><span class="m-label">Occupancy</span><span>80%</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$15,000-$22,000</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Yurts (2 units)</div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$699/night</span></div>
+        <div class="m-card-row"><span class="m-label">Occupancy</span><span>30%</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$12,582</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">HoneyComb Dome</div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$599/night</span></div>
+        <div class="m-card-row"><span class="m-label">Occupancy</span><span>30%</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$5,391</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Lodging Domes (2 units)</div>
+        <div class="m-card-row"><span class="m-label">Beds</span><span>8</span></div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$599/night</span></div>
+        <div class="m-card-row"><span class="m-label">Occupancy</span><span>50%</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$17,970</span></div>
+      </div>
     </div>
     <div class="callout"><strong>2-night minimum stay</strong> on all bookings. Extended-stay discounts: <strong>5%</strong> for 3-night stays, <strong>10%</strong> for week-long wellness immersions. Pool and recovery amenity access included with all nightly rates.</div>
   </div>
@@ -898,7 +1010,7 @@
       </div>
 
       <div>
-        <div class="card" style="overflow-x:auto;margin-bottom:1.5rem;">
+        <div class="card desktop-table" style="overflow-x:auto;margin-bottom:1.5rem;">
           <h3>Profitability Scenarios</h3>
           <table>
             <thead><tr><th>Scenario</th><th>Revenue</th><th>Expenses</th><th>Net/Mo</th><th>Annual</th></tr></thead>
@@ -926,6 +1038,30 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="mobile-cards" style="margin-bottom:1.5rem;">
+          <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:1rem;">Profitability Scenarios</h3>
+          <div class="m-card" style="border-left:3px solid var(--green);">
+            <div class="m-card-title">Conservative</div>
+            <div class="m-card-row"><span class="m-label">Revenue</span><span class="num-green">$130K</span></div>
+            <div class="m-card-row"><span class="m-label">Expenses</span><span class="num-brown">$74K</span></div>
+            <div class="m-card-row"><span class="m-label">Net/Month</span><span class="num-green">$57K</span></div>
+            <div class="m-card-row"><span class="m-label">Annualized</span><span class="num-green" style="font-size:0.9rem;">$680K</span></div>
+          </div>
+          <div class="m-card" style="border-left:3px solid var(--gold);">
+            <div class="m-card-title">Base Case</div>
+            <div class="m-card-row"><span class="m-label">Revenue</span><span class="num-gold">$195K</span></div>
+            <div class="m-card-row"><span class="m-label">Expenses</span><span class="num-brown">$67K</span></div>
+            <div class="m-card-row"><span class="m-label">Net/Month</span><span class="num-gold">$128K</span></div>
+            <div class="m-card-row"><span class="m-label">Annualized</span><span class="num-gold" style="font-size:0.9rem;">$1.54M</span></div>
+          </div>
+          <div class="m-card" style="border-left:3px solid var(--brown);">
+            <div class="m-card-title">Strong Month</div>
+            <div class="m-card-row"><span class="m-label">Revenue</span><span class="num-brown">$248K</span></div>
+            <div class="m-card-row"><span class="m-label">Expenses</span><span class="num-brown">$67K</span></div>
+            <div class="m-card-row"><span class="m-label">Net/Month</span><span class="num-gold">$181K</span></div>
+            <div class="m-card-row"><span class="m-label">Annualized</span><span class="num-gold" style="font-size:0.9rem;">$2.17M</span></div>
+          </div>
         </div>
 
         <div class="card" style="text-align:center;">
@@ -1108,7 +1244,7 @@
       </div>
     </div>
 
-    <div class="card" style="overflow-x:auto;margin-top:1.5rem;">
+    <div class="card desktop-table" style="overflow-x:auto;margin-top:1.5rem;">
       <h3>Dome Collective Revenue Model</h3>
       <table>
         <thead><tr><th>Unit Type</th><th>Count</th><th>Rate</th><th>Monthly Revenue</th></tr></thead>
@@ -1119,6 +1255,30 @@
           <tr class="row-highlight"><td><strong>Projected Net Monthly</strong></td><td></td><td></td><td class="num-gold" style="font-size:0.95rem;">~$200,000</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="mobile-cards" style="margin-top:1.5rem;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:1rem;">Dome Collective Revenue Model</h3>
+      <div class="m-card">
+        <div class="m-card-title">Tier 1 Residential Domes</div>
+        <div class="m-card-row"><span class="m-label">Count</span><span>50</span></div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$1,900/mo + $122 HOA</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$101,100</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Tier 2 Residential Domes</div>
+        <div class="m-card-row"><span class="m-label">Count</span><span>40</span></div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$2,200/mo + $122 HOA</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$92,880</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Short-term Rental Domes</div>
+        <div class="m-card-row"><span class="m-label">Count</span><span>13</span></div>
+        <div class="m-card-row"><span class="m-label">Rate</span><span class="num-gold">$299/night (70% occ)</span></div>
+        <div class="m-card-row"><span class="m-label">Monthly</span><span class="num-green">$81,531</span></div>
+      </div>
+      <div class="m-card-total">
+        <div class="m-card-title">Projected Net Monthly <span class="num-gold" style="float:right;">~$200,000</span></div>
+      </div>
     </div>
 
     <div class="card" style="overflow-x:auto;margin-top:1.25rem;">
