@@ -1,12 +1,12 @@
 {
-  "version": "v260330.01 8:57p",
+  "version": "v260331.01 3:45p",
   "release": 1,
-  "sha": "799d2c7",
-  "fullSha": "799d2c7584512888229bb8d67ba22179ead70ae7",
+  "sha": "4f6bb3a",
+  "fullSha": "4f6bb3a03534985326f89d45a37bbc9ff44d18d0",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-29T22:04:08-05:00",
-  "commits": [{"sha":"799d2c7","message":"Update investor portal with current business plan for Aaron & Alex","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-03-31T10:45:18-05:00",
+  "commits": [{"sha":"4f6bb3a","message":"feat: add operations & logistics plan page","author":"Justin DeLaCruz"}]
 }
