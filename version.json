@@ -1,12 +1,12 @@
 {
-  "version": "v260331.05 6:21p",
-  "release": 5,
-  "sha": "60a4d05",
-  "fullSha": "60a4d059727b9204b892f30460fadb7aa1e42345",
+  "version": "v260331.06 7:25p",
+  "release": 6,
+  "sha": "1ec5da6",
+  "fullSha": "1ec5da67761e53eecd1d01e9c1d3b41ed7914dde",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-31T13:20:58-05:00",
-  "commits": [{"sha":"60a4d05","message":"Reframe lodging around wellness retreats with 2-night minimum, move gallery to property section","author":"Lauren Burandt"}]
+  "pushedAt": "2026-03-31T14:25:13-05:00",
+  "commits": [{"sha":"1ec5da6","message":"Comprehensive mobile responsive overhaul for investor page","author":"Lauren Burandt"}]
 }
