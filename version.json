@@ -1,12 +1,12 @@
 {
-  "version": "v260331.02 5:07p",
-  "release": 2,
-  "sha": "0e45122",
-  "fullSha": "0e45122c921b134d836a787a5d4d0fa2a40fe379",
+  "version": "v260331.03 5:23p",
+  "release": 3,
+  "sha": "7b5b924",
+  "fullSha": "7b5b924f5ef14634e9e5608297c4b8ad544353d7",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-31T12:07:10-05:00",
-  "commits": [{"sha":"0e45122","message":"refactor: rewrite operations page with hospitality-first focus","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-03-31T12:23:07-05:00",
+  "commits": [{"sha":"7b5b924","message":"refactor: operations page as logistics considerations playbook","author":"Justin DeLaCruz"}]
 }
