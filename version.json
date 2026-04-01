@@ -1,12 +1,12 @@
 {
-  "version": "v260401.30 11:03p",
-  "release": 30,
-  "sha": "834e50f",
-  "fullSha": "834e50f66d7b741fee238e7378c706db0fff9557",
+  "version": "v260401.31 11:13p",
+  "release": 31,
+  "sha": "c76fd71",
+  "fullSha": "c76fd7165ddf0eff6404c881a4531cd42889f581",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervm727z3",
-  "pushedAt": "2026-04-01T18:03:25-05:00",
-  "commits": [{"sha":"834e50f","message":"New dedicated lodging dome section with before/after photos","author":"Lauren Burandt"}]
+  "machine": "runnervmrg6be",
+  "pushedAt": "2026-04-01T18:12:47-05:00",
+  "commits": [{"sha":"c76fd71","message":"Fix mobile responsive: no horizontal scroll, all grids stack to 1 column","author":"Lauren Burandt"}]
 }
