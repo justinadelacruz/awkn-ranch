@@ -1,12 +1,12 @@
 {
-  "version": "v260401.26 7:49p",
-  "release": 26,
-  "sha": "cdc1d24",
-  "fullSha": "cdc1d245d6de53f7873ccde32e647f9c1435c52d",
+  "version": "v260401.27 7:56p",
+  "release": 27,
+  "sha": "46fabd0",
+  "fullSha": "46fabd05d4641c511fda3b106ce1e5d4ac004081",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T14:49:41-05:00",
-  "commits": [{"sha":"cdc1d24","message":"Make header logo and title bigger and more prominent across all pages","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T14:56:46-05:00",
+  "commits": [{"sha":"46fabd0","message":"Make PlanList accessible to all authenticated users","author":"Lauren Burandt"}]
 }
