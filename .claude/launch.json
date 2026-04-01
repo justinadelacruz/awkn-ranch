@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "coop-plans",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "./retreat", "-p", "8899", "-c-1"],
+      "port": 8899
+    }
+  ]
+}
