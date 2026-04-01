@@ -1,12 +1,12 @@
 {
-  "version": "v260401.14 6:41p",
-  "release": 14,
-  "sha": "b970d09",
-  "fullSha": "b970d09e2b0157847bbe6fd1e70282af9bc0d71b",
+  "version": "v260401.15 6:53p",
+  "release": 15,
+  "sha": "ee7d250",
+  "fullSha": "ee7d250d43e3bafb3013b891ef1caab7d246d340",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T13:41:21-05:00",
-  "commits": [{"sha":"b970d09","message":"Fix all redirect paths to include /awkn-ranch/ prefix for GitHub Pages","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T13:53:23-05:00",
+  "commits": [{"sha":"ee7d250","message":"Add self-healing script to clear stale auth cache on login page","author":"Lauren Burandt"}]
 }
