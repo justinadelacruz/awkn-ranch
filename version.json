@@ -1,12 +1,12 @@
 {
-  "version": "v260401.09 5:58p",
-  "release": 9,
-  "sha": "cd6a46e",
-  "fullSha": "cd6a46ea5894606c3ae3018c1b7582ddee793adc",
+  "version": "v260401.10 6:06p",
+  "release": 10,
+  "sha": "484cc0b",
+  "fullSha": "484cc0b86fa1da3cd50e196c5b688eb09808f498",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T12:58:38-05:00",
-  "commits": [{"sha":"cd6a46e","message":"Change hero to solid green background","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T13:05:55-05:00",
+  "commits": [{"sha":"484cc0b","message":"Fix Supabase JS loading: switch from missing /vendor/ to CDN","author":"Lauren Burandt"}]
 }
