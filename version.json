@@ -1,12 +1,12 @@
 {
-  "version": "v260401.01 3:13p",
-  "release": 1,
-  "sha": "1b25c2a",
-  "fullSha": "1b25c2aae9a216f2b64ca7c1bfbfec404e69fe28",
+  "version": "v260401.02 3:14p",
+  "release": 2,
+  "sha": "5f9bac3",
+  "fullSha": "5f9bac369875b3c39b6e151b4a3f8d7dba9a6b79",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T10:13:03-05:00",
-  "commits": [{"sha":"1b25c2a","message":"Add corporate structure, valuation breakdown, exit strategy, and tech overhaul","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T10:14:11-05:00",
+  "commits": [{"sha":"5f9bac3","message":"Update date from March to April 2026","author":"Lauren Burandt"}]
 }
