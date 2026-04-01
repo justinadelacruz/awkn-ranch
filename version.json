@@ -1,12 +1,12 @@
 {
-  "version": "v260401.10 6:06p",
-  "release": 10,
-  "sha": "484cc0b",
-  "fullSha": "484cc0b86fa1da3cd50e196c5b688eb09808f498",
+  "version": "v260401.11 6:09p",
+  "release": 11,
+  "sha": "808420b",
+  "fullSha": "808420b2d848ef6223e7e87d22808f8d45441436",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T13:05:55-05:00",
-  "commits": [{"sha":"484cc0b","message":"Fix Supabase JS loading: switch from missing /vendor/ to CDN","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T13:09:26-05:00",
+  "commits": [{"sha":"808420b","message":"Fix login page blank screen: remove CSS gate that hides page on JS failure","author":"Lauren Burandt"}]
 }
