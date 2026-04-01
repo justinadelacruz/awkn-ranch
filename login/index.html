@@ -45,10 +45,7 @@
       padding: 2rem;
     }
 
-    /* Hide everything until JS decides what to show — prevents login form flash */
-    body:not(.ready) .login-container {
-      display: none;
-    }
+    /* Login container is visible by default; JS toggles individual states */
 
     .login-container {
       width: 100%;
@@ -447,8 +444,8 @@
     </div>
   </div>
 
-  <script type="module" src="../shared/version-info.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
   <script type="module" src="app.js"></script>
+  <script type="module" src="../shared/version-info.js"></script>
 </body>
 </html>
