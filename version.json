@@ -1,12 +1,12 @@
 {
-  "version": "v260401.21 7:24p",
-  "release": 21,
-  "sha": "2691ce6",
-  "fullSha": "2691ce68093e1fa340d272ab0bd4e09b70d234f5",
+  "version": "v260401.22 7:31p",
+  "release": 22,
+  "sha": "b60ad7f",
+  "fullSha": "b60ad7f08f405e00d4d3bad283a898428ffd6791",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T14:23:55-05:00",
-  "commits": [{"sha":"2691ce6","message":"Update header: AWKN logo + AWKN Ranch text in Ovo font","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T14:30:39-05:00",
+  "commits": [{"sha":"b60ad7f","message":"Fix spaces header: one AWKN logo + text, remove duplicate wordmark","author":"Lauren Burandt"}]
 }
