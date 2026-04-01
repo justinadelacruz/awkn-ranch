@@ -1,12 +1,12 @@
 {
-  "version": "v260401.20 7:20p",
-  "release": 20,
-  "sha": "adba7b4",
-  "fullSha": "adba7b4807330a849bbb397c3f1c2f5f1bbfc893",
+  "version": "v260401.21 7:24p",
+  "release": 21,
+  "sha": "2691ce6",
+  "fullSha": "2691ce68093e1fa340d272ab0bd4e09b70d234f5",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T14:20:46-05:00",
-  "commits": [{"sha":"adba7b4","message":"Replace alpaca branding images with AWKN wordmark logo","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T14:23:55-05:00",
+  "commits": [{"sha":"2691ce6","message":"Update header: AWKN logo + AWKN Ranch text in Ovo font","author":"Lauren Burandt"}]
 }
