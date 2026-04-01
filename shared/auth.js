@@ -497,7 +497,7 @@ export async function signInWithGoogle(redirectTo) {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: redirectTo || window.location.origin + '/spaces/admin/',
+      redirectTo: redirectTo || window.location.origin + '/awkn-ranch/spaces/admin/',
       queryParams: {
         prompt: 'select_account',
       },
@@ -671,7 +671,7 @@ function notifyListeners() {
  * @param {string} redirectUrl - URL to redirect to if not authenticated
  * @returns {boolean} True if authenticated
  */
-export function requireAuth(redirectUrl = '/login/') {
+export function requireAuth(redirectUrl = '/awkn-ranch/login/') {
   const state = getAuthState();
 
   if (!state.isAuthenticated) {
@@ -689,12 +689,12 @@ export function requireAuth(redirectUrl = '/login/') {
  * @param {string} redirectUrl - URL to redirect to if unauthorized
  * @returns {boolean} True if user has required role
  */
-export function requireRole(role, redirectUrl = '/spaces/') {
+export function requireRole(role, redirectUrl = '/awkn-ranch/spaces/') {
   const state = getAuthState();
 
   if (!state.isAuthenticated) {
     const currentPath = window.location.pathname;
-    window.location.href = '/login/?redirect=' + encodeURIComponent(currentPath);
+    window.location.href = '/awkn-ranch/login/?redirect=' + encodeURIComponent(currentPath);
     return false;
   }
 

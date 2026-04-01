@@ -26,7 +26,7 @@ const signUpPane = document.getElementById('signUpPane');
 const urlParams = new URLSearchParams(window.location.search);
 const redirectUrl = urlParams.get('redirect')
   || localStorage.getItem('awkn-ranch-login-redirect')
-  || '/spaces/admin/';
+  || '/awkn-ranch/spaces/admin/';
 
 console.log('[LOGIN]', 'Page loaded', { redirectUrl, href: window.location.href });
 
@@ -76,11 +76,11 @@ function getRedirectTarget(role) {
   let target = redirectUrl;
   // Public users always go to consumer spaces view
   if (['public'].includes(role)) {
-    target = '/spaces/';
+    target = '/awkn-ranch/spaces/';
   }
   // Resident/associate users go to resident area by default (not admin)
-  else if (target === '/spaces/admin/' && ['resident', 'associate'].includes(role)) {
-    target = '/residents/cameras.html';
+  else if (target === '/awkn-ranch/spaces/admin/' && ['resident', 'associate'].includes(role)) {
+    target = '/awkn-ranch/residents/cameras.html';
   }
   return target;
 }
