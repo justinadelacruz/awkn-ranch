@@ -1,12 +1,12 @@
 {
-  "version": "v260401.16 7:04p",
-  "release": 16,
-  "sha": "28aea61",
-  "fullSha": "28aea618745354cd03cd04108b7b0c9abcbba5d3",
+  "version": "v260401.17 7:13p",
+  "release": 17,
+  "sha": "dae913c",
+  "fullSha": "dae913c6b631c29408dc629bf179105eca2d3504",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T14:04:37-05:00",
-  "commits": [{"sha":"28aea61","message":"Regenerate favicons as proper ICO with multiple sizes from AWKN wordmark","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T14:13:04-05:00",
+  "commits": [{"sha":"dae913c","message":"Replace YOUR_PROPERTY_NAME with AWKN Ranch and fix logo paths","author":"Lauren Burandt"}]
 }
