@@ -1,12 +1,12 @@
 {
-  "version": "v260401.08 5:55p",
-  "release": 8,
-  "sha": "ace0d73",
-  "fullSha": "ace0d73c539935567d982ed9ce1438ee7b0dd748",
+  "version": "v260401.09 5:58p",
+  "release": 9,
+  "sha": "cd6a46e",
+  "fullSha": "cd6a46ea5894606c3ae3018c1b7582ddee793adc",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T12:54:44-05:00",
-  "commits": [{"sha":"ace0d73","message":"Update day pass button to translucent white background","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T12:58:38-05:00",
+  "commits": [{"sha":"cd6a46e","message":"Change hero to solid green background","author":"Lauren Burandt"}]
 }
