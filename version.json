@@ -1,12 +1,12 @@
 {
-  "version": "v260401.01 3:54a",
-  "release": 1,
-  "sha": "2c0facb",
-  "fullSha": "2c0facb507c190814533f3545c58954ecb85d229",
+  "version": "v260401.02 3:57a",
+  "release": 2,
+  "sha": "c4c4307",
+  "fullSha": "c4c4307e45d91722522c84978121dc9ecedb4807",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-03-31T22:53:59-05:00",
-  "commits": [{"sha":"2c0facb","message":"fix: remove Google auth from main investor page","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-03-31T22:56:54-05:00",
+  "commits": [{"sha":"c4c4307","message":"feat: add detailed monthly expense breakdown to projections page","author":"Justin DeLaCruz"}]
 }
