@@ -25,6 +25,7 @@ const icons = {
 
 initAdminPage({
   activeTab: 'todo',
+  requiredRole: 'public',
   section: 'staff',
   onReady: async () => {
     if (initialized) return;
