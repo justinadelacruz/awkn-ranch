@@ -1,12 +1,12 @@
 {
-  "version": "v260401.25 7:38p",
-  "release": 25,
-  "sha": "32d88c1",
-  "fullSha": "32d88c1ce73b9ddf35ad389689a73368188f8aa3",
-  "actor": "justinadelacruz",
+  "version": "v260401.26 7:49p",
+  "release": 26,
+  "sha": "cdc1d24",
+  "fullSha": "cdc1d245d6de53f7873ccde32e647f9c1435c52d",
+  "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T14:38:48-05:00",
-  "commits": [{"sha":"32d88c1","message":"feat: sync with alpacapps-infra template — new docs, admin tabs, update checker","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-01T14:49:41-05:00",
+  "commits": [{"sha":"cdc1d24","message":"Make header logo and title bigger and more prominent across all pages","author":"Lauren Burandt"}]
 }
