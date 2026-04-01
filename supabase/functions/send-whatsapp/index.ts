@@ -226,21 +226,21 @@ function getTemplateMapping(
 function getPlainTextBody(type: MessageType, data: Record<string, any>): string {
   switch (type) {
     case "payment_reminder":
-      return `Hi ${data.first_name}, friendly reminder: your ${data.period || "rent"} of $${data.amount} is due ${data.due_date}. Pay via Venmo @PropertyPlayhouse or Zelle admin@YOUR_DOMAIN - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, friendly reminder: your ${data.period || "rent"} of $${data.amount} is due ${data.due_date}. Pay via Venmo @PropertyPlayhouse or Zelle admin@YOUR_DOMAIN - AWKN Ranch`;
     case "payment_overdue":
-      return `Hi ${data.first_name}, your rent of $${data.amount} was due ${data.due_date} and is ${data.days_overdue} day(s) overdue.${data.late_fee ? ` Late fee: $${data.late_fee}. Total: $${data.total_due}.` : ""} Please pay ASAP. - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, your rent of $${data.amount} was due ${data.due_date} and is ${data.days_overdue} day(s) overdue.${data.late_fee ? ` Late fee: $${data.late_fee}. Total: $${data.total_due}.` : ""} Please pay ASAP. - AWKN Ranch`;
     case "payment_received":
-      return `Hi ${data.first_name}, we received your $${data.amount} payment${data.period ? ` for ${data.period}` : ""}. Thank you! - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, we received your $${data.amount} payment${data.period ? ` for ${data.period}` : ""}. Thank you! - AWKN Ranch`;
     case "deposit_requested":
-      return `Hi ${data.first_name}, your deposit of $${data.total_due} is due${data.due_date ? ` by ${data.due_date}` : ""}. Pay via Venmo @PropertyPlayhouse or Zelle admin@YOUR_DOMAIN - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, your deposit of $${data.total_due} is due${data.due_date ? ` by ${data.due_date}` : ""}. Pay via Venmo @PropertyPlayhouse or Zelle admin@YOUR_DOMAIN - AWKN Ranch`;
     case "deposit_received":
-      return `Hi ${data.first_name}, we received your $${data.amount} deposit.${data.remaining_balance > 0 ? ` Remaining: $${data.remaining_balance}.` : " All deposits received!"} Thank you! - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, we received your $${data.amount} deposit.${data.remaining_balance > 0 ? ` Remaining: $${data.remaining_balance}.` : " All deposits received!"} Thank you! - AWKN Ranch`;
     case "lease_sent":
-      return `Hi ${data.first_name}, your lease agreement has been sent for e-signature. Please check your email from SignWell. - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, your lease agreement has been sent for e-signature. Please check your email from SignWell. - AWKN Ranch`;
     case "lease_signed":
-      return `Hi ${data.first_name}, your lease has been signed! Next: submit your deposits. Details sent via email. - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, your lease has been signed! Next: submit your deposits. Details sent via email. - AWKN Ranch`;
     case "move_in_confirmed":
-      return `Hi ${data.first_name}, welcome to YOUR_PROPERTY_NAME! Your move-in is confirmed for ${data.move_in_date}. Rent of $${data.monthly_rate} is due the 1st of each month. - YOUR_PROPERTY_NAME`;
+      return `Hi ${data.first_name}, welcome to AWKN Ranch! Your move-in is confirmed for ${data.move_in_date}. Rent of $${data.monthly_rate} is due the 1st of each month. - AWKN Ranch`;
     case "general":
     case "bulk_announcement":
       return data.message || data.body || "";

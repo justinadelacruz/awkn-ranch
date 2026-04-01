@@ -227,6 +227,7 @@
 
     <nav>
         <a href="./" class="logo"><img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/e7642ed2-f2d9-40e4-94b8-bbf5eb1ab229/Transparent+Brown_black.jpg" alt="AWKN Ranch" style="height:40px;"></a>
+        <span id="nav-version" style="font-size:10px;color:var(--brown-light);letter-spacing:1px;font-family:var(--font-body);opacity:0.7;"></span>
         <ul class="nav-links">
             <li><a href="./">Home</a></li>
             <li><a href="#">Events</a></li>
@@ -355,5 +356,11 @@
         </div>
     </footer>
 
+<script>
+fetch('version.json').then(r=>r.json()).then(d=>{
+    const el=document.getElementById('nav-version');
+    if(el&&d.version) el.textContent=d.version;
+}).catch(()=>{});
+</script>
 </body>
 </html>

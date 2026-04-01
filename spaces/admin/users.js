@@ -577,7 +577,7 @@ function showProspectLinkModal(token, name, email) {
 
   const inviteText = `Hi${firstName ? ' ' + firstName : ''},
 
-You've been invited to browse available spaces at YOUR_PROPERTY_NAME, a unique co-living community in Your City, Texas.
+You've been invited to browse available spaces at AWKN Ranch, a unique co-living community in Your City, Texas.
 
 No account or login is needed — just click the link below to start browsing:
 
@@ -592,7 +592,7 @@ When you're ready, you can also:
 If you have any questions or would like to schedule a tour, feel free to reply to this message or email team@YOUR_DOMAIN.
 
 Yours,
-The YOUR_PROPERTY_NAME Community Team`;
+The AWKN Ranch Community Team`;
 
   // Store state for email sending
   currentProspectToken = token;

@@ -291,7 +291,7 @@ function buildHtml(firstName: string, phase: 'clock_in' | 'clock_out', spaceName
       <a href="${WORK_PAGE_URL}" style="display: inline-block; background: #3d8b7a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Upload Photos</a>
     </div>
     <p style="color: #666; font-size: 0.9em;">This is just a friendly nudge — no photos are required if they aren't relevant to the task.</p>
-    <p>Thanks,<br>YOUR_PROPERTY_NAME</p>
+    <p>Thanks,<br>AWKN Ranch</p>
   `;
 }
 
@@ -317,5 +317,5 @@ Upload photos: ${WORK_PAGE_URL}
 This is just a friendly nudge — no photos are required if they aren't relevant to the task.
 
 Thanks,
-YOUR_PROPERTY_NAME`;
+AWKN Ranch`;
 }

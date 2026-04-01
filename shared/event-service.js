@@ -1078,7 +1078,7 @@ The reservation deposit and cleaning deposit are refundable after your event, pr
 Please send payment via Venmo, Zelle, or PayPal. Include your name and "Event ${request.event_date}" in the memo.
 
 Thank you!
-YOUR_PROPERTY_NAME`;
+AWKN Ranch`;
 
   return message;
 }

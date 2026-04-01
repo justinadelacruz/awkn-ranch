@@ -311,7 +311,7 @@ function renderFontWeights() {
     <div class="brand-weights">
       ${Object.entries(weights).map(([key, w]) => `
         <div class="brand-weight-row">
-          <span class="brand-weight-sample" style="font-weight:${w};font-size:1.25rem;">YOUR_PROPERTY_NAME</span>
+          <span class="brand-weight-sample" style="font-weight:${w};font-size:1.25rem;">AWKN Ranch</span>
           <span class="brand-weight-label">${key} (${w})</span>
         </div>
       `).join('')}
@@ -333,14 +333,14 @@ function renderTypeSpecimen() {
   el.innerHTML = `
     <div class="brand-specimen" style="font-family:${font};">
       <div class="brand-specimen-block" style="background:${c.background || '#faf9f6'};color:${c.text || '#2a1f23'};border:1px solid ${c.border || '#e6e2d9'};border-radius:12px;padding:2rem;margin-bottom:1rem;">
-        <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 0.25rem;color:${c.text || '#2a1f23'};">Welcome to YOUR_PROPERTY_NAME</h2>
-        <p style="font-size:0.875rem;color:${c.text_muted || '#7d6f74'};margin:0 0 1rem;font-weight:400;">Where we redefine your idea of what an YOUR_PROPERTY_NAME can be.</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 0.25rem;color:${c.text || '#2a1f23'};">Welcome to AWKN Ranch</h2>
+        <p style="font-size:0.875rem;color:${c.text_muted || '#7d6f74'};margin:0 0 1rem;font-weight:400;">Where we redefine your idea of what an AWKN Ranch can be.</p>
         <p style="font-size:1rem;line-height:1.6;margin:0 0 0.75rem;font-weight:400;">Our property features <strong>six unique living spaces</strong>, each designed with a distinct personality. From the minimalist <em>Spartan Suite</em> to the luxurious <em>Garage Mahal</em>, there's a perfect fit for everyone.</p>
         <p style="font-size:0.875rem;line-height:1.55;color:${c.text_muted || '#7d6f74'};margin:0;">Amenities include high-speed WiFi, smart home controls, a maker space with laser cutter, and our famous property herd on 5 acres of Texas hill country.</p>
       </div>
       <div class="brand-specimen-block" style="background:${c.background_dark || '#1c1618'};color:${c.text_light || '#faf9f6'};border-radius:12px;padding:2rem;">
-        <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 0.25rem;">Welcome to YOUR_PROPERTY_NAME</h2>
-        <p style="font-size:0.875rem;opacity:0.7;margin:0 0 1rem;font-weight:400;">Where we redefine your idea of what an YOUR_PROPERTY_NAME can be.</p>
+        <h2 style="font-size:1.75rem;font-weight:700;margin:0 0 0.25rem;">Welcome to AWKN Ranch</h2>
+        <p style="font-size:0.875rem;opacity:0.7;margin:0 0 1rem;font-weight:400;">Where we redefine your idea of what an AWKN Ranch can be.</p>
         <p style="font-size:1rem;line-height:1.6;margin:0 0 0.75rem;font-weight:400;">Our property features <strong>six unique living spaces</strong>, each designed with a distinct personality. From the minimalist <em>Spartan Suite</em> to the luxurious <em>Garage Mahal</em>, there's a perfect fit for everyone.</p>
         <p style="font-size:0.875rem;line-height:1.55;opacity:0.6;margin:0;">Amenities include high-speed WiFi, smart home controls, a maker space with laser cutter, and our famous property herd on 5 acres of Texas hill country.</p>
       </div>
@@ -444,7 +444,7 @@ function renderEmailPreview() {
         <tr>
           <td style="padding:${e.body?.padding || '32px'};color:${e.body?.text_color || '#2a1f23'};font-size:16px;line-height:${e.body?.line_height || '1.6'};font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
             <p style="margin:0 0 16px;">Hi there,</p>
-            <p style="margin:0 0 16px;">This is an example of the <strong>standard email template</strong> used across all YOUR_PROPERTY_NAME communications. It demonstrates the branded header, body formatting, components, and footer.</p>
+            <p style="margin:0 0 16px;">This is an example of the <strong>standard email template</strong> used across all AWKN Ranch communications. It demonstrates the branded header, body formatting, components, and footer.</p>
 
             <!-- Callout -->
             <div style="background:${callout.background || '#f2f0e8'};border:1px solid ${callout.border_color || '#e6e2d9'};border-radius:${callout.border_radius || '8px'};padding:${callout.padding || '20px 24px'};margin:16px 0;">
@@ -1041,7 +1041,7 @@ function renderGuideDarkMode() {
         <div class="guide-darkmode-label">Light Mode (original)</div>
         <div style="background:${bg};border:1px solid #e6e2d9;border-radius:8px;overflow:hidden;font-family:'DM Sans',sans-serif;">
           <div style="background:${dark};padding:16px;text-align:center;">
-            <span style="color:${bg};font-size:13px;font-weight:600;">YOUR_PROPERTY_NAME</span>
+            <span style="color:${bg};font-size:13px;font-weight:600;">AWKN Ranch</span>
           </div>
           <div style="padding:16px;">
             <div style="font-size:14px;font-weight:600;color:${text};margin-bottom:6px;">Welcome home!</div>
@@ -1057,7 +1057,7 @@ function renderGuideDarkMode() {
         <div class="guide-darkmode-label">Dark Mode (inverted by client)</div>
         <div style="background:#1a1a1a;border:1px solid #333;border-radius:8px;overflow:hidden;font-family:'DM Sans',sans-serif;">
           <div style="background:#2a2a2a;padding:16px;text-align:center;">
-            <span style="color:#e0e0e0;font-size:13px;font-weight:600;">YOUR_PROPERTY_NAME</span>
+            <span style="color:#e0e0e0;font-size:13px;font-weight:600;">AWKN Ranch</span>
           </div>
           <div style="padding:16px;">
             <div style="font-size:14px;font-weight:600;color:#e0e0e0;margin-bottom:6px;">Welcome home!</div>

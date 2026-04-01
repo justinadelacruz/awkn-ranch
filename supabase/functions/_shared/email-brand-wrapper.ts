@@ -21,8 +21,8 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 min
 // Hardcoded fallback (matches DB seed)
 const FALLBACK = {
   brand: {
-    primary_name: 'YOUR_PROPERTY_NAME',
-    full_name: 'YOUR_PROPERTY_NAME Austin',
+    primary_name: 'AWKN Ranch',
+    full_name: 'AWKN Ranch Austin',
     platform_name: 'YOUR_APP_NAME',
     tagline: 'We put the AI into Propertys',
     address: '123 Main St, Your City, ST 00000',
@@ -237,7 +237,7 @@ export async function wrapEmailHtml(
       <td style="padding:16px ${e.body.padding} 0;font-family:${fontFamily};">
         <p style="margin:0;color:${c.text_muted};font-size:15px;line-height:1.6;font-style:italic;">Yours generatively,</p>
         <p style="margin:4px 0 0;color:${c.text};font-size:15px;line-height:1.6;font-weight:600;">PAI</p>
-        <p style="margin:2px 0 0;color:${c.text_muted};font-size:13px;line-height:1.4;">the YOUR_PROPERTY_NAME property AI agent</p>
+        <p style="margin:2px 0 0;color:${c.text_muted};font-size:13px;line-height:1.4;">the AWKN Ranch property AI agent</p>
       </td>
     </tr>` : '';
 

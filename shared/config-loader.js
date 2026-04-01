@@ -12,7 +12,7 @@ const CACHE_TTL = 5 * 60 * 1000;
 
 const FALLBACK_CONFIG = {
   property: {
-    name: 'YOUR_PROPERTY_NAME',
+    name: 'AWKN Ranch',
     short_name: 'YOUR_APP_NAME',
     tagline: 'We put the AI into Propertys',
     address: '123 Main St, Your City, ST 00000',
@@ -50,7 +50,7 @@ const FALLBACK_CONFIG = {
     network_name: 'Black Rock City',
   },
   mobile_app: {
-    name: 'YOUR_PROPERTY_NAME',
+    name: 'AWKN Ranch',
     id: 'com.yourorg.app',
   },
 };

@@ -2,7 +2,7 @@
  * Email Compliance Audit
  *
  * Weekly cron that checks all email templates against the 7 compliance rules:
- * 1. Sender identity: "PAI at the YOUR_PROPERTY_NAME"
+ * 1. Sender identity: "PAI at the AWKN Ranch"
  * 2. Profile picture: BIMI DNS record (manual check — logged as reminder)
  * 3. Signature: "Yours generatively, PAI"
  * 4. Two property footer images
@@ -34,7 +34,7 @@ serve(async (_req) => {
   const violations: Violation[] = [];
 
   // ─── Rule 1: Sender Identity ───
-  const expectedSenderName = "PAI at the YOUR_PROPERTY_NAME";
+  const expectedSenderName = "PAI at the AWKN Ranch";
   for (const [key, val] of Object.entries(SENDER_MAP)) {
     if (key === "claudero") continue; // different identity
     if (!val.from.startsWith(expectedSenderName)) {
@@ -56,8 +56,8 @@ serve(async (_req) => {
   // ─── Rule 3: Check DB templates for stale sign-offs ───
   const stalePatterns = [
     "Best regards,",
-    "Yours,<br>The YOUR_PROPERTY_NAME Community Team",
-    "Thanks,<br>YOUR_PROPERTY_NAME",
+    "Yours,<br>The AWKN Ranch Community Team",
+    "Thanks,<br>AWKN Ranch",
   ];
   const { data: templates } = await sb
     .from("email_templates")
@@ -190,7 +190,7 @@ serve(async (_req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+        from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
         to: ["admin@YOUR_DOMAIN"],
         subject: `[Audit] Email Compliance — ${violations.length} issue(s)`,
         html: alertHtml,

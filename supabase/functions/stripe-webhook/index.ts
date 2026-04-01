@@ -174,7 +174,7 @@ async function sendPaymentConfirmation(
     .eq('status', 'active');
 
   // Also find what space they're in
-  let spaceName = 'YOUR_PROPERTY_NAME';
+  let spaceName = 'AWKN Ranch';
   if (assignments?.length) {
     const { data: aspaces } = await supabase
       .from('assignment_spaces')
@@ -293,7 +293,7 @@ async function sendPaymentConfirmation(
           <span style="font-size:28px;color:white;">&#10003;</span>
         </div>
         <h1 style="color:white;margin:0;font-size:22px;">Payment Received</h1>
-        <p style="color:rgba(255,255,255,0.8);margin:8px 0 0;font-size:14px;">YOUR_PROPERTY_NAME</p>
+        <p style="color:rgba(255,255,255,0.8);margin:8px 0 0;font-size:14px;">AWKN Ranch</p>
       </div>
       <div style="padding:32px;">
         <p style="color:#333;font-size:16px;">Hi ${person.first_name},</p>
@@ -327,7 +327,7 @@ async function sendPaymentConfirmation(
         ` : ''}
 
         <p style="color:#555;font-size:14px;">If you have any questions, just reply to this email.</p>
-        <p style="color:#555;font-size:14px;">Best regards,<br><strong>YOUR_PROPERTY_NAME</strong></p>
+        <p style="color:#555;font-size:14px;">Best regards,<br><strong>AWKN Ranch</strong></p>
       </div>
       <div style="background:#f5f5f5;padding:16px 32px;text-align:center;border-top:1px solid #e0e0e0;">
         <p style="margin:0;color:#999;font-size:12px;">123 Main Stive, Your City, TX 00000</p>
@@ -344,7 +344,7 @@ We've received your payment of ${formatCurrency(row.amount)} for ${paymentTypeLa
 ${balanceDue > 0 ? `Outstanding balance: ${formatCurrency(balanceDue)}\nPay now: https://YOUR_DOMAIN/pay/?amount=${balanceDue}&person_id=${row.person_id}` : 'You\'re all caught up! No outstanding balance.'}
 
 Thank you!
-YOUR_PROPERTY_NAME`;
+AWKN Ranch`;
 
   // Send to the payer
   try {
@@ -358,7 +358,7 @@ YOUR_PROPERTY_NAME`;
         from: 'Property Team <team@YOUR_DOMAIN>',
         to: [person.email],
         reply_to: 'team@YOUR_DOMAIN',
-        subject: `Payment Received - ${formatCurrency(row.amount)} - YOUR_PROPERTY_NAME`,
+        subject: `Payment Received - ${formatCurrency(row.amount)} - AWKN Ranch`,
         html: emailHtml,
         text: emailText,
       }),

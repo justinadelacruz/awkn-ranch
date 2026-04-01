@@ -213,7 +213,7 @@ async function sendEmailNotification(emails, typeLabel) {
          style="display:inline-block;background:#d97706;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;">
         View Appliances
       </a>
-      <p style="margin:16px 0 0;color:#999;font-size:12px;">YOUR_PROPERTY_NAME</p>
+      <p style="margin:16px 0 0;color:#999;font-size:12px;">AWKN Ranch</p>
     </div>`;
   const text = `${typeLabel} Cycle Complete\n\nYour ${typeLabel.toLowerCase()} cycle has finished. Time to grab your laundry!\n\nView: https://YOUR_DOMAIN/residents/appliances.html`;
 

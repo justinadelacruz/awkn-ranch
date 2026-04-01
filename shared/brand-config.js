@@ -11,8 +11,8 @@ import { getSupabase } from './supabase.js';
 // Hardcoded fallback (matches the DB seed exactly)
 const FALLBACK_CONFIG = {
   brand: {
-    primary_name: 'YOUR_PROPERTY_NAME',
-    full_name: 'YOUR_PROPERTY_NAME Austin',
+    primary_name: 'AWKN Ranch',
+    full_name: 'AWKN Ranch Austin',
     platform_name: 'YOUR_APP_NAME',
     legal_name: 'YOUR_APP_NAME Residency',
     tagline: 'Where the herd gathers',

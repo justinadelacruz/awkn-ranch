@@ -81,7 +81,7 @@ async function sendPayPalPayout(
   const payload = {
     sender_batch_header: {
       sender_batch_id: senderBatchId,
-      email_subject: 'You have a payment from YOUR_PROPERTY_NAME',
+      email_subject: 'You have a payment from AWKN Ranch',
       email_message: note || 'Thank you for your work!',
     },
     items: [
@@ -92,7 +92,7 @@ async function sendPayPalPayout(
           currency: 'USD',
         },
         receiver: recipientEmail,
-        note: note || 'Payment from YOUR_PROPERTY_NAME',
+        note: note || 'Payment from AWKN Ranch',
         sender_item_id: senderBatchId,
       },
     ],

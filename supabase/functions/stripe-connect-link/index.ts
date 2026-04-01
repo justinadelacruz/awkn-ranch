@@ -64,11 +64,11 @@ Deno.serve(async (req) => {
       .single();
 
     if (tokenError || !tokenRecord) {
-      return errorPage('Invalid Link', 'This link is not valid. Please contact the YOUR_PROPERTY_NAME team for a new one.');
+      return errorPage('Invalid Link', 'This link is not valid. Please contact the AWKN Ranch team for a new one.');
     }
 
     if (new Date(tokenRecord.expires_at) < new Date()) {
-      return errorPage('Link Expired', 'This link has expired. Please contact the YOUR_PROPERTY_NAME team for a new one.');
+      return errorPage('Link Expired', 'This link has expired. Please contact the AWKN Ranch team for a new one.');
     }
 
     // Get the associate profile via app_user_id

@@ -92,7 +92,7 @@ async function createPayPalOrder(
     intent: 'CAPTURE',
     purchase_units: [{
       reference_id: referenceId,
-      description: description || 'YOUR_PROPERTY_NAME Payment',
+      description: description || 'AWKN Ranch Payment',
       amount: {
         currency_code: 'USD',
         value: amount.toFixed(2),
@@ -101,7 +101,7 @@ async function createPayPalOrder(
     payment_source: {
       paypal: {
         experience_context: {
-          brand_name: 'YOUR_PROPERTY_NAME',
+          brand_name: 'AWKN Ranch',
           landing_page: 'NO_PREFERENCE',
           user_action: 'PAY_NOW',
           return_url: 'https://YOUR_DOMAIN/pay/?paypal_success=true',
@@ -276,7 +276,7 @@ Deno.serve(async (req) => {
         accessToken,
         config,
         amount,
-        description || 'YOUR_PROPERTY_NAME Payment',
+        description || 'AWKN Ranch Payment',
         internalRefId
       );
 

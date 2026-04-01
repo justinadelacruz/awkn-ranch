@@ -1,4 +1,4 @@
-// Chat Widget for YOUR_PROPERTY_NAME
+// Chat Widget for AWKN Ranch
 // Uses Edge Function proxy to call Gemini API (keeps API key secure)
 
 const SUPABASE_URL = 'YOUR_SUPABASE_URL';
