@@ -1,12 +1,12 @@
 {
-  "version": "v260401.06 5:27p",
-  "release": 6,
-  "sha": "ec0e213",
-  "fullSha": "ec0e213fcf0de0fa2393092ee834ff3a04da6266",
+  "version": "v260401.07 5:31p",
+  "release": 7,
+  "sha": "6530609",
+  "fullSha": "65306091ef1a6b536e63012d4671f34359cc52bc",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T12:27:14-05:00",
-  "commits": [{"sha":"ec0e213","message":"Add Maloka ROI case study with site photo and revenue breakdown","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T12:30:55-05:00",
+  "commits": [{"sha":"6530609","message":"Add actual maloka site photo (was empty before)","author":"Lauren Burandt"}]
 }
