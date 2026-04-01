@@ -1,12 +1,12 @@
 {
-  "version": "v260401.05 5:01p",
-  "release": 5,
-  "sha": "612d3dc",
-  "fullSha": "612d3dc2e636b5d585430aa1525b7755f5f42a36",
+  "version": "v260401.06 5:27p",
+  "release": 6,
+  "sha": "ec0e213",
+  "fullSha": "ec0e213fcf0de0fa2393092ee834ff3a04da6266",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T12:01:48-05:00",
-  "commits": [{"sha":"612d3dc","message":"Update valuation to EBITDA model, add MSO to fund allocation","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-01T12:27:14-05:00",
+  "commits": [{"sha":"ec0e213","message":"Add Maloka ROI case study with site photo and revenue breakdown","author":"Lauren Burandt"}]
 }
