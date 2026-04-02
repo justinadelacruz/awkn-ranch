@@ -1,12 +1,12 @@
 {
-  "version": "v260401.31 11:13p",
-  "release": 31,
-  "sha": "c76fd71",
-  "fullSha": "c76fd7165ddf0eff6404c881a4531cd42889f581",
+  "version": "v260402.01 5:19p",
+  "release": 1,
+  "sha": "460f383",
+  "fullSha": "460f3831455a0afd1b8e557dba7d6af08d22d1a6",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-01T18:12:47-05:00",
-  "commits": [{"sha":"c76fd71","message":"Fix mobile responsive: no horizontal scroll, all grids stack to 1 column","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-02T12:18:47-05:00",
+  "commits": [{"sha":"460f383","message":"Make PlanList fully public — no login required","author":"Lauren Burandt"}]
 }
