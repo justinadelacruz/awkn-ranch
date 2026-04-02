@@ -1,12 +1,12 @@
 {
-  "version": "v260402.02 5:24p",
-  "release": 2,
-  "sha": "16c92b6",
-  "fullSha": "16c92b65b3adaf55309201771618660876a14d0e",
+  "version": "v260402.03 8:11p",
+  "release": 3,
+  "sha": "a5fd0e1",
+  "fullSha": "a5fd0e1743053bfcbf0e17d31a2396b1a8a64b2d",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-02T12:24:15-05:00",
-  "commits": [{"sha":"16c92b6","message":"Move PlanList to /planlist/ root path for public access","author":"Lauren Burandt"}]
+  "machine": "runnervm727z3",
+  "pushedAt": "2026-04-02T15:10:52-05:00",
+  "commits": [{"sha":"a5fd0e1","message":"Add Reservations booking calendar system — Mindbody-style staff dashboard","author":"Lauren Burandt"}]
 }
