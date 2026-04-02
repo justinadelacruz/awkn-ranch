@@ -1,12 +1,12 @@
 {
-  "version": "v260402.05 8:37p",
-  "release": 5,
-  "sha": "9d7380e",
-  "fullSha": "9d7380e7f84323e01cdbf7077d387f4bfce3bcd7",
+  "version": "v260402.06 8:50p",
+  "release": 6,
+  "sha": "fa10afc",
+  "fullSha": "fa10afcb96b85aa4f51a9c0efb1e372ac88a70fd",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervm727z3",
-  "pushedAt": "2026-04-02T15:36:46-05:00",
-  "commits": [{"sha":"9d7380e","message":"Fix reservations page — add missing Supabase CDN script tag","author":"Lauren Burandt"}]
+  "machine": "runnervmrg6be",
+  "pushedAt": "2026-04-02T15:50:20-05:00",
+  "commits": [{"sha":"fa10afc","message":"Rebuild Combined view as single unified master calendar","author":"Lauren Burandt"}]
 }
