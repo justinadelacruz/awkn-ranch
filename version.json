@@ -1,12 +1,12 @@
 {
-  "version": "v260402.06 8:50p",
-  "release": 6,
-  "sha": "fa10afc",
-  "fullSha": "fa10afcb96b85aa4f51a9c0efb1e372ac88a70fd",
+  "version": "v260402.07 9:00p",
+  "release": 7,
+  "sha": "0d0c88a",
+  "fullSha": "0d0c88a2bb49030c98116f62c7249bf0f7866610",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervmrg6be",
-  "pushedAt": "2026-04-02T15:50:20-05:00",
-  "commits": [{"sha":"fa10afc","message":"Rebuild Combined view as single unified master calendar","author":"Lauren Burandt"}]
+  "machine": "runnervm727z3",
+  "pushedAt": "2026-04-02T16:00:32-05:00",
+  "commits": [{"sha":"0d0c88a","message":"Add time grid to all calendar views — default to Day view","author":"Lauren Burandt"}]
 }
