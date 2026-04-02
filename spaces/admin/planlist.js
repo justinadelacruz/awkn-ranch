@@ -1,17 +1,25 @@
 /**
- * PlanList — Standalone development todo / checklist page
+ * PlanList — Public development todo / checklist page
  * Backed by Supabase todo_categories + todo_items tables
+ * No authentication required.
  */
 import { supabase } from '../../shared/supabase.js';
-import { initAdminPage, showToast } from '../../shared/admin-shell.js';
-import { getAuthState } from '../../shared/auth.js';
 
-let initialized = false;
 let todoCategories = [];
 let todoAllItems = [];
 let todoSearchQuery = '';
 
 const esc = (s) => { const d = document.createElement('div'); d.textContent = String(s ?? ''); return d.innerHTML; };
+
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+  const el = document.createElement('div');
+  el.className = `toast toast--${type}`;
+  el.textContent = msg;
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
 
 const defaultIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>';
 const icons = {
@@ -23,16 +31,8 @@ const icons = {
   search: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
 };
 
-initAdminPage({
-  activeTab: 'todo',
-  requiredRole: 'public',
-  section: 'staff',
-  onReady: async () => {
-    if (initialized) return;
-    initialized = true;
-    await loadTodoData();
-  }
-});
+// Boot immediately — no auth required
+document.addEventListener('DOMContentLoaded', () => loadTodoData());
 
 // ═══════════════════════════════════════════════════════════
 // DATA
@@ -214,14 +214,13 @@ function bindEvents() {
 async function toggleItem(itemId) {
   const item = todoAllItems.find(i => i.id === itemId);
   if (!item) return;
-  const auth = getAuthState();
   const newChecked = !item.is_checked;
   item.is_checked = newChecked;
   item.checked_at = newChecked ? new Date().toISOString() : null;
   render();
   const { error } = await supabase.from('todo_items').update({
     is_checked: newChecked,
-    checked_by: newChecked ? (auth?.appUser?.id || null) : null,
+    checked_by: null,
     checked_at: newChecked ? new Date().toISOString() : null,
     updated_at: new Date().toISOString()
   }).eq('id', itemId);
