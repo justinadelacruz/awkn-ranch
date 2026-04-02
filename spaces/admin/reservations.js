@@ -38,6 +38,7 @@ let activityBookings = [];
 let currentDate = getAustinToday();
 let currentView = 'day'; // day | week | month
 let currentTab = 'house';
+let selectedStaffId = 'all'; // 'all' or specific staff UUID
 let editingBooking = null; // { type, data } when editing
 
 // =============================================
@@ -78,6 +79,40 @@ async function loadReferenceData() {
   allWellnessSpaces = wellness;
   allStaffMembers = staff;
   allActivityTypes = activities;
+  populateStaffFilter();
+}
+
+function populateStaffFilter() {
+  const select = document.getElementById('staffFilter');
+  if (!select) return;
+  // Keep "All Staff" option, add individual staff
+  select.innerHTML = `<option value="all">All Staff</option>` +
+    allStaffMembers.map(s =>
+      `<option value="${s.id}" ${selectedStaffId === s.id ? 'selected' : ''}>
+        ${s.display_name}
+      </option>`
+    ).join('');
+}
+
+function getFilteredStaffColumns() {
+  if (selectedStaffId === 'all') {
+    return allStaffMembers.map(s => ({
+      ...s,
+      id: `staff-${s.id}`,
+      _staffId: s.id,
+      booking_name: s.display_name,
+      _isStaff: true,
+    }));
+  }
+  const staff = allStaffMembers.find(s => s.id === selectedStaffId);
+  if (!staff) return [];
+  return [{
+    ...staff,
+    id: `staff-${staff.id}`,
+    _staffId: staff.id,
+    booking_name: staff.display_name,
+    _isStaff: true,
+  }];
 }
 
 async function loadBookings() {
@@ -363,20 +398,19 @@ function renderRentalMonthView(container, spaces) {
 
 function renderActivitiesCalendar() {
   const container = document.getElementById('calActivities');
+  const staffCols = getFilteredStaffColumns();
 
   if (currentView === 'month') {
-    // For month view, show a simplified timeline
     renderActivityMonthView(container);
     return;
   }
 
-  renderTimeGrid(container, allStaffMembers.map(s => ({
-    ...s,
-    id: `staff-${s.id}`,
-    _staffId: s.id,
-    booking_name: s.display_name,
-    _isStaff: true,
-  })), activityBookings, 'activity');
+  // Filter activity bookings if viewing single staff member
+  const filteredActivities = selectedStaffId === 'all'
+    ? activityBookings
+    : activityBookings.filter(b => b.staff_member_id === selectedStaffId);
+
+  renderTimeGrid(container, staffCols, filteredActivities, 'activity');
 }
 
 function renderActivityMonthView(container) {
@@ -1128,11 +1162,103 @@ function hideModal() {
 }
 
 // =============================================
+// STAFF MANAGER MODAL
+// =============================================
+
+function openStaffManagerModal() {
+  editingBooking = { type: 'staff_manager', data: null };
+  document.getElementById('modalTitle').textContent = 'Manage Staff';
+  document.getElementById('modalDelete').classList.add('hidden');
+  document.getElementById('modalSave').textContent = 'Done';
+
+  const body = document.getElementById('modalBody');
+  let html = `<div class="staff-manager">`;
+
+  // Existing staff list
+  html += `<div class="staff-manager-list">`;
+  for (const s of allStaffMembers) {
+    html += `<div class="staff-manager-item" data-staff-id="${s.id}">
+      <span class="staff-manager-color" style="background:${s.color}"></span>
+      <span class="staff-manager-name">${s.display_name}</span>
+      <span class="staff-manager-email">${s.email || ''}</span>
+    </div>`;
+  }
+  if (allStaffMembers.length === 0) {
+    html += `<div class="staff-manager-empty">No staff members yet</div>`;
+  }
+  html += `</div>`;
+
+  // Add new staff form
+  html += `<div class="staff-manager-add">
+    <div class="staff-manager-add-title">Add Staff Member</div>
+    <div class="res-form-row">
+      <div class="res-form-group">
+        <label class="res-form-label">Name</label>
+        <input type="text" class="res-form-input" id="frmStaffName" placeholder="Display name">
+      </div>
+      <div class="res-form-group">
+        <label class="res-form-label">Color</label>
+        <input type="color" class="res-form-input" id="frmStaffColor" value="#8B5CF6" style="height:38px; padding:2px;">
+      </div>
+    </div>
+    <div class="res-form-group">
+      <label class="res-form-label">Email (optional)</label>
+      <input type="email" class="res-form-input" id="frmStaffEmail" placeholder="email@example.com">
+    </div>
+    <button class="res-btn res-btn--primary" id="btnAddStaff" style="margin-top:0.5rem; width:100%;">
+      + Add Staff Member
+    </button>
+  </div>`;
+
+  html += `</div>`;
+  body.innerHTML = html;
+
+  // Add staff handler
+  document.getElementById('btnAddStaff').addEventListener('click', async () => {
+    const name = document.getElementById('frmStaffName').value.trim();
+    const color = document.getElementById('frmStaffColor').value;
+    const email = document.getElementById('frmStaffEmail').value.trim();
+
+    if (!name) {
+      showToast('Please enter a staff name', 'error');
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('staff_members')
+        .insert({ display_name: name, color, email: email || null, is_active: true })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      allStaffMembers.push(data);
+      populateStaffFilter();
+      showToast(`${name} added as staff`, 'success');
+      openStaffManagerModal(); // Re-render to show updated list
+    } catch (e) {
+      showToast('Failed to add staff: ' + e.message, 'error');
+    }
+  });
+
+  showModal();
+}
+
+// =============================================
 // SAVE HANDLERS
 // =============================================
 
 async function handleSave() {
   try {
+    // Staff manager — just close
+    if (editingBooking?.type === 'staff_manager') {
+      hideModal();
+      document.getElementById('modalSave').textContent = 'Save Booking';
+      renderCalendar();
+      return;
+    }
+
     if (editingBooking) {
       // Update existing
       if (editingBooking.type === 'room') await saveRoomBooking(editingBooking.data.id);
@@ -1353,6 +1479,17 @@ function setupEventListeners() {
 
     currentView = btn.dataset.view;
     refresh();
+  });
+
+  // Staff filter dropdown (Activities tab)
+  document.getElementById('staffFilter')?.addEventListener('change', (e) => {
+    selectedStaffId = e.target.value;
+    renderCalendar();
+  });
+
+  // Manage Staff button
+  document.getElementById('btnManageStaff')?.addEventListener('click', () => {
+    openStaffManagerModal();
   });
 
   // Navigation

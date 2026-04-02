@@ -122,6 +122,18 @@
 
           <!-- Activities Calendar -->
           <div class="res-panel" id="panelActivities">
+            <div class="res-filter-bar" id="activityFilterBar">
+              <div class="res-filter-left">
+                <label class="res-filter-label">Provider</label>
+                <select class="res-filter-select" id="staffFilter">
+                  <option value="all">All Staff</option>
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+              <div class="res-filter-right">
+                <button class="res-btn res-btn--sm" id="btnManageStaff">Manage Staff</button>
+              </div>
+            </div>
             <div class="res-calendar" id="calActivities"></div>
           </div>
 
