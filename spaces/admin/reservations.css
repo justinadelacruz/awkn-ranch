@@ -484,6 +484,36 @@
   z-index: 5;
 }
 
+/* Section header row inside unified combined grid */
+.tl-section-header {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background: var(--surface);
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+  border-top: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 4;
+}
+
+.tl-grid--combined .tl-row:first-of-type .tl-section-header {
+  border-top: none;
+}
+
+.tl-grid--combined .tl-label-cell {
+  font-size: 0.65rem;
+}
+
+.tl-grid--combined .tl-booking {
+  font-size: 0.55rem;
+  padding: 1px 3px;
+  min-height: 16px;
+}
+
 /* =============================================
    MODAL
    ============================================= */

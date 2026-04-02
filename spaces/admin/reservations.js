@@ -587,48 +587,149 @@ function attachTimeGridHandlers(container, mode) {
 
 function renderCombinedCalendar() {
   const container = document.getElementById('calCombined');
-  let html = '';
+  const { start, end } = getDateRange();
+  const days = getDaysArray(start, end);
+  const rentalSpaces = [...allRentalSpaces, ...allWellnessSpaces];
 
-  // House timeline (compact)
-  html += `<div style="margin-bottom:1rem">`;
-  html += `<div class="combined-section-title">🏠 House Stays</div>`;
+  // Build unified row list with section headers
+  const rows = [];
+
+  // Section: House Rooms
+  rows.push({ _section: true, label: 'House Stays', icon: '🏠' });
+  for (const s of allHouseSpaces) {
+    rows.push({ ...s, _type: 'house', _label: s.booking_name || s.name, _sub: `$${s.nightly_rate}/night` });
+  }
+
+  // Section: Rental Spaces
+  rows.push({ _section: true, label: 'Rental Spaces', icon: '🏕️' });
+  for (const s of rentalSpaces) {
+    const rate = s.hourly_rate ? `$${s.hourly_rate}/hr` : (s.staff_only ? 'Staff' : '');
+    rows.push({ ...s, _type: 'rental', _label: s.booking_name || s.name, _sub: rate });
+  }
+
+  // Section: Staff / Activities
+  rows.push({ _section: true, label: 'Activities', icon: '🧘' });
+  for (const s of allStaffMembers) {
+    rows.push({ ...s, _type: 'activity', _staffId: s.id, _label: s.display_name, _sub: '', _color: s.color });
+  }
+
+  const gridCols = `minmax(140px, auto) repeat(${days.length}, minmax(36px, 1fr))`;
+  let html = `<div class="tl-grid tl-grid--combined" style="grid-template-columns: ${gridCols};">`;
+
+  // Header row
+  html += `<div class="tl-header-row">`;
+  html += `<div class="tl-label-cell" style="border-bottom:1px solid var(--border)"></div>`;
+  for (const day of days) {
+    const todayCls = isToday(day) ? ' tl-today' : '';
+    const weekendCls = (day.getDay() === 0 || day.getDay() === 6) ? ' tl-weekend' : '';
+    const dayLabel = day.getDate() === 1
+      ? `${['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][day.getMonth()]} ${day.getDate()}`
+      : day.getDate();
+    const dowLabel = ['S','M','T','W','T','F','S'][day.getDay()];
+    html += `<div class="tl-header-cell${todayCls}${weekendCls}"><div>${dowLabel}</div><div>${dayLabel}</div></div>`;
+  }
   html += `</div>`;
 
-  // Render house inline
-  const houseDiv = document.createElement('div');
+  // Render rows
+  for (const row of rows) {
+    // Section header row
+    if (row._section) {
+      html += `<div class="tl-section-header" style="grid-column: 1 / -1;">${row.icon} ${row.label}</div>`;
+      continue;
+    }
+
+    html += `<div class="tl-row">`;
+
+    // Label cell
+    const colorDot = row._color ? `<span style="width:8px;height:8px;border-radius:50%;background:${row._color};display:inline-block;flex-shrink:0"></span>` : '';
+    html += `<div class="tl-label-cell">
+      <div style="display:flex;align-items:center;gap:5px">${colorDot}${row._label}</div>
+      ${row._sub ? `<div class="tl-label-rate">${row._sub}</div>` : ''}
+    </div>`;
+
+    // Day cells
+    for (let i = 0; i < days.length; i++) {
+      const day = days[i];
+      const dateStr = toDateStr(day);
+      const todayCls = isToday(day) ? ' tl-today' : '';
+      const weekendCls = (day.getDay() === 0 || day.getDay() === 6) ? ' tl-weekend' : '';
+
+      html += `<div class="tl-cell${todayCls}${weekendCls}" data-space="${row.id}" data-date="${dateStr}" data-row-type="${row._type}" data-staff-id="${row._staffId || ''}">`;
+
+      if (row._type === 'house') {
+        // Room bookings — multi-day bars
+        const bookingsHere = roomBookings.filter(b => b.space_id === row.id && b.check_in === dateStr);
+        for (const bk of bookingsHere) {
+          const nights = Math.ceil((new Date(bk.check_out) - new Date(bk.check_in)) / 86400000);
+          const spanDays = Math.min(nights, days.length - i);
+          const widthPct = (spanDays * 100);
+          const color = bookingService.ROOM_STATUS_COLORS[bk.status] || '#d4883a';
+          const holdCls = bk.status === 'hold' ? ' tl-booking--hold' : '';
+          const label = bk.guest_name || 'Guest';
+          html += `<div class="tl-booking${holdCls}" style="background:${color}; width:calc(${widthPct}% - 4px); left:2px;" data-booking-id="${bk.id}" data-booking-type="room" title="${label}: ${bk.check_in} to ${bk.check_out}">${label}</div>`;
+        }
+      } else if (row._type === 'rental') {
+        // Space bookings — show as blocks on their day
+        const dayBookings = spaceBookings.filter(b => b.space_id === row.id && b.start_datetime && b.start_datetime.startsWith(dateStr));
+        for (const bk of dayBookings) {
+          const color = bookingService.SPACE_STATUS_COLORS[bk.status] || '#2563EB';
+          const startTime = new Date(bk.start_datetime);
+          const timeStr = `${startTime.getHours() % 12 || 12}${startTime.getHours() < 12 ? 'a' : 'p'}`;
+          const label = bk.client_name || bk.booking_type || 'Booked';
+          html += `<div class="tl-booking" style="background:${color}; width:calc(100% - 4px); left:2px;" data-booking-id="${bk.id}" data-booking-type="space" title="${label} · ${timeStr}">${label}</div>`;
+        }
+      } else if (row._type === 'activity') {
+        // Activity bookings for this staff member
+        const dayBookings = activityBookings.filter(b => b.staff_member_id === row._staffId && b.start_datetime && b.start_datetime.startsWith(dateStr));
+        if (dayBookings.length > 0) {
+          for (const bk of dayBookings) {
+            const color = bk.activity_type?.color || '#8B5CF6';
+            const label = bk.activity_type?.name || 'Activity';
+            const startTime = new Date(bk.start_datetime);
+            const timeStr = `${startTime.getHours() % 12 || 12}${startTime.getHours() < 12 ? 'a' : 'p'}`;
+            html += `<div class="tl-booking" style="background:${color}; width:calc(100% - 4px); left:2px; font-size:0.55rem;" data-booking-id="${bk.id}" data-booking-type="activity" title="${label} · ${bk.client_name || ''} · ${timeStr}">${label}</div>`;
+          }
+        }
+      }
+
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+
+  html += `</div>`;
   container.innerHTML = html;
 
-  // Re-render house into combined
-  const calHouseClone = document.getElementById('calHouse').innerHTML;
-  container.innerHTML = `
-    <div style="margin-bottom:1.5rem">
-      <div class="combined-section-title">🏠 House Stays</div>
-      <div class="res-calendar">${calHouseClone}</div>
-    </div>
-    <div style="margin-bottom:1.5rem">
-      <div class="combined-section-title">🏕️ Rental Spaces</div>
-      <div class="res-calendar" id="calCombinedRentals"></div>
-    </div>
-    <div>
-      <div class="combined-section-title">🧘 Activities</div>
-      <div class="res-calendar" id="calCombinedActivities"></div>
-    </div>
-  `;
+  // Click handlers for bookings
+  container.querySelectorAll('.tl-booking').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = el.dataset.bookingId;
+      const type = el.dataset.bookingType;
+      let booking;
+      if (type === 'room') booking = roomBookings.find(b => b.id === id);
+      else if (type === 'space') booking = spaceBookings.find(b => b.id === id);
+      else if (type === 'activity') booking = activityBookings.find(b => b.id === id);
+      if (booking) {
+        if (type === 'room') openRoomBookingModal(booking);
+        else if (type === 'space') openSpaceBookingModal(booking);
+        else openActivityBookingModal(booking);
+      }
+    });
+  });
 
-  // Render rentals and activities into combined panels
-  const rentalContainer = document.getElementById('calCombinedRentals');
-  const actContainer = document.getElementById('calCombinedActivities');
-
-  if (currentView === 'month') {
-    renderRentalMonthView(rentalContainer, [...allRentalSpaces, ...allWellnessSpaces]);
-    renderActivityMonthView(actContainer);
-  } else {
-    const spaces = [...allRentalSpaces, ...allWellnessSpaces];
-    renderTimeGrid(rentalContainer, spaces, spaceBookings, 'rental');
-    renderTimeGrid(actContainer, allStaffMembers.map(s => ({
-      ...s, id: `staff-${s.id}`, _staffId: s.id, booking_name: s.display_name, _isStaff: true,
-    })), activityBookings, 'activity');
-  }
+  // Click handlers for empty cells
+  container.querySelectorAll('.tl-cell').forEach(el => {
+    el.addEventListener('click', () => {
+      const spaceId = el.dataset.space;
+      const date = el.dataset.date;
+      const rowType = el.dataset.rowType;
+      const staffId = el.dataset.staffId;
+      if (rowType === 'house') openRoomBookingModal(null, spaceId, date);
+      else if (rowType === 'rental') openSpaceBookingModal(null, spaceId, date, '10:00');
+      else if (rowType === 'activity') openActivityBookingModal(null, null, date, '10:00');
+    });
+  });
 }
 
 // =============================================
