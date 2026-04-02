@@ -1,12 +1,12 @@
 {
-  "version": "v260402.03 8:11p",
-  "release": 3,
-  "sha": "a5fd0e1",
-  "fullSha": "a5fd0e1743053bfcbf0e17d31a2396b1a8a64b2d",
+  "version": "v260402.04 8:32p",
+  "release": 4,
+  "sha": "30d0d91",
+  "fullSha": "30d0d91ec8074f6638d04c5cdd5c51f8cbccc968",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-02T15:10:52-05:00",
-  "commits": [{"sha":"a5fd0e1","message":"Add Reservations booking calendar system — Mindbody-style staff dashboard","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-02T15:32:14-05:00",
+  "commits": [{"sha":"30d0d91","message":"Add debug error overlay and loading timeout to reservations page","author":"Lauren Burandt"}]
 }
