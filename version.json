@@ -1,12 +1,12 @@
 {
-  "version": "v260402.04 8:32p",
-  "release": 4,
-  "sha": "30d0d91",
-  "fullSha": "30d0d91ec8074f6638d04c5cdd5c51f8cbccc968",
+  "version": "v260402.05 8:37p",
+  "release": 5,
+  "sha": "9d7380e",
+  "fullSha": "9d7380e7f84323e01cdbf7077d387f4bfce3bcd7",
   "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-02T15:32:14-05:00",
-  "commits": [{"sha":"30d0d91","message":"Add debug error overlay and loading timeout to reservations page","author":"Lauren Burandt"}]
+  "pushedAt": "2026-04-02T15:36:46-05:00",
+  "commits": [{"sha":"9d7380e","message":"Fix reservations page — add missing Supabase CDN script tag","author":"Lauren Burandt"}]
 }
