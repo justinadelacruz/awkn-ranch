@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>AWKN Ranch & Within Center — Financial Projections</title>
+    <title>AWKN Ranch & Within Center — 4-Year Financial Projections</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -190,8 +190,8 @@
             <a href="/investor/" class="topbar-brand">AWKN Ranch</a>
             <ul class="topbar-nav">
                 <li><a href="#year1">Year 1</a></li>
-                <li><a href="#year5">5-Year</a></li>
-                <li><a href="#year10">10-Year</a></li>
+                <li><a href="#year4">4-Year</a></li>
+                <li><a href="#exit">Refinance Exit</a></li>
                 <li><a href="#assumptions-section">Assumptions</a></li>
             </ul>
         </div>
@@ -201,24 +201,11 @@
     <div class="hero">
         <a href="/investor/" class="back-link" style="margin-bottom: 24px; display: inline-flex;">&larr; Back to Investor Overview</a>
         <div class="hero-badge">Financial Projections</div>
-        <h1>AWKN Ranch &amp; Within Center<br><span class="gold">10-Year Financial Model</span></h1>
+        <h1>AWKN Ranch &amp; Within Center<br><span class="gold">4-Year Financial Model</span></h1>
         <p class="hero-sub">
-            Monthly breakdown for Year 1. Annual projections through Year 10. Conservative, base, and strong scenarios with Phase 2 Dome Collective integration.
+            Monthly breakdown for Year 1. Annual projections through Year 4 refinance exit. Conservative, base, and strong scenarios with Phase 2 Dome Collective integration.
         </p>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-value">$715K</div>
-                <div class="hero-stat-label">Year 1 Net (Conservative)</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">$7.1M</div>
-                <div class="hero-stat-label">5-Year Cumulative Net</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">$26M+</div>
-                <div class="hero-stat-label">10-Year Cumulative Net</div>
-            </div>
-        </div>
+        <div class="hero-stats" id="hero-stats"></div>
     </div>
 
     <div class="divider"></div>
@@ -301,20 +288,20 @@
 
     <div class="divider"></div>
 
-    <!-- ===== 5-YEAR ===== -->
-    <section class="section" id="year5">
-        <div class="section-label">5-Year Projections</div>
-        <h2>Phase 1 + Phase 2 &mdash; Compounding Growth</h2>
+    <!-- ===== 4-YEAR ===== -->
+    <section class="section" id="year4">
+        <div class="section-label">4-Year Projections</div>
+        <h2>Phase 1 + Phase 2 &mdash; Path to Refinance</h2>
         <p class="section-desc">
-            Year 1 is AWKN Ranch + Within Center. Phase 2 (Dome Collective) begins generating revenue in Year 2 as construction completes and leases begin. By Year 3, the full ecosystem is operational.
+            Year 1 is AWKN Ranch + Within Center. Phase 2 (Dome Collective) begins generating revenue in Year 2 as construction completes and leases begin. By Year 3, the full ecosystem is operational. Year 4 refinance exit at stabilized NOI.
         </p>
 
-        <div class="summary-grid" id="year5-summary"></div>
+        <div class="summary-grid" id="year4-summary"></div>
 
         <div class="chart-container">
-            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;5</div>
+            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;4</div>
             <div class="chart-subtitle">Base case scenario &middot; Phase 2 revenue begins Year 2</div>
-            <div class="bar-chart" id="year5-chart"></div>
+            <div class="bar-chart" id="year4-chart"></div>
             <div class="chart-legend">
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-revenue"></div> Phase 1 (Ranch + Within)</div>
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-phase2"></div> Phase 2 (Dome Collective)</div>
@@ -335,47 +322,26 @@
                         <th style="text-align:right">Cumulative</th>
                     </tr>
                 </thead>
-                <tbody id="year5-tbody"></tbody>
+                <tbody id="year4-tbody"></tbody>
             </table>
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- ===== 10-YEAR ===== -->
-    <section class="section" id="year10">
-        <div class="section-label">10-Year Projections</div>
-        <h2>Long-Term Ecosystem Value</h2>
+    <!-- ===== REFINANCE EXIT ===== -->
+    <section class="section" id="exit">
+        <div class="section-label">Year 4 Exit Strategy</div>
+        <h2>Refinance &amp; Recapitalization</h2>
         <p class="section-desc">
-            At maturity, the combined AWKN ecosystem generates $4M+ annually in net profit. Compounding growth from rate increases, occupancy optimization, expanded programming, and the fully stabilized Dome Collective.
+            At Year 4 stabilization, the combined AWKN ecosystem refinances at institutional terms. Stabilized NOI supports a refinance that returns investor capital while retaining long-term ownership of the asset.
         </p>
 
-        <div class="summary-grid" id="year10-summary"></div>
+        <div class="summary-grid" id="exit-summary"></div>
 
-        <div class="chart-container">
-            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;10</div>
-            <div class="chart-subtitle">Base case with 5% annual growth on Phase 1, 3% on Phase 2</div>
-            <div class="bar-chart bar-chart-wide" id="year10-chart"></div>
-            <div class="chart-legend">
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-revenue"></div> Phase 1 Net</div>
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-phase2"></div> Phase 2 Net</div>
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-net"></div> Combined Net</div>
-            </div>
-        </div>
-
-        <div style="overflow-x: auto;">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th style="text-align:right">Phase 1 Net</th>
-                        <th style="text-align:right">Phase 2 Net</th>
-                        <th style="text-align:right">Combined Net</th>
-                        <th style="text-align:right">Cumulative</th>
-                    </tr>
-                </thead>
-                <tbody id="year10-tbody"></tbody>
-            </table>
+        <div class="assumptions" style="margin-top: 0;">
+            <h3>Refinance Assumptions</h3>
+            <ul id="exit-assumptions"></ul>
         </div>
     </section>
 
@@ -411,9 +377,19 @@
                 <li>Estimated net monthly: ~$200,000</li>
                 <li>Year 2: 30% of domes operational (construction ramp)</li>
                 <li>Year 3: 80% operational</li>
-                <li>Year 4+: 100% operational</li>
+                <li>Year 4: 100% operational &mdash; stabilized for refinance</li>
                 <li>Annual growth rate: 3% (lease renewals + rate increases)</li>
                 <li>Series A ($16M) funds land acquisition ($10M) + build-out ($6M)</li>
+            </ul>
+        </div>
+
+        <div class="assumptions" style="margin-top: 24px;">
+            <h3>Year 4 Refinance Exit</h3>
+            <ul>
+                <li>Refinance at Year 4 stabilized NOI using 6.5% cap rate</li>
+                <li>Loan-to-value (LTV): 65% on appraised value</li>
+                <li>Refinance proceeds used to return investor capital + profit distributions</li>
+                <li>Ownership retained post-refinance &mdash; ongoing cash flow continues</li>
             </ul>
         </div>
 
@@ -421,6 +397,7 @@
             <h3>General</h3>
             <ul>
                 <li>All figures in USD. No inflation adjustment.</li>
+                <li>All income projections reflect a 10% reduction from original model estimates</li>
                 <li>Expense growth: 3% annually (staffing, utilities, maintenance)</li>
                 <li>No additional capital raises assumed beyond Phase 1 ($500K) and Series A ($16M)</li>
                 <li>Conservative scenario uses low-end revenue and high-end expenses throughout</li>
@@ -443,11 +420,11 @@
     const fmt = (n) => '$' + Math.round(n).toLocaleString();
     const fmtM = (n) => '$' + (n / 1000000).toFixed(1) + 'M';
 
-    // Monthly steady-state figures from investor deck
+    // Monthly steady-state figures from investor deck (10% revenue reduction applied)
     const scenarios = {
-        conservative: { label: 'Conservative', revenue: 133440, expenses: 72300 },
-        base:         { label: 'Base Case',    revenue: 185000, expenses: 65500 },
-        strong:       { label: 'Strong',       revenue: 250940, expenses: 59300 }
+        conservative: { label: 'Conservative', revenue: Math.round(133440 * 0.90), expenses: 72300 },
+        base:         { label: 'Base Case',    revenue: Math.round(185000 * 0.90), expenses: 65500 },
+        strong:       { label: 'Strong',       revenue: Math.round(250940 * 0.90), expenses: 59300 }
     };
 
     // Monthly ramp multipliers for Year 1
@@ -608,29 +585,25 @@
             `;
     }
 
-    // ===== 5-YEAR MODEL =====
-    function render5Year() {
+    // ===== 4-YEAR MODEL =====
+    function render4Year() {
         const p1Base = scenarios.base;
         const p1AnnualRev = p1Base.revenue * 12;
         const p1AnnualExp = p1Base.expenses * 12;
         const p1Growth = 1.05;
         const expGrowth = 1.03;
 
-        // Phase 2: $200K/mo net at full capacity
-        const p2FullNet = 200000 * 12; // $2.4M/yr
-        const p2FullGross = 275511 * 12;
-        const p2Ramp = [0, 0.30, 0.80, 1.0, 1.0]; // Year 1 = 0 (still building)
+        // Phase 2: 10% revenue reduction applied to dome gross
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Ramp = [0, 0.30, 0.80, 1.0]; // Year 4 = fully stabilized
         const p2Growth = 1.03;
 
         let cumulative = 0;
         const data = [];
 
-        for (let y = 0; y < 5; y++) {
-            const yr = y + 1;
-            // Year 1 uses ramp-adjusted figure
+        for (let y = 0; y < 4; y++) {
             let p1Rev, p1Exp;
             if (y === 0) {
-                // Match the Year 1 monthly model total
                 p1Rev = 0;
                 ramp.forEach(r => p1Rev += p1Base.revenue * r);
                 p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
@@ -641,7 +614,7 @@
             const p1Net = p1Rev - p1Exp;
 
             const p2Rev = p2FullGross * p2Ramp[y] * (y > 1 ? Math.pow(p2Growth, y - 2) : 1);
-            const p2ExpRatio = 0.27; // ~27% expense ratio for dome collective
+            const p2ExpRatio = 0.27;
             const p2Exp = p2Rev * p2ExpRatio;
             const p2Net = p2Rev - p2Exp;
 
@@ -650,23 +623,23 @@
             const totalNet = p1Net + p2Net;
             cumulative += totalNet;
 
-            data.push({ year: yr, p1Rev, p1Net, p2Rev, p2Net, totalRev, totalExp, totalNet, cumulative });
+            data.push({ year: y + 1, p1Rev, p1Net, p2Rev, p2Net, totalRev, totalExp, totalNet, cumulative });
         }
 
         // Summary
-        const y5cum = data[4].cumulative;
-        const y5net = data[4].totalNet;
-        document.getElementById('year5-summary').innerHTML = `
-            <div class="summary-card"><div class="summary-card-value">${fmtM(y5cum)}</div><div class="summary-card-label">5-Year Cumulative Net</div></div>
-            <div class="summary-card green"><div class="summary-card-value">${fmtM(y5net)}</div><div class="summary-card-label">Year 5 Annual Net</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtM(data[4].totalRev)}</div><div class="summary-card-label">Year 5 Annual Revenue</div></div>
-            <div class="summary-card"><div class="summary-card-value">${Math.round(data.reduce((s,d) => s + d.totalRev, 0) / 1000000)}M+</div><div class="summary-card-label">5-Year Total Revenue</div></div>
+        const y4cum = data[3].cumulative;
+        const y4net = data[3].totalNet;
+        document.getElementById('year4-summary').innerHTML = `
+            <div class="summary-card"><div class="summary-card-value">${fmtM(y4cum)}</div><div class="summary-card-label">4-Year Cumulative Net</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmtM(y4net)}</div><div class="summary-card-label">Year 4 Annual Net</div></div>
+            <div class="summary-card"><div class="summary-card-value">${fmtM(data[3].totalRev)}</div><div class="summary-card-label">Year 4 Annual Revenue</div></div>
+            <div class="summary-card"><div class="summary-card-value">${Math.round(data.reduce((s,d) => s + d.totalRev, 0) / 1000000)}M+</div><div class="summary-card-label">4-Year Total Revenue</div></div>
         `;
 
         // Chart
         const maxVal = Math.max(...data.map(d => d.totalNet));
         const chartHeight = 280;
-        document.getElementById('year5-chart').innerHTML = data.map(d => `
+        document.getElementById('year4-chart').innerHTML = data.map(d => `
             <div class="bar-group">
                 <div class="bar-stack" style="height: ${(d.totalNet / maxVal) * chartHeight}px;">
                     ${d.p2Net > 0 ? `<div class="bar-segment bar-phase2" style="height: ${d.p2Net / d.totalNet * 100}%;"></div>` : ''}
@@ -678,8 +651,8 @@
         `).join('');
 
         // Table
-        document.getElementById('year5-tbody').innerHTML = data.map(d => `
-            <tr${d.year === 5 ? ' class="highlight"' : ''}>
+        document.getElementById('year4-tbody').innerHTML = data.map(d => `
+            <tr${d.year === 4 ? ' class="highlight"' : ''}>
                 <td><strong>Year ${d.year}</strong></td>
                 <td style="text-align:right">${fmt(d.p1Rev)}</td>
                 <td style="text-align:right">${d.p2Rev > 0 ? fmt(d.p2Rev) : '&mdash;'}</td>
@@ -693,80 +666,112 @@
         return data;
     }
 
-    // ===== 10-YEAR MODEL =====
-    function render10Year() {
+    // ===== REFINANCE EXIT MODEL =====
+    function renderExit() {
+        // Use Year 4 stabilized NOI from the 4-year model
         const p1Base = scenarios.base;
         const p1AnnualRev = p1Base.revenue * 12;
         const p1AnnualExp = p1Base.expenses * 12;
         const p1Growth = 1.05;
         const expGrowth = 1.03;
 
-        const p2FullGross = 275511 * 12;
-        const p2Ramp = [0, 0.30, 0.80, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0];
-        const p2Growth = 1.03;
+        // Year 4 Phase 1 figures
+        const p1Rev4 = p1AnnualRev * Math.pow(p1Growth, 3);
+        const p1Exp4 = p1AnnualExp * Math.pow(expGrowth, 3);
+        const p1NOI4 = p1Rev4 - p1Exp4;
 
-        let cumulative = 0;
-        const data = [];
+        // Year 4 Phase 2 figures (100% operational, 10% revenue reduction already in gross)
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Rev4 = p2FullGross * 1.0 * Math.pow(1.03, 1); // Year 4 = ramp[3]=1.0, 1 year of growth
+        const p2Exp4 = p2Rev4 * 0.27;
+        const p2NOI4 = p2Rev4 - p2Exp4;
 
-        for (let y = 0; y < 10; y++) {
-            let p1Rev, p1Exp;
-            if (y === 0) {
-                p1Rev = 0;
-                ramp.forEach(r => p1Rev += p1Base.revenue * r);
-                p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
-            } else {
-                p1Rev = p1AnnualRev * Math.pow(p1Growth, y);
-                p1Exp = p1AnnualExp * Math.pow(expGrowth, y);
-            }
-            const p1Net = p1Rev - p1Exp;
+        const totalNOI = p1NOI4 + p2NOI4;
+        const capRate = 0.065;
+        const appraisedValue = totalNOI / capRate;
+        const ltv = 0.65;
+        const refiProceeds = appraisedValue * ltv;
+        const initialInvestment = 500000;
+        const returnMultiple = refiProceeds / initialInvestment;
 
-            const p2Rev = p2FullGross * p2Ramp[y] * (y > 2 ? Math.pow(p2Growth, y - 2) : 1);
-            const p2Exp = p2Rev * 0.27;
-            const p2Net = p2Rev - p2Exp;
-
-            const totalNet = p1Net + p2Net;
-            cumulative += totalNet;
-            data.push({ year: y + 1, p1Net, p2Net, totalNet, cumulative });
-        }
-
-        // Summary
-        document.getElementById('year10-summary').innerHTML = `
-            <div class="summary-card"><div class="summary-card-value">${fmtM(data[9].cumulative)}</div><div class="summary-card-label">10-Year Cumulative Net</div></div>
-            <div class="summary-card green"><div class="summary-card-value">${fmtM(data[9].totalNet)}</div><div class="summary-card-label">Year 10 Annual Net</div></div>
-            <div class="summary-card"><div class="summary-card-value">${Math.round(data[9].cumulative / 500000)}x</div><div class="summary-card-label">Return on $500K</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtM(data[4].cumulative)}</div><div class="summary-card-label">Breakeven by Year 1</div></div>
+        // Summary cards
+        document.getElementById('exit-summary').innerHTML = `
+            <div class="summary-card"><div class="summary-card-value">${fmtM(totalNOI)}</div><div class="summary-card-label">Year 4 Stabilized NOI</div></div>
+            <div class="summary-card"><div class="summary-card-value">${fmtM(appraisedValue)}</div><div class="summary-card-label">Appraised Value (6.5% Cap)</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmtM(refiProceeds)}</div><div class="summary-card-label">Refinance Proceeds (65% LTV)</div></div>
+            <div class="summary-card"><div class="summary-card-value">${returnMultiple.toFixed(1)}x</div><div class="summary-card-label">Return on $500K Investment</div></div>
         `;
 
-        // Chart
-        const maxVal = Math.max(...data.map(d => d.totalNet));
-        const chartHeight = 280;
-        document.getElementById('year10-chart').innerHTML = data.map(d => `
-            <div class="bar-group">
-                <div class="bar-stack" style="height: ${(d.totalNet / maxVal) * chartHeight}px;">
-                    ${d.p2Net > 0 ? `<div class="bar-segment bar-phase2" style="height: ${d.p2Net / d.totalNet * 100}%;"></div>` : ''}
-                    <div class="bar-segment bar-revenue" style="height: ${d.p1Net > 0 ? d.p1Net / d.totalNet * 100 : 100}%; border-radius: 0;"></div>
-                </div>
-                <div class="bar-value">${fmtM(d.totalNet)}</div>
-                <div class="bar-label">Y${d.year}</div>
-            </div>
-        `).join('');
+        // Assumptions detail
+        document.getElementById('exit-assumptions').innerHTML = `
+            <li>Year 4 Phase 1 NOI: ${fmt(p1NOI4)} (revenue ${fmt(p1Rev4)} &minus; expenses ${fmt(p1Exp4)})</li>
+            <li>Year 4 Phase 2 NOI: ${fmt(p2NOI4)} (revenue ${fmt(p2Rev4)} &minus; expenses ${fmt(p2Exp4)})</li>
+            <li>Combined Stabilized NOI: ${fmt(totalNOI)}</li>
+            <li>Appraised Value at 6.5% cap rate: ${fmt(appraisedValue)}</li>
+            <li>Refinance at 65% LTV: ${fmt(refiProceeds)} in proceeds</li>
+            <li>Investor capital returned at refinance &mdash; ownership retained for ongoing cash flow</li>
+        `;
+    }
 
-        // Table
-        document.getElementById('year10-tbody').innerHTML = data.map((d, i) => `
-            <tr${i === 4 || i === 9 ? ' class="highlight"' : ''}>
-                <td><strong>Year ${d.year}</strong></td>
-                <td style="text-align:right">${fmt(d.p1Net)}</td>
-                <td style="text-align:right">${d.p2Net > 0 ? fmt(d.p2Net) : '&mdash;'}</td>
-                <td style="text-align:right; color: var(--accent-green);">${fmt(d.totalNet)}</td>
-                <td style="text-align:right; color: var(--accent-gold);">${fmtM(d.cumulative)}</td>
-            </tr>
-        `).join('');
+    // ===== HERO STATS (dynamic) =====
+    function renderHeroStats() {
+        // Compute Year 1 conservative net
+        const s = scenarios.conservative;
+        let y1Net = 0;
+        ramp.forEach((r, i) => {
+            const rev = Math.round(s.revenue * r);
+            const exp = Math.round(s.expenses * (i < 3 ? 0.85 : 1));
+            y1Net += (rev - exp);
+        });
+
+        // Compute 4-year cumulative from base case
+        const p1Base = scenarios.base;
+        const p1AnnualRev = p1Base.revenue * 12;
+        const p1AnnualExp = p1Base.expenses * 12;
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Ramp = [0, 0.30, 0.80, 1.0];
+        let cum4 = 0;
+        for (let y = 0; y < 4; y++) {
+            let p1Rev, p1Exp;
+            if (y === 0) {
+                p1Rev = 0; ramp.forEach(r => p1Rev += p1Base.revenue * r);
+                p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
+            } else {
+                p1Rev = p1AnnualRev * Math.pow(1.05, y);
+                p1Exp = p1AnnualExp * Math.pow(1.03, y);
+            }
+            const p2Rev = p2FullGross * p2Ramp[y] * (y > 1 ? Math.pow(1.03, y - 2) : 1);
+            cum4 += (p1Rev - p1Exp) + (p2Rev - p2Rev * 0.27);
+        }
+
+        // Refinance value
+        const p1Rev4 = p1AnnualRev * Math.pow(1.05, 3);
+        const p1Exp4 = p1AnnualExp * Math.pow(1.03, 3);
+        const p2Rev4 = p2FullGross * Math.pow(1.03, 1);
+        const totalNOI = (p1Rev4 - p1Exp4) + (p2Rev4 - p2Rev4 * 0.27);
+        const appraisedValue = totalNOI / 0.065;
+
+        document.getElementById('hero-stats').innerHTML = `
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmt(y1Net).replace('$', '$')}</div>
+                <div class="hero-stat-label">Year 1 Net (Conservative)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmtM(cum4)}</div>
+                <div class="hero-stat-label">4-Year Cumulative Net</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmtM(appraisedValue)}</div>
+                <div class="hero-stat-label">Year 4 Appraised Value</div>
+            </div>
+        `;
     }
 
     // ===== INIT =====
+    renderHeroStats();
     renderYear1();
-    render5Year();
-    render10Year();
+    render4Year();
+    renderExit();
 
     // Smooth nav
     document.querySelectorAll('.topbar-nav a').forEach(a => {
