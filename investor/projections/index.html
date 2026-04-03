@@ -361,7 +361,8 @@
                 <li>Maloka Dome: $20K&ndash;$40K/mo venue rental + $12K&ndash;$18K/mo nightly lodging</li>
                 <li>Within Center: $16.5K&ndash;$33K/mo from outpatient ketamine therapy packages</li>
                 <li>AWKN Hosted Retreats: $20K&ndash;$75K/mo curated multi-day immersions</li>
-                <li>Monthly operating expenses: $60.8K (low) &ndash; $73.8K (high)</li>
+                <li>Monthly operating expenses: $64.8K (low) &ndash; $77.8K (high)</li>
+                <li>Admissions / Corporate Sales: $4,000/mo &mdash; first 5 months funded from capital raise ($20K)</li>
                 <li>Months 1&ndash;3: 40% revenue ramp (infrastructure build-out, marketing launch)</li>
                 <li>Months 4&ndash;6: 70% of steady-state revenue (occupancy growing)</li>
                 <li>Months 7+: 100% steady-state revenue</li>
@@ -399,7 +400,7 @@
                 <li>All figures in USD. No inflation adjustment.</li>
                 <li>All income projections reflect a 10% reduction from original model estimates</li>
                 <li>Expense growth: 3% annually (staffing, utilities, maintenance)</li>
-                <li>No additional capital raises assumed beyond Phase 1 ($500K) and Series A ($16M)</li>
+                <li>No additional capital raises assumed beyond Phase 1 ($500K, includes $20K for 5-month Admissions/Sales hire) and Series A ($16M)</li>
                 <li>Conservative scenario uses low-end revenue and high-end expenses throughout</li>
                 <li>Base case uses midpoint revenue and midpoint expenses</li>
                 <li>Strong scenario uses high-end revenue and low-end expenses</li>
@@ -422,9 +423,9 @@
 
     // Monthly steady-state figures from investor deck (10% revenue reduction applied)
     const scenarios = {
-        conservative: { label: 'Conservative', revenue: Math.round(133440 * 0.90), expenses: 72300 },
-        base:         { label: 'Base Case',    revenue: Math.round(185000 * 0.90), expenses: 65500 },
-        strong:       { label: 'Strong',       revenue: Math.round(250940 * 0.90), expenses: 59300 }
+        conservative: { label: 'Conservative', revenue: Math.round(133440 * 0.90), expenses: 76300 },
+        base:         { label: 'Base Case',    revenue: Math.round(185000 * 0.90), expenses: 69500 },
+        strong:       { label: 'Strong',       revenue: Math.round(250940 * 0.90), expenses: 63300 }
     };
 
     // Monthly ramp multipliers for Year 1
@@ -444,6 +445,7 @@
         { name: 'Insurance, Licensing & Compliance', low: 1500, high: 2500, rampStart: 1 },
         { name: 'Marketing & Booking Platform', low: 5500, high: 6500, rampStart: 1 },
         { name: 'Google / Meta / AI Advertising', low: 8000, high: 10000, rampStart: 2 },
+        { name: 'Admissions / Corporate Sales', low: 4000, high: 4000, rampStart: 1 },
         { name: 'Miscellaneous / Contingency', low: 1000, high: 2000, rampStart: 1 },
     ];
 
