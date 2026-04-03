@@ -710,7 +710,7 @@
         { name: 'Medical / Clinical Staff (2 days/wk)', low: 4000, high: 4000, rampStart: 1, fixed: true },
         { name: 'Executive / Management Team', low: 10000, high: 12000, rampStart: 1 },
         { name: 'Executive Advisory', low: 3000, high: 3000, rampStart: 1 },
-        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1, fixed: true },
+        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1, fixed: true, stepUp: { month: 3, low: 13800, high: 13800 } },
         { name: 'Maintenance & Utilities', low: 4000, high: 6000, rampStart: 1 },
         { name: 'Breakfast & Guest Supplies', low: 2500, high: 3500, rampStart: 2 },
         { name: 'Insurance, Licensing & Compliance', low: 1500, high: 2500, rampStart: 1 },
@@ -924,7 +924,12 @@
                     if (monthNum === item.oneTime) val = steadyState;
                 } else if (monthNum >= item.rampStart) {
                     if (item.fixed) {
-                        val = steadyState;
+                        // Check for step-up (e.g. lease increase mid-year)
+                        if (item.stepUp && monthNum >= item.stepUp.month) {
+                            val = scenario === 'conservative' ? item.stepUp.high : scenario === 'strong' ? item.stepUp.low : Math.round((item.stepUp.low + item.stepUp.high) / 2);
+                        } else {
+                            val = steadyState;
+                        }
                     } else if (monthNum <= 2) val = Math.round(steadyState * 0.6);
                     else if (monthNum === 3) val = Math.round(steadyState * 0.8);
                     else val = steadyState;
