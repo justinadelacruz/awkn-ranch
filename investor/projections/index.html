@@ -710,7 +710,7 @@
         { name: 'Medical / Clinical Staff (2 days/wk)', low: 3000, high: 5000, rampStart: 3 },
         { name: 'Executive / Management Team', low: 10000, high: 12000, rampStart: 1 },
         { name: 'Executive Advisory', low: 3000, high: 3000, rampStart: 1 },
-        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1 },
+        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1, fixed: true },
         { name: 'Maintenance & Utilities', low: 4000, high: 6000, rampStart: 1 },
         { name: 'Breakfast & Guest Supplies', low: 2500, high: 3500, rampStart: 2 },
         { name: 'Insurance, Licensing & Compliance', low: 1500, high: 2500, rampStart: 1 },
@@ -923,7 +923,9 @@
                 if (item.oneTime) {
                     if (monthNum === item.oneTime) val = steadyState;
                 } else if (monthNum >= item.rampStart) {
-                    if (monthNum <= 2) val = Math.round(steadyState * 0.6);
+                    if (item.fixed) {
+                        val = steadyState;
+                    } else if (monthNum <= 2) val = Math.round(steadyState * 0.6);
                     else if (monthNum === 3) val = Math.round(steadyState * 0.8);
                     else val = steadyState;
                 }
