@@ -4,33 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>AWKN Ranch & Within Center — Financial Projections</title>
+    <title>AWKN Ranch & Within Center — 4-Year Financial Projections</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --bg-primary: #faf9f7;
-            --bg-secondary: #f0eeeb;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f5f4f2;
-            --text-primary: #1a1a1a;
-            --text-secondary: #4a4a4a;
-            --text-muted: #8a8a8a;
-            --accent-gold: #b8860b;
-            --accent-gold-dim: rgba(184, 134, 11, 0.08);
-            --accent-green: #2d6a4f;
-            --accent-green-dim: rgba(45, 106, 79, 0.06);
-            --accent-blue: #4a7c6b;
-            --accent-blue-dim: rgba(74, 124, 107, 0.06);
-            --accent-terracotta: #c0392b;
-            --accent-terracotta-dim: rgba(192, 57, 43, 0.06);
-            --border: rgba(0, 0, 0, 0.06);
-            --border-light: rgba(0, 0, 0, 0.1);
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.06), 0 4px 8px rgba(0,0,0,0.04);
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #242420;
+            --bg-card: #2a2a26;
+            --bg-card-hover: #333330;
+            --text-primary: #f0ebe3;
+            --text-secondary: #bfb8a8;
+            --text-muted: #8a8474;
+            --accent-gold: #d4a055;
+            --accent-gold-dim: rgba(212, 160, 85, 0.12);
+            --accent-green: #7a9e6d;
+            --accent-green-dim: rgba(122, 158, 109, 0.1);
+            --accent-purple: #c49a7c;
+            --accent-purple-dim: rgba(196, 154, 124, 0.1);
+            --accent-blue: #8aab9a;
+            --accent-blue-dim: rgba(138, 171, 154, 0.1);
+            --accent-terracotta: #c4836a;
+            --accent-terracotta-dim: rgba(196, 131, 106, 0.12);
+            --accent-sage: #92ad7e;
+            --accent-sage-dim: rgba(146, 173, 126, 0.1);
+            --border: rgba(240, 235, 227, 0.08);
+            --border-light: rgba(240, 235, 227, 0.15);
             --radius: 16px;
             --radius-sm: 10px;
         }
@@ -43,22 +44,24 @@
             color: var(--text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         /* ===== TOPBAR ===== */
         .topbar {
             position: sticky; top: 0; z-index: 100;
-            background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px);
+            background: rgba(26, 26, 26, 0.92); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border); padding: 0 40px;
-            box-shadow: var(--shadow-sm);
         }
         .topbar-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-        .topbar-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--accent-green); text-decoration: none; letter-spacing: 0.5px; }
+        .topbar-brand { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--accent-green); text-decoration: none; }
         .topbar-nav { display: flex; gap: 20px; list-style: none; flex-wrap: wrap; }
         .topbar-nav a { color: var(--text-secondary); text-decoration: none; font-size: 11px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s; }
         .topbar-nav a:hover { color: var(--accent-green); }
-        .topbar-tag { font-size: 10px; color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase; }
+        .topbar-user { display: flex; align-items: center; gap: 12px; }
+        .topbar-user img { width: 32px; height: 32px; border-radius: 50%; display: none; }
+        .topbar-user span { font-size: 13px; color: var(--text-muted); }
+        .signout-btn { background: none; border: none; color: var(--text-muted); font-size: 11px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+        .signout-btn:hover { color: var(--accent-terracotta); }
 
         /* ===== SECTIONS ===== */
         .section { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
@@ -71,12 +74,11 @@
         /* ===== HERO ===== */
         .hero {
             padding: 80px 40px 60px; text-align: center;
-            background: linear-gradient(180deg, #ffffff 0%, var(--bg-primary) 100%);
+            background: radial-gradient(ellipse at 50% 0%, rgba(122, 158, 109, 0.08) 0%, transparent 60%);
         }
         .hero-badge {
             display: inline-block; padding: 8px 20px;
             background: var(--accent-gold-dim); color: var(--accent-gold);
-            border: 1px solid rgba(184, 134, 11, 0.15);
             border-radius: 20px; font-size: 13px; font-weight: 600;
             letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px;
         }
@@ -93,18 +95,16 @@
 
         /* ===== TABLES ===== */
         .data-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .data-table thead { border-bottom: 2px solid var(--border-light); background: var(--bg-secondary); }
-        .data-table th { padding: 14px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-align: left; }
-        .data-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-weight: 500; }
-        .data-table tr.total td { border-top: 2px solid var(--border-light); font-weight: 700; color: var(--accent-gold); background: var(--bg-secondary); }
-        .data-table tr.highlight { background: rgba(45, 106, 79, 0.04); }
-        .data-table tr:hover td { background: rgba(0,0,0,0.015); }
+        .data-table thead { border-bottom: 2px solid var(--border-light); }
+        .data-table th { padding: 12px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-align: left; }
+        .data-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 500; }
+        .data-table tr.total td { border-top: 2px solid var(--border-light); font-weight: 700; color: var(--accent-gold); }
+        .data-table tr.highlight { background: rgba(122, 158, 109, 0.06); }
 
         /* ===== CHART ===== */
         .chart-container {
-            background: var(--bg-card); border: 1px solid var(--border);
+            background: var(--bg-card); border: 1px solid var(--border-light);
             border-radius: var(--radius); padding: 32px; margin-bottom: 48px;
-            box-shadow: var(--shadow-md);
         }
         .chart-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
         .chart-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 32px; }
@@ -112,6 +112,7 @@
         .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 320px; padding-bottom: 40px; position: relative; }
         .bar-chart-wide { gap: 4px; }
 
+        /* Y-axis gridlines */
         .bar-chart::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 40px; border-bottom: 1px solid var(--border); }
 
         .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; height: 100%; justify-content: flex-end; }
@@ -128,69 +129,35 @@
             position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); white-space: nowrap;
         }
 
-        .bar-expense { background: rgba(192, 57, 43, 0.35); }
-        .bar-revenue { background: rgba(45, 106, 79, 0.55); }
+        .bar-expense { background: rgba(196, 131, 106, 0.5); }
+        .bar-revenue { background: rgba(122, 158, 109, 0.6); }
         .bar-net { background: var(--accent-gold); }
-        .bar-phase2 { background: rgba(74, 124, 107, 0.45); }
+        .bar-phase2 { background: rgba(138, 171, 154, 0.5); }
 
         .chart-legend { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 16px; }
         .chart-legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-muted); }
         .chart-legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
 
         /* ===== SCENARIO TABS ===== */
-        .scenario-tabs { display: flex; gap: 4px; margin-bottom: 32px; background: var(--bg-secondary); padding: 4px; border-radius: var(--radius-sm); width: fit-content; border: 1px solid var(--border); }
+        .scenario-tabs { display: flex; gap: 4px; margin-bottom: 32px; background: var(--bg-secondary); padding: 4px; border-radius: var(--radius-sm); width: fit-content; }
         .scenario-tab {
             padding: 10px 24px; border: none; background: none; color: var(--text-muted);
             font-size: 13px; font-weight: 500; cursor: pointer; border-radius: 8px; transition: all 0.2s;
         }
-        .scenario-tab:hover { color: var(--text-secondary); }
-        .scenario-tab.active { background: var(--bg-card); color: var(--accent-gold); box-shadow: var(--shadow-sm); font-weight: 600; }
+        .scenario-tab.active { background: var(--bg-card); color: var(--accent-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
 
         /* ===== SUMMARY CARDS ===== */
         .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 48px; }
         .summary-card {
             background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-sm); padding: 28px 24px; text-align: center;
-            box-shadow: var(--shadow-sm); transition: box-shadow 0.2s, transform 0.2s;
+            border-radius: var(--radius-sm); padding: 24px; text-align: center;
         }
-        .summary-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
         .summary-card-value { font-size: 28px; font-weight: 800; color: var(--accent-gold); }
         .summary-card-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
         .summary-card.green .summary-card-value { color: var(--accent-green); }
 
-        /* ===== REVENUE BREAKDOWN GRID ===== */
-        .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 48px; }
-        .rev-card {
-            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm);
-            padding: 24px; box-shadow: var(--shadow-sm);
-        }
-        .rev-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        .rev-card-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
-        .rev-card-badge { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .rev-card-badge.lodging { background: var(--accent-green-dim); color: var(--accent-green); }
-        .rev-card-badge.venue { background: var(--accent-gold-dim); color: var(--accent-gold); }
-        .rev-card-badge.clinical { background: var(--accent-blue-dim); color: var(--accent-blue); }
-        .rev-card-badge.program { background: rgba(120, 80, 150, 0.08); color: #6a4c93; }
-        .rev-card-range { font-size: 20px; font-weight: 700; color: var(--accent-green); margin-bottom: 4px; }
-        .rev-card-detail { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-
-        /* ===== CAPITAL ALLOCATION ===== */
-        .alloc-bar { display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
-        .alloc-segment { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; color: #fff; transition: flex 0.3s; }
-        .alloc-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
-        .alloc-item { display: flex; align-items: center; gap: 10px; font-size: 13px; }
-        .alloc-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-        .alloc-item-value { font-weight: 700; margin-left: auto; }
-
-        /* ===== VALUATION TABLE ===== */
-        .val-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .val-table th { padding: 14px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); text-align: left; background: var(--bg-secondary); border-bottom: 2px solid var(--border-light); }
-        .val-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-weight: 500; }
-        .val-table tr.total-row td { border-top: 2px solid var(--border-light); font-weight: 700; background: var(--bg-secondary); }
-        .val-table tr.entry-row td { background: var(--accent-gold-dim); font-weight: 700; color: var(--accent-gold); }
-
         /* ===== ASSUMPTIONS ===== */
-        .assumptions { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-top: 48px; box-shadow: var(--shadow-sm); }
+        .assumptions { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-top: 48px; }
         .assumptions h3 { font-size: 16px; margin-bottom: 16px; color: var(--text-secondary); }
         .assumptions ul { list-style: none; padding: 0; }
         .assumptions li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; }
@@ -200,22 +167,8 @@
         .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
         .back-link:hover { color: var(--accent-green); }
 
-        /* ===== KPI ROW ===== */
-        .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 32px; }
-        .kpi { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 20px; text-align: center; box-shadow: var(--shadow-sm); }
-        .kpi-value { font-size: 22px; font-weight: 800; }
-        .kpi-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-
         /* ===== FOOTER ===== */
-        .footer { text-align: center; padding: 48px 40px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); background: #ffffff; }
-        .footer-disclaimer { max-width: 700px; margin: 0 auto; line-height: 1.8; }
-
-        /* ===== PRINT ===== */
-        @media print {
-            .topbar { position: static; box-shadow: none; }
-            .summary-card, .chart-container, .assumptions, .rev-card { break-inside: avoid; }
-            body { background: #fff; }
-        }
+        .footer { text-align: center; padding: 48px 40px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border); }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
@@ -226,8 +179,6 @@
             .bar-value { font-size: 8px; }
             .bar-label { font-size: 8px; }
             .summary-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-stats { gap: 24px; }
-            .rev-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -236,110 +187,26 @@
 <div id="app">
     <nav class="topbar">
         <div class="topbar-inner">
-            <a href="../" class="topbar-brand">AWKN Ranch</a>
+            <a href="/investor/" class="topbar-brand">AWKN Ranch</a>
             <ul class="topbar-nav">
-                <li><a href="#executive-summary">Summary</a></li>
-                <li><a href="#revenue-detail">Revenue</a></li>
                 <li><a href="#year1">Year 1</a></li>
-                <li><a href="#year5">5-Year</a></li>
-                <li><a href="#year10">10-Year</a></li>
-                <li><a href="#capital">Capital</a></li>
-                <li><a href="#valuation-section">Valuation</a></li>
-                <li><a href="#exit-strategy">Exit</a></li>
+                <li><a href="#year4">4-Year</a></li>
+                <li><a href="#exit">Refinance Exit</a></li>
                 <li><a href="#assumptions-section">Assumptions</a></li>
             </ul>
-            <span class="topbar-tag">Confidential</span>
         </div>
     </nav>
 
     <!-- Hero -->
     <div class="hero">
-        <a href="../" class="back-link" style="margin-bottom: 24px; display: inline-flex;">&larr; Back to Investor Overview</a>
-        <div class="hero-badge">Financial Projections &amp; Valuation Model</div>
-        <h1>AWKN Ranch &amp; Within Center<br><span class="gold">10-Year Financial Model</span></h1>
+        <a href="/investor/" class="back-link" style="margin-bottom: 24px; display: inline-flex;">&larr; Back to Investor Overview</a>
+        <div class="hero-badge">Financial Projections</div>
+        <h1>AWKN Ranch &amp; Within Center<br><span class="gold">4-Year Financial Model</span></h1>
         <p class="hero-sub">
-            Comprehensive financial model across three scenarios. Monthly Year 1 breakdown with ramp assumptions. Annual projections through Year 10 including Phase 2 Dome Collective integration.
+            Monthly breakdown for Year 1. Annual projections through Year 4 refinance exit. Conservative, base, and strong scenarios with Phase 2 Dome Collective integration.
         </p>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="hero-stat-value">$500K</div>
-                <div class="hero-stat-label">Tranche Size</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">$8M</div>
-                <div class="hero-stat-label">Valuation Cap</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">$2M+</div>
-                <div class="hero-stat-label">Projected Annual Net</div>
-            </div>
-            <div class="hero-stat">
-                <div class="hero-stat-value">6&ndash;9 mo</div>
-                <div class="hero-stat-label">To Profitability</div>
-            </div>
-        </div>
+        <div class="hero-stats" id="hero-stats"></div>
     </div>
-
-    <div class="divider"></div>
-
-    <!-- ===== EXECUTIVE SUMMARY ===== -->
-    <section class="section" id="executive-summary">
-        <div class="section-label">Executive Summary</div>
-        <h2>Monthly Operating Performance by Scenario</h2>
-        <p class="section-desc">
-            Three-scenario model based on current pricing, signed agreements, and 4.5 years of Within Center operating history. 1,500+ sessions delivered with a perfect 5-star rating across all platforms.
-        </p>
-
-        <div class="scenario-tabs" id="exec-tabs">
-            <button class="scenario-tab active" onclick="setExecScenario('conservative')">Conservative</button>
-            <button class="scenario-tab" onclick="setExecScenario('base')">Base Case</button>
-            <button class="scenario-tab" onclick="setExecScenario('strong')">Strong</button>
-        </div>
-
-        <div class="kpi-row" id="exec-kpis"></div>
-
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-            <table class="data-table" id="exec-table">
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th style="text-align:right">Conservative</th>
-                        <th style="text-align:right">Base Case</th>
-                        <th style="text-align:right">Strong</th>
-                    </tr>
-                </thead>
-                <tbody id="exec-tbody"></tbody>
-            </table>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ===== REVENUE DETAIL ===== -->
-    <section class="section" id="revenue-detail">
-        <div class="section-label">Revenue Streams</div>
-        <h2>10 Diversified Revenue Channels</h2>
-        <p class="section-desc">
-            Revenue is distributed across lodging, venue rental, clinical services, hosted retreats, and memberships &mdash; reducing single-source dependency and enabling multiple growth vectors.
-        </p>
-
-        <div class="rev-grid" id="rev-cards"></div>
-
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Revenue Stream</th>
-                        <th style="text-align:right">Monthly Low</th>
-                        <th style="text-align:right">Monthly High</th>
-                        <th style="text-align:right">Annual Low</th>
-                        <th style="text-align:right">Annual High</th>
-                    </tr>
-                </thead>
-                <tbody id="rev-tbody"></tbody>
-            </table>
-        </div>
-    </section>
 
     <div class="divider"></div>
 
@@ -348,7 +215,7 @@
         <div class="section-label">Year 1 &mdash; Monthly Projections</div>
         <h2>Ramp-Up to Full Operations</h2>
         <p class="section-desc">
-            Months 1&ndash;3 are ramp-up as infrastructure comes online. By Month 4, all revenue streams are active. By Month 7, steady-state occupancy is achieved. Conservative scenario shown &mdash; toggle to see base and strong cases.
+            Months 1&ndash;3 are ramp-up as infrastructure comes online. By Month 4, all six revenue streams are active. By Month 6, occupancy stabilizes. Conservative scenario shown &mdash; toggle to see base and strong cases.
         </p>
 
         <div class="scenario-tabs">
@@ -357,21 +224,23 @@
             <button class="scenario-tab" onclick="setScenario('strong')">Strong</button>
         </div>
 
+        <!-- Summary cards for selected scenario -->
         <div class="summary-grid" id="year1-summary"></div>
 
         <!-- Monthly bar chart -->
         <div class="chart-container">
-            <div class="chart-title">Monthly Revenue vs. Net Profit &mdash; Year 1</div>
+            <div class="chart-title">Monthly Revenue vs. Expenses &mdash; Year 1</div>
             <div class="chart-subtitle" id="chart-scenario-label">Conservative Scenario</div>
             <div class="bar-chart" id="year1-chart"></div>
             <div class="chart-legend">
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-revenue"></div> Revenue</div>
+                <div class="chart-legend-item"><div class="chart-legend-dot bar-expense"></div> Expenses</div>
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-net"></div> Net Profit</div>
             </div>
         </div>
 
         <!-- Monthly table -->
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+        <div style="overflow-x: auto;">
             <table class="data-table" id="year1-table">
                 <thead>
                     <tr>
@@ -379,7 +248,6 @@
                         <th style="text-align:right">Revenue</th>
                         <th style="text-align:right">Expenses</th>
                         <th style="text-align:right">Net Profit</th>
-                        <th style="text-align:right">Margin</th>
                         <th style="text-align:right">Cumulative</th>
                     </tr>
                 </thead>
@@ -392,7 +260,7 @@
             <h3 style="font-size: 20px; margin-bottom: 8px;">Monthly Expense Breakdown</h3>
             <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Line-item operating costs by month. Ramp-up months (1&ndash;3) show reduced costs as staffing and marketing scale up.</p>
 
-            <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+            <div style="overflow-x: auto;">
                 <table class="data-table" id="expense-detail-table">
                     <thead>
                         <tr>
@@ -420,20 +288,20 @@
 
     <div class="divider"></div>
 
-    <!-- ===== 5-YEAR ===== -->
-    <section class="section" id="year5">
-        <div class="section-label">5-Year Projections</div>
-        <h2>Phase 1 + Phase 2 &mdash; Compounding Growth</h2>
+    <!-- ===== 4-YEAR ===== -->
+    <section class="section" id="year4">
+        <div class="section-label">4-Year Projections</div>
+        <h2>Phase 1 + Phase 2 &mdash; Path to Refinance</h2>
         <p class="section-desc">
-            Year 1 is AWKN Ranch + Within Center (Phase 1). Phase 2 (Dome Collective &mdash; 103 geodesic dome residences on adjacent 9 acres) begins generating revenue in Year 2 as construction completes and leases begin. By Year 4, the full ecosystem is operational.
+            Year 1 is AWKN Ranch + Within Center. Phase 2 (Dome Collective) begins generating revenue in Year 2 as construction completes and leases begin. By Year 3, the full ecosystem is operational. Year 4 refinance exit at stabilized NOI.
         </p>
 
-        <div class="summary-grid" id="year5-summary"></div>
+        <div class="summary-grid" id="year4-summary"></div>
 
         <div class="chart-container">
-            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;5</div>
+            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;4</div>
             <div class="chart-subtitle">Base case scenario &middot; Phase 2 revenue begins Year 2</div>
-            <div class="bar-chart" id="year5-chart"></div>
+            <div class="bar-chart" id="year4-chart"></div>
             <div class="chart-legend">
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-revenue"></div> Phase 1 (Ranch + Within)</div>
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-phase2"></div> Phase 2 (Dome Collective)</div>
@@ -441,7 +309,7 @@
             </div>
         </div>
 
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
+        <div style="overflow-x: auto;">
             <table class="data-table">
                 <thead>
                     <tr>
@@ -451,308 +319,29 @@
                         <th style="text-align:right">Total Revenue</th>
                         <th style="text-align:right">Total Expenses</th>
                         <th style="text-align:right">Net Profit</th>
-                        <th style="text-align:right">Margin</th>
                         <th style="text-align:right">Cumulative</th>
                     </tr>
                 </thead>
-                <tbody id="year5-tbody"></tbody>
+                <tbody id="year4-tbody"></tbody>
             </table>
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- ===== 10-YEAR ===== -->
-    <section class="section" id="year10">
-        <div class="section-label">10-Year Projections</div>
-        <h2>Long-Term Ecosystem Value</h2>
+    <!-- ===== REFINANCE EXIT ===== -->
+    <section class="section" id="exit">
+        <div class="section-label">Year 4 Exit Strategy</div>
+        <h2>Refinance &amp; Recapitalization</h2>
         <p class="section-desc">
-            At maturity, the combined AWKN ecosystem generates $4M+ annually in net profit. Compounding growth from rate increases, occupancy optimization, expanded programming, and the fully stabilized Dome Collective.
+            At Year 4 stabilization, the combined AWKN ecosystem refinances at institutional terms. Stabilized NOI supports a refinance that returns investor capital while retaining long-term ownership of the asset.
         </p>
 
-        <div class="summary-grid" id="year10-summary"></div>
+        <div class="summary-grid" id="exit-summary"></div>
 
-        <div class="chart-container">
-            <div class="chart-title">Annual Net Profit &mdash; Years 1&ndash;10</div>
-            <div class="chart-subtitle">Base case with 5% annual growth on Phase 1, 3% on Phase 2</div>
-            <div class="bar-chart bar-chart-wide" id="year10-chart"></div>
-            <div class="chart-legend">
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-revenue"></div> Phase 1 Net</div>
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-phase2"></div> Phase 2 Net</div>
-                <div class="chart-legend-item"><div class="chart-legend-dot bar-net"></div> Combined Net</div>
-            </div>
-        </div>
-
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-            <table class="data-table">
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th style="text-align:right">Phase 1 Net</th>
-                        <th style="text-align:right">Phase 2 Net</th>
-                        <th style="text-align:right">Combined Net</th>
-                        <th style="text-align:right">Margin</th>
-                        <th style="text-align:right">Cumulative</th>
-                    </tr>
-                </thead>
-                <tbody id="year10-tbody"></tbody>
-            </table>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ===== CAPITAL ALLOCATION ===== -->
-    <section class="section" id="capital">
-        <div class="section-label">Capital Allocation</div>
-        <h2>Use of $500,000 Investment</h2>
-        <p class="section-desc">
-            Capital is allocated across infrastructure buildout, marketing launch, operations, legal compliance, and a 39% reserve buffer &mdash; ensuring runway through ramp-up to profitability.
-        </p>
-
-        <div class="chart-container">
-            <div class="chart-title">Allocation Overview</div>
-            <div class="chart-subtitle">39% held in reserve for operating runway and growth buffer</div>
-            <div class="alloc-bar" id="alloc-bar"></div>
-            <div class="alloc-legend" id="alloc-legend"></div>
-        </div>
-
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-            <table class="data-table" id="capital-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Line Item</th>
-                        <th style="text-align:right">Amount</th>
-                    </tr>
-                </thead>
-                <tbody id="capital-tbody"></tbody>
-            </table>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ===== VALUATION ===== -->
-    <section class="section" id="valuation-section">
-        <div class="section-label">Valuation Analysis</div>
-        <h2>Asset-Based Ecosystem Valuation</h2>
-        <p class="section-desc">
-            Valuation derived from stabilized EBITDA multiples across the two operating entities plus real estate market comparables for the adjacent 9-acre parcel. Investor entry at a conservative $8M cap provides significant upside.
-        </p>
-
-        <div class="summary-grid">
-            <div class="summary-card"><div class="summary-card-value">$8M</div><div class="summary-card-label">Entry Valuation Cap</div></div>
-            <div class="summary-card green"><div class="summary-card-value">$40.8M</div><div class="summary-card-label">Full Ecosystem Value</div></div>
-            <div class="summary-card"><div class="summary-card-value">5.1x</div><div class="summary-card-label">Implied Multiple</div></div>
-            <div class="summary-card"><div class="summary-card-value">8x</div><div class="summary-card-label">EBITDA Multiple Used</div></div>
-        </div>
-
-        <div style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm);">
-            <table class="val-table">
-                <thead>
-                    <tr>
-                        <th>Asset</th>
-                        <th>Basis</th>
-                        <th style="text-align:right">Annual Net</th>
-                        <th style="text-align:right">Multiple</th>
-                        <th style="text-align:right">Implied Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Dome Collective</strong> (Real Estate Co.)</td>
-                        <td>Stabilized lease + STR income</td>
-                        <td style="text-align:right">$2,400,000</td>
-                        <td style="text-align:right">8x EBITDA</td>
-                        <td style="text-align:right; font-weight:700;">$19,200,000</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Functional Wellness</strong> (Medical Co.)</td>
-                        <td>Clinical + retreat + lodging</td>
-                        <td style="text-align:right">$1,200,000</td>
-                        <td style="text-align:right">8x EBITDA</td>
-                        <td style="text-align:right; font-weight:700;">$9,600,000</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Adjacent 9-Acre Land</strong></td>
-                        <td>Market comparable sales</td>
-                        <td style="text-align:right; color: var(--text-muted);">&mdash;</td>
-                        <td style="text-align:right; color: var(--text-muted);">Comp</td>
-                        <td style="text-align:right; font-weight:700;">$12,000,000</td>
-                    </tr>
-                    <tr class="total-row">
-                        <td colspan="4"><strong>Total Ecosystem Value</strong></td>
-                        <td style="text-align:right; font-size: 18px;">$40,800,000</td>
-                    </tr>
-                    <tr class="entry-row">
-                        <td colspan="4"><strong>Investor Entry Valuation (Conservative)</strong></td>
-                        <td style="text-align:right; font-size: 18px;">$8,000,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- ===== EXIT STRATEGY ===== -->
-    <section class="section" id="exit-strategy">
-        <div class="section-label">Exit Strategy</div>
-        <h2>Year 10 Commercial Cash-Out Refinance</h2>
-        <p class="section-desc">
-            The primary exit mechanism is a commercial cash-out refinance at Year 10, when the combined AWKN ecosystem is fully mature with a decade of audited operating history. At $5.66M combined NOI, the asset commands favorable cap rates and higher LTV from lenders &mdash; maximizing proceeds. Critically, refinance proceeds are <strong>not a taxable event</strong> for investors, unlike a property sale.
-        </p>
-
-        <div class="summary-grid">
-            <div class="summary-card"><div class="summary-card-value">Year 10</div><div class="summary-card-label">Target Refinance</div></div>
-            <div class="summary-card green"><div class="summary-card-value">$62.9M</div><div class="summary-card-label">Combined Appraised Value</div></div>
-            <div class="summary-card"><div class="summary-card-value">67%</div><div class="summary-card-label">LTV Ratio</div></div>
-            <div class="summary-card"><div class="summary-card-value">Tax-Free</div><div class="summary-card-label">Proceeds to Investors</div></div>
-        </div>
-
-        <div class="chart-container">
-            <div class="chart-title">Combined Refinance &mdash; Phase 1 + Phase 2 at Maturity</div>
-            <div class="chart-subtitle">Year 10 valuation at 9% cap rate on combined $5.66M NOI</div>
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Component</th>
-                            <th style="text-align:right">Year 10 NOI</th>
-                            <th style="text-align:right">Cap Rate</th>
-                            <th style="text-align:right">Implied Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Phase 1</strong> &mdash; Ranch + Within Center</td>
-                            <td style="text-align:right">$2,960,000</td>
-                            <td style="text-align:right">9.0%</td>
-                            <td style="text-align:right; font-weight:700;">$32,889,000</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Phase 2</strong> &mdash; Dome Collective</td>
-                            <td style="text-align:right">$2,700,000</td>
-                            <td style="text-align:right">9.0%</td>
-                            <td style="text-align:right; font-weight:700;">$30,000,000</td>
-                        </tr>
-                        <tr class="total">
-                            <td><strong>Combined Appraised Value</strong></td>
-                            <td style="text-align:right">$5,660,000</td>
-                            <td style="text-align:right">9.0%</td>
-                            <td style="text-align:right; font-size:18px;">$62,889,000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="chart-container">
-            <div class="chart-title">Refinance Proceeds at 9% Cap Rate</div>
-            <div class="chart-subtitle">10 years of operating history supports favorable underwriting terms</div>
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Refinance Step</th>
-                            <th style="text-align:right">Amount</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Combined Appraised Value</strong></td>
-                            <td style="text-align:right; font-weight:700; color:var(--accent-green);">$62,889,000</td>
-                            <td>$5.66M combined NOI &divide; 9.0% cap rate</td>
-                        </tr>
-                        <tr>
-                            <td>Loan Amount (67% LTV)</td>
-                            <td style="text-align:right; font-weight:600;">$42,136,000</td>
-                            <td>Commercial mortgage, 20-yr amortization, 7-yr term</td>
-                        </tr>
-                        <tr>
-                            <td>Less: Closing Costs (~2%)</td>
-                            <td style="text-align:right; color:var(--accent-terracotta);">($843,000)</td>
-                            <td>Legal, title, appraisal, origination</td>
-                        </tr>
-                        <tr>
-                            <td>Less: Reserve Requirements</td>
-                            <td style="text-align:right; color:var(--accent-terracotta);">($1,000,000)</td>
-                            <td>6&ndash;12 months debt service reserves</td>
-                        </tr>
-                        <tr class="total">
-                            <td><strong>Net Cash Available for Investor Payout</strong></td>
-                            <td style="text-align:right; font-size:18px;">$40,293,000</td>
-                            <td>Full investor redemption + significant retained capital</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="assumptions">
-            <h3>Why Year 10 Is the Optimal Refinance Window</h3>
-            <ul>
-                <li><strong>Decade of operating history:</strong> 10 years of audited financials is the gold standard for commercial lenders &mdash; significantly reduces perceived risk</li>
-                <li><strong>Lower cap rate potential:</strong> Seasoned, stabilized assets with long track records may command sub-9% cap rates over time. Even a 50-basis-point improvement to 8.5% would add ~$3.7M to appraised value</li>
-                <li><strong>Higher LTV available:</strong> Banks extend 70&ndash;75% LTV to proven assets vs. 65&ndash;67% for earlier-stage properties, unlocking more proceeds</li>
-                <li><strong>Fully stabilized Dome Collective:</strong> Phase 2 has 7+ years of lease history, established tenant base, and proven STR performance</li>
-                <li><strong>Austin land appreciation:</strong> A decade of Austin metro growth adds real estate value beyond income capitalization</li>
-                <li><strong>10 years of cumulative cash flow:</strong> Investors receive distributions from operating profits throughout the hold period, in addition to the refinance exit</li>
-            </ul>
-        </div>
-
-        <div class="assumptions" style="margin-top: 24px;">
-            <h3>Bank Underwriting at Year 10</h3>
-            <ul>
-                <li><strong>DSCR (Debt Service Coverage Ratio):</strong> Banks require minimum 1.25x, prefer 1.35&ndash;1.50x. At $5.66M combined NOI, AWKN significantly exceeds this threshold</li>
-                <li><strong>Trailing 12-Month NOI:</strong> Banks underwrite on actual T-12 performance. Year 10 provides the most robust verified data across all revenue streams</li>
-                <li><strong>Cap Rate Range:</strong> 8.5&ndash;9.5% for experiential hospitality and residential dome assets in Austin metro; 9.0% used as base case</li>
-                <li><strong>LTV:</strong> 65&ndash;75% for seasoned commercial hospitality cash-out refinance; 67% used as conservative base case</li>
-                <li><strong>Rate Environment:</strong> Fixed rates for 5&ndash;10 year terms, 20&ndash;25 year amortization</li>
-                <li><strong>Combined Asset Advantage:</strong> Diversified income (lodging, clinical, venue, residential leases, STR) across 21 acres strengthens the underwriting case</li>
-            </ul>
-        </div>
-
-        <div class="assumptions" style="margin-top: 24px;">
-            <h3>Investor Payout Waterfall</h3>
-            <ul>
-                <li><strong>Step 1:</strong> Return of original invested capital ($500K &mdash; 1x return of principal)</li>
-                <li><strong>Step 2:</strong> Accrued preferred return (per operating agreement terms)</li>
-                <li><strong>Step 3:</strong> Remaining proceeds distributed per profit-sharing provisions</li>
-                <li><strong>Tax Advantage:</strong> Refinance proceeds are debt, not a sale &mdash; no capital gains tax triggered at the entity level</li>
-                <li><strong>Operators retain ownership:</strong> Unlike a sale, the business continues generating cash flow after investor redemption</li>
-                <li><strong>Significant retained capital:</strong> With $40M+ in net refinance proceeds, full investor payout is achieved with substantial capital remaining for continued growth and future development</li>
-            </ul>
-        </div>
-
-        <div class="chart-container" style="margin-top: 32px;">
-            <div class="chart-title">Exit Timeline</div>
-            <div class="chart-subtitle">Path to full investor redemption via Year 10 combined refinance</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
-                <div style="padding: 20px; border-left: 3px solid var(--accent-gold);">
-                    <div style="font-size:11px; font-weight:600; color:var(--accent-gold); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Years 1&ndash;2</div>
-                    <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Build &amp; Stabilize</div>
-                    <div style="font-size:12px; color:var(--text-muted);">Ramp Phase 1, begin Phase 2 construction, profitability within 6&ndash;9 months</div>
-                </div>
-                <div style="padding: 20px; border-left: 3px solid var(--accent-green);">
-                    <div style="font-size:11px; font-weight:600; color:var(--accent-green); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Years 3&ndash;5</div>
-                    <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Scale &amp; Optimize</div>
-                    <div style="font-size:12px; color:var(--text-muted);">Both phases operational, $5.4M+ combined NOI, investor distributions from operating cash flow</div>
-                </div>
-                <div style="padding: 20px; border-left: 3px solid var(--accent-blue);">
-                    <div style="font-size:11px; font-weight:600; color:var(--accent-blue); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Years 6&ndash;9</div>
-                    <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Mature &amp; Season</div>
-                    <div style="font-size:12px; color:var(--text-muted);">Stabilized operations, consistent DSCR, audited financials build bank-ready track record</div>
-                </div>
-                <div style="padding: 20px; border-left: 3px solid #6a4c93;">
-                    <div style="font-size:11px; font-weight:600; color:#6a4c93; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">Year 10</div>
-                    <div style="font-size:14px; font-weight:600; margin-bottom:4px;">Refinance &amp; Payout</div>
-                    <div style="font-size:12px; color:var(--text-muted);">Cash-out refinance at $66M+ valuation, full investor redemption, tax-advantaged exit, operators retain ownership</div>
-                </div>
-            </div>
+        <div class="assumptions" style="margin-top: 0;">
+            <h3>Refinance Assumptions</h3>
+            <ul id="exit-assumptions"></ul>
         </div>
     </section>
 
@@ -766,39 +355,41 @@
         <div class="assumptions">
             <h3>Phase 1 &mdash; AWKN Ranch + Within Center</h3>
             <ul>
-                <li>Retreat House: 10 beds, $349 (shared) &ndash; $499 (private)/night, 50% target occupancy, 2-night minimum</li>
-                <li>Yurts x2: $699/night each, 30% base occupancy</li>
-                <li>HoneyComb Dome: $599/night, 30% base occupancy</li>
-                <li>Lodging Domes x2: 8 beds total, $299/bed/night, 30&ndash;50% occupancy</li>
-                <li>Maloka Dome: $20K&ndash;$40K/mo venue rental + $12K&ndash;$18K/mo overnight capacity</li>
-                <li>Additional Venue Rentals: $8K&ndash;$16K/mo from temple, grounds, and event spaces</li>
-                <li>Within Center: $16.5K&ndash;$33K/mo from outpatient ketamine therapy (AWKN/HEAL/DISCOVER packages)</li>
+                <li>Retreat House nightly rate: $349 (shared) &ndash; $499 (private) &middot; 10 beds &middot; 2-night minimum</li>
+                <li>Yurts x2: $699/night each &middot; 50% base occupancy</li>
+                <li>HoneyComb Dome + Model Dome: $599/night each &middot; 50% base occupancy</li>
+                <li>Maloka Dome: $20K&ndash;$40K/mo venue rental + $12K&ndash;$18K/mo nightly lodging</li>
+                <li>Within Center: $16.5K&ndash;$33K/mo from outpatient ketamine therapy packages</li>
                 <li>AWKN Hosted Retreats: $20K&ndash;$75K/mo curated multi-day immersions</li>
-                <li>Memberships: $3K&ndash;$8K/mo (16 members secured pre-marketing)</li>
-                <li>Monthly operating expenses: $60,800 (low) &ndash; $73,800 (high)</li>
-                <li>Months 1&ndash;3: 25&ndash;50% revenue ramp (infrastructure build-out, marketing launch)</li>
-                <li>Months 4&ndash;6: 65&ndash;85% of steady-state revenue (occupancy growing)</li>
+                <li>Monthly operating expenses: $60.8K (low) &ndash; $73.8K (high)</li>
+                <li>Months 1&ndash;3: 40% revenue ramp (infrastructure build-out, marketing launch)</li>
+                <li>Months 4&ndash;6: 70% of steady-state revenue (occupancy growing)</li>
                 <li>Months 7+: 100% steady-state revenue</li>
-                <li>Annual net profit targets: $2.0M (Y2) &rarr; $2.3M (Y3) &rarr; $2.55M (Y4) &rarr; $2.8M (Y5), then ~2% growth Y6&ndash;Y10</li>
-                <li>Experience economy split: 30% to AWKN on facilitator services, 20% on events</li>
+                <li>Annual growth rate: 5% (rate increases + occupancy optimization)</li>
             </ul>
         </div>
 
         <div class="assumptions" style="margin-top: 24px;">
-            <h3>Phase 2 &mdash; AWKN Dome Collective</h3>
+            <h3>Phase 2 &mdash; Dome Collective</h3>
             <ul>
-                <li>Adjacent 9-acre parcel, 103 geodesic dome residences total</li>
-                <li>50 Tier 1 domes: $1,900/mo + $122 HOA = $2,022/mo each</li>
-                <li>40 Tier 2 domes: $2,200/mo + $122 HOA = $2,322/mo each</li>
-                <li>13 Short-term rental domes: $299/night at 70% occupancy</li>
+                <li>103 domes total: 50 Tier 1 ($2,022/mo) + 40 Tier 2 ($2,322/mo) + 13 STR ($299/night at 70% occ.)</li>
                 <li>Gross monthly revenue at full occupancy: $275,511</li>
-                <li>Estimated net monthly: ~$200,000 (27% expense ratio)</li>
+                <li>Estimated net monthly: ~$200,000</li>
                 <li>Year 2: 30% of domes operational (construction ramp)</li>
                 <li>Year 3: 80% operational</li>
-                <li>Year 4+: 100% operational</li>
+                <li>Year 4: 100% operational &mdash; stabilized for refinance</li>
                 <li>Annual growth rate: 3% (lease renewals + rate increases)</li>
-                <li>Waitlist: 408 interested residents</li>
                 <li>Series A ($16M) funds land acquisition ($10M) + build-out ($6M)</li>
+            </ul>
+        </div>
+
+        <div class="assumptions" style="margin-top: 24px;">
+            <h3>Year 4 Refinance Exit</h3>
+            <ul>
+                <li>Refinance at Year 4 stabilized NOI using 6.5% cap rate</li>
+                <li>Loan-to-value (LTV): 65% on appraised value</li>
+                <li>Refinance proceeds used to return investor capital + profit distributions</li>
+                <li>Ownership retained post-refinance &mdash; ongoing cash flow continues</li>
             </ul>
         </div>
 
@@ -806,22 +397,21 @@
             <h3>General</h3>
             <ul>
                 <li>All figures in USD. No inflation adjustment.</li>
+                <li>All income projections reflect a 10% reduction from original model estimates</li>
                 <li>Expense growth: 3% annually (staffing, utilities, maintenance)</li>
                 <li>No additional capital raises assumed beyond Phase 1 ($500K) and Series A ($16M)</li>
                 <li>Conservative scenario uses low-end revenue and high-end expenses throughout</li>
                 <li>Base case uses midpoint revenue and midpoint expenses</li>
                 <li>Strong scenario uses high-end revenue and low-end expenses</li>
-                <li>Historical validation: Within Center has operated for 4.5 years, 1,500+ sessions, weekly sales of $20K+</li>
             </ul>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <p class="footer-disclaimer">&copy; 2026 Within Center &amp; AWKN Ranch. All rights reserved.<br>
-        This document is confidential and intended solely for the use of authorized investors and their advisors.<br>
-        Financial projections are forward-looking estimates based on current operating data, signed agreements, and management assumptions. They are not guarantees of future performance.<br>
-        Prepared for qualified investors under applicable securities exemptions.</p>
+        <p>&copy; 2026 Within Center &amp; AWKN Ranch. All rights reserved.<br>
+        This document is confidential and intended solely for the use of authorized investors.<br>
+        Projections are estimates based on current operating data and are not guarantees of future performance.</p>
     </footer>
 </div>
 
@@ -829,160 +419,40 @@
     // ===== FINANCIAL MODEL =====
     const fmt = (n) => '$' + Math.round(n).toLocaleString();
     const fmtM = (n) => '$' + (n / 1000000).toFixed(1) + 'M';
-    const fmtK = (n) => n >= 1000 ? '$' + (n/1000).toFixed(1) + 'K' : '$' + n.toLocaleString();
-    const fmtPct = (n) => Math.round(n * 100) + '%';
 
-    // Updated monthly steady-state figures from investor deck
+    // Monthly steady-state figures from investor deck (10% revenue reduction applied)
     const scenarios = {
-        conservative: { label: 'Conservative', revenue: 171000, expenses: 73800 },
-        base:         { label: 'Base Case',    revenue: 235000, expenses: 67300 },
-        strong:       { label: 'Strong',       revenue: 304000, expenses: 60800 }
+        conservative: { label: 'Conservative', revenue: Math.round(133440 * 0.90), expenses: 72300 },
+        base:         { label: 'Base Case',    revenue: Math.round(185000 * 0.90), expenses: 65500 },
+        strong:       { label: 'Strong',       revenue: Math.round(250940 * 0.90), expenses: 59300 }
     };
 
     // Monthly ramp multipliers for Year 1
     const ramp = [0.25, 0.35, 0.50, 0.65, 0.75, 0.85, 0.90, 0.95, 1.0, 1.0, 1.0, 1.0];
 
-    // Revenue streams (monthly low/high)
-    const revenueStreams = [
-        { name: 'Retreat House Lodging', low: 52350, high: 74850, badge: 'lodging', detail: '10 beds, $349-$499/night, 50% occ, 2-night min' },
-        { name: 'Yurt Lodging (2 units)', low: 12582, high: 12582, badge: 'lodging', detail: '$699/night each, 30% occupancy' },
-        { name: 'HoneyComb Dome', low: 5391, high: 5391, badge: 'lodging', detail: '$599/night, 30% occupancy' },
-        { name: 'Lodging Domes (8 beds)', low: 21528, high: 35880, badge: 'lodging', detail: '$299/bed/night, 30-50% occ' },
-        { name: 'Maloka Venue Rental', low: 20000, high: 40000, badge: 'venue', detail: '50-ft ceremony & retreat dome' },
-        { name: 'Maloka Overnight Capacity', low: 12000, high: 18000, badge: 'venue', detail: 'Event lodging overflow' },
-        { name: 'Additional Venue Rentals', low: 8000, high: 16000, badge: 'venue', detail: 'Temple, grounds, event spaces' },
-        { name: 'Within Center Outpatient', low: 16500, high: 33000, badge: 'clinical', detail: 'AWKN/HEAL/DISCOVER packages' },
-        { name: 'AWKN Hosted Retreats', low: 20000, high: 75000, badge: 'program', detail: 'Curated multi-day immersions' },
-        { name: 'Memberships', low: 3000, high: 8000, badge: 'program', detail: '16 members pre-marketing' },
-    ];
-
-    // Detailed expense line items
+    // Detailed expense line items (low / high steady-state from investor deck)
     const expenseItems = [
-        { name: 'On-site Hospitality Manager', low: 4000, high: 5000, rampStart: 1 },
+        { name: 'Hospitality Manager (live-in, FT)', low: 4000, high: 5000, rampStart: 1 },
         { name: 'Operations Manager', low: 4000, high: 4000, rampStart: 1 },
-        { name: 'Medical / Clinical Staff (2 days/wk)', low: 4000, high: 4000, rampStart: 1, fixed: true },
-        { name: 'Executive / Management Team', low: 10000, high: 12000, rampStart: 1 },
-        { name: 'Executive Advisory', low: 3000, high: 3000, rampStart: 1 },
-        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1, fixed: true, stepUp: { month: 3, low: 13800, high: 13800 } },
+        { name: 'Medical / Clinical Staff (2 days/wk)', low: 3000, high: 5000, rampStart: 3 },
+        { name: 'Executive / Management', low: 10000, high: 12000, rampStart: 1 },
+        { name: 'Shannon Cohen — Advisory', low: 3000, high: 3000, rampStart: 1 },
+        { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1 },
+        { name: 'RV Relocation (one-time)', low: 1500, high: 1500, rampStart: 1, oneTime: 1 },
         { name: 'Maintenance & Utilities', low: 4000, high: 6000, rampStart: 1 },
         { name: 'Breakfast & Guest Supplies', low: 2500, high: 3500, rampStart: 2 },
         { name: 'Insurance, Licensing & Compliance', low: 1500, high: 2500, rampStart: 1 },
         { name: 'Marketing & Booking Platform', low: 5500, high: 6500, rampStart: 1 },
-        { name: 'Google / Meta / AI Advertising', low: 9000, high: 9000, rampStart: 1, fixed: true },
+        { name: 'Google / Meta / AI Advertising', low: 8000, high: 10000, rampStart: 2 },
         { name: 'Miscellaneous / Contingency', low: 1000, high: 2000, rampStart: 1 },
-    ];
-
-    // Capital allocation
-    const capitalAllocation = [
-        { category: 'Infrastructure', items: [
-            { name: 'Maloka Dome Build', amount: 50000 },
-            { name: 'Lodging Domes (2) — Build & Furnish', amount: 75000 },
-            { name: 'Retreat House Upgrades', amount: 24000 },
-        ], color: '#2d6a4f', total: 149000 },
-        { category: 'Marketing & Sales', items: [
-            { name: 'Google Ads (3-month campaign)', amount: 24000 },
-            { name: 'Brand Launch', amount: 30000 },
-            { name: 'Website & Booking Platform', amount: 5000 },
-            { name: 'Landscaping & Signage', amount: 25000 },
-            { name: 'Local Business Development', amount: 3000 },
-        ], color: '#b8860b', total: 87000 },
-        { category: 'Operations', items: [
-            { name: 'Executive Advisory (6 months)', amount: 18000 },
-            { name: 'AI Systems Development', amount: 10000 },
-            { name: 'Temple & Pool Improvements', amount: 5000 },
-            { name: 'Local Sales', amount: 15000 },
-        ], color: '#4a7c6b', total: 48000 },
-        { category: 'Legal & Licensing', items: [
-            { name: 'Legal, Compliance & Licensing', amount: 20000 },
-        ], color: '#6a4c93', total: 20000 },
-        { category: 'Reserves', items: [
-            { name: 'Three-Month Operating Reserve', amount: 105000 },
-            { name: 'Growth Buffer', amount: 91000 },
-        ], color: '#8a8a8a', total: 196000 },
     ];
 
     let currentScenario = 'conservative';
 
-    // ===== EXECUTIVE SUMMARY =====
-    function renderExecSummary(active) {
-        const s = scenarios[active || 'conservative'];
-        const monthly = s.revenue - s.expenses;
-        const annual = monthly * 12;
-        const margin = monthly / s.revenue;
-
-        document.getElementById('exec-kpis').innerHTML = `
-            <div class="kpi"><div class="kpi-value" style="color:var(--accent-green)">${fmtK(s.revenue)}</div><div class="kpi-label">Monthly Revenue</div></div>
-            <div class="kpi"><div class="kpi-value" style="color:var(--accent-terracotta)">${fmtK(s.expenses)}</div><div class="kpi-label">Monthly Expenses</div></div>
-            <div class="kpi"><div class="kpi-value" style="color:var(--accent-gold)">${fmtK(monthly)}</div><div class="kpi-label">Monthly Net Profit</div></div>
-            <div class="kpi"><div class="kpi-value" style="color:var(--accent-green)">${fmtPct(margin)}</div><div class="kpi-label">Net Margin</div></div>
-            <div class="kpi"><div class="kpi-value" style="color:var(--accent-gold)">${fmtM(annual)}</div><div class="kpi-label">Annualized Net</div></div>
-        `;
-
-        const rows = [
-            ['Monthly Revenue', fmt(scenarios.conservative.revenue), fmt(scenarios.base.revenue), fmt(scenarios.strong.revenue)],
-            ['Monthly Expenses', fmt(scenarios.conservative.expenses), fmt(scenarios.base.expenses), fmt(scenarios.strong.expenses)],
-            ['Monthly Net Profit', fmt(scenarios.conservative.revenue - scenarios.conservative.expenses), fmt(scenarios.base.revenue - scenarios.base.expenses), fmt(scenarios.strong.revenue - scenarios.strong.expenses)],
-            ['Annualized Net Profit', fmtM((scenarios.conservative.revenue - scenarios.conservative.expenses) * 12), fmtM((scenarios.base.revenue - scenarios.base.expenses) * 12), fmtM((scenarios.strong.revenue - scenarios.strong.expenses) * 12)],
-            ['Net Margin', fmtPct((scenarios.conservative.revenue - scenarios.conservative.expenses) / scenarios.conservative.revenue), fmtPct((scenarios.base.revenue - scenarios.base.expenses) / scenarios.base.revenue), fmtPct((scenarios.strong.revenue - scenarios.strong.expenses) / scenarios.strong.revenue)],
-            ['Payroll (% of Revenue)', fmtPct(29000 / scenarios.conservative.revenue), fmtPct(26000 / scenarios.base.revenue), fmtPct(24000 / scenarios.strong.revenue)],
-        ];
-
-        document.getElementById('exec-tbody').innerHTML = rows.map((r, i) => `
-            <tr${i === 2 ? ' class="highlight"' : ''}${i === 3 ? ' class="total"' : ''}>
-                <td><strong>${r[0]}</strong></td>
-                <td style="text-align:right">${r[1]}</td>
-                <td style="text-align:right">${r[2]}</td>
-                <td style="text-align:right">${r[3]}</td>
-            </tr>
-        `).join('');
-    }
-
-    function setExecScenario(s) {
-        document.querySelectorAll('#exec-tabs .scenario-tab').forEach(t => t.classList.remove('active'));
-        document.querySelector(`#exec-tabs .scenario-tab[onclick="setExecScenario('${s}')"]`).classList.add('active');
-        renderExecSummary(s);
-    }
-
-    // ===== REVENUE STREAMS =====
-    function renderRevenueStreams() {
-        document.getElementById('rev-cards').innerHTML = revenueStreams.map(r => `
-            <div class="rev-card">
-                <div class="rev-card-header">
-                    <div class="rev-card-title">${r.name}</div>
-                    <div class="rev-card-badge ${r.badge}">${r.badge}</div>
-                </div>
-                <div class="rev-card-range">${fmtK(r.low)}${r.high !== r.low ? ' &ndash; ' + fmtK(r.high) : ''}<span style="font-size:12px;font-weight:400;color:var(--text-muted)">/mo</span></div>
-                <div class="rev-card-detail">${r.detail}</div>
-            </div>
-        `).join('');
-
-        const totalLow = revenueStreams.reduce((s, r) => s + r.low, 0);
-        const totalHigh = revenueStreams.reduce((s, r) => s + r.high, 0);
-
-        document.getElementById('rev-tbody').innerHTML = revenueStreams.map(r => `
-            <tr>
-                <td>${r.name}</td>
-                <td style="text-align:right">${fmt(r.low)}</td>
-                <td style="text-align:right">${fmt(r.high)}</td>
-                <td style="text-align:right">${fmt(r.low * 12)}</td>
-                <td style="text-align:right">${fmt(r.high * 12)}</td>
-            </tr>
-        `).join('') + `
-            <tr class="total">
-                <td><strong>Total</strong></td>
-                <td style="text-align:right">${fmt(totalLow)}</td>
-                <td style="text-align:right">${fmt(totalHigh)}</td>
-                <td style="text-align:right">${fmt(totalLow * 12)}</td>
-                <td style="text-align:right">${fmt(totalHigh * 12)}</td>
-            </tr>
-        `;
-    }
-
-    // ===== YEAR 1 MONTHLY =====
     function setScenario(s) {
         currentScenario = s;
         document.querySelectorAll('.scenario-tab').forEach(t => t.classList.remove('active'));
-        document.querySelectorAll(`.scenario-tab[onclick="setScenario('${s}')"]`).forEach(t => t.classList.add('active'));
+        document.querySelector(`.scenario-tab[onclick="setScenario('${s}')"]`).classList.add('active');
         renderYear1();
     }
 
@@ -993,29 +463,31 @@
         let totalRev = 0, totalExp = 0, totalNet = 0;
         const data = months.map((m, i) => {
             const rev = Math.round(s.revenue * ramp[i]);
-            const exp = Math.round(s.expenses * (i < 3 ? 0.85 : 1));
+            const exp = Math.round(s.expenses * (i < 3 ? 0.85 : 1)); // Lower expenses during ramp
             const net = rev - exp;
             cumulative += net;
             totalRev += rev; totalExp += exp; totalNet += net;
-            return { month: m, rev, exp, net, cumulative, margin: net / rev };
+            return { month: m, rev, exp, net, cumulative };
         });
 
+        // Summary cards
         document.getElementById('year1-summary').innerHTML = `
             <div class="summary-card"><div class="summary-card-value">${fmt(totalRev)}</div><div class="summary-card-label">Year 1 Revenue</div></div>
             <div class="summary-card"><div class="summary-card-value">${fmt(totalExp)}</div><div class="summary-card-label">Year 1 Expenses</div></div>
             <div class="summary-card green"><div class="summary-card-value">${fmt(totalNet)}</div><div class="summary-card-label">Year 1 Net Profit</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtPct(totalNet / totalRev)}</div><div class="summary-card-label">Avg Net Margin</div></div>
+            <div class="summary-card"><div class="summary-card-value">${Math.round(totalNet / totalRev * 100)}%</div><div class="summary-card-label">Net Margin</div></div>
         `;
 
         document.getElementById('chart-scenario-label').textContent = s.label + ' Scenario';
 
+        // Bar chart
         const maxVal = Math.max(...data.map(d => Math.max(d.rev, d.exp)));
         const chartHeight = 280;
         document.getElementById('year1-chart').innerHTML = data.map(d => `
             <div class="bar-group">
                 <div class="bar-stack" style="height: ${(d.rev / maxVal) * chartHeight}px;">
                     <div class="bar-segment bar-revenue" style="height: 100%;">
-                        <div class="bar-value">${fmtK(d.rev)}</div>
+                        <div class="bar-value">${fmt(d.rev)}</div>
                     </div>
                 </div>
                 <div class="bar-label">${d.month}</div>
@@ -1028,13 +500,13 @@
             </div>
         `).join('');
 
+        // Table
         document.getElementById('year1-tbody').innerHTML = data.map((d, i) => `
             <tr${i >= 9 ? ' class="highlight"' : ''}>
                 <td>${d.month} ${i < 9 ? '2026' : '2027'}</td>
                 <td style="text-align:right">${fmt(d.rev)}</td>
                 <td style="text-align:right">${fmt(d.exp)}</td>
                 <td style="text-align:right; color: ${d.net >= 0 ? 'var(--accent-green)' : 'var(--accent-terracotta)'};">${fmt(d.net)}</td>
-                <td style="text-align:right">${fmtPct(d.margin)}</td>
                 <td style="text-align:right; color: ${d.cumulative >= 0 ? 'var(--accent-gold)' : 'var(--accent-terracotta)'};">${fmt(d.cumulative)}</td>
             </tr>
         `).join('') + `
@@ -1043,11 +515,11 @@
                 <td style="text-align:right">${fmt(totalRev)}</td>
                 <td style="text-align:right">${fmt(totalExp)}</td>
                 <td style="text-align:right">${fmt(totalNet)}</td>
-                <td style="text-align:right">${fmtPct(totalNet / totalRev)}</td>
                 <td style="text-align:right">${fmt(cumulative)}</td>
             </tr>
         `;
 
+        // Expense detail table
         renderExpenseDetail();
     }
 
@@ -1055,15 +527,21 @@
         const scenario = currentScenario;
         const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
 
+        // Update month headers
         months.forEach((m, i) => {
             const el = document.getElementById(`exp-m${i+1}`);
             if (el) el.textContent = m;
         });
 
+        // For each expense, determine monthly value based on scenario + ramp
+        const fmtK = (n) => n >= 1000 ? '$' + (n/1000).toFixed(1) + 'K' : '$' + n.toLocaleString();
+        const fmtS = (n) => '$' + Math.round(n).toLocaleString();
+
         let monthTotals = new Array(12).fill(0);
         let grandTotal = 0;
 
         const rows = expenseItems.map(item => {
+            // Pick value based on scenario
             let steadyState;
             if (scenario === 'conservative') steadyState = item.high;
             else if (scenario === 'strong') steadyState = item.low;
@@ -1074,16 +552,11 @@
                 const monthNum = i + 1;
                 let val = 0;
                 if (item.oneTime) {
+                    // One-time expense: only charged in the specified month
                     if (monthNum === item.oneTime) val = steadyState;
                 } else if (monthNum >= item.rampStart) {
-                    if (item.fixed) {
-                        // Check for step-up (e.g. lease increase mid-year)
-                        if (item.stepUp && monthNum >= item.stepUp.month) {
-                            val = scenario === 'conservative' ? item.stepUp.high : scenario === 'strong' ? item.stepUp.low : Math.round((item.stepUp.low + item.stepUp.high) / 2);
-                        } else {
-                            val = steadyState;
-                        }
-                    } else if (monthNum <= 2) val = Math.round(steadyState * 0.6);
+                    // Recurring: ramp in during months 1-3, full after
+                    if (monthNum <= 2) val = Math.round(steadyState * 0.6);
                     else if (monthNum === 3) val = Math.round(steadyState * 0.8);
                     else val = steadyState;
                 }
@@ -1101,71 +574,72 @@
                 <tr>
                     <td style="font-size:12px; white-space:nowrap;">${r.name}</td>
                     ${r.monthlyCells.map(v => `<td style="text-align:right; font-size:11px; color: ${v === 0 ? 'var(--text-muted)' : 'var(--text-secondary)'};">${v === 0 ? '&mdash;' : fmtK(v)}</td>`).join('')}
-                    <td style="text-align:right; font-weight:600; font-size:12px;">${fmt(r.annualTotal)}</td>
+                    <td style="text-align:right; font-weight:600; font-size:12px;">${fmtS(r.annualTotal)}</td>
                 </tr>
             `).join('') + `
                 <tr class="total">
                     <td>Monthly Total</td>
                     ${monthTotals.map(t => `<td style="text-align:right; font-size:11px;">${fmtK(t)}</td>`).join('')}
-                    <td style="text-align:right;">${fmt(grandTotal)}</td>
+                    <td style="text-align:right;">${fmtS(grandTotal)}</td>
                 </tr>
             `;
     }
 
-    // ===== 5-YEAR MODEL =====
-    function render5Year() {
+    // ===== 4-YEAR MODEL =====
+    function render4Year() {
         const p1Base = scenarios.base;
+        const p1AnnualRev = p1Base.revenue * 12;
+        const p1AnnualExp = p1Base.expenses * 12;
+        const p1Growth = 1.05;
+        const expGrowth = 1.03;
 
-        // Phase 1 annual net targets: ramp to $2.8M by Y5, then slow growth
-        // Y1 computed from monthly ramp model; Y2-Y5 explicit targets
-        const p1AnnualNetTargets = [null, 2000000, 2300000, 2550000, 2800000, 2860000, 2900000, 2930000, 2950000, 2960000];
-        // Expense ratio ~29% of revenue for Phase 1
-        const p1ExpRatio = 0.29;
-
-        // Phase 2 monthly net: $135K Y1 ramping to $225K Y10, ~$2.8M/yr then slow gains
-        const p2MonthlyNet = [135000, 155000, 180000, 200000, 215000, 220000, 222000, 224000, 225000, 225000];
-        const p2ExpRatio = 0.27;
+        // Phase 2: 10% revenue reduction applied to dome gross
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Ramp = [0, 0.30, 0.80, 1.0]; // Year 4 = fully stabilized
+        const p2Growth = 1.03;
 
         let cumulative = 0;
         const data = [];
 
-        for (let y = 0; y < 5; y++) {
-            let p1Rev, p1Exp, p1Net;
+        for (let y = 0; y < 4; y++) {
+            let p1Rev, p1Exp;
             if (y === 0) {
                 p1Rev = 0;
                 ramp.forEach(r => p1Rev += p1Base.revenue * r);
                 p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
-                p1Net = p1Rev - p1Exp;
             } else {
-                p1Net = p1AnnualNetTargets[y];
-                p1Rev = p1Net / (1 - p1ExpRatio);
-                p1Exp = p1Rev - p1Net;
+                p1Rev = p1AnnualRev * Math.pow(p1Growth, y);
+                p1Exp = p1AnnualExp * Math.pow(expGrowth, y);
             }
+            const p1Net = p1Rev - p1Exp;
 
-            const p2Net = p2MonthlyNet[y] * 12;
-            const p2Rev = p2Net / (1 - p2ExpRatio);
-            const p2Exp = p2Rev - p2Net;
+            const p2Rev = p2FullGross * p2Ramp[y] * (y > 1 ? Math.pow(p2Growth, y - 2) : 1);
+            const p2ExpRatio = 0.27;
+            const p2Exp = p2Rev * p2ExpRatio;
+            const p2Net = p2Rev - p2Exp;
 
             const totalRev = p1Rev + p2Rev;
             const totalExp = p1Exp + p2Exp;
             const totalNet = p1Net + p2Net;
             cumulative += totalNet;
 
-            data.push({ year: y + 1, p1Rev, p1Net, p2Rev, p2Net, totalRev, totalExp, totalNet, cumulative, margin: totalNet / totalRev });
+            data.push({ year: y + 1, p1Rev, p1Net, p2Rev, p2Net, totalRev, totalExp, totalNet, cumulative });
         }
 
-        const y5cum = data[4].cumulative;
-        const y5net = data[4].totalNet;
-        document.getElementById('year5-summary').innerHTML = `
-            <div class="summary-card"><div class="summary-card-value">${fmtM(y5cum)}</div><div class="summary-card-label">5-Year Cumulative Net</div></div>
-            <div class="summary-card green"><div class="summary-card-value">${fmtM(y5net)}</div><div class="summary-card-label">Year 5 Annual Net</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtM(data[4].totalRev)}</div><div class="summary-card-label">Year 5 Annual Revenue</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtPct(data[4].margin)}</div><div class="summary-card-label">Year 5 Net Margin</div></div>
+        // Summary
+        const y4cum = data[3].cumulative;
+        const y4net = data[3].totalNet;
+        document.getElementById('year4-summary').innerHTML = `
+            <div class="summary-card"><div class="summary-card-value">${fmtM(y4cum)}</div><div class="summary-card-label">4-Year Cumulative Net</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmtM(y4net)}</div><div class="summary-card-label">Year 4 Annual Net</div></div>
+            <div class="summary-card"><div class="summary-card-value">${fmtM(data[3].totalRev)}</div><div class="summary-card-label">Year 4 Annual Revenue</div></div>
+            <div class="summary-card"><div class="summary-card-value">${Math.round(data.reduce((s,d) => s + d.totalRev, 0) / 1000000)}M+</div><div class="summary-card-label">4-Year Total Revenue</div></div>
         `;
 
+        // Chart
         const maxVal = Math.max(...data.map(d => d.totalNet));
         const chartHeight = 280;
-        document.getElementById('year5-chart').innerHTML = data.map(d => `
+        document.getElementById('year4-chart').innerHTML = data.map(d => `
             <div class="bar-group">
                 <div class="bar-stack" style="height: ${(d.totalNet / maxVal) * chartHeight}px;">
                     ${d.p2Net > 0 ? `<div class="bar-segment bar-phase2" style="height: ${d.p2Net / d.totalNet * 100}%;"></div>` : ''}
@@ -1176,15 +650,15 @@
             </div>
         `).join('');
 
-        document.getElementById('year5-tbody').innerHTML = data.map(d => `
-            <tr${d.year === 5 ? ' class="highlight"' : ''}>
+        // Table
+        document.getElementById('year4-tbody').innerHTML = data.map(d => `
+            <tr${d.year === 4 ? ' class="highlight"' : ''}>
                 <td><strong>Year ${d.year}</strong></td>
                 <td style="text-align:right">${fmt(d.p1Rev)}</td>
                 <td style="text-align:right">${d.p2Rev > 0 ? fmt(d.p2Rev) : '&mdash;'}</td>
                 <td style="text-align:right">${fmt(d.totalRev)}</td>
                 <td style="text-align:right">${fmt(d.totalExp)}</td>
                 <td style="text-align:right; color: var(--accent-green);">${fmt(d.totalNet)}</td>
-                <td style="text-align:right">${fmtPct(d.margin)}</td>
                 <td style="text-align:right; color: var(--accent-gold);">${fmtM(d.cumulative)}</td>
             </tr>
         `).join('');
@@ -1192,111 +666,112 @@
         return data;
     }
 
-    // ===== 10-YEAR MODEL =====
-    function render10Year() {
+    // ===== REFINANCE EXIT MODEL =====
+    function renderExit() {
+        // Use Year 4 stabilized NOI from the 4-year model
         const p1Base = scenarios.base;
+        const p1AnnualRev = p1Base.revenue * 12;
+        const p1AnnualExp = p1Base.expenses * 12;
+        const p1Growth = 1.05;
+        const expGrowth = 1.03;
 
-        // Phase 1: ramp to $2.8M net by Y5, then slow 2% growth Y6-Y10
-        const p1AnnualNetTargets = [null, 2000000, 2300000, 2550000, 2800000, 2860000, 2900000, 2930000, 2950000, 2960000];
-        const p1ExpRatio = 0.29;
+        // Year 4 Phase 1 figures
+        const p1Rev4 = p1AnnualRev * Math.pow(p1Growth, 3);
+        const p1Exp4 = p1AnnualExp * Math.pow(expGrowth, 3);
+        const p1NOI4 = p1Rev4 - p1Exp4;
 
-        // Phase 2: $135K/mo Y1 ramping to $225K/mo Y10
-        const p2MonthlyNet10 = [135000, 155000, 180000, 200000, 215000, 220000, 222000, 224000, 225000, 225000];
-        const p2ExpRatio10 = 0.27;
+        // Year 4 Phase 2 figures (100% operational, 10% revenue reduction already in gross)
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Rev4 = p2FullGross * 1.0 * Math.pow(1.03, 1); // Year 4 = ramp[3]=1.0, 1 year of growth
+        const p2Exp4 = p2Rev4 * 0.27;
+        const p2NOI4 = p2Rev4 - p2Exp4;
 
-        let cumulative = 0;
-        const data = [];
+        const totalNOI = p1NOI4 + p2NOI4;
+        const capRate = 0.065;
+        const appraisedValue = totalNOI / capRate;
+        const ltv = 0.65;
+        const refiProceeds = appraisedValue * ltv;
+        const initialInvestment = 500000;
+        const returnMultiple = refiProceeds / initialInvestment;
 
-        for (let y = 0; y < 10; y++) {
-            let p1Rev, p1Exp, p1Net;
-            if (y === 0) {
-                p1Rev = 0;
-                ramp.forEach(r => p1Rev += p1Base.revenue * r);
-                p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
-                p1Net = p1Rev - p1Exp;
-            } else {
-                p1Net = p1AnnualNetTargets[y];
-                p1Rev = p1Net / (1 - p1ExpRatio);
-                p1Exp = p1Rev - p1Net;
-            }
-
-            const p2Net = p2MonthlyNet10[y] * 12;
-            const p2Rev = p2Net / (1 - p2ExpRatio10);
-            const p2Exp = p2Rev - p2Net;
-
-            const totalRev = p1Rev + p2Rev;
-            const totalNet = p1Net + p2Net;
-            cumulative += totalNet;
-            data.push({ year: y + 1, p1Net, p1Rev, p2Net, p2Rev, totalRev, totalNet, cumulative, margin: totalNet / totalRev });
-        }
-
-        document.getElementById('year10-summary').innerHTML = `
-            <div class="summary-card"><div class="summary-card-value">${fmtM(data[9].cumulative)}</div><div class="summary-card-label">10-Year Cumulative Net</div></div>
-            <div class="summary-card green"><div class="summary-card-value">${fmtM(data[9].totalNet)}</div><div class="summary-card-label">Year 10 Annual Net</div></div>
-            <div class="summary-card"><div class="summary-card-value">${Math.round(data[9].cumulative / 500000)}x</div><div class="summary-card-label">Return on $500K</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmtPct(data[9].margin)}</div><div class="summary-card-label">Year 10 Net Margin</div></div>
+        // Summary cards
+        document.getElementById('exit-summary').innerHTML = `
+            <div class="summary-card"><div class="summary-card-value">${fmtM(totalNOI)}</div><div class="summary-card-label">Year 4 Stabilized NOI</div></div>
+            <div class="summary-card"><div class="summary-card-value">${fmtM(appraisedValue)}</div><div class="summary-card-label">Appraised Value (6.5% Cap)</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmtM(refiProceeds)}</div><div class="summary-card-label">Refinance Proceeds (65% LTV)</div></div>
+            <div class="summary-card"><div class="summary-card-value">${returnMultiple.toFixed(1)}x</div><div class="summary-card-label">Return on $500K Investment</div></div>
         `;
 
-        const maxVal = Math.max(...data.map(d => d.totalNet));
-        const chartHeight = 280;
-        document.getElementById('year10-chart').innerHTML = data.map(d => `
-            <div class="bar-group">
-                <div class="bar-stack" style="height: ${(d.totalNet / maxVal) * chartHeight}px;">
-                    ${d.p2Net > 0 ? `<div class="bar-segment bar-phase2" style="height: ${d.p2Net / d.totalNet * 100}%;"></div>` : ''}
-                    <div class="bar-segment bar-revenue" style="height: ${d.p1Net > 0 ? d.p1Net / d.totalNet * 100 : 100}%; border-radius: 0;"></div>
-                </div>
-                <div class="bar-value">${fmtM(d.totalNet)}</div>
-                <div class="bar-label">Y${d.year}</div>
-            </div>
-        `).join('');
-
-        document.getElementById('year10-tbody').innerHTML = data.map((d, i) => `
-            <tr${i === 4 || i === 9 ? ' class="highlight"' : ''}>
-                <td><strong>Year ${d.year}</strong></td>
-                <td style="text-align:right">${fmt(d.p1Net)}</td>
-                <td style="text-align:right">${d.p2Net > 0 ? fmt(d.p2Net) : '&mdash;'}</td>
-                <td style="text-align:right; color: var(--accent-green);">${fmt(d.totalNet)}</td>
-                <td style="text-align:right">${fmtPct(d.margin)}</td>
-                <td style="text-align:right; color: var(--accent-gold);">${fmtM(d.cumulative)}</td>
-            </tr>
-        `).join('');
+        // Assumptions detail
+        document.getElementById('exit-assumptions').innerHTML = `
+            <li>Year 4 Phase 1 NOI: ${fmt(p1NOI4)} (revenue ${fmt(p1Rev4)} &minus; expenses ${fmt(p1Exp4)})</li>
+            <li>Year 4 Phase 2 NOI: ${fmt(p2NOI4)} (revenue ${fmt(p2Rev4)} &minus; expenses ${fmt(p2Exp4)})</li>
+            <li>Combined Stabilized NOI: ${fmt(totalNOI)}</li>
+            <li>Appraised Value at 6.5% cap rate: ${fmt(appraisedValue)}</li>
+            <li>Refinance at 65% LTV: ${fmt(refiProceeds)} in proceeds</li>
+            <li>Investor capital returned at refinance &mdash; ownership retained for ongoing cash flow</li>
+        `;
     }
 
-    // ===== CAPITAL ALLOCATION =====
-    function renderCapital() {
-        const total = 500000;
-        const colors = capitalAllocation.map(c => c.color);
-
-        document.getElementById('alloc-bar').innerHTML = capitalAllocation.map((c, i) => `
-            <div class="alloc-segment" style="flex: ${c.total / total}; background: ${c.color};">${Math.round(c.total / total * 100)}%</div>
-        `).join('');
-
-        document.getElementById('alloc-legend').innerHTML = capitalAllocation.map(c => `
-            <div class="alloc-item">
-                <div class="alloc-dot" style="background:${c.color}"></div>
-                <span>${c.category}</span>
-                <span class="alloc-item-value">${fmt(c.total)}</span>
-            </div>
-        `).join('');
-
-        let rows = '';
-        capitalAllocation.forEach(cat => {
-            rows += `<tr style="background: var(--bg-secondary);"><td colspan="2" style="font-weight:700;">${cat.category}</td><td style="text-align:right; font-weight:700;">${fmt(cat.total)}</td></tr>`;
-            cat.items.forEach(item => {
-                rows += `<tr><td></td><td>${item.name}</td><td style="text-align:right">${fmt(item.amount)}</td></tr>`;
-            });
+    // ===== HERO STATS (dynamic) =====
+    function renderHeroStats() {
+        // Compute Year 1 conservative net
+        const s = scenarios.conservative;
+        let y1Net = 0;
+        ramp.forEach((r, i) => {
+            const rev = Math.round(s.revenue * r);
+            const exp = Math.round(s.expenses * (i < 3 ? 0.85 : 1));
+            y1Net += (rev - exp);
         });
-        rows += `<tr class="total"><td colspan="2"><strong>Total</strong></td><td style="text-align:right">${fmt(total)}</td></tr>`;
-        document.getElementById('capital-tbody').innerHTML = rows;
+
+        // Compute 4-year cumulative from base case
+        const p1Base = scenarios.base;
+        const p1AnnualRev = p1Base.revenue * 12;
+        const p1AnnualExp = p1Base.expenses * 12;
+        const p2FullGross = Math.round(275511 * 0.90) * 12;
+        const p2Ramp = [0, 0.30, 0.80, 1.0];
+        let cum4 = 0;
+        for (let y = 0; y < 4; y++) {
+            let p1Rev, p1Exp;
+            if (y === 0) {
+                p1Rev = 0; ramp.forEach(r => p1Rev += p1Base.revenue * r);
+                p1Exp = p1Base.expenses * 9 + p1Base.expenses * 0.85 * 3;
+            } else {
+                p1Rev = p1AnnualRev * Math.pow(1.05, y);
+                p1Exp = p1AnnualExp * Math.pow(1.03, y);
+            }
+            const p2Rev = p2FullGross * p2Ramp[y] * (y > 1 ? Math.pow(1.03, y - 2) : 1);
+            cum4 += (p1Rev - p1Exp) + (p2Rev - p2Rev * 0.27);
+        }
+
+        // Refinance value
+        const p1Rev4 = p1AnnualRev * Math.pow(1.05, 3);
+        const p1Exp4 = p1AnnualExp * Math.pow(1.03, 3);
+        const p2Rev4 = p2FullGross * Math.pow(1.03, 1);
+        const totalNOI = (p1Rev4 - p1Exp4) + (p2Rev4 - p2Rev4 * 0.27);
+        const appraisedValue = totalNOI / 0.065;
+
+        document.getElementById('hero-stats').innerHTML = `
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmt(y1Net).replace('$', '$')}</div>
+                <div class="hero-stat-label">Year 1 Net (Conservative)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmtM(cum4)}</div>
+                <div class="hero-stat-label">4-Year Cumulative Net</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">${fmtM(appraisedValue)}</div>
+                <div class="hero-stat-label">Year 4 Appraised Value</div>
+            </div>
+        `;
     }
 
     // ===== INIT =====
-    renderExecSummary('conservative');
-    renderRevenueStreams();
+    renderHeroStats();
     renderYear1();
-    render5Year();
-    render10Year();
-    renderCapital();
+    render4Year();
+    renderExit();
 
     // Smooth nav
     document.querySelectorAll('.topbar-nav a').forEach(a => {
