@@ -1,12 +1,12 @@
 {
-  "version": "v260403.15 5:20p",
-  "release": 15,
-  "sha": "36dcf5a",
-  "fullSha": "36dcf5ae3206b30e467b911403a8b5dc29676111",
+  "version": "v260403.16 8:22p",
+  "release": 16,
+  "sha": "3a104ee",
+  "fullSha": "3a104ee2d5c00e4d42c12b1fb5c4cf4694b2a88b",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-03T12:20:05-05:00",
-  "commits": [{"sha":"36dcf5a","message":"feat: reframe projections for Aaron & Alex's $500K — payback timeline + returns","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-03T15:22:04-05:00",
+  "commits": [{"sha":"3a104ee","message":"fix: default scenario to Base Case instead of Conservative","author":"Justin DeLaCruz"}]
 }
