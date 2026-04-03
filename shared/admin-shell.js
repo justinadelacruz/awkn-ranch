@@ -61,7 +61,7 @@ const TAB_ICONS = {
 export const ALL_ADMIN_TABS = [
   // Staff section — primary admin tabs (Mindbody-style)
   { id: 'reservations', label: 'Schedule', href: 'reservations.html', permission: 'view_rentals', section: 'staff', feature: 'rentals' },
-  { id: 'rentals', label: 'Memberships', href: 'rentals.html', permission: 'view_rentals', section: 'staff', feature: 'rentals' },
+  { id: 'memberships', label: 'Memberships', href: 'memberships.html', permission: 'view_rentals', section: 'staff', feature: 'rentals' },
   { id: 'events', label: 'Events', href: 'events.html', permission: 'view_events', section: 'staff', feature: 'events' },
   { id: 'purchases', label: 'Sales', href: 'purchases.html', permission: 'view_purchases', section: 'staff' },
   { id: 'inventory', label: 'Inventory', href: 'inventory.html', permission: 'view_inventory', section: 'staff' },
