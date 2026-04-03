@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "projections",
+      "runtimeExecutable": "/Users/justindelacruz/.nvm/versions/node/v24.14.0/bin/node",
+      "runtimeArgs": ["/Users/justindelacruz/.nvm/versions/node/v24.14.0/bin/npx", "serve", "-l", "8090"],
+      "port": 8090
+    }
+  ]
+}

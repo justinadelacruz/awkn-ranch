@@ -4,6 +4,19 @@ import { supabase } from './supabase.js';
 // Timeout configuration
 const AUTH_TIMEOUT_MS = 15000; // 15 seconds for auth operations
 const INIT_TIMEOUT_MS = 10000; // 10 seconds for initial auth check
+
+/**
+ * Get the base path for GitHub Pages (e.g. '/awkn-within').
+ * Returns '' when running on a custom domain or localhost.
+ */
+export function getBasePath() {
+  const path = window.location.pathname;
+  const seg = path.split('/').filter(Boolean)[0];
+  if (seg && window.location.hostname.endsWith('.github.io')) {
+    return '/' + seg;
+  }
+  return '';
+}
 const CACHED_AUTH_KEY = 'awkn-ranch-cached-auth';
 const CACHED_AUTH_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
@@ -497,7 +510,7 @@ export async function signInWithGoogle(redirectTo) {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
-      redirectTo: redirectTo || window.location.origin + '/spaces/admin/',
+      redirectTo: redirectTo || window.location.origin + getBasePath() + '/spaces/admin/',
       queryParams: {
         prompt: 'select_account',
       },
@@ -671,7 +684,8 @@ function notifyListeners() {
  * @param {string} redirectUrl - URL to redirect to if not authenticated
  * @returns {boolean} True if authenticated
  */
-export function requireAuth(redirectUrl = '/login/') {
+export function requireAuth(redirectUrl) {
+  if (!redirectUrl) redirectUrl = getBasePath() + '/login/';
   const state = getAuthState();
 
   if (!state.isAuthenticated) {
@@ -689,12 +703,13 @@ export function requireAuth(redirectUrl = '/login/') {
  * @param {string} redirectUrl - URL to redirect to if unauthorized
  * @returns {boolean} True if user has required role
  */
-export function requireRole(role, redirectUrl = '/spaces/') {
+export function requireRole(role, redirectUrl) {
+  if (!redirectUrl) redirectUrl = getBasePath() + '/spaces/';
   const state = getAuthState();
 
   if (!state.isAuthenticated) {
     const currentPath = window.location.pathname;
-    window.location.href = '/login/?redirect=' + encodeURIComponent(currentPath);
+    window.location.href = getBasePath() + '/login/?redirect=' + encodeURIComponent(currentPath);
     return false;
   }
 
