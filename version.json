@@ -1,12 +1,12 @@
 {
-  "version": "v260403.16 8:22p",
-  "release": 16,
-  "sha": "3a104ee",
-  "fullSha": "3a104ee2d5c00e4d42c12b1fb5c4cf4694b2a88b",
+  "version": "v260403.17 8:27p",
+  "release": 17,
+  "sha": "29b0ad3",
+  "fullSha": "29b0ad3839d52bab0a7faa089d0bc42e7ac4ec20",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervm727z3",
-  "pushedAt": "2026-04-03T15:22:04-05:00",
-  "commits": [{"sha":"3a104ee","message":"fix: default scenario to Base Case instead of Conservative","author":"Justin DeLaCruz"}]
+  "machine": "runnervmrg6be",
+  "pushedAt": "2026-04-03T15:27:15-05:00",
+  "commits": [{"sha":"29b0ad3","message":"fix: full expense from month 1 for ops, medical, lease, supplies, ads, admissions","author":"Justin DeLaCruz"}]
 }
