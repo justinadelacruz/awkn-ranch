@@ -903,9 +903,8 @@
         const theirTotalReturn = theirRefiShare + theirCashFlowShare;
         const theirMultiple = theirTotalReturn / investment;
 
-        // But more importantly — show the operating cash flow payback
-        // Year 1 alone generates enough to cover $500K (from payback section)
-        // So the real story is: paid back from operations Year 1, then equity upside on top
+        // Payback comes at Year 4 refinance — refi proceeds return all invested capital
+        // Operating cash flow in Years 1–4 is additional return on top
 
         // ===== RENDER =====
 
@@ -920,17 +919,16 @@
         // How you get paid table
         document.getElementById('exit-your-returns').innerHTML = `
             <tr><td style="font-weight:600;">Your $500K Investment</td><td style="text-align:right; color: var(--accent-terracotta); font-weight:600;">(${fmt(investment)})</td></tr>
-            <tr><td colspan="2" style="border:none; padding:8px 16px; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Channel 1: Operating Cash Flow</td></tr>
-            <tr><td>&nbsp;&nbsp;&nbsp;Year 1 net profit covers your full $500K</td><td style="text-align:right; color: var(--accent-green); font-weight:600;">${fmt(investment)}</td></tr>
-            <tr class="highlight"><td>&nbsp;&nbsp;&nbsp;<strong>Payback complete &mdash; everything after this is profit</strong></td><td style="text-align:right; color: var(--accent-green); font-weight:700;">&#10003;</td></tr>
+            <tr><td colspan="2" style="border:none; padding:8px 16px; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Channel 1: Operating Cash Flow (Years 1&ndash;4)</td></tr>
             <tr><td>&nbsp;&nbsp;&nbsp;Total operating cash flow (Years 1&ndash;4)</td><td style="text-align:right; font-weight:600;">${fmt(cumCashFlow)}</td></tr>
             <tr><td colspan="2" style="border:none; padding:8px 16px; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Channel 2: Year 4 Refinance</td></tr>
             <tr><td>&nbsp;&nbsp;&nbsp;Property appraised at ${fmtM(appraisedValue)} (6.5% cap on ${fmtM(totalNOI)} NOI)</td><td style="text-align:right">&mdash;</td></tr>
             <tr><td>&nbsp;&nbsp;&nbsp;Cash-out refinance at 65% LTV</td><td style="text-align:right; font-weight:600;">${fmtM(refiProceeds)}</td></tr>
             <tr><td>&nbsp;&nbsp;&nbsp;Refi proceeds return all $16.5M invested equity</td><td style="text-align:right; color: var(--accent-green);">&#10003;</td></tr>
+            <tr class="highlight"><td>&nbsp;&nbsp;&nbsp;<strong>Payback at Year 4 refinance &mdash; capital returned to all investors</strong></td><td style="text-align:right; color: var(--accent-green); font-weight:700;">&#10003;</td></tr>
             <tr><td colspan="2" style="border:none; padding:8px 16px; font-size:12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">After the Refinance</td></tr>
             <tr><td>&nbsp;&nbsp;&nbsp;You still own equity &mdash; ongoing annual cash flow continues</td><td style="text-align:right; font-weight:600;">${fmtM(postRefiCashFlow)}/yr</td></tr>
-            <tr class="total"><td>Net result: $500K back from operations + equity retained + ongoing income</td><td style="text-align:right; color: var(--accent-gold); font-weight:700;">Capital returned, ownership kept</td></tr>
+            <tr class="total"><td>Net result: $500K back at refinance + equity retained + ongoing income</td><td style="text-align:right; color: var(--accent-gold); font-weight:700;">Capital returned, ownership kept</td></tr>
         `;
 
         // Full capital stack refinance detail
@@ -964,8 +962,7 @@
 
         // Assumptions
         document.getElementById('exit-assumptions').innerHTML = `
-            <li>Your $500K is returned from Year 1 operating cash flow &mdash; no need to wait for refinance</li>
-            <li>Year 4 refinance returns the full $16.5M capital stack (your $500K + $16M Series A)</li>
+            <li>Your $500K is returned at the Year 4 refinance along with the full $16.5M capital stack</li>
             <li>Cap rate: 6.5% on stabilized NOI &rarr; ${fmtM(appraisedValue)} appraised value</li>
             <li>Refinance at 65% LTV &rarr; ${fmtM(refiProceeds)} in proceeds</li>
             <li>Loan: ${(loanRate*100).toFixed(1)}% fixed, ${loanTermYears}-year amortization &rarr; ${fmt(annualDebtService)}/yr debt service</li>
