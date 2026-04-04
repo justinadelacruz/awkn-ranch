@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Set page title
     const displayName = profileUser.display_name || profileUser.first_name || 'Profile';
-    document.title = `${displayName} — YOUR_PROPERTY_NAME`;
+    document.title = `${displayName} — AWKN Ranch`;
 
     // Determine viewer relationship
     const isSelf = viewer?.appUser?.id === profileUser.id;

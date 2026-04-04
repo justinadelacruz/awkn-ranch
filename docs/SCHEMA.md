@@ -12,11 +12,11 @@ assignment_spaces - Junction: which spaces are in which assignments
 ### Multi-Location Support
 ```
 people.residence_location - Segregates tenants by property location
-  Values: 'default_location' (default, YOUR_PROPERTY_NAME), 'secondary_location' (Secondary City WA)
+  Values: 'default_location' (default, AWKN Ranch), 'secondary_location' (Secondary City WA)
 
 spaces.location           - Matches residence_location for filtering
 
-NOTE: Secondary Location is a SEPARATE tax entity from YOUR_PROPERTY_NAME.
+NOTE: Secondary Location is a SEPARATE tax entity from AWKN Ranch.
       YOUR_APP_NAME only manages late rent email tracking for Secondary Location.
       Accounting is handled elsewhere (Finleg). Forward payment notifications
       to agent@finleg.net.

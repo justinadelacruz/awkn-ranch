@@ -657,7 +657,7 @@ async function sendClauderoReply(
         ` : ""}
       </div>
       <p style="color: #999; font-size: 11px; text-align: center; margin-top: 12px;">
-        This is an automated reply from Claudero at YOUR_PROPERTY_NAME. Reply to continue the conversation.
+        This is an automated reply from Claudero at AWKN Ranch. Reply to continue the conversation.
       </p>
     </div>`;
   const text = `Claudero - AI developer extraordinaire
@@ -666,7 +666,7 @@ ${replyBody || ""}
 
 ${bodySnippet ? `---\nYour original message:\n${bodySnippet}` : ""}
 
-This is an automated reply from Claudero at YOUR_PROPERTY_NAME.`;
+This is an automated reply from Claudero at AWKN Ranch.`;
 
   const res = await fetch(`${RESEND_API_URL}/emails`, {
     method: "POST",
@@ -724,7 +724,7 @@ async function classifyPaiEmail(
     return { type: hasAttachments ? "document" : "question", confidence: 0.5, summary: "No Gemini key" };
   }
 
-  const prompt = `You are an email classifier for PAI (Property AI Assistant) at YOUR_PROPERTY_NAME, a residential property.
+  const prompt = `You are an email classifier for PAI (Property AI Assistant) at AWKN Ranch, a residential property.
 
 Classify this email into ONE of these categories:
 - "spam" — Unsolicited marketing, phishing, scams, newsletters the recipient didn't sign up for, SEO pitches, link spam, crypto spam, adult content, automated bot messages, or any clearly unwanted bulk email. When in doubt between spam and other, lean toward spam.
@@ -925,7 +925,7 @@ async function sendPaiReply(
         ` : ""}
       </div>
       <p style="color: #999; font-size: 11px; text-align: center; margin-top: 12px;">
-        This is an automated reply from PAI at YOUR_PROPERTY_NAME. Reply to this email to continue the conversation.
+        This is an automated reply from PAI at AWKN Ranch. Reply to this email to continue the conversation.
       </p>
     </div>`;
   const text = `PAI - Property AI Assistant
@@ -934,7 +934,7 @@ ${replyBody || ""}
 
 ${bodySnippet ? `---\nYour original message:\n${bodySnippet}` : ""}
 
-This is an automated reply from PAI at YOUR_PROPERTY_NAME.`;
+This is an automated reply from PAI at AWKN Ranch.`;
 
   const res = await fetch(`${RESEND_API_URL}/emails`, {
     method: "POST",
@@ -977,7 +977,7 @@ async function sendAI AdminReply(
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: #1c1618; padding: 20px; border-radius: 12px 12px 0 0;">
         <h2 style="color: #d4883a; margin: 0;">AlpaClaw</h2>
-        <p style="color: #aaa; margin: 4px 0 0 0; font-size: 13px;">YOUR_PROPERTY_NAME AI</p>
+        <p style="color: #aaa; margin: 4px 0 0 0; font-size: 13px;">AWKN Ranch AI</p>
       </div>
       <div style="background: #fff; padding: 24px; border: 1px solid #e0e0e0; border-top: none; border-radius: 0 0 12px 12px;">
         <div style="white-space: pre-wrap; line-height: 1.6;">${(replyBody || "").replace(/</g, "&lt;")}</div>
@@ -988,16 +988,16 @@ async function sendAI AdminReply(
         ` : ""}
       </div>
       <p style="color: #999; font-size: 11px; text-align: center; margin-top: 12px;">
-        This is an automated reply from AlpaClaw at YOUR_PROPERTY_NAME. Reply to this email to continue the conversation.
+        This is an automated reply from AlpaClaw at AWKN Ranch. Reply to this email to continue the conversation.
       </p>
     </div>`;
-  const text = `AlpaClaw - YOUR_PROPERTY_NAME AI
+  const text = `AlpaClaw - AWKN Ranch AI
 
 ${replyBody || ""}
 
 ${bodySnippet ? `---\nYour original message:\n${bodySnippet}` : ""}
 
-This is an automated reply from AlpaClaw at YOUR_PROPERTY_NAME.`;
+This is an automated reply from AlpaClaw at AWKN Ranch.`;
 
   const res = await fetch(`${RESEND_API_URL}/emails`, {
     method: "POST",
@@ -1709,8 +1709,8 @@ function parseZellePayment(bodyText: string): ZellePayment | null {
   }
 
   // US Bank format (from sender's bank perspective):
-  // "Your Zelle payment of $999.77 to YOUR_PROPERTY_NAME has been deposited."
-  // This is inbound — someone sent money TO YOUR_PROPERTY_NAME via their US Bank account.
+  // "Your Zelle payment of $999.77 to AWKN Ranch has been deposited."
+  // This is inbound — someone sent money TO AWKN Ranch via their US Bank account.
   // Sender name comes from the email's From or account info, not the body text.
   // We extract the amount; sender name needs to come from email metadata or "Sent from account" info.
   const usbankInbound = /Your Zelle.{0,5} payment of \$([\d,]+\.\d{2}) to (?:Property|property)/im;
@@ -1761,8 +1761,8 @@ interface OutboundZellePayment {
  * - BOA: "Your Zelle payment of $X to NAME was successful"
  * - US Bank: "Your Zelle payment of $X to NAME has been deposited" (outbound variant)
  *
- * IMPORTANT: Inbound payments TO YOUR_PROPERTY_NAME are handled by parseZellePayment.
- * This function only handles money SENT FROM YOUR_PROPERTY_NAME accounts.
+ * IMPORTANT: Inbound payments TO AWKN Ranch are handled by parseZellePayment.
+ * This function only handles money SENT FROM AWKN Ranch accounts.
  */
 function parseOutboundZellePayment(bodyText: string): OutboundZellePayment | null {
   const normalized = bodyText.replace(/\s+/g, " ");
@@ -1810,7 +1810,7 @@ function parseOutboundZellePayment(bodyText: string): OutboundZellePayment | nul
 
   // BOA / US Bank / generic: "Your Zelle payment of $X to NAME was successful/deposited/sent/completed"
   // Covers multiple banks that use "Zelle payment of $X to NAME" phrasing.
-  // Only treated as outbound if recipient is NOT YOUR_PROPERTY_NAME (that's inbound).
+  // Only treated as outbound if recipient is NOT AWKN Ranch (that's inbound).
   const zellePaymentTo = /(?:Your )?Zelle.{0,5} payment of \$([\d,]+\.\d{2}) to (.+?) (?:was |has been )(?:successful|sent|completed|deposited|processed)/im;
   const zelleToMatch = normalized.match(zellePaymentTo);
   if (zelleToMatch) {

@@ -1,6 +1,6 @@
 // Login page application
 import { supabase } from '../shared/supabase.js';
-import { initAuth, signInWithGoogle, signInWithPassword, signUpWithPassword, signOut, getAuthState, onAuthStateChange, getBasePath } from '../shared/auth.js';
+import { initAuth, signInWithGoogle, signInWithPassword, signUpWithPassword, signOut, getAuthState, onAuthStateChange } from '../shared/auth.js';
 
 const CACHED_AUTH_KEY = 'awkn-ranch-cached-auth';
 
@@ -26,7 +26,7 @@ const signUpPane = document.getElementById('signUpPane');
 const urlParams = new URLSearchParams(window.location.search);
 const redirectUrl = urlParams.get('redirect')
   || localStorage.getItem('awkn-ranch-login-redirect')
-  || '/spaces/admin/';
+  || '/awkn-ranch/spaces/admin/';
 
 console.log('[LOGIN]', 'Page loaded', { redirectUrl, href: window.location.href });
 
@@ -76,11 +76,11 @@ function getRedirectTarget(role) {
   let target = redirectUrl;
   // Public users always go to consumer spaces view
   if (['public'].includes(role)) {
-    target = '/spaces/';
+    target = '/awkn-ranch/spaces/';
   }
   // Resident/associate users go to resident area by default (not admin)
-  else if (target === '/spaces/admin/' && ['resident', 'associate'].includes(role)) {
-    target = '/residents/cameras.html';
+  else if (target === '/awkn-ranch/spaces/admin/' && ['resident', 'associate'].includes(role)) {
+    target = '/awkn-ranch/residents/cameras.html';
   }
   return target;
 }
@@ -286,7 +286,7 @@ googleSignInBtn.addEventListener('click', async () => {
     const isCapacitor = window.Capacitor?.isNativePlatform?.() ?? false;
     const loginRedirect = isCapacitor
       ? 'com.yourorg.app://login/'
-      : window.location.origin + getBasePath() + '/login/';
+      : window.location.origin + '/awkn-ranch/login/';
     console.log('[LOGIN]', 'Calling signInWithGoogle()', { loginRedirect, storedRedirect: redirectUrl, isCapacitor });
     await signInWithGoogle(loginRedirect);
     // Note: signInWithGoogle redirects to Google, so this line won't execute

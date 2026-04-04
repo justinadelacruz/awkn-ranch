@@ -130,11 +130,11 @@ function getTemplate(type: EmailType, data: Record<string, any>): EmailTemplate 
     // ===== RENTAL NOTIFICATIONS =====
     case "application_submitted":
       return {
-        subject: "Application Received - YOUR_PROPERTY_NAME",
+        subject: "Application Received - AWKN Ranch",
         html: `
           <h2>Thank you for your application!</h2>
           <p>Hi ${data.first_name},</p>
-          <p>We've received your rental application for <strong>${data.space_name || "YOUR_PROPERTY_NAME"}</strong>.</p>
+          <p>We've received your rental application for <strong>${data.space_name || "AWKN Ranch"}</strong>.</p>
           <p>We'll review your application and get back to you within 2-3 business days.</p>
           <p><strong>What's next?</strong></p>
           <ul>
@@ -148,7 +148,7 @@ function getTemplate(type: EmailType, data: Record<string, any>): EmailTemplate 
 
 Hi ${data.first_name},
 
-We've received your rental application for ${data.space_name || "YOUR_PROPERTY_NAME"}.
+We've received your rental application for ${data.space_name || "AWKN Ranch"}.
 
 We'll review your application and get back to you within 2-3 business days.
 
@@ -161,7 +161,7 @@ If you have any questions, feel free to reply to this email.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "application_approved": {
@@ -191,7 +191,7 @@ the YOUR_PROPERTY_NAME property AI agent`
         : '';
 
       return {
-        subject: `Congratulations! Your Application is Approved - YOUR_PROPERTY_NAME`,
+        subject: `Congratulations! Your Application is Approved - AWKN Ranch`,
         html: `
           <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
             <p style="color:#333;font-size:16px;line-height:1.6;">Great news, ${data.first_name}!</p>
@@ -237,7 +237,7 @@ the YOUR_PROPERTY_NAME property AI agent`
               <p style="margin:0;color:#555;font-size:13px;line-height:1.5;"><strong style="color:#333;">Reminder:</strong> Please don't give the address out to potential guests. Instead, send them the visiting link above so they can read the guidelines first.</p>
             </div>
 
-            <p style="color:#555;font-size:15px;line-height:1.6;">We're thrilled to have you joining the YOUR_PROPERTY_NAME community. If you have any questions, just reply to this email!</p>
+            <p style="color:#555;font-size:15px;line-height:1.6;">We're thrilled to have you joining the AWKN Ranch community. If you have any questions, just reply to this email!</p>
           </div>
         `,
         text: `Great news, ${data.first_name}!
@@ -257,36 +257,36 @@ Please re-familiarize yourself with our key operational guidelines: https://YOUR
 
 Reminder: Please don't give the address out to potential guests. Instead, send them the visiting link so they can read the guidelines first.
 
-We're thrilled to have you joining the YOUR_PROPERTY_NAME community!
+We're thrilled to have you joining the AWKN Ranch community!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
     }
 
     case "application_denied":
       return {
-        subject: "Application Update - YOUR_PROPERTY_NAME",
+        subject: "Application Update - AWKN Ranch",
         html: `
           <p>Hi ${data.first_name},</p>
-          <p>We're sorry but we are not able to approve you to apply for housing at the YOUR_PROPERTY_NAME at this time. This may be due to our gender balance goals, or it may be due to other reasons related to our assessment of community fit at this specific time.</p>
+          <p>We're sorry but we are not able to approve you to apply for housing at the AWKN Ranch at this time. This may be due to our gender balance goals, or it may be due to other reasons related to our assessment of community fit at this specific time.</p>
           <p>If you have questions, please contact a community manager.</p>
         `,
         text: `Hi ${data.first_name},
 
-We're sorry but we are not able to approve you to apply for housing at the YOUR_PROPERTY_NAME at this time. This may be due to our gender balance goals, or it may be due to other reasons related to our assessment of community fit at this specific time.
+We're sorry but we are not able to approve you to apply for housing at the AWKN Ranch at this time. This may be due to our gender balance goals, or it may be due to other reasons related to our assessment of community fit at this specific time.
 
 If you have questions, please contact a community manager.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "lease_generated":
       return {
-        subject: "Your Lease Agreement is Ready - YOUR_PROPERTY_NAME",
+        subject: "Your Lease Agreement is Ready - AWKN Ranch",
         html: `
           <h2>Your Lease is Ready for Review</h2>
           <p>Hi ${data.first_name},</p>
@@ -303,12 +303,12 @@ Please take a moment to review the terms. We'll send you a signature request sho
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "lease_sent":
       return {
-        subject: "Action Required: Sign Your Lease Agreement - YOUR_PROPERTY_NAME",
+        subject: "Action Required: Sign Your Lease Agreement - AWKN Ranch",
         html: `
           <h2>Please Sign Your Lease Agreement</h2>
           <p>Hi ${data.first_name},</p>
@@ -328,12 +328,12 @@ Important: The lease must be signed before we can proceed with your move-in.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "lease_signed":
       return {
-        subject: "Lease Signed Successfully - YOUR_PROPERTY_NAME",
+        subject: "Lease Signed Successfully - AWKN Ranch",
         html: `
           <h2>Lease Signing Complete!</h2>
           <p>Hi ${data.first_name},</p>
@@ -364,7 +364,7 @@ Once deposits are received, we'll confirm your move-in date.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "deposit_requested": {
@@ -375,7 +375,7 @@ the YOUR_PROPERTY_NAME property AI agent`
       if (data.due_date) depositRows.push({ label: 'Due Date', value: data.due_date, valueStyle: 'font-weight:600;' });
 
       return {
-        subject: "Deposit Request - YOUR_PROPERTY_NAME",
+        subject: "Deposit Request - AWKN Ranch",
         html: `
           <h2>Deposit Payment Request</h2>
           <p>Hi ${data.first_name},</p>
@@ -402,13 +402,13 @@ ${data.needs_id_verification ? `\nID VERIFICATION REQUIRED\nWe also need a copy 
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
     }
 
     case "deposit_received":
       return {
-        subject: "Deposit Received - YOUR_PROPERTY_NAME",
+        subject: "Deposit Received - AWKN Ranch",
         html: `
           <h2>Payment Received</h2>
           <p>Hi ${data.first_name},</p>
@@ -427,19 +427,19 @@ Thank you!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "deposits_confirmed":
       return {
-        subject: "Deposits Confirmed - Ready for Move-in! - YOUR_PROPERTY_NAME",
+        subject: "Deposits Confirmed - Ready for Move-in! - AWKN Ranch",
         html: `
           <h2>You're All Set!</h2>
           <p>Hi ${data.first_name},</p>
           <p>All your deposits have been received and confirmed.</p>
           <p><strong>Move-in Date:</strong> ${data.move_in_date}</p>
           <p>We'll be in touch with move-in details and key handoff arrangements.</p>
-          <p>Welcome to YOUR_PROPERTY_NAME!</p>
+          <p>Welcome to AWKN Ranch!</p>
         `,
         text: `You're All Set!
 
@@ -451,11 +451,11 @@ Move-in Date: ${data.move_in_date}
 
 We'll be in touch with move-in details and key handoff arrangements.
 
-Welcome to YOUR_PROPERTY_NAME!
+Welcome to AWKN Ranch!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "move_in_confirmed": {
@@ -499,7 +499,7 @@ the YOUR_PROPERTY_NAME property AI agent`
         _extraImages,
         html: `
           <p style="color:${B.text};font-size:15px;line-height:1.5;margin:0 0 8px;">Hi ${data.first_name},</p>
-          <p style="color:${B.textMuted};font-size:14px;line-height:1.5;margin:0 0 16px;">We're excited that you have chosen to come to the YOUR_PROPERTY_NAME. Our goal is to redefine your idea of what an YOUR_PROPERTY_NAME can be. When it comes to selecting an YOUR_PROPERTY_NAME, we feel no one need settle.</p>
+          <p style="color:${B.textMuted};font-size:14px;line-height:1.5;margin:0 0 16px;">We're excited that you have chosen to come to the AWKN Ranch. Our goal is to redefine your idea of what an AWKN Ranch can be. When it comes to selecting an AWKN Ranch, we feel no one need settle.</p>
 
           ${dataTable(detailRowData, { heading: 'Reservation Details' })}
 
@@ -511,11 +511,11 @@ the YOUR_PROPERTY_NAME property AI agent`
 
           <p style="color:${B.textMuted};font-size:14px;line-height:1.5;margin:0 0 4px;">If you have any questions or need anything, don't hesitate to reach out!</p>
         `,
-        text: `Welcome to YOUR_PROPERTY_NAME!
+        text: `Welcome to AWKN Ranch!
 
 Hi ${data.first_name},
 
-We're excited that you have chosen to come to the YOUR_PROPERTY_NAME.
+We're excited that you have chosen to come to the AWKN Ranch.
 
 ${dataTableText(detailRowData)}
 
@@ -527,14 +527,14 @@ Reminder: Please don't give the address out to potential guests. Instead, send t
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
     }
 
     // ===== PAYMENT NOTIFICATIONS =====
     case "payment_reminder":
       return {
-        subject: `Rent Reminder - Due ${data.due_date} - YOUR_PROPERTY_NAME`,
+        subject: `Rent Reminder - Due ${data.due_date} - AWKN Ranch`,
         html: `
           <h2>Friendly Rent Reminder</h2>
           <p>Hi ${data.first_name},</p>
@@ -562,12 +562,12 @@ Thank you!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "payment_overdue":
       return {
-        subject: `URGENT: Rent Payment Overdue - YOUR_PROPERTY_NAME`,
+        subject: `URGENT: Rent Payment Overdue - AWKN Ranch`,
         html: `
           <h2 style="color:${B.danger};">Rent Payment Overdue</h2>
           <p>Hi ${data.first_name},</p>
@@ -603,12 +603,12 @@ If you're experiencing difficulties, please reach out to discuss options.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "payment_received":
       return {
-        subject: "Payment Received - Thank You! - YOUR_PROPERTY_NAME",
+        subject: "Payment Received - Thank You! - AWKN Ranch",
         html: `
           <h2>Payment Received</h2>
           <p>Hi ${data.first_name},</p>
@@ -625,7 +625,7 @@ Thank you for your prompt payment!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "payment_statement": {
@@ -663,16 +663,16 @@ the YOUR_PROPERTY_NAME property AI agent`
       const pmBlock = paymentMethodsBlock(data._payment_methods_raw, data.pay_now_url);
 
       return {
-        subject: `Payment Statement - ${data.space_name || 'YOUR_PROPERTY_NAME'}`,
+        subject: `Payment Statement - ${data.space_name || 'AWKN Ranch'}`,
         html: `
           <div style="max-width:600px;margin:0 auto;background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.1);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
             <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);padding:32px;text-align:center;">
-              <h1 style="color:white;margin:0;font-size:24px;letter-spacing:0.5px;">YOUR_PROPERTY_NAME</h1>
+              <h1 style="color:white;margin:0;font-size:24px;letter-spacing:0.5px;">AWKN Ranch</h1>
               <p style="color:rgba(255,255,255,0.7);margin:8px 0 0;font-size:14px;">Payment Statement</p>
             </div>
             <div style="padding:32px;">
               <p style="color:#333;font-size:16px;">Hi ${data.first_name},</p>
-              <p style="color:#555;font-size:15px;">Here's your payment summary for <strong>${data.space_name || 'YOUR_PROPERTY_NAME'}</strong>.</p>
+              <p style="color:#555;font-size:15px;">Here's your payment summary for <strong>${data.space_name || 'AWKN Ranch'}</strong>.</p>
 
               ${ledgerHtml}
               ${balanceSectionHtml}
@@ -682,10 +682,10 @@ the YOUR_PROPERTY_NAME property AI agent`
 
               <p style="font-size:13px;color:#999;margin-top:16px;">Please include your name and &quot;rent&quot; in the payment memo so we can match your payment.</p>
               <p style="color:#555;font-size:15px;">If you have any questions about your statement, just reply to this email.</p>
-              <p style="color:#7d6f74;font-size:15px;margin:16px 0 0;"><em>Yours generatively,</em><br><strong style="color:#2a1f23;">PAI</strong><br><span style="font-size:13px;">the YOUR_PROPERTY_NAME property AI agent</span></p>
+              <p style="color:#7d6f74;font-size:15px;margin:16px 0 0;"><em>Yours generatively,</em><br><strong style="color:#2a1f23;">PAI</strong><br><span style="font-size:13px;">the AWKN Ranch property AI agent</span></p>
             </div>
             <div style="background:#f5f5f5;padding:20px 32px;text-align:center;border-top:1px solid #e0e0e0;">
-              <p style="margin:0;color:#bbb;font-size:11px;">YOUR_APP_NAME &bull; YOUR_PROPERTY_NAME</p>
+              <p style="margin:0;color:#bbb;font-size:11px;">YOUR_APP_NAME &bull; AWKN Ranch</p>
             </div>
           </div>
         `,
@@ -693,7 +693,7 @@ the YOUR_PROPERTY_NAME property AI agent`
 
 Hi ${data.first_name},
 
-Here's your payment summary for ${data.space_name || 'YOUR_PROPERTY_NAME'}.
+Here's your payment summary for ${data.space_name || 'AWKN Ranch'}.
 
 ${rowsText}
 
@@ -708,18 +708,18 @@ If you have any questions about your statement, just reply to this email.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
     }
 
     // ===== INVITATIONS =====
     case "event_invitation":
       return {
-        subject: `You're Invited: ${data.event_name} - YOUR_PROPERTY_NAME`,
+        subject: `You're Invited: ${data.event_name} - AWKN Ranch`,
         html: `
           <h2>You're Invited!</h2>
           <p>Hi ${data.first_name},</p>
-          <p>You're invited to <strong>${data.event_name}</strong> at YOUR_PROPERTY_NAME!</p>
+          <p>You're invited to <strong>${data.event_name}</strong> at AWKN Ranch!</p>
           ${dataTable([
             { label: 'Date', value: data.event_date },
             ...(data.event_time ? [{ label: 'Time', value: data.event_time }] : []),
@@ -733,7 +733,7 @@ the YOUR_PROPERTY_NAME property AI agent`
 
 Hi ${data.first_name},
 
-You're invited to ${data.event_name} at YOUR_PROPERTY_NAME!
+You're invited to ${data.event_name} at AWKN Ranch!
 
 Date: ${data.event_date}
 ${data.event_time ? `Time: ${data.event_time}` : ''}
@@ -747,12 +747,12 @@ We hope to see you there!
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "general_invitation":
       return {
-        subject: data.subject || "Invitation from YOUR_PROPERTY_NAME",
+        subject: data.subject || "Invitation from AWKN Ranch",
         html: `
           <p>Hi ${data.first_name},</p>
           ${data.message || '<p>You have been invited!</p>'}
@@ -766,7 +766,7 @@ ${data.action_url ? `${data.action_text || 'Learn More'}: ${data.action_url}` : 
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "staff_invitation": {
@@ -790,19 +790,19 @@ the YOUR_PROPERTY_NAME property AI agent`
       const roleDescription = roleDescriptions[data.role as string] ?? "access to the platform";
       const bannerUrl = "YOUR_SUPABASE_URL/storage/v1/object/public/housephotos/ai-gen/invite-banner-ghibli.png";
       return {
-        subject: "You're Invited to YOUR_PROPERTY_NAME",
+        subject: "You're Invited to AWKN Ranch",
         html: `
           <div style="max-width:600px;margin:0 auto;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
             <!-- Header with gradient -->
             <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:40px 32px 24px;text-align:center;">
               <h1 style="margin:0;color:#ffffff;font-size:28px;font-weight:700;letter-spacing:-0.5px;">Welcome to YOUR_APP_NAME</h1>
-              <p style="margin:8px 0 0;color:#94a3b8;font-size:15px;font-weight:400;">YOUR_PROPERTY_NAME &bull; Your City, Texas</p>
+              <p style="margin:8px 0 0;color:#94a3b8;font-size:15px;font-weight:400;">AWKN Ranch &bull; Your City, Texas</p>
             </div>
 
             <!-- Body -->
             <div style="padding:32px;">
               <p style="color:#334155;font-size:16px;line-height:1.6;margin:0 0 16px;">Hi there,</p>
-              <p style="color:#334155;font-size:16px;line-height:1.6;margin:0 0 16px;">You've been invited to join <strong style="color:#0f3460;">YOUR_PROPERTY_NAME</strong> as ${roleLabel}. You'll have ${roleDescription}.</p>
+              <p style="color:#334155;font-size:16px;line-height:1.6;margin:0 0 16px;">You've been invited to join <strong style="color:#0f3460;">AWKN Ranch</strong> as ${roleLabel}. You'll have ${roleDescription}.</p>
 
               <p style="color:#334155;font-size:16px;line-height:1.6;margin:0 0 24px;">Your access is <strong>pre-approved</strong> — just create your account and you're in.</p>
 
@@ -835,21 +835,21 @@ the YOUR_PROPERTY_NAME property AI agent`
 
             <!-- Property art banner -->
             <div style="padding:0;">
-              <img src="${bannerUrl}" alt="YOUR_PROPERTY_NAME" style="width:100%;display:block;border-radius:0;" />
+              <img src="${bannerUrl}" alt="AWKN Ranch" style="width:100%;display:block;border-radius:0;" />
             </div>
 
             <!-- Footer -->
             <div style="background:#f8fafc;padding:20px 32px;text-align:center;border-top:1px solid #e2e8f0;">
-              <p style="margin:0;color:#94a3b8;font-size:12px;">YOUR_PROPERTY_NAME &bull; 123 Main St, Your City, ST 00000</p>
+              <p style="margin:0;color:#94a3b8;font-size:12px;">AWKN Ranch &bull; 123 Main St, Your City, ST 00000</p>
               <p style="margin:6px 0 0;color:#cbd5e1;font-size:11px;">YOUR_APP_NAME &bull; Where the herd gathers</p>
             </div>
           </div>
         `,
-        text: `Welcome to YOUR_PROPERTY_NAME!
+        text: `Welcome to AWKN Ranch!
 
 Hi there,
 
-You've been invited to join YOUR_PROPERTY_NAME as ${roleLabel}. You'll have ${roleDescription}.
+You've been invited to join AWKN Ranch as ${roleLabel}. You'll have ${roleDescription}.
 
 Your access is pre-approved — just create your account and you're in.
 
@@ -861,16 +861,16 @@ Getting Started:
 Questions? Just reply to this email.
 
 — The YOUR_APP_NAME Team
-YOUR_PROPERTY_NAME • 123 Main St, Your City, ST 00000`
+AWKN Ranch • 123 Main St, Your City, ST 00000`
       };
     }
 
     case "prospect_invitation":
       return {
-        subject: "You're Invited to Browse Spaces - YOUR_PROPERTY_NAME",
+        subject: "You're Invited to Browse Spaces - AWKN Ranch",
         html: `
           <h2>Welcome${data.first_name ? ', ' + data.first_name : ''}!</h2>
-          <p>You've been invited to browse available spaces at <strong>YOUR_PROPERTY_NAME</strong>, a unique co-living community in Your City, Texas.</p>
+          <p>You've been invited to browse available spaces at <strong>AWKN Ranch</strong>, a unique co-living community in Your City, Texas.</p>
           <p>No account or login is needed — just click the button below to start browsing. You'll be able to see photos, amenities, pricing, and availability for all of our spaces.</p>
           <p style="margin: 30px 0; text-align: center;">
             <a href="${data.access_url}" style="background:${B.accent}; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold; font-size: 16px;">Browse Available Spaces</a>
@@ -886,7 +886,7 @@ YOUR_PROPERTY_NAME • 123 Main St, Your City, ST 00000`
         `,
         text: `Welcome${data.first_name ? ', ' + data.first_name : ''}!
 
-You've been invited to browse available spaces at YOUR_PROPERTY_NAME, a unique co-living community in Your City, Texas.
+You've been invited to browse available spaces at AWKN Ranch, a unique co-living community in Your City, Texas.
 
 No account or login is needed — just click the link below to start browsing:
 
@@ -904,35 +904,35 @@ If you have any questions or would like to schedule a tour, just reply to this e
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     // ===== RENTAL INVITE =====
     case "invite_to_apply":
       return {
-        subject: "You're Invited to Apply - YOUR_PROPERTY_NAME",
+        subject: "You're Invited to Apply - AWKN Ranch",
         html: `
           <h2>Great news, ${data.first_name}!</h2>
-          <p>Thank you for your interest in joining the YOUR_PROPERTY_NAME community. We've reviewed your inquiry and feel you would be a great fit for the YOUR_PROPERTY_NAME community. We would love to invite you to apply for a rental space when you are ready and have clarity on your dates.</p>
+          <p>Thank you for your interest in joining the AWKN Ranch community. We've reviewed your inquiry and feel you would be a great fit for the AWKN Ranch community. We would love to invite you to apply for a rental space when you are ready and have clarity on your dates.</p>
           <p>Please review the <a href="https://USERNAME.github.io/REPO/spaces/">available spaces here</a> or click the button below to finish your application.</p>
           <p style="margin: 30px 0; text-align: center;">
             <a href="${data.continue_url}" style="background:${B.accent}; color: white; padding: 14px 28px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold; font-size: 16px;">Complete Your Application</a>
           </p>
-          <p>We are excited by the potential to have you join us at the YOUR_PROPERTY_NAME. Where our mission is to let your Property Dreams run free. Our goal is to redefine your idea of what an YOUR_PROPERTY_NAME can be. When it comes to selecting an YOUR_PROPERTY_NAME, we feel no one need settle.</p>
+          <p>We are excited by the potential to have you join us at the AWKN Ranch. Where our mission is to let your Property Dreams run free. Our goal is to redefine your idea of what an AWKN Ranch can be. When it comes to selecting an AWKN Ranch, we feel no one need settle.</p>
         `,
         text: `Great news, ${data.first_name}!
 
-Thank you for your interest in joining the YOUR_PROPERTY_NAME community. We've reviewed your inquiry and feel you would be a great fit for the YOUR_PROPERTY_NAME community. We would love to invite you to apply for a rental space when you are ready and have clarity on your dates.
+Thank you for your interest in joining the AWKN Ranch community. We've reviewed your inquiry and feel you would be a great fit for the AWKN Ranch community. We would love to invite you to apply for a rental space when you are ready and have clarity on your dates.
 
 Please review the available spaces here: https://USERNAME.github.io/REPO/spaces/
 
 Or complete your application here: ${data.continue_url}
 
-We are excited by the potential to have you join us at the YOUR_PROPERTY_NAME. Where our mission is to let your Property Dreams run free. Our goal is to redefine your idea of what an YOUR_PROPERTY_NAME can be. When it comes to selecting an YOUR_PROPERTY_NAME, we feel no one need settle.
+We are excited by the potential to have you join us at the AWKN Ranch. Where our mission is to let your Property Dreams run free. Our goal is to redefine your idea of what an AWKN Ranch can be. When it comes to selecting an AWKN Ranch, we feel no one need settle.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     // ===== ADMIN NOTIFICATIONS =====
@@ -1088,7 +1088,7 @@ ${data.emergency_contact_relationship ? `Relationship: ${data.emergency_contact_
     // ===== FAQ NOTIFICATIONS =====
     case "faq_unanswered":
       return {
-        subject: "New Question Needs an Answer - YOUR_PROPERTY_NAME",
+        subject: "New Question Needs an Answer - AWKN Ranch",
         html: `
           <h2>New Unanswered Question</h2>
           <p>Someone asked a question that our AI assistant couldn't confidently answer:</p>
@@ -1250,7 +1250,7 @@ ${data.photo_url ? `Photo: ${data.photo_url}` : ''}`
           <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; margin-bottom: 8px;">We got your inquiry!</h2>
             <p style="color: #555; line-height: 1.6;">Hi ${data.name || 'there'},</p>
-            <p style="color: #555; line-height: 1.6;">Thanks for reaching out about living at the YOUR_PROPERTY_NAME. We're excited that you're interested in our community!</p>
+            <p style="color: #555; line-height: 1.6;">Thanks for reaching out about living at the AWKN Ranch. We're excited that you're interested in our community!</p>
 
             <div style="background: #f8f9fa; border-radius: 8px; padding: 16px 20px; margin: 20px 0;">
               <p style="margin: 0 0 8px; color: #333; font-weight: 600;">What you submitted:</p>
@@ -1265,7 +1265,7 @@ ${data.photo_url ? `Photo: ${data.photo_url}` : ''}`
         `,
         text: `Hi ${data.name || 'there'},
 
-Thanks for reaching out about living at the YOUR_PROPERTY_NAME. We're excited that you're interested in our community!
+Thanks for reaching out about living at the AWKN Ranch. We're excited that you're interested in our community!
 
 What you submitted:
 - Accommodation: ${data.accommodation || 'Flexible'}
@@ -1595,7 +1595,7 @@ Reply to this email to request changes or provide feedback — I'll pick up righ
     // ===== IDENTITY VERIFICATION =====
     case "dl_upload_link":
       return {
-        subject: "Action Required: Identity Verification - YOUR_PROPERTY_NAME",
+        subject: "Action Required: Identity Verification - AWKN Ranch",
         html: `
           <h2>Identity Verification Required</h2>
           <p>Hi ${data.first_name},</p>
@@ -1631,12 +1631,12 @@ If you have any questions, feel free to reply to this email.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "dl_verified":
       return {
-        subject: "Identity Verified - YOUR_PROPERTY_NAME",
+        subject: "Identity Verified - AWKN Ranch",
         html: `
           <h2 style="color: #27ae60;">Identity Verified!</h2>
           <p>Hi ${data.first_name},</p>
@@ -1656,7 +1656,7 @@ If you have any questions, feel free to reply to this email.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     case "dl_mismatch":
@@ -1688,11 +1688,11 @@ Review in Admin: ${data.admin_url}`
     // ===== W-9 TAX FORM =====
     case "w9_request":
       return {
-        subject: "Action Required: W-9 Tax Form - YOUR_PROPERTY_NAME",
+        subject: "Action Required: W-9 Tax Form - AWKN Ranch",
         html: `
           <h2 style="margin:0 0 8px;font-size:22px;">W-9 Tax Form Required</h2>
           <p>Hi ${data.first_name},</p>
-          <p>As part of your work arrangement with YOUR_PROPERTY_NAME, we need you to complete a W-9 tax form. The IRS requires this from anyone we pay $600 or more in a calendar year.</p>
+          <p>As part of your work arrangement with AWKN Ranch, we need you to complete a W-9 tax form. The IRS requires this from anyone we pay $600 or more in a calendar year.</p>
 
           <div style="background:#f2f0e8;border:1px solid #e6e2d9;border-radius:8px;padding:20px 24px;margin:20px 0;">
             <p style="margin:0 0 8px;font-weight:600;color:#2a1f23;">You will need:</p>
@@ -1724,7 +1724,7 @@ Review in Admin: ${data.admin_url}`
 
 Hi ${data.first_name},
 
-As part of your work arrangement with YOUR_PROPERTY_NAME, we need you to complete a W-9 tax form. The IRS requires this from anyone we pay $600 or more in a calendar year.
+As part of your work arrangement with AWKN Ranch, we need you to complete a W-9 tax form. The IRS requires this from anyone we pay $600 or more in a calendar year.
 
 You will need:
 - Your legal name (as shown on your income tax return)
@@ -1741,7 +1741,7 @@ If you have any questions, feel free to reply to this email.
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
 
     // ===== PAI EMAIL =====
@@ -1768,7 +1768,7 @@ the YOUR_PROPERTY_NAME property AI agent`
             </div>
             ` : '<div style="border-radius: 0 0 12px 12px; height: 4px; background: #1a1a2e;"></div>'}
             <p style="color: #999; font-size: 11px; text-align: center; margin-top: 12px;">
-              This is an automated reply from PAI at YOUR_PROPERTY_NAME. Reply to this email to continue the conversation.
+              This is an automated reply from PAI at AWKN Ranch. Reply to this email to continue the conversation.
             </p>
           </div>
         `,
@@ -1778,7 +1778,7 @@ ${data.reply_body || ''}
 
 ${data.original_body ? `---\nYour original message:\n${data.original_body}` : ''}
 
-This is an automated reply from PAI at YOUR_PROPERTY_NAME.`
+This is an automated reply from PAI at AWKN Ranch.`
       };
 
     case "pai_document_received": {
@@ -1818,11 +1818,11 @@ Files have been uploaded to R2 and added to the document index as inactive (pend
     case "waiver_confirmation": {
       const sigDate = data.signing_date || new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
       return {
-        subject: "Waiver Signed \u2014 YOUR_PROPERTY_NAME",
+        subject: "Waiver Signed \u2014 AWKN Ranch",
         html: `
           <h2 style="color: #3d8b7a;">Waiver Signed Successfully</h2>
           <p>Hi <strong>${data.signer_name}</strong>,</p>
-          <p>This confirms that you have electronically signed the <strong>Waiver of Liability, Assumption of Risk, and Indemnity Agreement</strong> for the YOUR_PROPERTY_NAME.</p>
+          <p>This confirms that you have electronically signed the <strong>Waiver of Liability, Assumption of Risk, and Indemnity Agreement</strong> for the AWKN Ranch.</p>
 
           <div style="background: #f0faf7; padding: 15px; border-radius: 8px; border-left: 4px solid #3d8b7a; margin: 15px 0;">
             <strong>Name:</strong> ${data.signer_name}<br>
@@ -1836,7 +1836,7 @@ Files have been uploaded to R2 and added to the document index as inactive (pend
 
 Hi ${data.signer_name},
 
-This confirms that you have electronically signed the Waiver of Liability, Assumption of Risk, and Indemnity Agreement for the YOUR_PROPERTY_NAME.
+This confirms that you have electronically signed the Waiver of Liability, Assumption of Risk, and Indemnity Agreement for the AWKN Ranch.
 
 Name: ${data.signer_name}
 Date: ${sigDate}
@@ -1880,7 +1880,7 @@ This is just a friendly nudge — no photos are required if they aren't relevant
 
 Yours generatively,
 PAI
-the YOUR_PROPERTY_NAME property AI agent`
+the AWKN Ranch property AI agent`
       };
     }
 
@@ -1919,7 +1919,7 @@ the YOUR_PROPERTY_NAME property AI agent`
             <a href="https://YOUR_DOMAIN/associates/worktracking.html" style="display:inline-block;background:#3d8b7a;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600;">Upload Photos</a>
           </div>
 
-          <p style="margin:16px 0 0;color:#7d6f74;font-size:13px;">This is an automated clock-in summary from YOUR_PROPERTY_NAME work tracking.</p>
+          <p style="margin:16px 0 0;color:#7d6f74;font-size:13px;">This is an automated clock-in summary from AWKN Ranch work tracking.</p>
         `,
         text: `You're Clocked In
 
@@ -1932,7 +1932,7 @@ BEFORE PHOTOS REQUIRED
 Take a photo of the work area before you start.
 Upload: https://YOUR_DOMAIN/associates/worktracking.html
 
-This is an automated clock-in summary from YOUR_PROPERTY_NAME work tracking.`,
+This is an automated clock-in summary from AWKN Ranch work tracking.`,
       };
     }
 
@@ -2050,7 +2050,7 @@ This is an automated clock-in summary from YOUR_PROPERTY_NAME work tracking.`,
             ${photoSection('After', afterPhotos)}
           </table>` : '<p style="color:#7d6f74;font-size:13px;font-style:italic;margin:0 0 16px;">No photos were uploaded for this session.</p>'}
 
-          <p style="margin:16px 0 0;color:#7d6f74;font-size:13px;">This is an automated summary from YOUR_PROPERTY_NAME work tracking.</p>
+          <p style="margin:16px 0 0;color:#7d6f74;font-size:13px;">This is an automated summary from AWKN Ranch work tracking.</p>
         `,
         text: `Work Session Complete
 
@@ -2065,7 +2065,7 @@ ${data.cumulative ? `\nCumulative Totals:\n  This Week:  ${data.cumulative.week.
 ${data.description ? `\nWork Description: ${data.description}` : ''}
 ${hasPhotos ? `\nPhotos: ${photos.length} photo(s) uploaded (view in HTML email)` : '\nNo photos uploaded for this session.'}
 
-This is an automated summary from YOUR_PROPERTY_NAME work tracking.`
+This is an automated summary from AWKN Ranch work tracking.`
       };
     }
 
@@ -2119,7 +2119,7 @@ This is an automated summary from YOUR_PROPERTY_NAME work tracking.`
       }).join('\n');
 
       return {
-        subject: `New Task Assigned: ${data.task_title} — YOUR_PROPERTY_NAME`,
+        subject: `New Task Assigned: ${data.task_title} — AWKN Ranch`,
         html: `
           <h2 style="margin:0 0 4px;">New Task Assigned to You</h2>
           <p style="margin:0 0 20px;color:#7d6f74;font-size:14px;">Hi ${data.first_name}, you've been assigned a new task.</p>
@@ -2158,7 +2158,7 @@ ${todoTasks.length > 0 ? `Your Prioritized To-Do List:\n${todoText}` : ''}
 
 Clock in at https://YOUR_DOMAIN/associates/worktracking.html to get started.
 
-— YOUR_PROPERTY_NAME`
+— AWKN Ranch`
       };
     }
 
@@ -2226,7 +2226,7 @@ Clock in at https://YOUR_DOMAIN/associates/worktracking.html to get started.
             </tr>
           </table>
 
-          <p style="margin:0;color:#7d6f74;font-size:13px;">This is an automated notification from YOUR_PROPERTY_NAME work tracking.</p>
+          <p style="margin:0;color:#7d6f74;font-size:13px;">This is an automated notification from AWKN Ranch work tracking.</p>
         `,
         text: `Time Entry Edited
 
@@ -2238,7 +2238,7 @@ Date: ${data.entry_date}
 New Times: ${data.new_clock_in} — ${data.new_clock_out}
 Duration: ${data.new_duration}
 ${data.space_name ? `Location: ${data.space_name}\n` : ''}${data.description ? `Description: ${data.description}\n` : ''}
-This is an automated notification from YOUR_PROPERTY_NAME work tracking.`
+This is an automated notification from AWKN Ranch work tracking.`
       };
     }
 
@@ -2300,7 +2300,7 @@ This is an automated notification from YOUR_PROPERTY_NAME work tracking.`
             </tr>
           </table>
 
-          <p style="margin:0;color:#7d6f74;font-size:13px;">This is an automated weekly schedule report from YOUR_PROPERTY_NAME.</p>
+          <p style="margin:0;color:#7d6f74;font-size:13px;">This is an automated weekly schedule report from AWKN Ranch.</p>
         `,
         text: `Weekly Work Schedule — ${data.associate_name}
 Week: ${weekLabel}
@@ -2313,14 +2313,14 @@ ${schedDays.map((d: any) => {
 
 Total: ${totalHours.toFixed(1)} hours across ${schedDays.length} day(s)
 
-This is an automated weekly schedule report from YOUR_PROPERTY_NAME.`
+This is an automated weekly schedule report from AWKN Ranch.`
       };
     }
 
     case "custom":
       if (!data.html) throw new Error("Custom email requires data.html");
       return {
-        subject: data.subject || "Message from YOUR_PROPERTY_NAME",
+        subject: data.subject || "Message from AWKN Ranch",
         html: data.html,
         text: data.text || "",
       };

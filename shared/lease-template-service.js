@@ -588,7 +588,7 @@ const DEFAULT_EVENT_WAIVER = `# WAIVER OF LIABILITY, ASSUMPTION OF RISK, AND IND
 
 ## 1. ACTIVITIES AND FACILITIES
 
-The Owner makes available certain recreational amenities and facilities on the property at 123 Main Stive, Your City, Texas 00000 (the "YOUR_PROPERTY_NAME"), including but not limited to:
+The Owner makes available certain recreational amenities and facilities on the property at 123 Main Stive, Your City, Texas 00000 (the "AWKN Ranch"), including but not limited to:
 
 - **Hot sauna(s)** (dry sauna and/or infrared sauna)
 - **Cold plunge pool / ice bath**

@@ -50,23 +50,23 @@ export const SENDER_MAP: Record<
   { from: string; reply_to: string }
 > = {
   team: {
-    from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+    from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
     reply_to: "pai@YOUR_DOMAIN",
   },
   auto: {
-    from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+    from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
     reply_to: "pai@YOUR_DOMAIN",
   },
   noreply: {
-    from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+    from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
     reply_to: "pai@YOUR_DOMAIN",
   },
   payments: {
-    from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+    from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
     reply_to: "pai@YOUR_DOMAIN",
   },
   pai: {
-    from: "PAI at the YOUR_PROPERTY_NAME <pai@YOUR_DOMAIN>",
+    from: "PAI at the AWKN Ranch <pai@YOUR_DOMAIN>",
     reply_to: "pai@YOUR_DOMAIN",
   },
   claudero: {

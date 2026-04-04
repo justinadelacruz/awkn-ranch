@@ -242,13 +242,13 @@ CREATE POLICY "Allow all event_payments" ON event_payments
 -- ============================================
 
 INSERT INTO event_agreement_templates (name, content, version, is_active) VALUES
-('Default Event Agreement', '# YOUR_PROPERTY_NAME Event RENTAL AGREEMENT
+('Default Event Agreement', '# AWKN Ranch Event RENTAL AGREEMENT
 
 **Last Updated: {{agreement_date}}**
 
 ---
 
-This Rental Agreement (hereinafter, "Agreement") is made by and between the Revocable Trust of Subhash Sonnad (dba YOUR_PROPERTY_NAME), (hereinafter, "Company"), and the person(s)/company/organization renting the venue (hereinafter, "Client" or "Renter"), **{{client_name}}**.
+This Rental Agreement (hereinafter, "Agreement") is made by and between the Revocable Trust of Subhash Sonnad (dba AWKN Ranch), (hereinafter, "Company"), and the person(s)/company/organization renting the venue (hereinafter, "Client" or "Renter"), **{{client_name}}**.
 
 - **Email:** {{client_email}}
 - **Phone:** {{client_phone}}
@@ -257,7 +257,7 @@ This Rental Agreement (hereinafter, "Agreement") is made by and between the Revo
 
 ## RENTAL VENUE
 
-Company agrees to rent to Client the following spaces at 123 Main Stive (aka the Austin YOUR_PROPERTY_NAME):
+Company agrees to rent to Client the following spaces at 123 Main Stive (aka the Austin AWKN Ranch):
 
 {{included_spaces}}
 
@@ -305,7 +305,7 @@ Any damages occurring after the Rental Items are delivered to Client, including 
 
 ## PHOTOGRAPHY & BRANDING
 
-Client agrees that any photography of their event at the YOUR_PROPERTY_NAME will not be publicly posted without permission. The name "YOUR_PROPERTY_NAME" will only be used in describing the location and not as a host of the event.
+Client agrees that any photography of their event at the AWKN Ranch will not be publicly posted without permission. The name "AWKN Ranch" will only be used in describing the location and not as a host of the event.
 
 ## INDEMNIFICATION
 
@@ -360,7 +360,7 @@ This Agreement may be executed in one or more counterparts, each of which shall 
 |                          |                                                |
 | **{{client_name}}**      | Rahul Sonnad                                   |
 | Date:                    | Date:                                          |
-|                          | Administrator Austin YOUR_PROPERTY_NAME          |
+|                          | Administrator Austin AWKN Ranch          |
 | Address                  | 123 Main St DR                            |
 | City, State, Zip Code    | Your City TX 00000                           |
 | Phone                    | +1-424-234-1750                                |

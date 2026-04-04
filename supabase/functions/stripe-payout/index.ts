@@ -160,7 +160,7 @@ Deno.serve(async (req) => {
       || 'Unknown';
     const personId = associate.app_user?.person_id || null;
     const amountCents = Math.round(amount * 100);
-    const description = notes ? `YOUR_PROPERTY_NAME: ${notes}` : `Associate payment: ${personName}`;
+    const description = notes ? `AWKN Ranch: ${notes}` : `Associate payment: ${personName}`;
 
     if (stripeConfig.test_mode) {
       console.log('TEST MODE: Would send Stripe transfer:', {

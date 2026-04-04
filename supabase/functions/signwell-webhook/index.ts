@@ -499,7 +499,7 @@ async function sendRentalSignedEmail(
         from: 'Property Team <team@YOUR_DOMAIN>',
         to: [person.email],
         reply_to: 'team@YOUR_DOMAIN',
-        subject: 'Lease Signed - Reservation Deposit Due - YOUR_PROPERTY_NAME',
+        subject: 'Lease Signed - Reservation Deposit Due - AWKN Ranch',
         html: `
           <h2>Lease Signing Complete!</h2>
           <p>Hi ${person.first_name},</p>
@@ -536,7 +536,7 @@ async function sendRentalSignedEmail(
 
           <p>Once we receive your reservation deposit, we'll send confirmation and prepare for your arrival.</p>
           <p>Questions? Reply to this email or contact us at team@YOUR_DOMAIN</p>
-          <p>Best regards,<br>YOUR_PROPERTY_NAME</p>
+          <p>Best regards,<br>AWKN Ranch</p>
         `,
         text: `Lease Signing Complete!
 
@@ -569,7 +569,7 @@ Once we receive your reservation deposit, we'll send confirmation and prepare fo
 Questions? Reply to this email or contact us at team@YOUR_DOMAIN
 
 Best regards,
-YOUR_PROPERTY_NAME`,
+AWKN Ranch`,
       }),
     });
 
@@ -613,7 +613,7 @@ async function sendEventSignedEmail(
         from: 'Property Team <team@YOUR_DOMAIN>',
         to: [person.email],
         reply_to: 'team@YOUR_DOMAIN',
-        subject: 'Event Agreement Signed - Outstanding Fees Due Before Event - YOUR_PROPERTY_NAME',
+        subject: 'Event Agreement Signed - Outstanding Fees Due Before Event - AWKN Ranch',
         html: `
           <h2>Event Agreement Signed!</h2>
           <p>Hi ${person.first_name},</p>
@@ -664,7 +664,7 @@ async function sendEventSignedEmail(
 
           <p>Once we receive the cleaning deposit and rental fee, your event is confirmed!</p>
           <p>Questions? Reply to this email or contact us at team@YOUR_DOMAIN</p>
-          <p>Best regards,<br>YOUR_PROPERTY_NAME</p>
+          <p>Best regards,<br>AWKN Ranch</p>
         `,
         text: `Event Agreement Signed!
 
@@ -704,7 +704,7 @@ Once we receive the cleaning deposit and rental fee, your event is confirmed!
 Questions? Reply to this email or contact us at team@YOUR_DOMAIN
 
 Best regards,
-YOUR_PROPERTY_NAME`,
+AWKN Ranch`,
       }),
     });
 
@@ -756,8 +756,8 @@ ${vehicleInfo.name ? `Name: ${vehicleInfo.name}\n` : ''}Vehicle: ${vehicleLabel}
 ${vehicleInfo.color ? `Color: ${vehicleInfo.color}\n` : ''}${vehicleInfo.vin ? `VIN: ${vehicleInfo.vin}\n` : ''}` : '';
 
   const subject = hasVehicle
-    ? `Your Vehicle: ${vehicleLabel} - YOUR_PROPERTY_NAME`
-    : 'Register Your Vehicle - YOUR_PROPERTY_NAME';
+    ? `Your Vehicle: ${vehicleLabel} - AWKN Ranch`
+    : 'Register Your Vehicle - AWKN Ranch';
 
   try {
     const emailResponse = await fetch('https://api.resend.com/emails', {
@@ -798,7 +798,7 @@ ${vehicleInfo.color ? `Color: ${vehicleInfo.color}\n` : ''}${vehicleInfo.vin ? `
           </div>
 
           <p>Questions? Reply to this email or contact us at team@YOUR_DOMAIN</p>
-          <p>Best regards,<br>YOUR_PROPERTY_NAME</p>
+          <p>Best regards,<br>AWKN Ranch</p>
         `,
         text: `${hasVehicle ? 'Your Vehicle Information' : 'Register Your Vehicle'}
 
@@ -825,7 +825,7 @@ If your vehicle is a Tesla, you can connect it to our smart charging system. Thi
 Questions? Reply to this email or contact us at team@YOUR_DOMAIN
 
 Best regards,
-YOUR_PROPERTY_NAME`,
+AWKN Ranch`,
       }),
     });
 

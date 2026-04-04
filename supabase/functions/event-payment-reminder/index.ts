@@ -239,7 +239,7 @@ Deno.serve(async (req) => {
               </ul>
 
               <p>Questions? Reply to this email or contact us at team@YOUR_DOMAIN</p>
-              <p>Best regards,<br>YOUR_PROPERTY_NAME</p>
+              <p>Best regards,<br>AWKN Ranch</p>
             `,
             text: `Payment Reminder - Your Event is Coming Up!
 
@@ -275,7 +275,7 @@ QUICK REMINDERS
 Questions? Reply to this email or contact us at team@YOUR_DOMAIN
 
 Best regards,
-YOUR_PROPERTY_NAME`,
+AWKN Ranch`,
           }),
         });
 

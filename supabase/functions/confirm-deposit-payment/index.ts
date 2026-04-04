@@ -18,7 +18,7 @@ function htmlPage(title: string, body: string): Response {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title} - YOUR_PROPERTY_NAME</title>
+  <title>${title} - AWKN Ranch</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; background: #faf9f6; color: #333; }
     .card { background: white; border-radius: 8px; padding: 30px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }

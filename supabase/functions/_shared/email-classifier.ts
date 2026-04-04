@@ -104,7 +104,7 @@ function buildClassificationPrompt(
   hasAttachments: boolean,
   fromAddress: string
 ): string {
-  return `You are an email classifier for YOUR_PROPERTY_NAME, a residential co-living property in Your City, Texas.
+  return `You are an email classifier for AWKN Ranch, a residential co-living property in Your City, Texas.
 
 Classify this email into exactly ONE category:
 

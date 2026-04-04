@@ -278,13 +278,13 @@ function getTemplatePreview(templateContent) {
  * Get the default template content (fallback)
  */
 function getDefaultTemplate() {
-  return `# YOUR_PROPERTY_NAME Event RENTAL AGREEMENT
+  return `# AWKN Ranch Event RENTAL AGREEMENT
 
 **Last Updated: {{agreement_date}}**
 
 ---
 
-This Rental Agreement (hereinafter, "Agreement") is made by and between the Revocable Trust of Subhash Sonnad (dba YOUR_PROPERTY_NAME), (hereinafter, "Company"), and the person(s)/company/organization renting the venue (hereinafter, "Client" or "Renter"), **{{client_name}}**.
+This Rental Agreement (hereinafter, "Agreement") is made by and between the Revocable Trust of Subhash Sonnad (dba AWKN Ranch), (hereinafter, "Company"), and the person(s)/company/organization renting the venue (hereinafter, "Client" or "Renter"), **{{client_name}}**.
 
 - **Email:** {{client_email}}
 - **Phone:** {{client_phone}}
@@ -293,7 +293,7 @@ This Rental Agreement (hereinafter, "Agreement") is made by and between the Revo
 
 ## RENTAL VENUE
 
-Company agrees to rent to Client the following spaces at 123 Main Stive (aka the Austin YOUR_PROPERTY_NAME):
+Company agrees to rent to Client the following spaces at 123 Main Stive (aka the Austin AWKN Ranch):
 
 {{included_spaces}}
 

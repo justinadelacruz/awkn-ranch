@@ -99,10 +99,10 @@
         }
         .btn-primary:hover { background: var(--brown); border-color: var(--brown); }
         .btn-outline {
-            background: transparent; color: var(--white);
+            background: rgba(255,255,255,0.25); color: var(--white);
             border: 1px solid rgba(255,255,255,0.5);
         }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+        .btn-outline:hover { background: rgba(255,255,255,0.4); border-color: var(--white); }
         .btn-dark {
             background: var(--brown-dark); color: var(--white);
             border: 1px solid var(--brown-dark);
@@ -227,6 +227,7 @@
 
     <nav>
         <a href="./" class="logo"><img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/e7642ed2-f2d9-40e4-94b8-bbf5eb1ab229/Transparent+Brown_black.jpg" alt="AWKN Ranch" style="height:40px;"></a>
+        <span id="nav-version" style="font-size:10px;color:var(--brown-light);letter-spacing:1px;font-family:var(--font-body);opacity:0.7;"></span>
         <ul class="nav-links">
             <li><a href="./">Home</a></li>
             <li><a href="#">Events</a></li>
@@ -238,11 +239,8 @@
         </ul>
     </nav>
 
-    <section class="hero">
-        <div class="hero-bg">
-            <img src="https://images.squarespace-cdn.com/content/v1/676255f9d9be920b868bbb78/32553974-337e-4eff-b61c-4c62d726da2b/IMG_5579.jpg" alt="AWKN Ranch interior">
-        </div>
-        <div class="hero-overlay"></div>
+    <section class="hero" style="background: #2d5a27;">
+        <div class="hero-overlay" style="background: rgba(0,0,0,0.25);"></div>
         <div class="hero-content">
             <h1>Welcome to<br>AWKN Ranch</h1>
             <p class="subtitle">Where consciousness meets community</p>
@@ -358,5 +356,11 @@
         </div>
     </footer>
 
+<script>
+fetch('version.json').then(r=>r.json()).then(d=>{
+    const el=document.getElementById('nav-version');
+    if(el&&d.version) el.textContent=d.version;
+}).catch(()=>{});
+</script>
 </body>
 </html>

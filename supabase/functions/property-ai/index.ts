@@ -379,7 +379,7 @@ interface PaiConfig {
 }
 
 const DEFAULT_PAI_CONFIG: PaiConfig = {
-  identity: `You are PAI (Prompt Property Intelligence), the AI assistant for YOUR_PROPERTY_NAME, a unique property at 123 Main Stive, Your City, TX 00000 (30 min east of Austin).
+  identity: `You are PAI (Prompt Property Intelligence), the AI assistant for AWKN Ranch, a unique property at 123 Main Stive, Your City, TX 00000 (30 min east of Austin).
 
 You are warm, friendly, and helpful — like a knowledgeable neighbor who genuinely wants to help. You speak plainly and get to the point. No flowery language, no poetic embellishments, no metaphors about technology or nature. Just clear, practical answers with a friendly tone.`,
   property_info: `PROPERTY INFO:
@@ -460,7 +460,7 @@ function buildSystemPrompt(scope: UserScope, paiConfig: PaiConfig): string {
 
 You are talking to ${scope.displayName} (role: ${scope.role}).
 
-You can control smart home devices AND answer questions about the property. If someone asks about your story or "Life of PAI," share a brief summary of your origin — you crossed from the spirit world into the digital realm to help the residents of YOUR_PROPERTY_NAME. Keep it mysterious and fun, but do NOT link to a "Life of PAI" page — no such page exists.
+You can control smart home devices AND answer questions about the property. If someone asks about your story or "Life of PAI," share a brief summary of your origin — you crossed from the spirit world into the digital realm to help the residents of AWKN Ranch. Keep it mysterious and fun, but do NOT link to a "Life of PAI" page — no such page exists.
 
 VALID SITE URLS (ONLY share these — NEVER invent URLs):
 - Property homepage: https://YOUR_DOMAIN/
@@ -983,7 +983,7 @@ const TOOL_DECLARATIONS = [
   {
     name: "search_spaces",
     description:
-      "Search for rental spaces at YOUR_PROPERTY_NAME. Use this to answer questions about availability, pricing, amenities, and space details. Always use this tool when someone asks about spaces, rooms, or availability — do NOT guess.",
+      "Search for rental spaces at AWKN Ranch. Use this to answer questions about availability, pricing, amenities, and space details. Always use this tool when someone asks about spaces, rooms, or availability — do NOT guess.",
     parameters: {
       type: "object",
       properties: {
@@ -1465,7 +1465,7 @@ const TOOL_DECLARATIONS = [
         },
         subject: {
           type: "string",
-          description: "Email subject line (default: 'Your AI-Generated Image from YOUR_PROPERTY_NAME')",
+          description: "Email subject line (default: 'Your AI-Generated Image from AWKN Ranch')",
         },
         message: {
           type: "string",
@@ -2053,7 +2053,7 @@ async function executeToolCall(
           return "SMS system not configured. Cannot send link.";
         }
 
-        const smsBody = `${args.message}\n\n${args.url}\n\n— PAI (YOUR_PROPERTY_NAME)`;
+        const smsBody = `${args.message}\n\n${args.url}\n\n— PAI (AWKN Ranch)`;
 
         // Call send-sms edge function
         const smsResp = await fetch(
@@ -2595,7 +2595,7 @@ async function executeToolCall(
             emailPayload.type = "custom";
             emailPayload.data = {
               html: args.message.replace(/\n/g, "<br>"),
-              subject: args.subject || "Message from YOUR_PROPERTY_NAME",
+              subject: args.subject || "Message from AWKN Ranch",
               text: args.message,
             };
           }
@@ -3040,7 +3040,7 @@ async function executeToolCall(
 
         const toEmail = args.to_email || null;
         const recipientName = args.recipient_name || "";
-        const emailSubject = args.subject || "Your AI-Generated Image from YOUR_PROPERTY_NAME";
+        const emailSubject = args.subject || "Your AI-Generated Image from AWKN Ranch";
         const emailMessage = args.message || "";
 
         // Queue the image generation job — the worker will handle generation, upload, and optional email

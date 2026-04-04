@@ -1,12 +1,12 @@
 {
-  "version": "v260404.23 9:58p",
-  "release": 23,
-  "sha": "e370ec4",
-  "fullSha": "e370ec459b7018e1d8ea4a7db06ee9010ab78be6",
-  "actor": "justinadelacruz",
+  "version": "v260402.11 9:34p",
+  "release": 11,
+  "sha": "cf31184",
+  "fullSha": "cf3118482994aad4e6f9011128d3a1f5fdbb1b30",
+  "actor": "laurenbur2",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T16:58:41-05:00",
-  "commits": [{"sha":"875f7d6","message":"Fix Supabase vendor script path for GitHub Pages","author":"Justin DeLaCruz"},{"sha":"6fcaa98","message":"Merge remote-tracking branch 'origin/claude/mystifying-jepsen'","author":"Justin DeLaCruz"},{"sha":"e370ec4","message":"Merge branch 'main' of https://github.com/justinadelacruz/awkn-ranch","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-02T16:34:31-05:00",
+  "commits": [{"sha":"cf31184","message":"Rename Clients tab to Memberships","author":"Lauren Burandt"}]
 }

@@ -163,7 +163,7 @@ Deno.serve(async (req) => {
       };
       if (associateEmail) params.email = associateEmail;
       if (associateName !== 'Unknown') {
-        params['business_profile[product_description]'] = `Associate at YOUR_PROPERTY_NAME`;
+        params['business_profile[product_description]'] = `Associate at AWKN Ranch`;
       }
 
       console.log('Creating Stripe Connect account for:', associateName);

@@ -282,16 +282,16 @@ function getTemplatePreview(templateContent) {
 }
 
 /**
- * Get the default template content (based on YOUR_PROPERTY_NAME Work Trade Agreement)
+ * Get the default template content (based on AWKN Ranch Work Trade Agreement)
  */
 function getDefaultTemplate() {
-  return `# Work Agreement for Residents of the YOUR_PROPERTY_NAME
+  return `# Work Agreement for Residents of the AWKN Ranch
 
 **Date: {{signing_date}}**
 
 ---
 
-The following are the Terms of the Worktrade agreement between the Revocable Trust of Subhash Sonnad (dba the "YOUR_PROPERTY_NAME"), and the following individual, referred to as "renter":
+The following are the Terms of the Worktrade agreement between the Revocable Trust of Subhash Sonnad (dba the "AWKN Ranch"), and the following individual, referred to as "renter":
 
 **{{tenant_name}}**
 
@@ -315,11 +315,11 @@ Either party may terminate the agreement with {{notice_period}} notice.
 
 ## Work Terms
 
-- If the renter fails to fulfill the prescribed work (i.e. minimum {{min_hours_per_week}} hours/week) and processes (at the discretion of the YOUR_PROPERTY_NAME) he/she will be informed by email, and the rental agreement will terminate at the end of the current month and the rental cost will be taken from the deposit, unless a modification is agreed to by both parties in writing.
+- If the renter fails to fulfill the prescribed work (i.e. minimum {{min_hours_per_week}} hours/week) and processes (at the discretion of the AWKN Ranch) he/she will be informed by email, and the rental agreement will terminate at the end of the current month and the rental cost will be taken from the deposit, unless a modification is agreed to by both parties in writing.
 
 - The renter will work according to tasks assigned by house manager: {{house_manager}}.
 
-- The renter requests that the following types of work not be assigned. Other than these types of work, a variety of work may be assigned based on the changing needs of the YOUR_PROPERTY_NAME.
+- The renter requests that the following types of work not be assigned. Other than these types of work, a variety of work may be assigned based on the changing needs of the AWKN Ranch.
 
 {{excluded_work_types}}
 
@@ -377,7 +377,7 @@ Renter will be paid at the end of each month for any excess hours (beyond the va
 
 Signature: _________________________
 
-Rahul Sonnad - Revocable Trust of Subhash Sonnad - dba YOUR_PROPERTY_NAME
+Rahul Sonnad - Revocable Trust of Subhash Sonnad - dba AWKN Ranch
 123 Main Stive Your City TX 00000
 
 Date: _________________________

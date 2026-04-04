@@ -261,22 +261,22 @@ function buildContractReminderEmail(
   if (level === 1) {
     headerBg = '#1c1618';
     headerSubtext = 'Lease Signing Reminder';
-    subject = `Reminder: Please sign your lease agreement - YOUR_PROPERTY_NAME`;
+    subject = `Reminder: Please sign your lease agreement - AWKN Ranch`;
     introText = `Just a friendly reminder that your lease agreement for <strong>${spaceName}</strong> is ready for your signature. It was sent on ${formatDate(item.dueDate)}.`;
   } else if (level === 2) {
     headerBg = '#1c1618';
     headerSubtext = 'Lease Signing Follow-Up';
-    subject = `Follow-Up: Lease agreement awaiting signature - YOUR_PROPERTY_NAME`;
+    subject = `Follow-Up: Lease agreement awaiting signature - AWKN Ranch`;
     introText = `This is a follow-up &mdash; your lease agreement for <strong>${spaceName}</strong> is still awaiting your signature. It was sent ${daysSince} days ago.`;
   } else if (level === 3) {
     headerBg = '#1c1618';
     headerSubtext = 'Lease Signing - Action Needed';
-    subject = `Action Needed: Lease for ${spaceName} awaiting signature - YOUR_PROPERTY_NAME`;
+    subject = `Action Needed: Lease for ${spaceName} awaiting signature - AWKN Ranch`;
     introText = `We haven't received your signature on the lease for <strong>${spaceName}</strong> yet. It's been ${daysSince} days since we sent it. Please sign soon to secure your space.`;
   } else {
     headerBg = '#1c1618';
     headerSubtext = 'Urgent: Lease Awaiting Signature';
-    subject = `URGENT: Lease for ${spaceName} unsigned after ${daysSince} days - YOUR_PROPERTY_NAME`;
+    subject = `URGENT: Lease for ${spaceName} unsigned after ${daysSince} days - AWKN Ranch`;
     introText = `Your lease for <strong>${spaceName}</strong> has been awaiting your signature for <strong>${daysSince} days</strong>. Please sign immediately or contact us if you have questions.`;
   }
 
@@ -285,7 +285,7 @@ function buildContractReminderEmail(
   const html = `
     <div style="max-width:600px;margin:0 auto;background:#faf9f6;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
       <div style="background:${headerBg};padding:28px 32px;text-align:center;">
-        <h1 style="color:#faf9f6;margin:0;font-size:22px;font-weight:600;">YOUR_PROPERTY_NAME</h1>
+        <h1 style="color:#faf9f6;margin:0;font-size:22px;font-weight:600;">AWKN Ranch</h1>
         <p style="color:rgba(250,249,246,0.65);margin:6px 0 0;font-size:14px;">${headerSubtext}</p>
       </div>
       <div style="padding:28px 32px;">
@@ -314,7 +314,7 @@ function buildContractReminderEmail(
         </div>
 
         <p style="color:#7d6f74;font-size:13px;margin-top:20px;line-height:1.5;">If you've already signed, please disregard this notice &mdash; it may take a moment to process. If you have questions about the lease terms, reply to this email.</p>
-        <p style="color:#2a1f23;font-size:14px;margin-top:8px;">Best regards,<br><strong>YOUR_PROPERTY_NAME</strong></p>
+        <p style="color:#2a1f23;font-size:14px;margin-top:8px;">Best regards,<br><strong>AWKN Ranch</strong></p>
       </div>
       <div style="background:#f2f0e8;padding:16px 32px;text-align:center;border-top:1px solid #e6e2d9;">
         <p style="margin:0;color:#7d6f74;font-size:12px;">123 Main Stive, Your City, TX 00000</p>
@@ -337,7 +337,7 @@ Please check your email for the signing link from SignWell, or look for the orig
 If you've already signed, please disregard this notice. If you have questions about the lease terms, reply to this email.
 
 Best regards,
-YOUR_PROPERTY_NAME`;
+AWKN Ranch`;
 
   return { subject, html, text };
 }
@@ -757,22 +757,22 @@ Deno.serve(async (req) => {
       if (level === 1) {
         headerBg = '#1c1618';
         headerSubtext = 'Rent Payment Reminder';
-        subject = `Rent Payment Due - ${formatCurrency(totalDue)} - ${first.personFirstName} - YOUR_PROPERTY_NAME`;
+        subject = `Rent Payment Due - ${formatCurrency(totalDue)} - ${first.personFirstName} - AWKN Ranch`;
         introText = `This is a friendly reminder that you have <strong>${periodsCount} ${periodsCount === 1 ? 'week' : 'weeks'} of rent</strong> outstanding for the <strong>${spaceName}</strong>.`;
       } else if (level === 2) {
         headerBg = '#1c1618';
         headerSubtext = 'Rent Payment Follow-Up';
-        subject = `Rent Payment Follow-Up - ${formatCurrency(totalDue)} - ${first.personFirstName} - YOUR_PROPERTY_NAME`;
+        subject = `Rent Payment Follow-Up - ${formatCurrency(totalDue)} - ${first.personFirstName} - AWKN Ranch`;
         introText = `This is a follow-up regarding <strong>${periodsCount} ${periodsCount === 1 ? 'period' : 'periods'} of rent</strong> outstanding for the <strong>${spaceName}</strong>. Please submit payment at your earliest convenience.`;
       } else if (level === 3) {
         headerBg = '#1c1618';
         headerSubtext = 'Rent Payment - Action Needed';
-        subject = `Action Needed: Rent Payment - ${formatCurrency(totalDue)} - ${first.personFirstName} - YOUR_PROPERTY_NAME`;
+        subject = `Action Needed: Rent Payment - ${formatCurrency(totalDue)} - ${first.personFirstName} - AWKN Ranch`;
         introText = `You have <strong>${periodsCount} ${periodsCount === 1 ? 'period' : 'periods'} of rent</strong> outstanding for the <strong>${spaceName}</strong>. Please submit payment as soon as possible.`;
       } else {
         headerBg = '#1c1618';
         headerSubtext = 'Urgent: Rent Payment Overdue';
-        subject = `URGENT: Rent Payment Overdue - ${formatCurrency(totalDue)} - ${first.personFirstName} - YOUR_PROPERTY_NAME`;
+        subject = `URGENT: Rent Payment Overdue - ${formatCurrency(totalDue)} - ${first.personFirstName} - AWKN Ranch`;
         introText = `You have <strong>${periodsCount} ${periodsCount === 1 ? 'period' : 'periods'} of overdue rent</strong> totaling <strong>${formatCurrency(totalDue)}</strong> for the <strong>${spaceName}</strong>. Please submit payment immediately to avoid additional fees.`;
       }
 
@@ -793,7 +793,7 @@ Deno.serve(async (req) => {
       const emailHtml = `
         <div style="max-width:600px;margin:0 auto;background:#faf9f6;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.08);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
           <div style="background:${headerBg};padding:28px 32px;text-align:center;">
-            <h1 style="color:#faf9f6;margin:0;font-size:22px;font-weight:600;">YOUR_PROPERTY_NAME</h1>
+            <h1 style="color:#faf9f6;margin:0;font-size:22px;font-weight:600;">AWKN Ranch</h1>
             <p style="color:rgba(250,249,246,0.65);margin:6px 0 0;font-size:14px;">${headerSubtext}</p>
           </div>
           <div style="padding:28px 32px;">
@@ -839,7 +839,7 @@ Deno.serve(async (req) => {
             ` : ''}
 
             <p style="color:#7d6f74;font-size:13px;margin-top:20px;line-height:1.5;">If you've already sent payment, please disregard this notice &mdash; it may take a day to process.</p>
-            <p style="color:#2a1f23;font-size:14px;margin-top:8px;">Best regards,<br><strong>YOUR_PROPERTY_NAME</strong></p>
+            <p style="color:#2a1f23;font-size:14px;margin-top:8px;">Best regards,<br><strong>AWKN Ranch</strong></p>
           </div>
           <div style="background:#f2f0e8;padding:16px 32px;text-align:center;border-top:1px solid #e6e2d9;">
             <p style="margin:0;color:#7d6f74;font-size:12px;">123 Main Stive, Your City, TX 00000</p>
@@ -878,7 +878,7 @@ ${idInfo.uploadUrl ? `Upload here: ${idInfo.uploadUrl}` : 'Please reply to this 
 If you've already sent payment, please disregard this notice.
 
 Best regards,
-YOUR_PROPERTY_NAME`;
+AWKN Ranch`;
 
       try {
         const emailRes = await fetch('https://api.resend.com/emails', {
@@ -1072,7 +1072,7 @@ YOUR_PROPERTY_NAME`;
         if (adminContractDigest.length > 0) {
           subjectParts.push(`Unsigned Contracts (${adminContractDigest.length})`);
         }
-        const digestSubject = `${subjectParts.join(' + ')} - YOUR_PROPERTY_NAME`;
+        const digestSubject = `${subjectParts.join(' + ')} - AWKN Ranch`;
 
         let digestHtml = `<h2>Overdue Report - ${formatDate(todayStr)}</h2>`;
 

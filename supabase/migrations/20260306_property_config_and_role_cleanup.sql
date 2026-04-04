@@ -49,7 +49,7 @@ CREATE POLICY "Admin can insert property_config" ON property_config
 -- Seed with YOUR_APP_NAME defaults
 INSERT INTO property_config (id, config) VALUES (1, '{
   "property": {
-    "name": "YOUR_PROPERTY_NAME",
+    "name": "AWKN Ranch",
     "short_name": "YOUR_APP_NAME",
     "tagline": "Your tagline here",
     "address": "123 Main St, Your City, ST 00000",
@@ -87,7 +87,7 @@ INSERT INTO property_config (id, config) VALUES (1, '{
     "network_name": "Black Rock City"
   },
   "mobile_app": {
-    "name": "YOUR_PROPERTY_NAME",
+    "name": "AWKN Ranch",
     "id": "com.yourorg.app"
   }
 }'::jsonb) ON CONFLICT (id) DO NOTHING;

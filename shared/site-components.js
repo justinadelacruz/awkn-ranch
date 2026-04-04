@@ -1,5 +1,5 @@
 /**
- * Austin YOUR_PROPERTY_NAME - Site Components
+ * Austin AWKN Ranch - Site Components
  *
  * Shared components for the main AAP website.
  * These components generate the header, navigation, and footer.
@@ -12,9 +12,9 @@ import { initAuth, getAuthState, signOut } from './auth.js';
 // =============================================
 
 // Image URLs - transparent PNGs from Supabase storage
-const LOGO_BASE = 'YOUR_SUPABASE_URL/storage/v1/object/public/housephotos/logos';
+const LOGO_BASE = '/awkn-ranch/assets/branding';
 const ALPACA_ICON_FALLBACK = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 30"><rect width="21" height="30" rx="4" fill="none"/><path d="M10.5 1.5C8.3 1.5 6.5 3.3 6.5 5.5v4.1L3.8 13c-1 1.3-1.5 2.8-1.5 4.4 0 4.6 3.7 8.3 8.2 8.3s8.2-3.7 8.2-8.3c0-1.6-.5-3.2-1.5-4.4l-2.7-3.4V5.5c0-2.2-1.8-4-4-4z" fill="#1f1720"/><ellipse cx="10.5" cy="18.6" rx="3.1" ry="4.7" fill="#f6f5f0"/></svg>');
-const ALPACA_WORDMARK_FALLBACK = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 28"><rect width="120" height="28" fill="none"/><text x="0" y="20" font-size="16" font-family="Arial,sans-serif" fill="#1f1720">Property</text></svg>');
+const ALPACA_WORDMARK_FALLBACK = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 28"><rect width="120" height="28" fill="none"/><text x="0" y="20" font-size="16" font-family="Arial,sans-serif" fill="#1f1720">AWKN Ranch</text></svg>');
 const IMAGES = {
   // Property head icon (transparent PNGs)
   icon: `${LOGO_BASE}/logo-black-transparent.png`,        // black on transparent - for light backgrounds
@@ -81,9 +81,9 @@ function renderHeader(options = {}) {
   return `
     <header class="aap-header ${headerClass} ${colorClass}" id="aap-header">
       <div class="aap-header__inner">
-        <a href="${BASE_PATH}/" class="aap-header__logo">
-          <img src="${light ? IMAGES.iconInverted : IMAGES.icon}" alt="YOUR_PROPERTY_NAME Austin" class="aap-header__icon" width="21" height="30" data-light-src="${IMAGES.iconInverted}" data-dark-src="${IMAGES.icon}" onerror="this.onerror=null;this.src='${ALPACA_ICON_FALLBACK}'">
-          <img src="${light ? IMAGES.wordmarkInverted : IMAGES.wordmark}" alt="YOUR_PROPERTY_NAME Austin" class="aap-header__wordmark" width="22" height="22" data-light-src="${IMAGES.wordmarkInverted}" data-dark-src="${IMAGES.wordmark}" onerror="this.onerror=null;this.src='${ALPACA_WORDMARK_FALLBACK}'">
+        <a href="${BASE_PATH}/" class="aap-header__logo" style="display:flex;align-items:center;gap:14px;text-decoration:none;">
+          <img src="${light ? IMAGES.iconInverted : IMAGES.icon}" alt="AWKN Ranch" class="aap-header__icon" width="44" height="44" data-light-src="${IMAGES.iconInverted}" data-dark-src="${IMAGES.icon}" onerror="this.onerror=null;this.src='${ALPACA_ICON_FALLBACK}'">
+          <span style="font-family:'Ovo',serif;font-size:1.65rem;font-weight:400;color:${light ? '#fff' : '#3a2a1a'};letter-spacing:1.5px;line-height:1;">AWKN Ranch</span>
           <span title="Site version" class="aap-header__version">${version || ''}</span>
         </a>
         <nav class="aap-nav" id="aap-nav">
@@ -151,8 +151,8 @@ function renderFooter() {
     <footer class="aap-footer">
       <div class="aap-footer__content">
         <div class="aap-footer__logo">
-          <img src="${IMAGES.iconInverted}" alt="YOUR_PROPERTY_NAME Austin" class="aap-footer__icon">
-          <img src="${IMAGES.wordmarkInverted}" alt="YOUR_PROPERTY_NAME Austin" class="aap-footer__wordmark">
+          <img src="${IMAGES.iconInverted}" alt="AWKN Ranch Austin" class="aap-footer__icon">
+          <img src="${IMAGES.wordmarkInverted}" alt="AWKN Ranch Austin" class="aap-footer__wordmark">
         </div>
 
         <div class="aap-footer__social">
@@ -171,7 +171,7 @@ function renderFooter() {
         </div>
 
         <p class="aap-footer__copyright">
-          © ${currentYear} Austin YOUR_PROPERTY_NAME. All rights reserved.<br>
+          © ${currentYear} Austin AWKN Ranch. All rights reserved.<br>
           123 Main Stive, Your City, TX 00000
         </p>
       </div>
@@ -249,7 +249,7 @@ function loadGoogleFonts() {
   const link = document.createElement('link');
   link.id = fontId;
   link.rel = 'stylesheet';
-  link.href = 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap';
+  link.href = 'https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Ovo&display=swap';
   document.head.appendChild(link);
 }
 
