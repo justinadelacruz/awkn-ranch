@@ -54,11 +54,15 @@
       border: 1px solid var(--border);
     }
 
-    .logo { margin-bottom: 0.75rem; }
+    .logo { margin-bottom: 0.5rem; }
     .logo img {
-      width: 80px;
+      width: 260px;
       height: auto;
-      filter: brightness(0) invert(1);
+    }
+
+    /* Make white SVG background transparent on dark bg */
+    .logo img[src$=".svg"] {
+      filter: none;
     }
 
     .brand-name {
@@ -171,7 +175,7 @@
   <div class="login-container">
     <div class="login-card">
       <div class="logo">
-        <img src="../assets/branding/logo-black-transparent.png" alt="AWKN">
+        <img src="../assets/branding/awkn-wordmark-copper.svg" alt="AWKN - Ancient Wisdom Known Now">
       </div>
       <div class="brand-name">Within</div>
       <p class="subtitle">Ketamine-Assisted Therapy Platform</p>
