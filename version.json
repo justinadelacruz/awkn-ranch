@@ -1,12 +1,12 @@
 {
-  "version": "v260404.02 3:48a",
-  "release": 2,
-  "sha": "d515789",
-  "fullSha": "d5157893bd3b4381bea9886fc93629464eccf3c4",
+  "version": "v260404.03 4:18a",
+  "release": 3,
+  "sha": "d3f47fe",
+  "fullSha": "d3f47fef527effda091304fcf06577946411c71f",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-03T22:47:47-05:00",
-  "commits": [{"sha":"d515789","message":"style: make expense breakdown table static (no horizontal scroll)","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-03T23:18:40-05:00",
+  "commits": [{"sha":"5bb8912","message":"style: make expense breakdown table static (no horizontal scroll)","author":"Justin DeLaCruz"},{"sha":"9d77e05","message":"refactor: reorganize investor page sections into logical blocks","author":"Justin DeLaCruz"},{"sha":"d3f47fe","message":"Merge branch 'claude/exciting-kepler'","author":"Justin DeLaCruz"}]
 }
