@@ -1,12 +1,12 @@
 {
-  "version": "v260404.06 5:23a",
-  "release": 6,
-  "sha": "4fab500",
-  "fullSha": "4fab50008637185f26f9d2622e4eb01d5a4910b3",
+  "version": "v260404.07 5:25a",
+  "release": 7,
+  "sha": "acf5fe2",
+  "fullSha": "acf5fe29f0b6b7aab6dd45187a89247d60a673aa",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T00:22:59-05:00",
-  "commits": [{"sha":"4fab500","message":"Widen expense category column to prevent text wrapping","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T00:24:47-05:00",
+  "commits": [{"sha":"acf5fe2","message":"Fix hero stats to match exit section (include Phase 2 + same cap rate)","author":"Justin DeLaCruz"}]
 }
