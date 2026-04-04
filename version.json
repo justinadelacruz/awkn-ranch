@@ -1,12 +1,12 @@
 {
-  "version": "v260404.03 4:18a",
-  "release": 3,
-  "sha": "d3f47fe",
-  "fullSha": "d3f47fef527effda091304fcf06577946411c71f",
+  "version": "v260404.04 5:14a",
+  "release": 4,
+  "sha": "ff9c701",
+  "fullSha": "ff9c701a26da18a09ae0a96513c8e884a2c5b89a",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-03T23:18:40-05:00",
-  "commits": [{"sha":"5bb8912","message":"style: make expense breakdown table static (no horizontal scroll)","author":"Justin DeLaCruz"},{"sha":"9d77e05","message":"refactor: reorganize investor page sections into logical blocks","author":"Justin DeLaCruz"},{"sha":"d3f47fe","message":"Merge branch 'claude/exciting-kepler'","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T00:14:05-05:00",
+  "commits": [{"sha":"5555a9a","message":"update: replace local sales with Admissions/Corporate Sales hire in capital allocation","author":"Justin DeLaCruz"},{"sha":"9b7c461","message":"style: move lodging dome images inside card grid to match column widths","author":"Justin DeLaCruz"},{"sha":"ff9c701","message":"Update projections page: generic financial model headline and exit strategy","author":"Justin DeLaCruz"}]
 }
