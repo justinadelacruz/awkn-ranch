@@ -1,12 +1,12 @@
 {
-  "version": "v260404.11 5:33a",
-  "release": 11,
-  "sha": "b3284e9",
-  "fullSha": "b3284e99be704136c1373f9776efc58ca3e1d517",
+  "version": "v260404.12 5:49a",
+  "release": 12,
+  "sha": "2870e23",
+  "fullSha": "2870e23d83e68c938076c8c4c9f7869eead584b3",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T00:32:48-05:00",
-  "commits": [{"sha":"b3284e9","message":"5% MoM growth Dec-Mar","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T00:49:42-05:00",
+  "commits": [{"sha":"2870e23","message":"Hero background image and style update","author":"Justin DeLaCruz"}]
 }
