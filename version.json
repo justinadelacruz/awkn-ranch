@@ -1,12 +1,12 @@
 {
-  "version": "v260404.19 9:05p",
-  "release": 19,
-  "sha": "b91a160",
-  "fullSha": "b91a160a5a224b4f1a78af6553df7adce631da68",
+  "version": "v260404.20 9:10p",
+  "release": 20,
+  "sha": "51adf3e",
+  "fullSha": "51adf3e9d36acf5e973b77f3853342a204730ea0",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T16:05:13-05:00",
-  "commits": [{"sha":"b91a160","message":"Improve mobile chart readability — horizontally scrollable with larger bars and all values visible","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T16:10:21-05:00",
+  "commits": [{"sha":"51adf3e","message":"Mobile charts: fit to screen without scrolling, smaller labels and selective values","author":"Justin DeLaCruz"}]
 }
