@@ -1,12 +1,12 @@
 {
-  "version": "v260404.23 9:58p",
-  "release": 23,
-  "sha": "e370ec4",
-  "fullSha": "e370ec459b7018e1d8ea4a7db06ee9010ab78be6",
+  "version": "v260404.24 10:02p",
+  "release": 24,
+  "sha": "cbbeb7c",
+  "fullSha": "cbbeb7cb3368e6cc65281551b79b03e886d43039",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T16:58:41-05:00",
-  "commits": [{"sha":"875f7d6","message":"Fix Supabase vendor script path for GitHub Pages","author":"Justin DeLaCruz"},{"sha":"6fcaa98","message":"Merge remote-tracking branch 'origin/claude/mystifying-jepsen'","author":"Justin DeLaCruz"},{"sha":"e370ec4","message":"Merge branch 'main' of https://github.com/justinadelacruz/awkn-ranch","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T17:02:15-05:00",
+  "commits": [{"sha":"30da333","message":"Fix: use Supabase CDN URL instead of missing vendor path","author":"Justin DeLaCruz"},{"sha":"d7f72fb","message":"Merge remote-tracking branch 'origin/claude/mystifying-jepsen'","author":"Justin DeLaCruz"},{"sha":"cbbeb7c","message":"Merge branch 'main' of https://github.com/justinadelacruz/awkn-ranch","author":"Justin DeLaCruz"}]
 }
