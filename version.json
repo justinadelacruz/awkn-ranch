@@ -1,12 +1,12 @@
 {
-  "version": "v260404.05 5:19a",
-  "release": 5,
-  "sha": "cbd9259",
-  "fullSha": "cbd92595aff4e9a1067548e29392930f4ccc9e7d",
+  "version": "v260404.06 5:23a",
+  "release": 6,
+  "sha": "4fab500",
+  "fullSha": "4fab50008637185f26f9d2622e4eb01d5a4910b3",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T00:18:56-05:00",
-  "commits": [{"sha":"cbd9259","message":"Rewrite payback section to honest revenue ramp & profitability view","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-04T00:22:59-05:00",
+  "commits": [{"sha":"4fab500","message":"Widen expense category column to prevent text wrapping","author":"Justin DeLaCruz"}]
 }
