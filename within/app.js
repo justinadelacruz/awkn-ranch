@@ -1,122 +1,227 @@
-// Within EMR - Login page
-import { supabase } from '../shared/supabase.js';
-import { initAuth, signInWithGoogle, signOut, getAuthState, onAuthStateChange, getBasePath } from '../shared/auth.js';
+// Within EMR - Login page (non-module, uses global window.supabase from CDN)
 
-// Authorized emails for Within EMR access
-const ALLOWED_EMAILS = [
-  'justin@within.center',
-  'lauren@awknranch.com',
-  'wdnaylor@gmail.com',
-];
+(function() {
+  'use strict';
 
-const CACHED_AUTH_KEY = 'awkn-ranch-cached-auth';
+  var SUPABASE_URL = 'https://lnqxarwqckpmirpmixcw.supabase.co';
+  var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxucXhhcndxY2twbWlycG1peGN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMjAyMDIsImV4cCI6MjA4NzY5NjIwMn0.bw8b5XUcEFExlfTrR78Bu4Vdl7Oe_RtjlgvWA7SlQfo';
 
-// DOM elements
-const loginContent = document.getElementById('loginContent');
-const loadingContent = document.getElementById('loadingContent');
-const errorContent = document.getElementById('errorContent');
-const unauthorizedContent = document.getElementById('unauthorizedContent');
-const googleSignInBtn = document.getElementById('googleSignIn');
-const errorMessage = document.getElementById('errorMessage');
-const retryBtn = document.getElementById('retryBtn');
-const deniedEmail = document.getElementById('deniedEmail');
+  var ALLOWED_EMAILS = [
+    'justin@within.center',
+    'lauren@awknranch.com',
+    'wdnaylor@gmail.com',
+  ];
 
-function showState(state, message = '') {
-  loginContent.classList.add('hidden');
-  loadingContent.classList.add('hidden');
-  errorContent.classList.add('hidden');
-  unauthorizedContent.classList.add('hidden');
+  var CACHED_AUTH_KEY = 'awkn-ranch-cached-auth';
 
-  switch (state) {
-    case 'login': loginContent.classList.remove('hidden'); break;
-    case 'loading': loadingContent.classList.remove('hidden'); break;
-    case 'error':
-      errorContent.classList.remove('hidden');
-      errorMessage.textContent = message || 'An error occurred';
-      break;
-    case 'unauthorized':
-      unauthorizedContent.classList.remove('hidden');
-      if (deniedEmail) deniedEmail.textContent = message || '';
-      break;
+  // DOM elements
+  var loginContent = document.getElementById('loginContent');
+  var loadingContent = document.getElementById('loadingContent');
+  var errorContent = document.getElementById('errorContent');
+  var unauthorizedContent = document.getElementById('unauthorizedContent');
+  var googleSignInBtn = document.getElementById('googleSignIn');
+  var errorMessage = document.getElementById('errorMessage');
+  var retryBtn = document.getElementById('retryBtn');
+  var deniedEmail = document.getElementById('deniedEmail');
+  var signOutBtn = document.getElementById('signOutBtn');
+
+  function getBasePath() {
+    var path = window.location.pathname;
+    var seg = path.split('/').filter(Boolean)[0];
+    if (seg && window.location.hostname.endsWith('.github.io')) {
+      return '/' + seg;
+    }
+    return '';
   }
-}
 
-function isEmailAllowed(email) {
-  return ALLOWED_EMAILS.includes(email?.toLowerCase());
-}
+  function showState(state, message) {
+    loginContent.classList.add('hidden');
+    loadingContent.classList.add('hidden');
+    errorContent.classList.add('hidden');
+    unauthorizedContent.classList.add('hidden');
 
-async function init() {
-  // Fast path: check cached auth
-  try {
-    const raw = localStorage.getItem(CACHED_AUTH_KEY);
-    if (raw) {
-      const cached = JSON.parse(raw);
-      const age = Date.now() - (cached.timestamp || 0);
-      if (age < 90 * 24 * 60 * 60 * 1000 && cached.email && isEmailAllowed(cached.email)) {
-        console.log('[WITHIN]', 'Cached auth found, redirecting');
-        window.location.href = getBasePath() + '/within/emr/';
-        return;
+    switch (state) {
+      case 'login': loginContent.classList.remove('hidden'); break;
+      case 'loading': loadingContent.classList.remove('hidden'); break;
+      case 'error':
+        errorContent.classList.remove('hidden');
+        errorMessage.textContent = message || 'An error occurred';
+        break;
+      case 'unauthorized':
+        unauthorizedContent.classList.remove('hidden');
+        if (deniedEmail) deniedEmail.textContent = message || '';
+        break;
+    }
+  }
+
+  function isEmailAllowed(email) {
+    return ALLOWED_EMAILS.indexOf((email || '').toLowerCase()) !== -1;
+  }
+
+  function waitForSupabase(callback) {
+    var attempts = 0;
+    var maxAttempts = 50;
+    function check() {
+      if (window.supabase && window.supabase.createClient) {
+        callback(null);
+      } else if (attempts >= maxAttempts) {
+        callback(new Error('Supabase library failed to load'));
+      } else {
+        attempts++;
+        setTimeout(check, 100);
       }
     }
-  } catch (e) { /* ignore */ }
-
-  showState('loading');
-
-  try {
-    await initAuth();
-
-    let state = getAuthState();
-    if (state.isAuthenticated && state.isPending) {
-      await new Promise((resolve) => {
-        const timeout = setTimeout(resolve, 12000);
-        const unsub = onAuthStateChange((newState) => {
-          if (!newState.isPending) { clearTimeout(timeout); unsub(); resolve(); }
-        });
-      });
-    }
-
-    checkAuthAndRedirect();
-  } catch (error) {
-    console.error('[WITHIN]', 'Auth init error:', error);
-    showState('error', error.message);
+    check();
   }
-}
 
-function checkAuthAndRedirect() {
-  const state = getAuthState();
-  const email = state.user?.email?.toLowerCase();
+  var sb = null; // supabase client
 
-  if (state.isAuthenticated) {
-    if (isEmailAllowed(email)) {
-      window.location.href = getBasePath() + '/within/emr/';
-    } else {
-      showState('unauthorized', email);
-    }
-  } else {
-    showState('login');
+  function initSupabase() {
+    if (sb) return sb;
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true,
+        storage: window.localStorage,
+        storageKey: 'awkn-ranch-auth',
+        flowType: 'pkce',
+      },
+    });
+    return sb;
   }
-}
 
-// Google sign in
-googleSignInBtn.addEventListener('click', async () => {
-  showState('loading');
-  try {
-    const loginRedirect = window.location.origin + getBasePath() + '/within/';
-    await signInWithGoogle(loginRedirect);
-  } catch (error) {
-    showState('error', error.message);
-  }
-});
+  function init() {
+    // Fast path: check cached auth
+    try {
+      var raw = localStorage.getItem(CACHED_AUTH_KEY);
+      if (raw) {
+        var cached = JSON.parse(raw);
+        var age = Date.now() - (cached.timestamp || 0);
+        if (age < 90 * 24 * 60 * 60 * 1000 && cached.email && isEmailAllowed(cached.email)) {
+          console.log('[WITHIN]', 'Cached auth found, redirecting');
+          window.location.href = getBasePath() + '/within/emr/';
+          return;
+        }
+      }
+    } catch (e) { /* ignore */ }
 
-retryBtn.addEventListener('click', () => showState('login'));
-
-const signOutBtn = document.getElementById('signOutBtn');
-if (signOutBtn) {
-  signOutBtn.addEventListener('click', async () => {
     showState('loading');
-    try { await signOut(); showState('login'); }
-    catch (error) { showState('error', error.message); }
-  });
-}
 
-init();
+    waitForSupabase(function(err) {
+      if (err) {
+        console.error('[WITHIN]', 'Supabase failed to load:', err);
+        showState('error', 'Failed to load authentication. Please refresh.');
+        return;
+      }
+
+      initSupabase();
+      console.log('[WITHIN]', 'Supabase client initialized');
+
+      // Check for existing session
+      sb.auth.getSession().then(function(result) {
+        var session = result.data?.session;
+        if (session && session.user) {
+          var email = (session.user.email || '').toLowerCase();
+          console.log('[WITHIN]', 'Existing session found:', email);
+          if (isEmailAllowed(email)) {
+            // Cache and redirect
+            try {
+              localStorage.setItem(CACHED_AUTH_KEY, JSON.stringify({
+                email: email,
+                timestamp: Date.now(),
+              }));
+            } catch (e) { /* ignore */ }
+            window.location.href = getBasePath() + '/within/emr/';
+          } else {
+            showState('unauthorized', email);
+          }
+        } else {
+          console.log('[WITHIN]', 'No existing session');
+          showState('login');
+        }
+      }).catch(function(error) {
+        console.error('[WITHIN]', 'Session check error:', error);
+        showState('login');
+      });
+
+      // Listen for auth callback (after OAuth redirect)
+      sb.auth.onAuthStateChange(function(event, session) {
+        console.log('[WITHIN]', 'Auth state change:', event);
+        if (event === 'SIGNED_IN' && session?.user) {
+          var email = (session.user.email || '').toLowerCase();
+          if (isEmailAllowed(email)) {
+            try {
+              localStorage.setItem(CACHED_AUTH_KEY, JSON.stringify({
+                email: email,
+                timestamp: Date.now(),
+              }));
+            } catch (e) { /* ignore */ }
+            window.location.href = getBasePath() + '/within/emr/';
+          } else {
+            showState('unauthorized', email);
+          }
+        }
+      });
+    });
+  }
+
+  // Google sign in button
+  googleSignInBtn.addEventListener('click', function() {
+    console.log('[WITHIN]', 'Google sign-in clicked');
+    showState('loading');
+
+    waitForSupabase(function(err) {
+      if (err) {
+        showState('error', 'Authentication not available. Please refresh.');
+        return;
+      }
+
+      initSupabase();
+      var redirectTo = window.location.origin + getBasePath() + '/within/';
+      console.log('[WITHIN]', 'Redirecting to Google OAuth, callback:', redirectTo);
+
+      sb.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectTo,
+          queryParams: { prompt: 'select_account' },
+        },
+      }).then(function(result) {
+        if (result.error) {
+          console.error('[WITHIN]', 'OAuth error:', result.error);
+          showState('error', result.error.message);
+        } else {
+          console.log('[WITHIN]', 'OAuth redirect initiated');
+        }
+      }).catch(function(error) {
+        console.error('[WITHIN]', 'OAuth exception:', error);
+        showState('error', error.message);
+      });
+    });
+  });
+
+  // Retry button
+  retryBtn.addEventListener('click', function() { showState('login'); });
+
+  // Sign out button
+  if (signOutBtn) {
+    signOutBtn.addEventListener('click', function() {
+      showState('loading');
+      if (sb) {
+        sb.auth.signOut().then(function() {
+          localStorage.removeItem(CACHED_AUTH_KEY);
+          showState('login');
+        }).catch(function(error) {
+          showState('error', error.message);
+        });
+      } else {
+        localStorage.removeItem(CACHED_AUTH_KEY);
+        showState('login');
+      }
+    });
+  }
+
+  console.log('[WITHIN]', 'Login page loaded, event listeners attached');
+  init();
+})();
