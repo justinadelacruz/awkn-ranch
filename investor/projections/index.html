@@ -190,7 +190,7 @@
         <div class="topbar-inner">
             <a href="/investor/" class="topbar-brand">AWKN Ranch</a>
             <ul class="topbar-nav">
-                <li><a href="#payback">Payback Timeline</a></li>
+                <li><a href="#payback">Revenue Ramp</a></li>
                 <li><a href="#year1">Year 1 Detail</a></li>
                 <li><a href="#year4">4-Year Growth</a></li>
                 <li><a href="#exit">Exit Strategy</a></li>
@@ -212,38 +212,36 @@
 
     <div class="divider"></div>
 
-    <!-- ===== PAYBACK TIMELINE ===== -->
+    <!-- ===== REVENUE RAMP & PROFITABILITY ===== -->
     <section class="section" id="payback">
-        <div class="section-label">The Bottom Line</div>
-        <h2>When Do You Get Your $500K Back?</h2>
+        <div class="section-label">Revenue Ramp</div>
+        <h2>Path to Profitability</h2>
         <p class="section-desc">
-            Your $500K funds Phase 1 operations and launch. The business begins generating net profit in Month 1. Below is the month-by-month path to full payback across all three scenarios.
+            Phase 1 launches with a 3-month ramp as infrastructure comes online and occupancy builds. Months 1&ndash;2 operate at a loss during ramp-up. The business reaches monthly profitability by Month 3 and stabilizes at full run-rate by Month 7. Below is the cumulative cash flow trajectory across all three scenarios.
         </p>
 
         <div class="summary-grid" id="payback-summary"></div>
 
-        <!-- Payback tracker chart -->
+        <!-- Cash flow chart -->
         <div class="chart-container">
-            <div class="chart-title">Cumulative Net Profit vs. Your $500K Investment</div>
-            <div class="chart-subtitle">The bar that crosses the gold line is when your capital is fully returned</div>
+            <div class="chart-title">Cumulative Net Cash Flow &mdash; Year 1</div>
+            <div class="chart-subtitle">Monthly cumulative operating profit across the 12-month ramp</div>
             <div class="bar-chart" id="payback-chart"></div>
             <div class="chart-legend">
                 <div class="chart-legend-item"><div class="chart-legend-dot bar-net"></div> Cumulative Net Profit</div>
-                <div class="chart-legend-item"><div class="chart-legend-dot" style="background: var(--accent-gold); height: 2px; width: 16px; border-radius: 0;"></div> $500K Investment</div>
             </div>
         </div>
 
-        <!-- Payback table -->
+        <!-- Scenario comparison table -->
         <div style="overflow-x: auto;">
             <table class="data-table" id="payback-table">
                 <thead>
                     <tr>
                         <th>Scenario</th>
-                        <th style="text-align:right">Payback Month</th>
+                        <th style="text-align:right">Break-Even Month</th>
                         <th style="text-align:right">Year 1 Total Net</th>
-                        <th style="text-align:right">Surplus After Payback (Yr 1)</th>
-                        <th style="text-align:right">4-Year Total Return</th>
-                        <th style="text-align:right">Multiple on $500K</th>
+                        <th style="text-align:right">Stabilized Monthly Net</th>
+                        <th style="text-align:right">4-Year Cumulative Net</th>
                     </tr>
                 </thead>
                 <tbody id="payback-tbody"></tbody>
@@ -258,7 +256,7 @@
         <div class="section-label">Year 1 &mdash; Monthly Detail</div>
         <h2>Month-by-Month: How Your Capital Works</h2>
         <p class="section-desc">
-            Your $500K launches operations in Month 1. Months 1&ndash;3 are ramp-up as infrastructure comes online. By Month 4, all six revenue streams are active. By Month 7, the business is at full run-rate. Toggle scenarios below.
+            Months 1&ndash;3 are ramp-up as infrastructure comes online and occupancy builds. By Month 4, all six revenue streams are active. By Month 7, the business is at full run-rate. Toggle scenarios below to compare outcomes.
         </p>
 
         <div class="scenario-tabs">
@@ -336,7 +334,7 @@
         <div class="section-label">4-Year Growth</div>
         <h2>How the Ecosystem Scales After Year 1</h2>
         <p class="section-desc">
-            Your $500K gets Phase 1 running. A subsequent $16M Series A funds the Dome Collective (Phase 2) &mdash; land acquisition and build-out. Phase 2 revenue begins Year 2 as domes come online. By Year 4, the full ecosystem is stabilized and ready for refinance.
+            Phase 1 operations stabilize in Year 1. A subsequent $16M Series A funds the Dome Collective (Phase 2) &mdash; land acquisition and build-out. Phase 2 revenue begins Year 2 as domes come online. By Year 4, the full ecosystem is stabilized and ready for refinance.
         </p>
 
         <div class="summary-grid" id="year4-summary"></div>
@@ -467,7 +465,7 @@
                 <li>All figures in USD. No inflation adjustment.</li>
                 <li>All income projections reflect a 10% reduction from original model estimates</li>
                 <li>Expense growth: 3% annually (staffing, utilities, maintenance)</li>
-                <li>No additional capital raises assumed beyond Phase 1 ($500K, includes $20K for 5-month Admissions/Sales hire) and Series A ($16M)</li>
+                <li>No additional capital raises assumed beyond Phase 1 seed round (includes 5-month Admissions/Sales hire) and Series A ($16M)</li>
                 <li>Conservative scenario uses low-end revenue and high-end expenses throughout</li>
                 <li>Base case uses midpoint revenue and midpoint expenses</li>
                 <li>Strong scenario uses high-end revenue and low-end expenses</li>
@@ -735,25 +733,28 @@
         return data;
     }
 
-    // ===== PAYBACK TIMELINE =====
+    // ===== REVENUE RAMP =====
     function renderPayback() {
-        const investment = 500000;
         const months = ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
         const scenarioResults = {};
 
-        // Calculate payback for each scenario
+        // Calculate cash flow trajectory for each scenario
         ['conservative', 'base', 'strong'].forEach(key => {
             const s = scenarios[key];
             let cumulative = 0;
-            let paybackMonth = null;
+            let breakEvenMonth = null;
             const monthData = months.map((m, i) => {
                 const rev = Math.round(s.revenue * ramp[i]);
                 const exp = Math.round(s.expenses * (i < 3 ? 0.85 : 1));
                 const net = rev - exp;
                 cumulative += net;
-                if (!paybackMonth && cumulative >= investment) paybackMonth = i + 1;
+                // Break-even = first month with positive monthly net profit
+                if (!breakEvenMonth && net > 0) breakEvenMonth = i + 1;
                 return { month: m, net, cumulative };
             });
+
+            // Stabilized monthly net (full run-rate)
+            const stabilizedNet = s.revenue - s.expenses;
 
             // 4-year cumulative for this scenario
             const p1AnnualRev = s.revenue * 12;
@@ -777,11 +778,10 @@
             const y1Total = monthData[11].cumulative;
             scenarioResults[key] = {
                 label: s.label,
-                paybackMonth,
+                breakEvenMonth,
                 y1Total,
-                surplus: y1Total - investment,
+                stabilizedNet,
                 cum4,
-                multiple: cum4 / investment,
                 monthData
             };
         });
@@ -790,28 +790,24 @@
 
         // Summary cards
         document.getElementById('payback-summary').innerHTML = `
-            <div class="summary-card green"><div class="summary-card-value">Month ${base.paybackMonth}</div><div class="summary-card-label">Full Payback (Base Case)</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmt(base.y1Total)}</div><div class="summary-card-label">Year 1 Net Profit</div></div>
-            <div class="summary-card"><div class="summary-card-value">${fmt(base.surplus)}</div><div class="summary-card-label">Year 1 Surplus Over $500K</div></div>
-            <div class="summary-card"><div class="summary-card-value">${base.multiple.toFixed(1)}x</div><div class="summary-card-label">4-Year Return on $500K</div></div>
+            <div class="summary-card"><div class="summary-card-value">Month ${base.breakEvenMonth}</div><div class="summary-card-label">Monthly Break-Even</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmt(base.y1Total)}</div><div class="summary-card-label">Year 1 Net Profit</div></div>
+            <div class="summary-card"><div class="summary-card-value">${fmt(base.stabilizedNet)}/mo</div><div class="summary-card-label">Stabilized Monthly Net</div></div>
+            <div class="summary-card green"><div class="summary-card-value">${fmtM(base.cum4)}</div><div class="summary-card-label">4-Year Cumulative Net</div></div>
         `;
 
-        // Payback chart — base case cumulative vs $500K line
+        // Cash flow chart — base case cumulative
         const data = base.monthData;
-        const maxVal = Math.max(data[11].cumulative, investment) * 1.1;
+        const maxVal = Math.max(data[11].cumulative, Math.abs(Math.min(...data.map(d => d.cumulative)))) * 1.15;
         const chartHeight = 280;
         document.getElementById('payback-chart').innerHTML =
-            `<div style="position:absolute; top:0; left:0; right:0; bottom:40px;">
-                <div style="position:absolute; bottom:${(investment / maxVal) * 100}%; left:0; right:0; height:2px; background:var(--accent-gold); opacity:0.6; z-index:2;"></div>
-                <div style="position:absolute; bottom:${(investment / maxVal) * 100}%; right:8px; transform:translateY(50%); font-size:10px; color:var(--accent-gold); font-weight:600; z-index:2;">$500K</div>
-            </div>` +
             data.map((d, i) => {
-                const h = Math.max((d.cumulative / maxVal) * chartHeight, d.cumulative > 0 ? 4 : 0);
-                const isPastPayback = d.cumulative >= investment;
+                const isNeg = d.cumulative < 0;
+                const h = Math.max(Math.abs(d.cumulative) / maxVal * chartHeight, 4);
                 return `
                     <div class="bar-group">
-                        <div class="bar-stack" style="height: ${h}px;">
-                            <div class="bar-segment ${isPastPayback ? 'bar-net' : 'bar-revenue'}" style="height: 100%;">
+                        <div class="bar-stack" style="height: ${h}px; ${isNeg ? 'opacity: 0.6;' : ''}">
+                            <div class="bar-segment ${isNeg ? 'bar-expense' : 'bar-net'}" style="height: 100%;">
                                 <div class="bar-value">${d.cumulative >= 100000 ? fmtM(d.cumulative) : fmt(d.cumulative)}</div>
                             </div>
                         </div>
@@ -825,11 +821,10 @@
             return `
                 <tr${key === 'base' ? ' class="highlight"' : ''}>
                     <td><strong>${r.label}</strong></td>
-                    <td style="text-align:right; color: var(--accent-green); font-weight:600;">Month ${r.paybackMonth}${r.paybackMonth <= 9 ? ' (Year 1)' : ''}</td>
+                    <td style="text-align:right; color: var(--accent-green); font-weight:600;">Month ${r.breakEvenMonth}</td>
                     <td style="text-align:right">${fmt(r.y1Total)}</td>
-                    <td style="text-align:right; color: var(--accent-green);">${fmt(r.surplus)}</td>
-                    <td style="text-align:right">${fmtM(r.cum4)}</td>
-                    <td style="text-align:right; color: var(--accent-gold); font-weight:700;">${r.multiple.toFixed(1)}x</td>
+                    <td style="text-align:right">${fmt(r.stabilizedNet)}/mo</td>
+                    <td style="text-align:right; color: var(--accent-gold); font-weight:700;">${fmtM(r.cum4)}</td>
                 </tr>`;
         }).join('');
     }
@@ -888,16 +883,7 @@
             cumCashFlow += (p1R - p1E) + (p2R - p2R * 0.27);
         }
 
-        // Aaron & Alex's share: seed investors at $500K on $8M SAFE cap
-        // Ownership = $500K / $8M = 6.25% (pre-dilution from Series A)
-        // Post Series A, their share gets diluted but SAFE converts at the cap
-        // For simplicity: their $500K buys 6.25% at SAFE cap; Series A dilutes everyone
-        // Post-Series A ownership: 6.25% * ($8M / ($8M + $16M)) = 2.08%
-        // But SAFE conversion is more favorable — they convert at $8M cap regardless
-        // Effective ownership: $500K / ($8M + $16M) = 2.08% OR $500K / $8M = 6.25% pre-dilution
-        // Use the more standard approach: SAFE converts at $8M, Series A at higher val
-        // Their pro-rata share of distributions: we'll show both the operating payback
-        // (which covers their $500K directly) and their equity upside at refi
+        // Seed investor pro-rata share of distributions
         const ownershipPct = investment / totalEquity; // 3.03% simple pro-rata
         const theirRefiShare = refiProceeds * ownershipPct;
         const theirCashFlowShare = cumCashFlow * ownershipPct;
