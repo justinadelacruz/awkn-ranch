@@ -809,7 +809,7 @@
                     <div class="bar-group">
                         <div class="bar-stack" style="height: ${h}px; ${isNeg ? 'opacity: 0.6;' : ''}">
                             <div class="bar-segment ${isNeg ? 'bar-expense' : 'bar-net'}" style="height: 100%;">
-                                <div class="bar-value">${d.cumulative >= 100000 ? fmtM(d.cumulative) : fmt(d.cumulative)}</div>
+                                <div class="bar-value">${fmt(d.cumulative)}</div>
                             </div>
                         </div>
                         <div class="bar-label">${d.month}</div>
