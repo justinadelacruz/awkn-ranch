@@ -7,6 +7,96 @@
   var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxucXhhcndxY2twbWlycG1peGN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIxMjAyMDIsImV4cCI6MjA4NzY5NjIwMn0.bw8b5XUcEFExlfTrR78Bu4Vdl7Oe_RtjlgvWA7SlQfo';
 
   // ============================================
+  // HIPAA: INACTIVITY TIMEOUT (15 minutes)
+  // ============================================
+  var IDLE_TIMEOUT_MS = 15 * 60 * 1000; // 15 minutes
+  var IDLE_WARNING_MS = 13 * 60 * 1000; // warn at 13 min
+  var idleTimer = null;
+  var idleWarningTimer = null;
+
+  function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    clearTimeout(idleWarningTimer);
+    dismissIdleWarning();
+
+    idleWarningTimer = setTimeout(function() {
+      showIdleWarning();
+    }, IDLE_WARNING_MS);
+
+    idleTimer = setTimeout(function() {
+      console.log('[HIPAA]', 'Session timed out due to inactivity');
+      auditLog('session_timeout', 'system', 'Auto-logout after 15 min inactivity');
+      performSecureLogout();
+    }, IDLE_TIMEOUT_MS);
+  }
+
+  function showIdleWarning() {
+    var existing = document.getElementById('idleWarningBanner');
+    if (existing) return;
+    var banner = document.createElement('div');
+    banner.id = 'idleWarningBanner';
+    banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:10000;background:#c53030;color:#fff;padding:0.75rem 1.5rem;text-align:center;font-size:0.875rem;font-weight:500;display:flex;align-items:center;justify-content:center;gap:1rem;';
+    banner.innerHTML = '<span>Your session will expire in 2 minutes due to inactivity.</span>' +
+      '<button onclick="document.getElementById(\'idleWarningBanner\').remove()" style="background:#fff;color:#c53030;border:none;padding:0.375rem 1rem;border-radius:6px;cursor:pointer;font-weight:600;">Stay Logged In</button>';
+    document.body.appendChild(banner);
+  }
+
+  function dismissIdleWarning() {
+    var banner = document.getElementById('idleWarningBanner');
+    if (banner) banner.remove();
+  }
+
+  function performSecureLogout() {
+    // Clear all sensitive data
+    clearTimeout(idleTimer);
+    clearTimeout(idleWarningTimer);
+    localStorage.removeItem(CACHED_AUTH_KEY);
+    // Clear in-memory store
+    Object.keys(store).forEach(function(k) { store[k] = []; });
+    if (sb) {
+      sb.auth.signOut().then(function() {
+        window.location.href = getBasePath() + '/within/';
+      }).catch(function() {
+        window.location.href = getBasePath() + '/within/';
+      });
+    } else {
+      window.location.href = getBasePath() + '/within/';
+    }
+  }
+
+  function startIdleTracking() {
+    var events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'];
+    events.forEach(function(evt) {
+      document.addEventListener(evt, resetIdleTimer, { passive: true });
+    });
+    resetIdleTimer();
+  }
+
+  // ============================================
+  // HIPAA: AUDIT LOGGING
+  // ============================================
+  function auditLog(action, resourceType, details) {
+    if (!sb) return;
+    var entry = {
+      user_email: currentUserEmail,
+      action: action,
+      resource_type: resourceType,
+      details: typeof details === 'string' ? details : JSON.stringify(details),
+      ip_hint: '',  // populated server-side if needed
+      timestamp: new Date().toISOString(),
+    };
+    // Fire and forget — don't block UI
+    sb.from('within_audit_log')
+      .insert(entry)
+      .then(function(result) {
+        if (result.error && result.error.code !== '42P01') {
+          console.warn('[HIPAA]', 'Audit log write failed:', result.error.message);
+        }
+      })
+      .catch(function() { /* non-critical */ });
+  }
+
+  // ============================================
   // CONFIG & AUTH
   // ============================================
   // Admin email — only this user sees the Staff section
@@ -165,6 +255,8 @@
             renderScheduleDate();
             setupEventListeners();
             console.log('[WITHIN EMR]', 'Ready');
+            auditLog('login', 'session', 'EMR access granted');
+            startIdleTracking();
           });
         });
       }).catch(function(error) {
@@ -224,10 +316,10 @@
       .then(function(result) {
         if (result.error) throw result.error;
         store[table].unshift(result.data);
+        auditLog('create', table, { record_id: result.data.id });
         return result.data;
       })
       .catch(function(e) {
-        // If table doesn't exist, store locally
         if (e.code === '42P01' || (e.message && e.message.includes('does not exist'))) {
           var localRecord = Object.assign({ id: crypto.randomUUID(), created_at: new Date().toISOString() }, data);
           store[table].unshift(localRecord);
@@ -266,6 +358,7 @@
     document.getElementById('pageSubtitle').textContent = titles[1];
     document.getElementById('sidebar').classList.remove('open');
     document.getElementById('sidebarOverlay').classList.add('hidden');
+    auditLog('view', tabName, 'Viewed ' + tabName + ' tab');
     refreshTab(tabName);
   }
 
@@ -297,10 +390,8 @@
 
     // Sign out
     document.getElementById('signOutBtn').addEventListener('click', function() {
-      sb.auth.signOut().then(function() {
-        localStorage.removeItem(CACHED_AUTH_KEY);
-        window.location.href = getBasePath() + '/within/';
-      });
+      auditLog('logout', 'session', 'User signed out');
+      performSecureLogout();
     });
 
     // Mobile menu
@@ -1146,6 +1237,7 @@
     saveRecord('staff', data).then(function() {
       document.getElementById('staffModal').classList.add('hidden');
       showToast('Staff member added — they can now sign in with Google', 'success');
+      auditLog('staff_add', 'staff', { email: email, role: data.role });
       renderStaff();
     }).catch(function(e) {
       showToast('Error adding staff: ' + e.message, 'error');
@@ -1203,6 +1295,7 @@
         if (idx !== -1) store.staff[idx] = result.data;
         document.getElementById('editStaffModal').classList.add('hidden');
         showToast('Staff member updated', 'success');
+        auditLog('staff_update', 'staff', { staff_id: id, changes: updates });
         renderStaff();
       }).catch(function(e) {
         // Fallback for missing table
@@ -1558,7 +1651,9 @@
         if (result.data) {
           result.data.forEach(function(p) { store.patients.unshift(p); });
         }
-        showImportResults(result.data ? result.data.length : patients.length, skipped, 0);
+        var importCount = result.data ? result.data.length : patients.length;
+        auditLog('bulk_import', 'patients', { count: importCount, skipped: skipped });
+        showImportResults(importCount, skipped, 0);
       })
       .catch(function(e) {
         document.getElementById('importRunBtn').textContent = 'Import Patients';
@@ -1657,6 +1752,7 @@
   window.viewPatient = function(id) {
     var patient = store.patients.find(function(p) { return p.id === id; });
     if (patient) {
+      auditLog('view_record', 'patients', { patient_id: id });
       showToast('Patient: ' + patient.first_name + ' ' + patient.last_name + ' — Full patient view coming soon', 'info');
     }
   };

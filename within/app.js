@@ -121,7 +121,7 @@
       if (raw) {
         var cached = JSON.parse(raw);
         var age = Date.now() - (cached.timestamp || 0);
-        if (age < 90 * 24 * 60 * 60 * 1000 && cached.email && isEmailAllowed(cached.email)) {
+        if (age < 8 * 60 * 60 * 1000 && cached.email && isEmailAllowed(cached.email)) { // HIPAA: 8 hour max cache
           console.log('[WITHIN]', 'Cached auth found, redirecting');
           window.location.href = getBasePath() + '/within/emr/';
           return;
