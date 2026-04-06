@@ -342,6 +342,7 @@
     consents: ['Consents', 'Consent document management'],
     notes: ['Clinical Notes', 'SOAP notes and documentation'],
     inventory: ['Inventory', 'Controlled substance log (DEA compliance)'],
+    scribe: ['Scribe', 'Voice-to-text clinical documentation'],
     billing: ['Billing', 'Invoices and payments'],
     staff: ['Staff Management', 'Manage team access and permissions'],
   };
@@ -372,6 +373,7 @@
       case 'sessions': renderSessions(); break;
       case 'outcomes': renderOutcomes(); break;
       case 'consents': renderConsents(); break;
+      case 'scribe': renderScribe(); break;
       case 'notes': renderNotes(); break;
       case 'inventory': renderInventory(); break;
       case 'billing': renderBilling(); break;
@@ -509,6 +511,20 @@
       currentDate = new Date();
       renderScheduleDate();
       renderSchedule();
+    });
+
+    // Scribe
+    document.getElementById('scribeRecordBtn').addEventListener('click', function() { toggleScribeRecording(); });
+    document.getElementById('scribeClearBtn').addEventListener('click', function() {
+      if (scribeIsRecording) stopScribeRecording();
+      clearScribe();
+    });
+    document.getElementById('scribeGenerateBtn').addEventListener('click', function() { generateSOAPFromTranscript(); });
+    document.getElementById('scribeSaveNoteBtn').addEventListener('click', function() { saveScribeNote(); });
+    // Update word count on manual edits
+    document.getElementById('scribeTranscript').addEventListener('input', function() {
+      scribeTranscriptText = this.innerText || this.textContent || '';
+      updateWordCount();
     });
 
     // Search handlers
@@ -1343,6 +1359,429 @@
         renderStaff();
       });
   };
+
+  // ============================================
+  // SCRIBE — Voice-to-text clinical documentation
+  // ============================================
+
+  var scribeRecognition = null;
+  var scribeIsRecording = false;
+  var scribeStartTime = null;
+  var scribeTimerInterval = null;
+  var scribeTranscriptText = '';
+  var scribeInterimText = '';
+  var scribeSessions = []; // saved scribe sessions
+
+  // Check browser support
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  function initScribeRecognition() {
+    if (!SpeechRecognition) {
+      console.warn('[SCRIBE]', 'Speech Recognition not supported');
+      return null;
+    }
+
+    var recognition = new SpeechRecognition();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+      var interim = '';
+      var final = '';
+
+      for (var i = event.resultIndex; i < event.results.length; i++) {
+        var transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          final += transcript + ' ';
+        } else {
+          interim = transcript;
+        }
+      }
+
+      if (final) {
+        scribeTranscriptText += final;
+        scribeInterimText = '';
+      } else {
+        scribeInterimText = interim;
+      }
+
+      renderScribeTranscript();
+      updateWordCount();
+    };
+
+    recognition.onerror = function(event) {
+      console.error('[SCRIBE]', 'Recognition error:', event.error);
+      if (event.error === 'not-allowed') {
+        showToast('Microphone access denied. Please allow microphone in browser settings.', 'error');
+        stopScribeRecording();
+      } else if (event.error === 'no-speech') {
+        // Restart silently
+        if (scribeIsRecording) {
+          try { recognition.start(); } catch (e) { /* already started */ }
+        }
+      } else if (event.error !== 'aborted') {
+        showToast('Speech recognition error: ' + event.error, 'error');
+      }
+    };
+
+    recognition.onend = function() {
+      // Auto-restart if still recording (recognition stops after silence)
+      if (scribeIsRecording) {
+        try { recognition.start(); } catch (e) { /* already started */ }
+      }
+    };
+
+    return recognition;
+  }
+
+  function startScribeRecording() {
+    if (!SpeechRecognition) {
+      showToast('Speech recognition is not supported in this browser. Use Chrome for voice transcription, or type/paste notes directly.', 'error');
+      return;
+    }
+
+    if (!scribeRecognition) {
+      scribeRecognition = initScribeRecognition();
+    }
+    if (!scribeRecognition) return;
+
+    try {
+      scribeRecognition.start();
+      scribeIsRecording = true;
+      scribeStartTime = Date.now();
+
+      // Update UI
+      var btn = document.getElementById('scribeRecordBtn');
+      btn.classList.add('recording');
+      document.getElementById('scribeRecordIcon').textContent = 'stop';
+      document.getElementById('scribeRecordLabel').textContent = 'Stop';
+      document.getElementById('scribeStatus').textContent = 'Listening...';
+      document.getElementById('scribeStatus').classList.add('listening');
+
+      // Start timer
+      scribeTimerInterval = setInterval(function() {
+        var elapsed = Math.floor((Date.now() - scribeStartTime) / 1000);
+        var min = String(Math.floor(elapsed / 60)).padStart(2, '0');
+        var sec = String(elapsed % 60).padStart(2, '0');
+        document.getElementById('scribeTimer').textContent = min + ':' + sec;
+      }, 1000);
+
+      auditLog('scribe_start', 'scribe', 'Voice recording started');
+      console.log('[SCRIBE]', 'Recording started');
+    } catch (e) {
+      console.error('[SCRIBE]', 'Failed to start:', e);
+      showToast('Could not start recording: ' + e.message, 'error');
+    }
+  }
+
+  function stopScribeRecording() {
+    scribeIsRecording = false;
+
+    if (scribeRecognition) {
+      try { scribeRecognition.stop(); } catch (e) { /* ignore */ }
+    }
+
+    // Flush any interim text
+    if (scribeInterimText) {
+      scribeTranscriptText += scribeInterimText + ' ';
+      scribeInterimText = '';
+      renderScribeTranscript();
+    }
+
+    // Update UI
+    var btn = document.getElementById('scribeRecordBtn');
+    btn.classList.remove('recording');
+    document.getElementById('scribeRecordIcon').textContent = 'mic';
+    document.getElementById('scribeRecordLabel').textContent = 'Start Recording';
+    document.getElementById('scribeStatus').textContent = 'Stopped';
+    document.getElementById('scribeStatus').classList.remove('listening');
+
+    clearInterval(scribeTimerInterval);
+    updateWordCount();
+    auditLog('scribe_stop', 'scribe', 'Voice recording stopped');
+    console.log('[SCRIBE]', 'Recording stopped');
+  }
+
+  function toggleScribeRecording() {
+    if (scribeIsRecording) {
+      stopScribeRecording();
+    } else {
+      startScribeRecording();
+    }
+  }
+
+  function renderScribeTranscript() {
+    var el = document.getElementById('scribeTranscript');
+    var html = scribeTranscriptText;
+    if (scribeInterimText) {
+      html += '<span class="interim">' + scribeInterimText + '</span>';
+    }
+    el.innerHTML = html;
+    // Auto-scroll to bottom
+    el.scrollTop = el.scrollHeight;
+  }
+
+  function updateWordCount() {
+    var text = getScribeText();
+    var count = text.trim() ? text.trim().split(/\s+/).length : 0;
+    document.getElementById('scribeWordCount').textContent = count + ' words';
+  }
+
+  function getScribeText() {
+    var el = document.getElementById('scribeTranscript');
+    return el.innerText || el.textContent || '';
+  }
+
+  function clearScribe() {
+    scribeTranscriptText = '';
+    scribeInterimText = '';
+    document.getElementById('scribeTranscript').innerHTML = '';
+    document.getElementById('scribeSoap_S').value = '';
+    document.getElementById('scribeSoap_O').value = '';
+    document.getElementById('scribeSoap_A').value = '';
+    document.getElementById('scribeSoap_P').value = '';
+    document.getElementById('scribeExtract_route').value = '';
+    document.getElementById('scribeExtract_dose').value = '';
+    document.getElementById('scribeExtract_duration').value = '';
+    document.getElementById('scribeExtract_response').value = '';
+    document.getElementById('scribeExtract_sideEffects').value = '';
+    document.getElementById('scribeExtract_mood').value = '';
+    document.getElementById('scribeTimer').textContent = '00:00';
+    updateWordCount();
+  }
+
+  // Smart SOAP note generation from transcript
+  function generateSOAPFromTranscript() {
+    var text = getScribeText().trim();
+    if (!text) {
+      showToast('No transcript to generate from. Record or type notes first.', 'info');
+      return;
+    }
+
+    var encounterType = document.getElementById('scribeEncounterType').value;
+    var patientId = document.getElementById('scribePatientSelect').value;
+    var patientName = '';
+    if (patientId) {
+      var p = store.patients.find(function(x) { return x.id === patientId; });
+      if (p) patientName = p.first_name + ' ' + p.last_name;
+    }
+
+    // Parse transcript with keyword detection
+    var lower = text.toLowerCase();
+    var sentences = text.split(/[.!?]+/).map(function(s) { return s.trim(); }).filter(Boolean);
+
+    var subjective = [];
+    var objective = [];
+    var assessment = [];
+    var plan = [];
+
+    // Keyword patterns for classification
+    var subjectiveKeywords = ['reports', 'states', 'feels', 'feeling', 'complains', 'describes', 'says', 'mentioned', 'denies', 'endorses', 'pain', 'mood', 'sleep', 'appetite', 'anxiety', 'depression', 'stress', 'worried', 'hopeful', 'better', 'worse', 'symptom', 'history', 'prior', 'previous', 'last session', 'since last', 'been experiencing', 'noticed'];
+    var objectiveKeywords = ['vitals', 'blood pressure', 'bp', 'heart rate', 'hr', 'pulse', 'spo2', 'oxygen', 'temperature', 'temp', 'weight', 'administered', 'dose', 'mg', 'milligram', 'iv', 'im', 'intramuscular', 'intravenous', 'sublingual', 'infusion', 'oriented', 'alert', 'pupils', 'observed', 'appeared', 'presentation', 'affect', 'cooperative', 'calm', 'agitated', 'drowsy', 'sedation', 'nausea', 'dissociation', 'tolerated', 'vital signs'];
+    var assessmentKeywords = ['diagnosis', 'impression', 'response', 'responded', 'improvement', 'progress', 'prognosis', 'condition', 'stable', 'improved', 'declined', 'treatment resistant', 'remission', 'therapeutic', 'effective', 'clinical', 'assessment', 'phq', 'gad', 'score'];
+    var planKeywords = ['plan', 'follow up', 'follow-up', 'next session', 'schedule', 'recommend', 'continue', 'increase', 'decrease', 'adjust', 'taper', 'refer', 'referral', 'prescribe', 'medication', 'return', 'week', 'weeks', 'monitor', 'reassess', 'integration', 'homework'];
+
+    sentences.forEach(function(sentence) {
+      var sl = sentence.toLowerCase();
+      var subScore = 0, objScore = 0, assScore = 0, planScore = 0;
+
+      subjectiveKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) subScore++; });
+      objectiveKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) objScore++; });
+      assessmentKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) assScore++; });
+      planKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) planScore++; });
+
+      var maxScore = Math.max(subScore, objScore, assScore, planScore);
+      if (maxScore === 0) {
+        // Default bucket based on position in transcript
+        subjective.push(sentence);
+      } else if (subScore === maxScore) {
+        subjective.push(sentence);
+      } else if (objScore === maxScore) {
+        objective.push(sentence);
+      } else if (assScore === maxScore) {
+        assessment.push(sentence);
+      } else {
+        plan.push(sentence);
+      }
+    });
+
+    // Extract clinical data for quick-fill
+    extractClinicalData(lower);
+
+    // Populate SOAP fields
+    document.getElementById('scribeSoap_S').value = subjective.join('. ').trim() + (subjective.length ? '.' : '');
+    document.getElementById('scribeSoap_O').value = objective.join('. ').trim() + (objective.length ? '.' : '');
+    document.getElementById('scribeSoap_A').value = assessment.join('. ').trim() + (assessment.length ? '.' : '');
+    document.getElementById('scribeSoap_P').value = plan.join('. ').trim() + (plan.length ? '.' : '');
+
+    // If sections are empty, provide encounter-specific templates
+    if (!objective.length && encounterType === 'ketamine_session') {
+      document.getElementById('scribeSoap_O').value = 'Ketamine administered. Vitals monitored throughout. Patient tolerated procedure.';
+    }
+    if (!plan.length) {
+      document.getElementById('scribeSoap_P').value = 'Continue current treatment plan. Follow up as scheduled.';
+    }
+
+    showToast('SOAP note generated from transcript. Review and edit as needed.', 'success');
+    auditLog('scribe_generate', 'scribe', { encounter_type: encounterType, word_count: text.split(/\s+/).length });
+  }
+
+  // Extract structured clinical data from text
+  function extractClinicalData(text) {
+    // Route
+    if (text.indexOf('intravenous') !== -1 || text.indexOf(' iv ') !== -1 || text.indexOf('iv infusion') !== -1) {
+      document.getElementById('scribeExtract_route').value = 'IV';
+    } else if (text.indexOf('intramuscular') !== -1 || text.indexOf(' im ') !== -1 || text.indexOf('im injection') !== -1) {
+      document.getElementById('scribeExtract_route').value = 'IM';
+    } else if (text.indexOf('sublingual') !== -1 || text.indexOf(' sl ') !== -1) {
+      document.getElementById('scribeExtract_route').value = 'Sublingual';
+    } else if (text.indexOf('intranasal') !== -1 || text.indexOf('nasal') !== -1) {
+      document.getElementById('scribeExtract_route').value = 'Intranasal';
+    }
+
+    // Dose — look for number + mg pattern
+    var doseMatch = text.match(/(\d+\.?\d*)\s*(?:mg|milligram)/i);
+    if (doseMatch) {
+      document.getElementById('scribeExtract_dose').value = doseMatch[1] + ' mg';
+    }
+
+    // Duration — look for number + min/minutes
+    var durMatch = text.match(/(\d+)\s*(?:min|minute)/i);
+    if (durMatch) {
+      document.getElementById('scribeExtract_duration').value = durMatch[1] + ' min';
+    }
+
+    // Side effects
+    var sideEffects = [];
+    if (text.indexOf('nausea') !== -1) sideEffects.push('nausea');
+    if (text.indexOf('dizziness') !== -1 || text.indexOf('dizzy') !== -1) sideEffects.push('dizziness');
+    if (text.indexOf('headache') !== -1) sideEffects.push('headache');
+    if (text.indexOf('dissociation') !== -1 || text.indexOf('dissociative') !== -1) sideEffects.push('dissociation');
+    if (text.indexOf('anxiety') !== -1 && text.indexOf('no anxiety') === -1) sideEffects.push('anxiety');
+    if (text.indexOf('hypertension') !== -1) sideEffects.push('hypertension');
+    if (text.indexOf('blurred vision') !== -1) sideEffects.push('blurred vision');
+    document.getElementById('scribeExtract_sideEffects').value = sideEffects.length ? sideEffects.join(', ') : 'None reported';
+
+    // Response
+    if (text.indexOf('well tolerated') !== -1 || text.indexOf('tolerated well') !== -1 || text.indexOf('good response') !== -1) {
+      document.getElementById('scribeExtract_response').value = 'Good';
+    } else if (text.indexOf('moderate') !== -1 && text.indexOf('response') !== -1) {
+      document.getElementById('scribeExtract_response').value = 'Moderate';
+    } else if (text.indexOf('poor') !== -1 && text.indexOf('response') !== -1) {
+      document.getElementById('scribeExtract_response').value = 'Poor';
+    }
+
+    // Mood score patterns (e.g., "mood 3 out of 10", "mood went from 3 to 7")
+    var moodMatch = text.match(/mood.*?(\d+).*?(?:to|→|->).*?(\d+)/i);
+    if (moodMatch) {
+      document.getElementById('scribeExtract_mood').value = moodMatch[1] + '/10 → ' + moodMatch[2] + '/10';
+    }
+  }
+
+  function saveScribeNote() {
+    var patientId = document.getElementById('scribePatientSelect').value;
+    if (!patientId) {
+      showToast('Please select a patient before saving', 'error');
+      return;
+    }
+
+    var s = document.getElementById('scribeSoap_S').value;
+    var o = document.getElementById('scribeSoap_O').value;
+    var a = document.getElementById('scribeSoap_A').value;
+    var p = document.getElementById('scribeSoap_P').value;
+
+    if (!s && !o && !a && !p) {
+      showToast('Generate or write a SOAP note before saving', 'error');
+      return;
+    }
+
+    var encounterType = document.getElementById('scribeEncounterType').value;
+    var data = {
+      patient_id: patientId,
+      note_date: new Date().toISOString().slice(0, 10),
+      note_type: encounterType === 'ketamine_session' ? 'soap' : encounterType,
+      provider: currentUserEmail,
+      subjective: s,
+      objective: o,
+      assessment: a,
+      plan: p,
+      status: 'draft',
+      scribe_transcript: getScribeText(),
+      scribe_extracts: JSON.stringify({
+        route: document.getElementById('scribeExtract_route').value,
+        dose: document.getElementById('scribeExtract_dose').value,
+        duration: document.getElementById('scribeExtract_duration').value,
+        response: document.getElementById('scribeExtract_response').value,
+        side_effects: document.getElementById('scribeExtract_sideEffects').value,
+        mood: document.getElementById('scribeExtract_mood').value,
+      }),
+    };
+
+    saveRecord('notes', data).then(function(result) {
+      showToast('Scribe note saved as draft', 'success');
+      auditLog('scribe_save', 'notes', { patient_id: patientId, note_id: result.id });
+
+      // Add to scribe history
+      var patient = store.patients.find(function(x) { return x.id === patientId; });
+      scribeSessions.unshift({
+        id: result.id,
+        patient_name: patient ? patient.first_name + ' ' + patient.last_name : 'Unknown',
+        date: data.note_date,
+        encounter_type: encounterType,
+        word_count: getScribeText().trim().split(/\s+/).length,
+      });
+      renderScribeHistory();
+      clearScribe();
+    }).catch(function(e) {
+      showToast('Error saving note: ' + e.message, 'error');
+    });
+  }
+
+  function renderScribe() {
+    // Populate patient select
+    var options = store.patients
+      .filter(function(p) { return !p.is_archived && p.status !== 'inactive'; })
+      .map(function(p) { return '<option value="' + p.id + '">' + p.first_name + ' ' + p.last_name + '</option>'; })
+      .join('');
+    var sel = document.getElementById('scribePatientSelect');
+    var current = sel.value;
+    sel.innerHTML = '<option value="">Select patient...</option>' + options;
+    if (current) sel.value = current;
+
+    renderScribeHistory();
+
+    // Show speech support status
+    if (!SpeechRecognition) {
+      document.getElementById('scribeStatus').textContent = 'Voice not supported — type or paste notes';
+      document.getElementById('scribeRecordBtn').style.opacity = '0.5';
+    }
+  }
+
+  function renderScribeHistory() {
+    var container = document.getElementById('scribeHistory');
+    // Show recent notes created via scribe
+    var scribeNotes = store.notes
+      .filter(function(n) { return n.scribe_transcript; })
+      .slice(0, 5);
+
+    if (scribeNotes.length === 0 && scribeSessions.length === 0) {
+      container.innerHTML = '<div style="color:var(--text-muted);font-size:0.8125rem;padding:0.5rem;">No scribe notes yet.</div>';
+      return;
+    }
+
+    var items = scribeNotes.map(function(n) {
+      var patient = store.patients.find(function(p) { return p.id === n.patient_id; });
+      var name = patient ? patient.first_name + ' ' + patient.last_name : 'Unknown';
+      return '<div class="scribe-history-item">' +
+        '<div><strong>' + name + '</strong><br><span class="scribe-history-item__meta">' + (n.note_date || '') + ' &middot; ' + formatNoteType(n.note_type) + '</span></div>' +
+        '<span class="badge badge--' + (n.status === 'signed' ? 'signed' : 'draft') + '">' + (n.status || 'Draft') + '</span>' +
+        '</div>';
+    });
+
+    container.innerHTML = items.join('');
+  }
 
   // ============================================
   // CSV IMPORT

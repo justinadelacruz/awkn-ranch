@@ -55,6 +55,10 @@
           <span class="material-symbols-outlined">verified</span>
           <span>Consents</span>
         </button>
+        <button class="nav-item" data-tab="scribe">
+          <span class="material-symbols-outlined">mic</span>
+          <span>Scribe</span>
+        </button>
         <button class="nav-item" data-tab="notes">
           <span class="material-symbols-outlined">clinical_notes</span>
           <span>Notes</span>
@@ -402,6 +406,129 @@
             <div class="empty-state" id="consentsEmpty">
               <span class="material-symbols-outlined">verified</span>
               <p>No consent documents yet</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====== SCRIBE ====== -->
+        <section class="tab-panel" data-panel="scribe">
+          <div class="scribe-layout">
+            <!-- Left: Recording & Transcript -->
+            <div class="scribe-panel">
+              <div class="card">
+                <div class="card__header">
+                  <h3>Clinical Scribe</h3>
+                  <div style="display:flex;gap:0.5rem;align-items:center;">
+                    <select id="scribePatientSelect" class="scribe-patient-select">
+                      <option value="">Select patient...</option>
+                    </select>
+                    <select id="scribeEncounterType">
+                      <option value="ketamine_session">Ketamine Session</option>
+                      <option value="initial_consult">Initial Consultation</option>
+                      <option value="integration">Integration Therapy</option>
+                      <option value="followup">Follow-Up</option>
+                      <option value="telehealth">Telehealth</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="card__body">
+                  <!-- Recording controls -->
+                  <div class="scribe-controls">
+                    <button class="scribe-record-btn" id="scribeRecordBtn">
+                      <span class="material-symbols-outlined" id="scribeRecordIcon">mic</span>
+                      <span id="scribeRecordLabel">Start Recording</span>
+                    </button>
+                    <div class="scribe-timer" id="scribeTimer">00:00</div>
+                    <div class="scribe-status" id="scribeStatus">Ready</div>
+                  </div>
+
+                  <!-- Live transcript -->
+                  <div class="scribe-transcript-container">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">Transcript</label>
+                    <div class="scribe-transcript" id="scribeTranscript" contenteditable="true" placeholder="Transcript will appear here as you speak... or type/paste notes directly."></div>
+                    <div class="scribe-transcript-actions">
+                      <span id="scribeWordCount" style="font-size:0.75rem;color:var(--text-muted);">0 words</span>
+                      <button class="btn-text" id="scribeClearBtn">Clear</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Structured Output -->
+            <div class="scribe-panel">
+              <div class="card">
+                <div class="card__header">
+                  <h3>Structured Note</h3>
+                  <div style="display:flex;gap:0.5rem;">
+                    <button class="btn-secondary" id="scribeGenerateBtn">
+                      <span class="material-symbols-outlined">auto_awesome</span>
+                      Generate SOAP
+                    </button>
+                    <button class="btn-primary" id="scribeSaveNoteBtn">
+                      <span class="material-symbols-outlined">save</span>
+                      Save Note
+                    </button>
+                  </div>
+                </div>
+                <div class="card__body">
+                  <div class="scribe-soap">
+                    <div class="form-group">
+                      <label>Subjective</label>
+                      <textarea id="scribeSoap_S" rows="4" placeholder="Patient's reported symptoms, complaints, and history..."></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Objective</label>
+                      <textarea id="scribeSoap_O" rows="4" placeholder="Vitals, observations, exam findings, medication administered..."></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Assessment</label>
+                      <textarea id="scribeSoap_A" rows="3" placeholder="Clinical impressions, diagnosis, treatment response..."></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label>Plan</label>
+                      <textarea id="scribeSoap_P" rows="3" placeholder="Follow-up, medication changes, next session plan..."></textarea>
+                    </div>
+                  </div>
+
+                  <!-- Quick-fill sections for ketamine sessions -->
+                  <div class="scribe-quickfill" id="scribeQuickfill">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">Quick Extract</label>
+                    <div class="scribe-extract-grid">
+                      <div class="scribe-extract-item">
+                        <label>Route</label>
+                        <input type="text" id="scribeExtract_route" placeholder="IV, IM, SL...">
+                      </div>
+                      <div class="scribe-extract-item">
+                        <label>Dose</label>
+                        <input type="text" id="scribeExtract_dose" placeholder="mg">
+                      </div>
+                      <div class="scribe-extract-item">
+                        <label>Duration</label>
+                        <input type="text" id="scribeExtract_duration" placeholder="min">
+                      </div>
+                      <div class="scribe-extract-item">
+                        <label>Response</label>
+                        <input type="text" id="scribeExtract_response" placeholder="Good, moderate...">
+                      </div>
+                      <div class="scribe-extract-item">
+                        <label>Side Effects</label>
+                        <input type="text" id="scribeExtract_sideEffects" placeholder="None, nausea...">
+                      </div>
+                      <div class="scribe-extract-item">
+                        <label>Mood Pre/Post</label>
+                        <input type="text" id="scribeExtract_mood" placeholder="e.g. 3/10 → 7/10">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Previous scribe sessions -->
+                  <div style="margin-top:1.5rem;">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">Recent Scribe Notes</label>
+                    <div id="scribeHistory" class="scribe-history"></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
