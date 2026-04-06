@@ -137,20 +137,56 @@ body {
 }
 
 /* ====== SCRIBE ====== */
+.scribe-setup-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.scribe-setup-bar__left {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.scribe-setup-bar__left select,
+.scribe-setup-bar__right select {
+  padding: 0.4rem 0.5rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-family: var(--font);
+}
+
+.scribe-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+  font-size: 0.8125rem;
+}
+
 .scribe-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  align-items: start;
 }
 
 @media (max-width: 1024px) {
   .scribe-layout {
     grid-template-columns: 1fr;
   }
-}
-
-.scribe-panel .card {
-  height: 100%;
 }
 
 .scribe-controls {
@@ -360,6 +396,150 @@ body {
 .scribe-history-item__meta {
   color: var(--text-muted);
   font-size: 0.75rem;
+}
+
+/* Prior session context */
+.scribe-prior-context {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.scribe-prior-context__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-elevated);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.scribe-prior-context__header .btn-text {
+  margin-left: auto;
+}
+
+.scribe-prior-context__body {
+  padding: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Session insights */
+.scribe-insights {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.scribe-insights-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scribe-insight-item {
+  display: flex;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-surface);
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  border-left: 3px solid var(--accent);
+}
+
+.scribe-insight-item.risk {
+  border-left-color: var(--error);
+}
+
+.scribe-insight-item .material-symbols-outlined {
+  font-size: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* Billing codes */
+.scribe-coding {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.scribe-code-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-surface);
+  border-radius: 6px;
+  margin-bottom: 0.375rem;
+  font-size: 0.8125rem;
+}
+
+.scribe-code-item__code {
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'SF Mono', monospace;
+  white-space: nowrap;
+  margin-right: 1rem;
+}
+
+.scribe-code-item__desc {
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.scribe-code-item__justification {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+/* After-visit summary */
+.scribe-avs {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Note format fields */
+.scribe-note-fields .form-group {
+  margin-bottom: 0.75rem;
+}
+
+.scribe-note-fields .form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.375rem;
+}
+
+.scribe-note-fields textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.scribe-note-fields textarea:focus {
+  border-color: var(--accent);
+  outline: none;
 }
 
 .sidebar__divider {

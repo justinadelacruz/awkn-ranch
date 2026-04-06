@@ -519,12 +519,37 @@
       if (scribeIsRecording) stopScribeRecording();
       clearScribe();
     });
-    document.getElementById('scribeGenerateBtn').addEventListener('click', function() { generateSOAPFromTranscript(); });
+    document.getElementById('scribeGenerateBtn').addEventListener('click', function() { generateNoteFromTranscript(); });
     document.getElementById('scribeSaveNoteBtn').addEventListener('click', function() { saveScribeNote(); });
     // Update word count on manual edits
     document.getElementById('scribeTranscript').addEventListener('input', function() {
       scribeTranscriptText = this.innerText || this.textContent || '';
       updateWordCount();
+    });
+    // Note format change — re-render dynamic fields
+    document.getElementById('scribeNoteFormat').addEventListener('change', function() {
+      renderNoteFormatFields();
+    });
+    // Patient select — load prior context
+    document.getElementById('scribePatientSelect').addEventListener('change', function() {
+      loadPriorContext();
+    });
+    // Prior context toggle
+    document.getElementById('scribePriorToggle').addEventListener('click', function() {
+      var body = document.getElementById('scribePriorBody');
+      if (body.style.display === 'none') {
+        body.style.display = '';
+        this.textContent = 'Hide';
+      } else {
+        body.style.display = 'none';
+        this.textContent = 'Show';
+      }
+    });
+    // Audio file upload for transcription
+    document.getElementById('scribeAudioInput').addEventListener('change', function() {
+      var file = this.files && this.files[0];
+      if (!file) return;
+      showToast('Audio file selected: ' + file.name + '. Note: Browser-based transcription from audio files requires a server-side speech-to-text API. For now, please use the live microphone or paste transcript text.', 'info');
     });
 
     // Search handlers
@@ -1361,7 +1386,7 @@
   };
 
   // ============================================
-  // SCRIBE — Voice-to-text clinical documentation
+  // SCRIBE — Ambient clinical documentation
   // ============================================
 
   var scribeRecognition = null;
@@ -1370,17 +1395,116 @@
   var scribeTimerInterval = null;
   var scribeTranscriptText = '';
   var scribeInterimText = '';
-  var scribeSessions = []; // saved scribe sessions
-
-  // Check browser support
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  function initScribeRecognition() {
-    if (!SpeechRecognition) {
-      console.warn('[SCRIBE]', 'Speech Recognition not supported');
-      return null;
-    }
+  // Note format definitions
+  var NOTE_FORMATS = {
+    soap: {
+      label: 'SOAP Note',
+      fields: [
+        { id: 'S', label: 'Subjective', placeholder: 'Patient\'s reported symptoms, feelings, complaints, and history of present illness...', rows: 4 },
+        { id: 'O', label: 'Objective', placeholder: 'Vitals, mental status exam, observed behavior, medications administered, clinical findings...', rows: 4 },
+        { id: 'A', label: 'Assessment', placeholder: 'Clinical impressions, diagnosis, treatment response, risk evaluation...', rows: 3 },
+        { id: 'P', label: 'Plan', placeholder: 'Follow-up schedule, medication changes, referrals, next session plan, homework...', rows: 3 },
+      ],
+    },
+    dap: {
+      label: 'DAP Note',
+      fields: [
+        { id: 'D', label: 'Data', placeholder: 'Objective and subjective information gathered during the session...', rows: 5 },
+        { id: 'A', label: 'Assessment', placeholder: 'Clinical interpretation of the data, progress toward goals, diagnostic impressions...', rows: 4 },
+        { id: 'P', label: 'Plan', placeholder: 'Next steps, homework, interventions planned, referrals, follow-up...', rows: 3 },
+      ],
+    },
+    birp: {
+      label: 'BIRP Note',
+      fields: [
+        { id: 'B', label: 'Behavior', placeholder: 'Observable behavior, presentation, affect, what the client did/said...', rows: 4 },
+        { id: 'I', label: 'Intervention', placeholder: 'Therapeutic techniques used, medications administered, clinical actions taken...', rows: 4 },
+        { id: 'R', label: 'Response', placeholder: 'Client\'s response to interventions, changes in affect/behavior, insights gained...', rows: 3 },
+        { id: 'P', label: 'Plan', placeholder: 'Follow-up, homework, next session goals, referrals...', rows: 3 },
+      ],
+    },
+    intake: {
+      label: 'Intake Note',
+      fields: [
+        { id: 'CC', label: 'Chief Complaint', placeholder: 'Reason for seeking treatment in patient\'s own words...', rows: 2 },
+        { id: 'HPI', label: 'History of Present Illness', placeholder: 'Onset, duration, severity, associated symptoms, previous treatments...', rows: 4 },
+        { id: 'PMH', label: 'Past Medical/Psychiatric History', placeholder: 'Previous diagnoses, hospitalizations, medication trials, therapy history...', rows: 3 },
+        { id: 'SH', label: 'Social History', placeholder: 'Living situation, relationships, employment, substance use, support system...', rows: 3 },
+        { id: 'MSE', label: 'Mental Status Exam', placeholder: 'Appearance, behavior, speech, mood, affect, thought process/content, cognition, insight, judgment...', rows: 3 },
+        { id: 'IMP', label: 'Impressions & Plan', placeholder: 'Diagnostic impressions, treatment recommendations, safety plan if needed...', rows: 3 },
+      ],
+    },
+    treatment_plan: {
+      label: 'Treatment Plan',
+      fields: [
+        { id: 'DX', label: 'Diagnoses', placeholder: 'Primary and secondary diagnoses with ICD-10 codes...', rows: 2 },
+        { id: 'GOALS', label: 'Treatment Goals', placeholder: 'Measurable goals with target timeframes...', rows: 4 },
+        { id: 'OBJ', label: 'Objectives', placeholder: 'Specific behavioral objectives for each goal...', rows: 4 },
+        { id: 'INT', label: 'Interventions', placeholder: 'Planned therapeutic interventions, frequency, modalities...', rows: 3 },
+        { id: 'PROG', label: 'Prognosis', placeholder: 'Expected outcome, barriers to treatment, strengths...', rows: 2 },
+      ],
+    },
+    progress: {
+      label: 'Progress Note',
+      fields: [
+        { id: 'PRES', label: 'Presentation', placeholder: 'Client presentation, mood, affect, appearance...', rows: 3 },
+        { id: 'CONTENT', label: 'Session Content', placeholder: 'Topics discussed, themes explored, interventions used...', rows: 5 },
+        { id: 'PROG', label: 'Progress Toward Goals', placeholder: 'Movement toward treatment goals, barriers, changes noted...', rows: 3 },
+        { id: 'PLAN', label: 'Plan', placeholder: 'Next session focus, homework, adjustments to treatment plan...', rows: 3 },
+      ],
+    },
+  };
 
+  // CPT code database for ketamine/behavioral health
+  var CPT_CODES = {
+    ketamine_session: [
+      { code: '96365', desc: 'IV infusion, initial (up to 1 hr)', justification: 'Ketamine IV infusion administered under direct supervision' },
+      { code: '96366', desc: 'IV infusion, each additional hr', justification: 'Extended infusion beyond initial hour' },
+      { code: '96372', desc: 'Therapeutic injection (IM/SQ)', justification: 'Intramuscular ketamine injection administered' },
+    ],
+    psychotherapy: [
+      { code: '90834', desc: 'Individual psychotherapy, 45 min', justification: 'Individual psychotherapy session, 38-52 minutes' },
+      { code: '90837', desc: 'Individual psychotherapy, 60 min', justification: 'Individual psychotherapy session, 53+ minutes' },
+      { code: '90833', desc: 'Psychotherapy add-on, 30 min', justification: 'Psychotherapy add-on to E/M service, 16-37 minutes' },
+    ],
+    evaluation: [
+      { code: '99213', desc: 'Office visit, established, low', justification: 'Low complexity medical decision making' },
+      { code: '99214', desc: 'Office visit, established, moderate', justification: 'Moderate complexity medical decision making' },
+      { code: '99215', desc: 'Office visit, established, high', justification: 'High complexity medical decision making' },
+      { code: '99205', desc: 'Office visit, new, high', justification: 'New patient, high complexity medical decision making' },
+    ],
+    integration: [
+      { code: '90834', desc: 'Individual psychotherapy, 45 min', justification: 'Integration therapy session following ketamine treatment' },
+      { code: '90847', desc: 'Family/couples therapy with patient', justification: 'Family or couples integration session' },
+    ],
+    crisis: [
+      { code: '90839', desc: 'Crisis psychotherapy, first 60 min', justification: 'Crisis psychotherapy intervention, initial hour' },
+      { code: '90840', desc: 'Crisis psychotherapy, add-on 30 min', justification: 'Additional crisis psychotherapy time' },
+    ],
+    group: [
+      { code: '90853', desc: 'Group psychotherapy', justification: 'Group therapy session' },
+    ],
+    misc: [
+      { code: '90785', desc: 'Interactive complexity add-on', justification: 'Communication barriers, third-party involvement, or need for play/props' },
+      { code: '90791', desc: 'Psychiatric diagnostic evaluation', justification: 'Initial psychiatric diagnostic evaluation' },
+      { code: '96127', desc: 'Brief emotional/behavioral assessment', justification: 'Standardized instrument administered (PHQ-9, GAD-7, etc.)' },
+    ],
+  };
+
+  // Keyword classification sets
+  var KEYWORDS = {
+    subjective: ['reports', 'states', 'feels', 'feeling', 'complains', 'describes', 'says', 'mentioned', 'denies', 'endorses', 'pain', 'mood', 'sleep', 'appetite', 'anxiety', 'depression', 'stress', 'worried', 'hopeful', 'better', 'worse', 'symptom', 'history', 'prior', 'previous', 'last session', 'since last', 'been experiencing', 'noticed', 'concerned', 'fear', 'trigger', 'nightmare', 'flashback', 'intrusive', 'suicidal', 'self-harm', 'irritable', 'overwhelmed', 'hopeless', 'grief', 'trauma', 'relationship', 'work stress', 'panic', 'racing thoughts'],
+    objective: ['vitals', 'blood pressure', 'bp', 'heart rate', 'hr', 'pulse', 'spo2', 'oxygen', 'temperature', 'temp', 'weight', 'administered', 'dose', 'mg', 'milligram', 'iv', 'im', 'intramuscular', 'intravenous', 'sublingual', 'infusion', 'oriented', 'alert', 'pupils', 'observed', 'appeared', 'presentation', 'affect', 'cooperative', 'calm', 'agitated', 'drowsy', 'sedation', 'nausea', 'dissociation', 'tolerated', 'vital signs', 'well-groomed', 'eye contact', 'psychomotor', 'speech rate', 'thought process', 'linear', 'tangential', 'congruent', 'flat', 'labile', 'blunted', 'euthymic', 'dysphoric'],
+    assessment: ['diagnosis', 'impression', 'response', 'responded', 'improvement', 'progress', 'prognosis', 'condition', 'stable', 'improved', 'declined', 'treatment resistant', 'remission', 'therapeutic', 'effective', 'clinical', 'assessment', 'phq', 'gad', 'pcl', 'score', 'severity', 'mild', 'moderate', 'severe', 'acute', 'chronic', 'comorbid', 'differential', 'rule out', 'consistent with', 'meets criteria', 'functional impairment'],
+    plan: ['plan', 'follow up', 'follow-up', 'next session', 'schedule', 'recommend', 'continue', 'increase', 'decrease', 'adjust', 'taper', 'refer', 'referral', 'prescribe', 'medication', 'return', 'week', 'weeks', 'monitor', 'reassess', 'integration', 'homework', 'safety plan', 'coping skills', 'grounding', 'mindfulness', 'journal', 'exercise', 'goals', 'discharge', 'labs', 'blood work'],
+    risk: ['suicidal', 'suicide', 'self-harm', 'homicidal', 'homicide', 'si', 'hi', 'ideation', 'intent', 'plan to harm', 'overdose', 'cutting', 'safety', 'crisis', 'ER', 'emergency', 'hospitalization', 'danger', 'lethal means', 'firearms', 'weapons'],
+    dissociative: ['dissociation', 'out of body', 'floating', 'ego dissolution', 'mystical', 'transcendent', 'visionary', 'dreamlike', 'altered state', 'k-hole', 'ketamine experience', 'psychedelic', 'set and setting', 'intention', 'surrender', 'breakthrough'],
+  };
+
+  function initScribeRecognition() {
+    if (!SpeechRecognition) return null;
     var recognition = new SpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -1390,136 +1514,82 @@
     recognition.onresult = function(event) {
       var interim = '';
       var final = '';
-
       for (var i = event.resultIndex; i < event.results.length; i++) {
-        var transcript = event.results[i][0].transcript;
-        if (event.results[i].isFinal) {
-          final += transcript + ' ';
-        } else {
-          interim = transcript;
-        }
+        var t = event.results[i][0].transcript;
+        if (event.results[i].isFinal) { final += t + ' '; }
+        else { interim = t; }
       }
-
-      if (final) {
-        scribeTranscriptText += final;
-        scribeInterimText = '';
-      } else {
-        scribeInterimText = interim;
-      }
-
+      if (final) { scribeTranscriptText += final; scribeInterimText = ''; }
+      else { scribeInterimText = interim; }
       renderScribeTranscript();
       updateWordCount();
     };
-
     recognition.onerror = function(event) {
-      console.error('[SCRIBE]', 'Recognition error:', event.error);
       if (event.error === 'not-allowed') {
-        showToast('Microphone access denied. Please allow microphone in browser settings.', 'error');
+        showToast('Microphone access denied. Allow microphone in browser settings.', 'error');
         stopScribeRecording();
-      } else if (event.error === 'no-speech') {
-        // Restart silently
-        if (scribeIsRecording) {
-          try { recognition.start(); } catch (e) { /* already started */ }
-        }
-      } else if (event.error !== 'aborted') {
-        showToast('Speech recognition error: ' + event.error, 'error');
+      } else if (event.error === 'no-speech' && scribeIsRecording) {
+        try { recognition.start(); } catch (e) {}
       }
     };
-
     recognition.onend = function() {
-      // Auto-restart if still recording (recognition stops after silence)
-      if (scribeIsRecording) {
-        try { recognition.start(); } catch (e) { /* already started */ }
-      }
+      if (scribeIsRecording) { try { recognition.start(); } catch (e) {} }
     };
-
     return recognition;
   }
 
   function startScribeRecording() {
     if (!SpeechRecognition) {
-      showToast('Speech recognition is not supported in this browser. Use Chrome for voice transcription, or type/paste notes directly.', 'error');
+      showToast('Voice not supported in this browser. Use Chrome, or type/paste notes directly.', 'error');
       return;
     }
-
-    if (!scribeRecognition) {
-      scribeRecognition = initScribeRecognition();
-    }
+    if (!scribeRecognition) scribeRecognition = initScribeRecognition();
     if (!scribeRecognition) return;
-
     try {
       scribeRecognition.start();
       scribeIsRecording = true;
       scribeStartTime = Date.now();
-
-      // Update UI
-      var btn = document.getElementById('scribeRecordBtn');
-      btn.classList.add('recording');
+      document.getElementById('scribeRecordBtn').classList.add('recording');
       document.getElementById('scribeRecordIcon').textContent = 'stop';
-      document.getElementById('scribeRecordLabel').textContent = 'Stop';
+      document.getElementById('scribeRecordLabel').textContent = 'End Session';
       document.getElementById('scribeStatus').textContent = 'Listening...';
       document.getElementById('scribeStatus').classList.add('listening');
-
-      // Start timer
       scribeTimerInterval = setInterval(function() {
         var elapsed = Math.floor((Date.now() - scribeStartTime) / 1000);
-        var min = String(Math.floor(elapsed / 60)).padStart(2, '0');
-        var sec = String(elapsed % 60).padStart(2, '0');
-        document.getElementById('scribeTimer').textContent = min + ':' + sec;
+        document.getElementById('scribeTimer').textContent = String(Math.floor(elapsed / 60)).padStart(2, '0') + ':' + String(elapsed % 60).padStart(2, '0');
       }, 1000);
-
-      auditLog('scribe_start', 'scribe', 'Voice recording started');
-      console.log('[SCRIBE]', 'Recording started');
+      // Load prior context for selected patient
+      loadPriorContext();
+      auditLog('scribe_start', 'scribe', 'Ambient session started');
     } catch (e) {
-      console.error('[SCRIBE]', 'Failed to start:', e);
       showToast('Could not start recording: ' + e.message, 'error');
     }
   }
 
   function stopScribeRecording() {
     scribeIsRecording = false;
-
-    if (scribeRecognition) {
-      try { scribeRecognition.stop(); } catch (e) { /* ignore */ }
-    }
-
-    // Flush any interim text
-    if (scribeInterimText) {
-      scribeTranscriptText += scribeInterimText + ' ';
-      scribeInterimText = '';
-      renderScribeTranscript();
-    }
-
-    // Update UI
-    var btn = document.getElementById('scribeRecordBtn');
-    btn.classList.remove('recording');
+    if (scribeRecognition) try { scribeRecognition.stop(); } catch (e) {}
+    if (scribeInterimText) { scribeTranscriptText += scribeInterimText + ' '; scribeInterimText = ''; renderScribeTranscript(); }
+    document.getElementById('scribeRecordBtn').classList.remove('recording');
     document.getElementById('scribeRecordIcon').textContent = 'mic';
-    document.getElementById('scribeRecordLabel').textContent = 'Start Recording';
-    document.getElementById('scribeStatus').textContent = 'Stopped';
+    document.getElementById('scribeRecordLabel').textContent = 'Start Session';
+    document.getElementById('scribeStatus').textContent = 'Session ended — Generate note when ready';
     document.getElementById('scribeStatus').classList.remove('listening');
-
     clearInterval(scribeTimerInterval);
     updateWordCount();
-    auditLog('scribe_stop', 'scribe', 'Voice recording stopped');
-    console.log('[SCRIBE]', 'Recording stopped');
+    auditLog('scribe_stop', 'scribe', 'Ambient session ended');
   }
 
   function toggleScribeRecording() {
-    if (scribeIsRecording) {
-      stopScribeRecording();
-    } else {
-      startScribeRecording();
-    }
+    if (scribeIsRecording) stopScribeRecording();
+    else startScribeRecording();
   }
 
   function renderScribeTranscript() {
     var el = document.getElementById('scribeTranscript');
     var html = scribeTranscriptText;
-    if (scribeInterimText) {
-      html += '<span class="interim">' + scribeInterimText + '</span>';
-    }
+    if (scribeInterimText) html += '<span class="interim">' + scribeInterimText + '</span>';
     el.innerHTML = html;
-    // Auto-scroll to bottom
     el.scrollTop = el.scrollHeight;
   }
 
@@ -1534,204 +1604,419 @@
     return el.innerText || el.textContent || '';
   }
 
+  // Load prior session context for continuity
+  function loadPriorContext() {
+    var patientId = document.getElementById('scribePatientSelect').value;
+    var ctx = document.getElementById('scribePriorContext');
+    if (!patientId) { ctx.style.display = 'none'; return; }
+
+    var priorNotes = store.notes.filter(function(n) { return n.patient_id === patientId; }).slice(0, 3);
+    var priorSessions = store.sessions.filter(function(s) { return s.patient_id === patientId; }).slice(0, 2);
+
+    if (priorNotes.length === 0 && priorSessions.length === 0) { ctx.style.display = 'none'; return; }
+
+    var html = '';
+    if (priorNotes.length > 0) {
+      var lastNote = priorNotes[0];
+      html += '<div style="margin-bottom:0.5rem;"><strong>Last note (' + (lastNote.note_date || 'undated') + '):</strong></div>';
+      if (lastNote.plan) html += '<div style="margin-bottom:0.25rem;"><em>Plan:</em> ' + lastNote.plan.substring(0, 200) + (lastNote.plan.length > 200 ? '...' : '') + '</div>';
+      if (lastNote.assessment) html += '<div><em>Assessment:</em> ' + lastNote.assessment.substring(0, 200) + (lastNote.assessment.length > 200 ? '...' : '') + '</div>';
+    }
+    if (priorSessions.length > 0) {
+      var lastSession = priorSessions[0];
+      html += '<div style="margin-top:0.5rem;"><strong>Last treatment (' + (lastSession.session_date || 'undated') + '):</strong> ';
+      html += (lastSession.route || '?') + ' ' + (lastSession.dose_mg ? lastSession.dose_mg + 'mg' : '') + ' ' + (lastSession.duration_min ? lastSession.duration_min + 'min' : '') + '</div>';
+    }
+
+    document.getElementById('scribePriorBody').innerHTML = html;
+    ctx.style.display = '';
+  }
+
+  // Render dynamic note format fields
+  function renderNoteFormatFields() {
+    var format = document.getElementById('scribeNoteFormat').value;
+    var def = NOTE_FORMATS[format];
+    if (!def) return;
+
+    document.getElementById('scribeNoteFormatLabel').textContent = def.label;
+    var html = '';
+    def.fields.forEach(function(f) {
+      html += '<div class="form-group">' +
+        '<label>' + f.label + '</label>' +
+        '<textarea id="scribeField_' + f.id + '" rows="' + f.rows + '" placeholder="' + f.placeholder + '"></textarea>' +
+        '</div>';
+    });
+    document.getElementById('scribeNoteFields').innerHTML = html;
+  }
+
   function clearScribe() {
     scribeTranscriptText = '';
     scribeInterimText = '';
     document.getElementById('scribeTranscript').innerHTML = '';
-    document.getElementById('scribeSoap_S').value = '';
-    document.getElementById('scribeSoap_O').value = '';
-    document.getElementById('scribeSoap_A').value = '';
-    document.getElementById('scribeSoap_P').value = '';
+    document.getElementById('scribeTimer').textContent = '00:00';
     document.getElementById('scribeExtract_route').value = '';
     document.getElementById('scribeExtract_dose').value = '';
     document.getElementById('scribeExtract_duration').value = '';
     document.getElementById('scribeExtract_response').value = '';
     document.getElementById('scribeExtract_sideEffects').value = '';
     document.getElementById('scribeExtract_mood').value = '';
-    document.getElementById('scribeTimer').textContent = '00:00';
+    document.getElementById('scribeInsights').style.display = 'none';
+    document.getElementById('scribeCoding').style.display = 'none';
+    document.getElementById('scribeAVS').style.display = 'none';
+    renderNoteFormatFields();
     updateWordCount();
   }
 
-  // Smart SOAP note generation from transcript
-  function generateSOAPFromTranscript() {
+  // Main generation engine
+  function generateNoteFromTranscript() {
     var text = getScribeText().trim();
-    if (!text) {
-      showToast('No transcript to generate from. Record or type notes first.', 'info');
-      return;
-    }
+    if (!text) { showToast('No transcript to generate from. Record or type notes first.', 'info'); return; }
 
+    var format = document.getElementById('scribeNoteFormat').value;
     var encounterType = document.getElementById('scribeEncounterType').value;
-    var patientId = document.getElementById('scribePatientSelect').value;
-    var patientName = '';
-    if (patientId) {
-      var p = store.patients.find(function(x) { return x.id === patientId; });
-      if (p) patientName = p.first_name + ' ' + p.last_name;
-    }
-
-    // Parse transcript with keyword detection
+    var detailLevel = document.getElementById('scribeDetailLevel').value;
     var lower = text.toLowerCase();
     var sentences = text.split(/[.!?]+/).map(function(s) { return s.trim(); }).filter(Boolean);
 
-    var subjective = [];
-    var objective = [];
-    var assessment = [];
-    var plan = [];
+    // Classify sentences
+    var classified = classifySentences(sentences);
 
-    // Keyword patterns for classification
-    var subjectiveKeywords = ['reports', 'states', 'feels', 'feeling', 'complains', 'describes', 'says', 'mentioned', 'denies', 'endorses', 'pain', 'mood', 'sleep', 'appetite', 'anxiety', 'depression', 'stress', 'worried', 'hopeful', 'better', 'worse', 'symptom', 'history', 'prior', 'previous', 'last session', 'since last', 'been experiencing', 'noticed'];
-    var objectiveKeywords = ['vitals', 'blood pressure', 'bp', 'heart rate', 'hr', 'pulse', 'spo2', 'oxygen', 'temperature', 'temp', 'weight', 'administered', 'dose', 'mg', 'milligram', 'iv', 'im', 'intramuscular', 'intravenous', 'sublingual', 'infusion', 'oriented', 'alert', 'pupils', 'observed', 'appeared', 'presentation', 'affect', 'cooperative', 'calm', 'agitated', 'drowsy', 'sedation', 'nausea', 'dissociation', 'tolerated', 'vital signs'];
-    var assessmentKeywords = ['diagnosis', 'impression', 'response', 'responded', 'improvement', 'progress', 'prognosis', 'condition', 'stable', 'improved', 'declined', 'treatment resistant', 'remission', 'therapeutic', 'effective', 'clinical', 'assessment', 'phq', 'gad', 'score'];
-    var planKeywords = ['plan', 'follow up', 'follow-up', 'next session', 'schedule', 'recommend', 'continue', 'increase', 'decrease', 'adjust', 'taper', 'refer', 'referral', 'prescribe', 'medication', 'return', 'week', 'weeks', 'monitor', 'reassess', 'integration', 'homework'];
+    // Generate note based on format
+    if (format === 'soap') generateSOAP(classified, encounterType, detailLevel);
+    else if (format === 'dap') generateDAP(classified, encounterType, detailLevel);
+    else if (format === 'birp') generateBIRP(classified, encounterType, detailLevel);
+    else if (format === 'intake') generateIntake(classified, text, detailLevel);
+    else if (format === 'treatment_plan') generateTreatmentPlan(classified, text, detailLevel);
+    else if (format === 'progress') generateProgress(classified, detailLevel);
 
-    sentences.forEach(function(sentence) {
-      var sl = sentence.toLowerCase();
-      var subScore = 0, objScore = 0, assScore = 0, planScore = 0;
-
-      subjectiveKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) subScore++; });
-      objectiveKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) objScore++; });
-      assessmentKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) assScore++; });
-      planKeywords.forEach(function(kw) { if (sl.indexOf(kw) !== -1) planScore++; });
-
-      var maxScore = Math.max(subScore, objScore, assScore, planScore);
-      if (maxScore === 0) {
-        // Default bucket based on position in transcript
-        subjective.push(sentence);
-      } else if (subScore === maxScore) {
-        subjective.push(sentence);
-      } else if (objScore === maxScore) {
-        objective.push(sentence);
-      } else if (assScore === maxScore) {
-        assessment.push(sentence);
-      } else {
-        plan.push(sentence);
-      }
-    });
-
-    // Extract clinical data for quick-fill
+    // Extract clinical data
     extractClinicalData(lower);
 
-    // Populate SOAP fields
-    document.getElementById('scribeSoap_S').value = subjective.join('. ').trim() + (subjective.length ? '.' : '');
-    document.getElementById('scribeSoap_O').value = objective.join('. ').trim() + (objective.length ? '.' : '');
-    document.getElementById('scribeSoap_A').value = assessment.join('. ').trim() + (assessment.length ? '.' : '');
-    document.getElementById('scribeSoap_P').value = plan.join('. ').trim() + (plan.length ? '.' : '');
+    // Generate session insights
+    generateInsights(text, lower, classified);
 
-    // If sections are empty, provide encounter-specific templates
-    if (!objective.length && encounterType === 'ketamine_session') {
-      document.getElementById('scribeSoap_O').value = 'Ketamine administered. Vitals monitored throughout. Patient tolerated procedure.';
-    }
-    if (!plan.length) {
-      document.getElementById('scribeSoap_P').value = 'Continue current treatment plan. Follow up as scheduled.';
-    }
+    // Generate CPT codes
+    generateBillingCodes(encounterType, lower, text);
 
-    showToast('SOAP note generated from transcript. Review and edit as needed.', 'success');
-    auditLog('scribe_generate', 'scribe', { encounter_type: encounterType, word_count: text.split(/\s+/).length });
+    // Generate after-visit summary
+    generateAVS(text, encounterType);
+
+    showToast('Note generated. Review all sections and edit as needed.', 'success');
+    auditLog('scribe_generate', 'scribe', { format: format, encounter_type: encounterType, detail: detailLevel, words: text.split(/\s+/).length });
   }
 
-  // Extract structured clinical data from text
-  function extractClinicalData(text) {
-    // Route
-    if (text.indexOf('intravenous') !== -1 || text.indexOf(' iv ') !== -1 || text.indexOf('iv infusion') !== -1) {
-      document.getElementById('scribeExtract_route').value = 'IV';
-    } else if (text.indexOf('intramuscular') !== -1 || text.indexOf(' im ') !== -1 || text.indexOf('im injection') !== -1) {
-      document.getElementById('scribeExtract_route').value = 'IM';
-    } else if (text.indexOf('sublingual') !== -1 || text.indexOf(' sl ') !== -1) {
-      document.getElementById('scribeExtract_route').value = 'Sublingual';
-    } else if (text.indexOf('intranasal') !== -1 || text.indexOf('nasal') !== -1) {
-      document.getElementById('scribeExtract_route').value = 'Intranasal';
+  function classifySentences(sentences) {
+    var result = { subjective: [], objective: [], assessment: [], plan: [], risk: [], dissociative: [] };
+    sentences.forEach(function(sentence, idx) {
+      var sl = sentence.toLowerCase();
+      var scores = {};
+      ['subjective', 'objective', 'assessment', 'plan'].forEach(function(cat) {
+        scores[cat] = 0;
+        KEYWORDS[cat].forEach(function(kw) { if (sl.indexOf(kw) !== -1) scores[cat]++; });
+      });
+      // Check risk and dissociative separately (always tag)
+      var riskScore = 0; KEYWORDS.risk.forEach(function(kw) { if (sl.indexOf(kw) !== -1) riskScore++; });
+      var dissScore = 0; KEYWORDS.dissociative.forEach(function(kw) { if (sl.indexOf(kw) !== -1) dissScore++; });
+      if (riskScore > 0) result.risk.push(sentence);
+      if (dissScore > 0) result.dissociative.push(sentence);
+
+      var max = Math.max(scores.subjective, scores.objective, scores.assessment, scores.plan);
+      if (max === 0) {
+        // Position-based fallback: first half → subjective, last quarter → plan
+        var pos = idx / sentences.length;
+        if (pos < 0.5) result.subjective.push(sentence);
+        else if (pos > 0.75) result.plan.push(sentence);
+        else result.objective.push(sentence);
+      } else if (scores.subjective === max) result.subjective.push(sentence);
+      else if (scores.objective === max) result.objective.push(sentence);
+      else if (scores.assessment === max) result.assessment.push(sentence);
+      else result.plan.push(sentence);
+    });
+    return result;
+  }
+
+  function joinSentences(arr) { return arr.join('. ').trim() + (arr.length ? '.' : ''); }
+
+  function setField(id, val) {
+    var el = document.getElementById('scribeField_' + id);
+    if (el) el.value = val;
+  }
+
+  function generateSOAP(c, encounter, detail) {
+    setField('S', joinSentences(c.subjective));
+    var obj = joinSentences(c.objective);
+    if (!c.objective.length && encounter === 'ketamine_session') obj = 'Ketamine administered per protocol. Vitals monitored throughout session. Patient tolerated procedure without adverse events.';
+    setField('O', obj);
+    setField('A', joinSentences(c.assessment) || 'Patient participated in session. Treatment response noted.');
+    setField('P', joinSentences(c.plan) || 'Continue current treatment plan. Follow up as scheduled.');
+  }
+
+  function generateDAP(c, encounter, detail) {
+    // Data = subjective + objective combined
+    setField('D', joinSentences(c.subjective.concat(c.objective)));
+    setField('A', joinSentences(c.assessment) || 'Patient participated in session. Clinical status assessed.');
+    setField('P', joinSentences(c.plan) || 'Continue treatment plan. Follow up as scheduled.');
+  }
+
+  function generateBIRP(c, encounter, detail) {
+    // Behavior = subjective observations about client behavior
+    setField('B', joinSentences(c.subjective));
+    // Intervention = what the clinician did (objective actions)
+    var intervention = joinSentences(c.objective);
+    if (!c.objective.length && encounter === 'ketamine_session') intervention = 'Ketamine administered per established protocol. Vitals monitored. Supportive presence maintained throughout session.';
+    setField('I', intervention);
+    // Response = assessment of how client responded
+    setField('R', joinSentences(c.assessment) || 'Patient engaged with treatment. Response to intervention noted.');
+    setField('P', joinSentences(c.plan) || 'Continue treatment plan. Next session scheduled.');
+  }
+
+  function generateIntake(c, text, detail) {
+    setField('CC', c.subjective.slice(0, 2).join('. ') + (c.subjective.length > 0 ? '.' : ''));
+    setField('HPI', c.subjective.slice(2).join('. ') + (c.subjective.length > 2 ? '.' : ''));
+    setField('PMH', ''); // Can't reliably extract
+    setField('SH', '');
+    setField('MSE', joinSentences(c.objective));
+    setField('IMP', joinSentences(c.assessment.concat(c.plan)));
+  }
+
+  function generateTreatmentPlan(c, text, detail) {
+    setField('DX', '');
+    setField('GOALS', joinSentences(c.plan));
+    setField('OBJ', '');
+    setField('INT', joinSentences(c.objective));
+    setField('PROG', joinSentences(c.assessment));
+  }
+
+  function generateProgress(c, detail) {
+    setField('PRES', joinSentences(c.objective.slice(0, 3)));
+    setField('CONTENT', joinSentences(c.subjective));
+    setField('PROG', joinSentences(c.assessment));
+    setField('PLAN', joinSentences(c.plan));
+  }
+
+  // Session insights — risk flags, themes, areas for exploration
+  function generateInsights(text, lower, classified) {
+    var insights = [];
+
+    // Risk evaluation
+    if (classified.risk.length > 0) {
+      insights.push({ type: 'risk', icon: 'warning', text: 'Risk language detected: "' + classified.risk[0].substring(0, 80) + '..." — Assess with C-SSRS and document safety plan.' });
     }
 
-    // Dose — look for number + mg pattern
-    var doseMatch = text.match(/(\d+\.?\d*)\s*(?:mg|milligram)/i);
-    if (doseMatch) {
-      document.getElementById('scribeExtract_dose').value = doseMatch[1] + ' mg';
+    // Dissociative/ketamine experience themes
+    if (classified.dissociative.length > 0) {
+      insights.push({ type: 'theme', icon: 'psychology', text: 'Altered state experience noted. Integration focus recommended for follow-up.' });
     }
 
-    // Duration — look for number + min/minutes
+    // Key themes
+    if (lower.indexOf('sleep') !== -1 || lower.indexOf('insomnia') !== -1) insights.push({ type: 'theme', icon: 'bedtime', text: 'Sleep disturbance mentioned. Consider sleep hygiene assessment.' });
+    if (lower.indexOf('relationship') !== -1 || lower.indexOf('partner') !== -1 || lower.indexOf('marriage') !== -1) insights.push({ type: 'theme', icon: 'favorite', text: 'Relationship concerns raised. May benefit from couples or family work.' });
+    if (lower.indexOf('substance') !== -1 || lower.indexOf('alcohol') !== -1 || lower.indexOf('drinking') !== -1 || lower.indexOf('drug') !== -1) insights.push({ type: 'theme', icon: 'local_bar', text: 'Substance use discussed. Monitor and consider AUDIT/DAST screening.' });
+    if (lower.indexOf('trauma') !== -1 || lower.indexOf('ptsd') !== -1 || lower.indexOf('abuse') !== -1) insights.push({ type: 'theme', icon: 'shield', text: 'Trauma content present. Consider PCL-5 administration and trauma-focused approach.' });
+    if (lower.indexOf('medication') !== -1 || lower.indexOf('prescri') !== -1 || lower.indexOf('side effect') !== -1) insights.push({ type: 'theme', icon: 'medication', text: 'Medication discussion noted. Document med reconciliation.' });
+    if (lower.indexOf('improve') !== -1 || lower.indexOf('better') !== -1 || lower.indexOf('progress') !== -1) insights.push({ type: 'theme', icon: 'trending_up', text: 'Positive progress noted. Document treatment gains for continuity.' });
+
+    // Areas for deeper exploration
+    if (lower.indexOf('avoid') !== -1 || lower.indexOf('don\'t want to talk') !== -1) insights.push({ type: 'explore', icon: 'explore', text: 'Avoidance pattern detected. May warrant gentle exploration in future session.' });
+
+    var container = document.getElementById('scribeInsightsBody');
+    if (insights.length === 0) {
+      document.getElementById('scribeInsights').style.display = 'none';
+      return;
+    }
+
+    document.getElementById('scribeInsights').style.display = '';
+    container.innerHTML = insights.map(function(ins) {
+      return '<div class="scribe-insight-item' + (ins.type === 'risk' ? ' risk' : '') + '">' +
+        '<span class="material-symbols-outlined" style="color:' + (ins.type === 'risk' ? 'var(--error)' : 'var(--accent)') + ';">' + ins.icon + '</span>' +
+        '<span>' + ins.text + '</span></div>';
+    }).join('');
+  }
+
+  // CPT billing code suggestions
+  function generateBillingCodes(encounterType, lower, text) {
+    var codes = [];
+    var duration = 0;
     var durMatch = text.match(/(\d+)\s*(?:min|minute)/i);
-    if (durMatch) {
-      document.getElementById('scribeExtract_duration').value = durMatch[1] + ' min';
+    if (durMatch) duration = parseInt(durMatch[1]);
+
+    if (encounterType === 'ketamine_session') {
+      if (lower.indexOf(' iv ') !== -1 || lower.indexOf('intravenous') !== -1 || lower.indexOf('infusion') !== -1) {
+        codes.push(CPT_CODES.ketamine_session[0]); // 96365
+        if (duration > 60) codes.push(CPT_CODES.ketamine_session[1]); // 96366
+      } else if (lower.indexOf(' im ') !== -1 || lower.indexOf('intramuscular') !== -1 || lower.indexOf('injection') !== -1) {
+        codes.push(CPT_CODES.ketamine_session[2]); // 96372
+      }
+      // Add psychotherapy add-on if integration work happened
+      if (lower.indexOf('process') !== -1 || lower.indexOf('integration') !== -1 || lower.indexOf('therapy') !== -1 || lower.indexOf('discuss') !== -1) {
+        codes.push(CPT_CODES.psychotherapy[2]); // 90833 add-on
+      }
+    } else if (encounterType === 'initial_consult' || encounterType === 'psychiatric_intake') {
+      codes.push(CPT_CODES.evaluation[3]); // 99205
+      codes.push(CPT_CODES.misc[2]); // 90791
+    } else if (encounterType === 'integration') {
+      if (duration >= 53) codes.push(CPT_CODES.psychotherapy[1]); // 90837
+      else codes.push(CPT_CODES.psychotherapy[0]); // 90834
+    } else if (encounterType === 'followup') {
+      if (duration >= 53) codes.push(CPT_CODES.psychotherapy[1]);
+      else if (duration >= 38) codes.push(CPT_CODES.psychotherapy[0]);
+      codes.push(CPT_CODES.evaluation[1]); // 99214
+    } else if (encounterType === 'crisis') {
+      codes.push(CPT_CODES.crisis[0]); // 90839
+      if (duration > 60) codes.push(CPT_CODES.crisis[1]); // 90840
+    } else if (encounterType === 'group_session') {
+      codes.push(CPT_CODES.group[0]); // 90853
     }
 
-    // Side effects
+    // Check for assessment instruments
+    if (lower.indexOf('phq') !== -1 || lower.indexOf('gad') !== -1 || lower.indexOf('pcl') !== -1 || lower.indexOf('screening') !== -1 || lower.indexOf('questionnaire') !== -1) {
+      codes.push(CPT_CODES.misc[1]); // 96127
+    }
+
+    // Interactive complexity
+    if (lower.indexOf('interpreter') !== -1 || lower.indexOf('family member') !== -1 || lower.indexOf('guardian') !== -1 || lower.indexOf('play therapy') !== -1) {
+      codes.push(CPT_CODES.misc[0]); // 90785
+    }
+
+    var container = document.getElementById('scribeCodingBody');
+    if (codes.length === 0) { document.getElementById('scribeCoding').style.display = 'none'; return; }
+
+    document.getElementById('scribeCoding').style.display = '';
+    container.innerHTML = codes.map(function(c) {
+      return '<div class="scribe-code-item">' +
+        '<div><span class="scribe-code-item__code">' + c.code + '</span></div>' +
+        '<div><div class="scribe-code-item__desc">' + c.desc + '</div>' +
+        '<div class="scribe-code-item__justification">' + c.justification + '</div></div></div>';
+    }).join('');
+  }
+
+  // After-visit summary (patient-facing)
+  function generateAVS(text, encounterType) {
+    var lower = text.toLowerCase();
+    var avs = '';
+
+    var encounterNames = {
+      ketamine_session: 'ketamine therapy session', initial_consult: 'initial consultation',
+      psychiatric_intake: 'psychiatric evaluation', integration: 'integration therapy session',
+      followup: 'follow-up appointment', group_session: 'group therapy session',
+      telehealth: 'telehealth visit', crisis: 'crisis intervention session',
+    };
+
+    avs += 'Thank you for attending your ' + (encounterNames[encounterType] || 'appointment') + ' today.\n\n';
+
+    if (encounterType === 'ketamine_session') {
+      var route = document.getElementById('scribeExtract_route').value;
+      var dose = document.getElementById('scribeExtract_dose').value;
+      avs += 'Treatment Summary:\n';
+      if (route || dose) avs += '- Medication: Ketamine' + (route ? ' (' + route + ')' : '') + (dose ? ', ' + dose : '') + '\n';
+      avs += '- Please avoid driving or operating heavy machinery for 24 hours.\n';
+      avs += '- Stay hydrated and rest as needed.\n';
+      avs += '- Contact our office if you experience persistent nausea, severe headache, or unusual symptoms.\n\n';
+    }
+
+    // Extract plan items for patient
+    var planField = document.getElementById('scribeField_P') || document.getElementById('scribeField_PLAN');
+    if (planField && planField.value) {
+      avs += 'Next Steps:\n';
+      planField.value.split('.').filter(Boolean).forEach(function(item) {
+        if (item.trim()) avs += '- ' + item.trim() + '\n';
+      });
+      avs += '\n';
+    }
+
+    avs += 'If you have questions or concerns before your next appointment, please contact our office.\n';
+    avs += 'In case of emergency, call 911 or the 988 Suicide & Crisis Lifeline.';
+
+    document.getElementById('scribeAVSText').value = avs;
+    document.getElementById('scribeAVS').style.display = '';
+  }
+
+  // Clinical data extraction
+  function extractClinicalData(text) {
+    if (text.indexOf('intravenous') !== -1 || text.indexOf(' iv ') !== -1 || text.indexOf('iv infusion') !== -1) document.getElementById('scribeExtract_route').value = 'IV';
+    else if (text.indexOf('intramuscular') !== -1 || text.indexOf(' im ') !== -1) document.getElementById('scribeExtract_route').value = 'IM';
+    else if (text.indexOf('sublingual') !== -1 || text.indexOf(' sl ') !== -1) document.getElementById('scribeExtract_route').value = 'Sublingual';
+    else if (text.indexOf('intranasal') !== -1 || text.indexOf('nasal') !== -1) document.getElementById('scribeExtract_route').value = 'Intranasal';
+
+    var doseMatch = text.match(/(\d+\.?\d*)\s*(?:mg|milligram)/i);
+    if (doseMatch) document.getElementById('scribeExtract_dose').value = doseMatch[1] + ' mg';
+
+    var durMatch = text.match(/(\d+)\s*(?:min|minute)/i);
+    if (durMatch) document.getElementById('scribeExtract_duration').value = durMatch[1] + ' min';
+
     var sideEffects = [];
-    if (text.indexOf('nausea') !== -1) sideEffects.push('nausea');
-    if (text.indexOf('dizziness') !== -1 || text.indexOf('dizzy') !== -1) sideEffects.push('dizziness');
-    if (text.indexOf('headache') !== -1) sideEffects.push('headache');
-    if (text.indexOf('dissociation') !== -1 || text.indexOf('dissociative') !== -1) sideEffects.push('dissociation');
-    if (text.indexOf('anxiety') !== -1 && text.indexOf('no anxiety') === -1) sideEffects.push('anxiety');
-    if (text.indexOf('hypertension') !== -1) sideEffects.push('hypertension');
-    if (text.indexOf('blurred vision') !== -1) sideEffects.push('blurred vision');
+    ['nausea', 'dizziness', 'headache', 'dissociation', 'hypertension', 'blurred vision', 'vomiting', 'anxiety', 'tachycardia', 'drowsiness', 'emergence reaction'].forEach(function(se) {
+      if (text.indexOf(se) !== -1 && text.indexOf('no ' + se) === -1 && text.indexOf('denies ' + se) === -1) sideEffects.push(se);
+    });
     document.getElementById('scribeExtract_sideEffects').value = sideEffects.length ? sideEffects.join(', ') : 'None reported';
 
-    // Response
-    if (text.indexOf('well tolerated') !== -1 || text.indexOf('tolerated well') !== -1 || text.indexOf('good response') !== -1) {
-      document.getElementById('scribeExtract_response').value = 'Good';
-    } else if (text.indexOf('moderate') !== -1 && text.indexOf('response') !== -1) {
-      document.getElementById('scribeExtract_response').value = 'Moderate';
-    } else if (text.indexOf('poor') !== -1 && text.indexOf('response') !== -1) {
-      document.getElementById('scribeExtract_response').value = 'Poor';
-    }
+    if (text.indexOf('well tolerated') !== -1 || text.indexOf('tolerated well') !== -1 || text.indexOf('good response') !== -1) document.getElementById('scribeExtract_response').value = 'Good';
+    else if (text.indexOf('moderate response') !== -1 || text.indexOf('partial response') !== -1) document.getElementById('scribeExtract_response').value = 'Moderate';
+    else if (text.indexOf('poor response') !== -1 || text.indexOf('no improvement') !== -1) document.getElementById('scribeExtract_response').value = 'Poor';
 
-    // Mood score patterns (e.g., "mood 3 out of 10", "mood went from 3 to 7")
     var moodMatch = text.match(/mood.*?(\d+).*?(?:to|→|->).*?(\d+)/i);
-    if (moodMatch) {
-      document.getElementById('scribeExtract_mood').value = moodMatch[1] + '/10 → ' + moodMatch[2] + '/10';
-    }
+    if (moodMatch) document.getElementById('scribeExtract_mood').value = moodMatch[1] + '/10 → ' + moodMatch[2] + '/10';
   }
 
+  // Save note from scribe
   function saveScribeNote() {
     var patientId = document.getElementById('scribePatientSelect').value;
-    if (!patientId) {
-      showToast('Please select a patient before saving', 'error');
-      return;
-    }
+    if (!patientId) { showToast('Please select a patient before saving', 'error'); return; }
 
-    var s = document.getElementById('scribeSoap_S').value;
-    var o = document.getElementById('scribeSoap_O').value;
-    var a = document.getElementById('scribeSoap_A').value;
-    var p = document.getElementById('scribeSoap_P').value;
+    var format = document.getElementById('scribeNoteFormat').value;
+    var def = NOTE_FORMATS[format];
+    if (!def) return;
 
-    if (!s && !o && !a && !p) {
-      showToast('Generate or write a SOAP note before saving', 'error');
-      return;
-    }
+    // Check if any field has content
+    var hasContent = false;
+    def.fields.forEach(function(f) {
+      var el = document.getElementById('scribeField_' + f.id);
+      if (el && el.value.trim()) hasContent = true;
+    });
+    if (!hasContent) { showToast('Generate or write a note before saving', 'error'); return; }
 
     var encounterType = document.getElementById('scribeEncounterType').value;
     var data = {
       patient_id: patientId,
       note_date: new Date().toISOString().slice(0, 10),
-      note_type: encounterType === 'ketamine_session' ? 'soap' : encounterType,
+      note_type: encounterType,
+      note_format: format,
       provider: currentUserEmail,
-      subjective: s,
-      objective: o,
-      assessment: a,
-      plan: p,
       status: 'draft',
       scribe_transcript: getScribeText(),
-      scribe_extracts: JSON.stringify({
-        route: document.getElementById('scribeExtract_route').value,
-        dose: document.getElementById('scribeExtract_dose').value,
-        duration: document.getElementById('scribeExtract_duration').value,
-        response: document.getElementById('scribeExtract_response').value,
-        side_effects: document.getElementById('scribeExtract_sideEffects').value,
-        mood: document.getElementById('scribeExtract_mood').value,
-      }),
     };
 
-    saveRecord('notes', data).then(function(result) {
-      showToast('Scribe note saved as draft', 'success');
-      auditLog('scribe_save', 'notes', { patient_id: patientId, note_id: result.id });
-
-      // Add to scribe history
-      var patient = store.patients.find(function(x) { return x.id === patientId; });
-      scribeSessions.unshift({
-        id: result.id,
-        patient_name: patient ? patient.first_name + ' ' + patient.last_name : 'Unknown',
-        date: data.note_date,
-        encounter_type: encounterType,
-        word_count: getScribeText().trim().split(/\s+/).length,
+    // Map fields to standard SOAP columns + extras as JSON
+    if (format === 'soap') {
+      data.subjective = document.getElementById('scribeField_S').value;
+      data.objective = document.getElementById('scribeField_O').value;
+      data.assessment = document.getElementById('scribeField_A').value;
+      data.plan = document.getElementById('scribeField_P').value;
+    } else {
+      // Store all fields as JSON for non-SOAP formats
+      var fields = {};
+      def.fields.forEach(function(f) {
+        var el = document.getElementById('scribeField_' + f.id);
+        if (el) fields[f.id] = el.value;
       });
+      data.subjective = JSON.stringify(fields);
+      data.objective = format; // store format type for reconstruction
+    }
+
+    // Store extracts and billing suggestions
+    data.scribe_extracts = JSON.stringify({
+      route: document.getElementById('scribeExtract_route').value,
+      dose: document.getElementById('scribeExtract_dose').value,
+      duration: document.getElementById('scribeExtract_duration').value,
+      response: document.getElementById('scribeExtract_response').value,
+      side_effects: document.getElementById('scribeExtract_sideEffects').value,
+      mood: document.getElementById('scribeExtract_mood').value,
+      avs: document.getElementById('scribeAVSText').value,
+    });
+
+    saveRecord('notes', data).then(function(result) {
+      showToast('Note saved as draft (' + NOTE_FORMATS[format].label + ')', 'success');
+      auditLog('scribe_save', 'notes', { patient_id: patientId, note_id: result.id, format: format });
       renderScribeHistory();
       clearScribe();
     }).catch(function(e) {
@@ -1750,9 +2035,9 @@
     sel.innerHTML = '<option value="">Select patient...</option>' + options;
     if (current) sel.value = current;
 
+    renderNoteFormatFields();
     renderScribeHistory();
 
-    // Show speech support status
     if (!SpeechRecognition) {
       document.getElementById('scribeStatus').textContent = 'Voice not supported — type or paste notes';
       document.getElementById('scribeRecordBtn').style.opacity = '0.5';
@@ -1761,26 +2046,20 @@
 
   function renderScribeHistory() {
     var container = document.getElementById('scribeHistory');
-    // Show recent notes created via scribe
-    var scribeNotes = store.notes
-      .filter(function(n) { return n.scribe_transcript; })
-      .slice(0, 5);
-
-    if (scribeNotes.length === 0 && scribeSessions.length === 0) {
-      container.innerHTML = '<div style="color:var(--text-muted);font-size:0.8125rem;padding:0.5rem;">No scribe notes yet.</div>';
+    var scribeNotes = store.notes.filter(function(n) { return n.scribe_transcript; }).slice(0, 8);
+    if (scribeNotes.length === 0) {
+      container.innerHTML = '<div style="color:var(--text-muted);font-size:0.8125rem;padding:0.5rem;">No scribe notes yet. Start a session to create your first note.</div>';
       return;
     }
-
-    var items = scribeNotes.map(function(n) {
+    container.innerHTML = scribeNotes.map(function(n) {
       var patient = store.patients.find(function(p) { return p.id === n.patient_id; });
       var name = patient ? patient.first_name + ' ' + patient.last_name : 'Unknown';
+      var fmt = n.note_format ? (NOTE_FORMATS[n.note_format] ? NOTE_FORMATS[n.note_format].label : n.note_format.toUpperCase()) : 'SOAP';
       return '<div class="scribe-history-item">' +
-        '<div><strong>' + name + '</strong><br><span class="scribe-history-item__meta">' + (n.note_date || '') + ' &middot; ' + formatNoteType(n.note_type) + '</span></div>' +
+        '<div><strong>' + name + '</strong><br><span class="scribe-history-item__meta">' + (n.note_date || '') + ' &middot; ' + fmt + ' &middot; ' + formatApptType(n.note_type) + '</span></div>' +
         '<span class="badge badge--' + (n.status === 'signed' ? 'signed' : 'draft') + '">' + (n.status || 'Draft') + '</span>' +
         '</div>';
-    });
-
-    container.innerHTML = items.join('');
+    }).join('');
   }
 
   // ============================================

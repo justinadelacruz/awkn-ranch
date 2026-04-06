@@ -412,88 +412,124 @@
 
         <!-- ====== SCRIBE ====== -->
         <section class="tab-panel" data-panel="scribe">
+          <!-- Session setup bar -->
+          <div class="scribe-setup-bar">
+            <div class="scribe-setup-bar__left">
+              <select id="scribePatientSelect" class="scribe-patient-select">
+                <option value="">Select patient...</option>
+              </select>
+              <select id="scribeEncounterType">
+                <option value="ketamine_session">Ketamine Session</option>
+                <option value="initial_consult">Initial Consultation</option>
+                <option value="psychiatric_intake">Psychiatric Intake</option>
+                <option value="integration">Integration Therapy</option>
+                <option value="followup">Follow-Up</option>
+                <option value="group_session">Group Session</option>
+                <option value="telehealth">Telehealth</option>
+                <option value="crisis">Crisis Intervention</option>
+              </select>
+              <select id="scribeNoteFormat">
+                <option value="soap">SOAP</option>
+                <option value="dap">DAP</option>
+                <option value="birp">BIRP</option>
+                <option value="intake">Intake Note</option>
+                <option value="treatment_plan">Treatment Plan</option>
+                <option value="progress">Progress Note</option>
+              </select>
+              <select id="scribeDetailLevel">
+                <option value="standard">Standard Detail</option>
+                <option value="brief">Brief</option>
+                <option value="detailed">Detailed</option>
+                <option value="insurance">Insurance-Ready</option>
+              </select>
+            </div>
+            <div class="scribe-setup-bar__right">
+              <label class="scribe-upload-btn btn-secondary" id="scribeUploadBtn">
+                <span class="material-symbols-outlined">upload_file</span>
+                Upload Audio
+                <input type="file" id="scribeAudioInput" accept="audio/*,.wav,.mp3,.m4a,.ogg,.webm" style="display:none;">
+              </label>
+            </div>
+          </div>
+
           <div class="scribe-layout">
             <!-- Left: Recording & Transcript -->
             <div class="scribe-panel">
               <div class="card">
                 <div class="card__header">
-                  <h3>Clinical Scribe</h3>
-                  <div style="display:flex;gap:0.5rem;align-items:center;">
-                    <select id="scribePatientSelect" class="scribe-patient-select">
-                      <option value="">Select patient...</option>
-                    </select>
-                    <select id="scribeEncounterType">
-                      <option value="ketamine_session">Ketamine Session</option>
-                      <option value="initial_consult">Initial Consultation</option>
-                      <option value="integration">Integration Therapy</option>
-                      <option value="followup">Follow-Up</option>
-                      <option value="telehealth">Telehealth</option>
-                    </select>
+                  <h3>
+                    <span class="material-symbols-outlined" style="vertical-align:middle;margin-right:0.25rem;color:var(--accent);">mic</span>
+                    Ambient Scribe
+                  </h3>
+                  <div class="scribe-transcript-actions">
+                    <span id="scribeWordCount" style="font-size:0.75rem;color:var(--text-muted);">0 words</span>
+                    <button class="btn-text" id="scribeClearBtn">Clear</button>
                   </div>
                 </div>
-                <div class="card__body">
+                <div class="card__body" style="padding-top:0;">
                   <!-- Recording controls -->
                   <div class="scribe-controls">
                     <button class="scribe-record-btn" id="scribeRecordBtn">
                       <span class="material-symbols-outlined" id="scribeRecordIcon">mic</span>
-                      <span id="scribeRecordLabel">Start Recording</span>
+                      <span id="scribeRecordLabel">Start Session</span>
                     </button>
                     <div class="scribe-timer" id="scribeTimer">00:00</div>
                     <div class="scribe-status" id="scribeStatus">Ready</div>
                   </div>
 
                   <!-- Live transcript -->
-                  <div class="scribe-transcript-container">
-                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">Transcript</label>
-                    <div class="scribe-transcript" id="scribeTranscript" contenteditable="true" placeholder="Transcript will appear here as you speak... or type/paste notes directly."></div>
-                    <div class="scribe-transcript-actions">
-                      <span id="scribeWordCount" style="font-size:0.75rem;color:var(--text-muted);">0 words</span>
-                      <button class="btn-text" id="scribeClearBtn">Clear</button>
+                  <div class="scribe-transcript" id="scribeTranscript" contenteditable="true" placeholder="Start a session to begin ambient listening, or type/paste your session notes here..."></div>
+
+                  <!-- Prior session context -->
+                  <div class="scribe-prior-context" id="scribePriorContext" style="display:none;">
+                    <div class="scribe-prior-context__header">
+                      <span class="material-symbols-outlined" style="font-size:16px;">history</span>
+                      <span>Prior Session Context</span>
+                      <button class="btn-text" id="scribePriorToggle" style="font-size:0.75rem;">Hide</button>
                     </div>
+                    <div class="scribe-prior-context__body" id="scribePriorBody"></div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- Right: Structured Output -->
+            <!-- Right: Generated Output -->
             <div class="scribe-panel">
               <div class="card">
                 <div class="card__header">
-                  <h3>Structured Note</h3>
+                  <h3>
+                    <span class="material-symbols-outlined" style="vertical-align:middle;margin-right:0.25rem;color:var(--accent);">auto_awesome</span>
+                    <span id="scribeNoteFormatLabel">SOAP Note</span>
+                  </h3>
                   <div style="display:flex;gap:0.5rem;">
                     <button class="btn-secondary" id="scribeGenerateBtn">
                       <span class="material-symbols-outlined">auto_awesome</span>
-                      Generate SOAP
+                      Generate Note
                     </button>
                     <button class="btn-primary" id="scribeSaveNoteBtn">
                       <span class="material-symbols-outlined">save</span>
-                      Save Note
+                      Save
                     </button>
                   </div>
                 </div>
-                <div class="card__body">
-                  <div class="scribe-soap">
-                    <div class="form-group">
-                      <label>Subjective</label>
-                      <textarea id="scribeSoap_S" rows="4" placeholder="Patient's reported symptoms, complaints, and history..."></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Objective</label>
-                      <textarea id="scribeSoap_O" rows="4" placeholder="Vitals, observations, exam findings, medication administered..."></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Assessment</label>
-                      <textarea id="scribeSoap_A" rows="3" placeholder="Clinical impressions, diagnosis, treatment response..."></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label>Plan</label>
-                      <textarea id="scribeSoap_P" rows="3" placeholder="Follow-up, medication changes, next session plan..."></textarea>
-                    </div>
+                <div class="card__body" style="padding-top:0;">
+                  <!-- Dynamic note fields (SOAP/DAP/BIRP/etc) -->
+                  <div class="scribe-note-fields" id="scribeNoteFields">
+                    <!-- Populated dynamically based on note format -->
                   </div>
 
-                  <!-- Quick-fill sections for ketamine sessions -->
+                  <!-- Session Insights -->
+                  <div class="scribe-insights" id="scribeInsights" style="display:none;">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">
+                      <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">psychology</span>
+                      Session Insights
+                    </label>
+                    <div class="scribe-insights-grid" id="scribeInsightsBody"></div>
+                  </div>
+
+                  <!-- Ketamine / Clinical Extracts -->
                   <div class="scribe-quickfill" id="scribeQuickfill">
-                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">Quick Extract</label>
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">Clinical Extracts</label>
                     <div class="scribe-extract-grid">
                       <div class="scribe-extract-item">
                         <label>Route</label>
@@ -522,12 +558,31 @@
                     </div>
                   </div>
 
-                  <!-- Previous scribe sessions -->
-                  <div style="margin-top:1.5rem;">
-                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">Recent Scribe Notes</label>
-                    <div id="scribeHistory" class="scribe-history"></div>
+                  <!-- Billing / CPT Coding -->
+                  <div class="scribe-coding" id="scribeCoding" style="display:none;">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">
+                      <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">receipt</span>
+                      Suggested Billing Codes
+                    </label>
+                    <div id="scribeCodingBody"></div>
+                  </div>
+
+                  <!-- After-Visit Summary -->
+                  <div class="scribe-avs" id="scribeAVS" style="display:none;">
+                    <label style="font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;display:block;">
+                      <span class="material-symbols-outlined" style="font-size:14px;vertical-align:middle;">summarize</span>
+                      After-Visit Summary
+                      <span style="font-size:0.65rem;color:var(--accent);font-weight:400;margin-left:0.5rem;">Patient-Facing</span>
+                    </label>
+                    <textarea id="scribeAVSText" rows="4" placeholder="Plain-language summary for the patient..." style="width:100%;padding:0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:var(--font);font-size:0.8125rem;line-height:1.6;resize:vertical;"></textarea>
                   </div>
                 </div>
+              </div>
+
+              <!-- Recent scribe notes -->
+              <div class="card" style="margin-top:1rem;">
+                <div class="card__header"><h3>Recent Scribe Notes</h3></div>
+                <div class="card__body" id="scribeHistory" style="padding-top:0;"></div>
               </div>
             </div>
           </div>
