@@ -1,12 +1,12 @@
 {
-  "version": "v260404.24 10:02p",
-  "release": 24,
-  "sha": "cbbeb7c",
-  "fullSha": "cbbeb7cb3368e6cc65281551b79b03e886d43039",
+  "version": "v260407.01 3:25a",
+  "release": 1,
+  "sha": "4f156a8",
+  "fullSha": "4f156a8f48fab3a318f35f4b7e7cd738684b9a64",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-04T17:02:15-05:00",
-  "commits": [{"sha":"30da333","message":"Fix: use Supabase CDN URL instead of missing vendor path","author":"Justin DeLaCruz"},{"sha":"d7f72fb","message":"Merge remote-tracking branch 'origin/claude/mystifying-jepsen'","author":"Justin DeLaCruz"},{"sha":"cbbeb7c","message":"Merge branch 'main' of https://github.com/justinadelacruz/awkn-ranch","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-06T22:24:59-05:00",
+  "commits": [{"sha":"4f156a8","message":"Add Image Studio: standalone AI image generator powered by Gemini 2.5 Flash Image","author":"Justin DeLaCruz"}]
 }
