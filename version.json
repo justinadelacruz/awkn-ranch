@@ -1,12 +1,12 @@
 {
-  "version": "v260407.01 3:25a",
-  "release": 1,
-  "sha": "4f156a8",
-  "fullSha": "4f156a8f48fab3a318f35f4b7e7cd738684b9a64",
+  "version": "v260407.02 3:36a",
+  "release": 2,
+  "sha": "539c4bf",
+  "fullSha": "539c4bf941d93eed1bb6b3b2af974987eb87a177",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-06T22:24:59-05:00",
-  "commits": [{"sha":"4f156a8","message":"Add Image Studio: standalone AI image generator powered by Gemini 2.5 Flash Image","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-06T22:35:59-05:00",
+  "commits": [{"sha":"539c4bf","message":"Fix Image Studio auth: explicitly pass session JWT to Edge Function","author":"Justin DeLaCruz"}]
 }
