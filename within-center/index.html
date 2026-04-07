@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Within Center | Ceremonial Ketamine Therapy in Austin, TX</title>
+  <meta name="description" content="The Within Center offers ceremonial, guided ketamine therapy in an outpatient setting in Austin, Texas. A sister practice to AWKN Ranch.">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="The Within Center — Ceremonial Ketamine Therapy">
+  <meta property="og:description" content="Guided, ceremonial ketamine therapy in Austin, Texas. A sister practice to AWKN Ranch.">
+  <meta property="og:type" content="website">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "The Within Center",
+    "description": "Ceremonial, guided ketamine therapy in an outpatient setting in Austin, Texas.",
+    "url": "https://within.center",
+    "telephone": "+1-512-969-2399",
+    "email": "intake@within.center",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "7600 Stillridge Dr",
+      "addressLocality": "Austin",
+      "addressRegion": "TX",
+      "postalCode": "78736",
+      "addressCountry": "US"
+    },
+    "medicalSpecialty": "Psychiatry"
+  }
+  </script>
+
+  <style>
+    :root {
+      --gold: #c9943e;
+      --gold-dark: #a67a2e;
+      --gold-glow: rgba(201,148,62,0.15);
+      --brown: #6b4c3b;
+      --grey: #6b6569;
+      --dark: #1c1618;
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --border: rgba(0,0,0,0.06);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(28,22,24,0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .site-nav.scrolled {
+      background: rgba(250,248,245,0.95);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    .site-nav.scrolled .nav-brand { color: var(--dark); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.3s;
+    }
+    .site-nav.scrolled .nav-links a { color: var(--dark); }
+    .nav-links a:hover { color: var(--gold); }
+
+    @media (max-width: 768px) {
+      .site-nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: 0.58rem; letter-spacing: 0.15em; }
+      .nav-brand { font-size: 1rem; }
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .awknhero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('../pricing/images/dome-exterior.jpeg') center/cover no-repeat;
+      background-color: var(--dark);
+      overflow: hidden;
+    }
+    .awknhero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(28,22,24,0.55) 0%, rgba(28,22,24,0.85) 100%);
+      z-index: 1;
+    }
+    .awknhero-content {
+      position: relative; z-index: 2;
+      max-width: 760px;
+      padding: 7rem 2rem 3rem;
+    }
+    .awknhero-eyebrow {
+      display: inline-block;
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,148,62,0.35);
+      padding: 6px 20px;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+    .awknhero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .awknhero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.85;
+      font-weight: 300;
+    }
+    .awknhero-cta {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 100px;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .awknhero-cta:hover { background: var(--gold-dark); transform: translateY(-1px); }
+
+    /* ── LAYOUT ─────────────────────────────────────────── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 6rem 2rem; }
+    .bg-white { background: var(--white); }
+
+    /* ── SECTION HEADERS ─────────────────────────────────── */
+    .s-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .s-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.8vw, 2.4rem);
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+    .s-desc {
+      font-size: 0.95rem;
+      color: var(--grey);
+      max-width: 600px;
+      line-height: 1.85;
+    }
+    .s-desc.centered { margin-left: auto; margin-right: auto; text-align: center; }
+
+    /* ── PHILOSOPHY ────────────────────────── */
+    .philosophy {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .philosophy-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .philosophy-body {
+      font-size: 0.95rem;
+      color: var(--grey);
+      line-height: 1.9;
+      margin: 1.5rem 0 2rem;
+    }
+    .philosophy-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--brown);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── PHOTO STRIP ─────────────────────────────────── */
+    .photo-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+    }
+
+    /* ── SPLIT BLOCK ───────────────────────── */
+    .split-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 460px;
+      background: var(--white);
+    }
+    .split-block.reverse { direction: rtl; }
+    .split-block.reverse > * { direction: ltr; }
+    .split-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .split-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3.5rem;
+    }
+    .split-text .s-eyebrow { margin-bottom: 0.5rem; }
+    .split-text .s-title { margin-bottom: 1rem; }
+    .split-text p {
+      font-size: 0.92rem;
+      color: var(--grey);
+      line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+
+    /* ── PROCESS / 3-COL ──────────────────────── */
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .col-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .col-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .col-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      opacity: 0.45;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+    .col-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .col-card p {
+      font-size: 0.85rem;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    /* ── CTA BANNER ──────────────────────────────────── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark) 0%, #2c2225 100%);
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.2vw, 2.2rem);
+      color: #fff;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+    }
+    .cta-section p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      margin: 0 auto 2rem;
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT STRIP ───────────────────────────────── */
+    .contact-strip {
+      background: var(--cream);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .contact-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .contact-item {
+      font-size: 0.85rem;
+      color: var(--dark);
+    }
+    .contact-item a {
+      color: var(--dark);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .contact-item a:hover { border-color: var(--gold); }
+    .contact-item .label {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.7rem;
+      color: var(--grey);
+      border-top: 1px solid var(--border);
+    }
+    .site-footer a { color: var(--gold); }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .three-col { grid-template-columns: 1fr; gap: 1.5rem; }
+      .split-block, .split-block.reverse { grid-template-columns: 1fr; }
+      .split-img { height: 320px; }
+      .split-text { padding: 2.5rem 2rem; }
+      .photo-strip { grid-template-columns: 1fr; }
+      .photo-strip img { height: 240px; }
+      section { padding: 4rem 1.25rem; }
+      .contact-row { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAV ═══════════════════════════════════════════ -->
+  <nav class="site-nav" id="siteNav">
+    <a href="/within-center/" class="nav-brand">The Within Center</a>
+    <ul class="nav-links">
+      <li><a href="#ceremony">Ceremonial Ketamine</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══ HERO ═══════════════════════════════════════════ -->
+  <header class="awknhero">
+    <div class="awknhero-content">
+      <div class="awknhero-eyebrow">Within Center &middot; Ceremonial Ketamine &middot; Austin, TX</div>
+      <h1>A Sacred Space<br>for Going Within</h1>
+      <p>Ceremonial, guided ketamine therapy held with intention &mdash; offered in an outpatient setting and supported by a complete healing container.</p>
+      <a href="#contact" class="awknhero-cta">Begin the Conversation</a>
+    </div>
+  </header>
+
+  <!-- ══ PHILOSOPHY ═══════════════════════════════════ -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <div class="s-eyebrow">Welcome</div>
+      <div class="s-title">Healing Requires Space</div>
+      <p class="philosophy-body">We approach healing as a sacred process &mdash; guided by intention, presence, and care. The ceremonial container creates a safe and supportive space where the nervous system can soften, insight can emerge, and deeper healing can begin.</p>
+      <div class="philosophy-quote">Within a sacred container of support and integration, insight becomes embodied and transformation becomes lasting.</div>
+    </div>
+  </section>
+
+  <!-- ══ PHOTO STRIP ════════════════════════════════ -->
+  <div class="photo-strip">
+    <img src="../pricing/images/dome-interior.jpeg" alt="Honeycomb dome ceremony space with cushions and natural light">
+    <img src="../pricing/images/yurts.jpg" alt="Private healing yurts nestled under live oaks">
+    <img src="../pricing/images/dome-exterior.jpeg" alt="Geodesic honeycomb dome under the oaks">
+  </div>
+
+  <!-- ══ CEREMONIAL KETAMINE (split) ══════════════════ -->
+  <div class="split-block reverse" id="ceremony">
+    <img src="../pricing/images/lounge.jpeg" alt="Ceremony space at The Within Center" class="split-img">
+    <div class="split-text">
+      <div class="s-eyebrow">Ceremonial Ketamine</div>
+      <div class="s-title">A Guided Experience, Held with Care</div>
+      <p>This is not a procedure. It is a practice. Each session is offered as an intentional container &mdash; prepared, witnessed, and integrated alongside guides who hold the space with experience and discernment.</p>
+      <p>We move slowly. We honor the medicine. And we trust the inner work that unfolds when the conditions are right.</p>
+    </div>
+  </div>
+
+  <!-- ══ HOW IT WORKS ════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="container">
+      <div style="text-align:center;">
+        <div class="s-eyebrow">The Journey</div>
+        <div class="s-title">How It Works</div>
+        <p class="s-desc centered">A thoughtful, four-step path from first conversation to lasting integration.</p>
+      </div>
+      <div class="three-col" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="col-card">
+          <div class="col-num">01</div>
+          <h3>Consultation</h3>
+          <p>A free conversation with our team to understand your goals and whether this work is right for you.</p>
+        </div>
+        <div class="col-card">
+          <div class="col-num">02</div>
+          <h3>Medical Clearance</h3>
+          <p>Intake and screening with our MAPS-trained nurse practitioner to ensure safe, personalized care.</p>
+        </div>
+        <div class="col-card">
+          <div class="col-num">03</div>
+          <h3>Preparation</h3>
+          <p>A dedicated session to set intention, establish safety, and prepare for the ceremonial experience.</p>
+        </div>
+        <div class="col-card">
+          <div class="col-num">04</div>
+          <h3>Ceremony &amp; Integration</h3>
+          <p>Guided ceremony in a sacred container, followed by coaching to translate insight into lasting change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ABOUT (split) ════════════════════════════════ -->
+  <div class="split-block" id="about">
+    <img src="../pricing/images/grounds.jpg" alt="Oak groves and grounds at AWKN Ranch" class="split-img">
+    <div class="split-text">
+      <div class="s-eyebrow">About Us</div>
+      <div class="s-title">Sacred Medicine, Met with Rigor</div>
+      <p>The Within Center was built by people who believe medicine and meaning belong in the same room. We hold ketamine as the sacred tool it is &mdash; and we hold the people in our care with the discernment, training, and intention that the work deserves.</p>
+      <p>We are a sister practice to AWKN Ranch, sharing values of intentional living, embodied healing, and quiet reverence for the inner journey. Clients may choose to extend their experience by staying at the ranch &mdash; not as treatment, but as a supportive environment for integration, regulation, and reflection.</p>
+    </div>
+  </div>
+
+  <!-- ══ CTA ═════════════════════════════════════════ -->
+  <section class="cta-section">
+    <h2>Begin Your Journey</h2>
+    <p>Schedule a free consultation with our team to learn whether this work is right for you. We will listen first.</p>
+    <a href="tel:5129692399" class="awknhero-cta">Call 512-969-2399</a>
+  </section>
+
+  <!-- ══ CONTACT STRIP ═══════════════════════════════ -->
+  <div class="contact-strip" id="contact">
+    <div class="contact-row">
+      <div class="contact-item">
+        <span class="label">Phone</span>
+        <a href="tel:5129692399">512-969-2399</a>
+      </div>
+      <div class="contact-item">
+        <span class="label">Email</span>
+        <a href="mailto:intake@within.center">intake@within.center</a>
+      </div>
+      <div class="contact-item">
+        <span class="label">Address</span>
+        7600 Stillridge Dr<br>Austin, TX 78736
+      </div>
+      <div class="contact-item">
+        <span class="label">Web</span>
+        <a href="https://within.center">within.center</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <footer class="site-footer">
+    &copy; 2026 The Within Center &middot; A sister practice to <a href="https://awknranch.com">AWKN Ranch</a>
+  </footer>
+
+  <script>
+    // Nav background swap on scroll
+    (function () {
+      var nav = document.getElementById('siteNav');
+      function update() {
+        if (window.scrollY > 80) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', update);
+      update();
+    })();
+  </script>
+
+</body>
+</html>
