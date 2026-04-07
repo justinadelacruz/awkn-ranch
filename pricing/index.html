@@ -971,9 +971,8 @@
           document.body.offsetHeight,
           document.documentElement.offsetHeight
         );
-        // Safety: never report a height that's clearly wrong
+        // Safety: never report a height that's clearly too small (layout not ready)
         if (h < 4000) h = 6000;
-        if (h > 9000) h = 9000;
         if (window.parent !== window) {
           window.parent.postMessage({ type: 'awknPricingHeight', height: h }, '*');
         }
