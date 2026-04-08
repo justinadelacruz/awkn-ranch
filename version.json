@@ -1,12 +1,12 @@
 {
-  "version": "v260408.01 2:53a",
-  "release": 1,
-  "sha": "0a9034b",
-  "fullSha": "0a9034bcc5e47926bbf105e0cbee6f4a1dc35f83",
+  "version": "v260408.02 3:02a",
+  "release": 2,
+  "sha": "def7ed0",
+  "fullSha": "def7ed02a84c53cb7fff8d06e1d55103a92b5854",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T21:53:25-05:00",
-  "commits": [{"sha":"0a9034b","message":"Add payroll optimization comparison and update expense ramp","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-07T22:02:45-05:00",
+  "commits": [{"sha":"def7ed0","message":"Fix broken charts: remove orphaned expense detail render call","author":"Justin DeLaCruz"}]
 }
