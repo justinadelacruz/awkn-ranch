@@ -717,6 +717,59 @@ section { padding: 6rem 2rem; }
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(201,148,62,0.35);
 }
+.awknhero-cta.secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: none;
+}
+.awknhero-cta.secondary:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: none;
+}
+
+/* ── PACKAGE FOOTER PRICE + DUAL CTA ─────────────── */
+.pkg-footer-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin: 0 auto 2.5rem;
+}
+.pkg-footer-price .strike {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: line-through;
+}
+.pkg-footer-price .price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 4.2vw, 2.8rem);
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.pkg-footer-price .label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+.pkg-cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+@media (max-width: 560px) {
+  .pkg-cta-buttons { flex-direction: column; align-items: center; }
+  .pkg-cta-buttons .awknhero-cta { width: 100%; max-width: 320px; text-align: center; }
+}
 
 /* ── DARK CTA + CONTACT FOOTER (shared) ─────────── */
 .cta-section {
