@@ -561,6 +561,45 @@
       margin-bottom: 0.4rem;
     }
 
+    /* ── MEDICAL DISCLAIMER ───────────────────────────── */
+    .medical-disclaimer {
+      background: #2f4e41;
+      color: #ffffff;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .medical-disclaimer .container { max-width: 1100px; margin: 0 auto; }
+    .medical-disclaimer .disclaimer-lead {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 950px;
+      margin: 0 auto 1.75rem;
+      color: #ffffff;
+    }
+    .medical-disclaimer .disclaimer-lead strong {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .medical-disclaimer .disclaimer-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0 auto 1.75rem;
+      color: #ffffff;
+    }
+    .medical-disclaimer .disclaimer-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: #ffffff;
+      margin: 0;
+    }
+    @media (max-width: 700px) {
+      .medical-disclaimer { padding: 3.5rem 1.25rem; }
+      .medical-disclaimer .disclaimer-lead,
+      .medical-disclaimer .disclaimer-sub { font-size: 0.95rem; }
+    }
+
     /* ── FOOTER ───────────────────────────────────────── */
     .site-footer {
       text-align: center;
@@ -736,6 +775,15 @@
       </div>
     </div>
   </div>
+
+  <!-- ══ MEDICAL DISCLAIMER ══════════════════════════ -->
+  <section class="medical-disclaimer">
+    <div class="container">
+      <p class="disclaimer-lead"><strong>MEDICAL DISCLAIMER:</strong> This site is for informational purposes only, not medical advice. Consult your physician with health questions. In an emergency, call 911.</p>
+      <p class="disclaimer-sub">Within Center provides safe, transformative care held to the highest standards.</p>
+      <p class="disclaimer-copy">&copy; 2026 Hearth Space Health, Inc.</p>
+    </div>
+  </section>
 
   <!-- ══ FOOTER ══════════════════════════════════════ -->
   <footer class="site-footer">
