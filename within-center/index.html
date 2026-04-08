@@ -868,12 +868,12 @@
         nav.classList.add('menu-is-open');
         panel.setAttribute('aria-hidden', 'false');
         document.body.classList.add('menu-open');
-        // Auto-open the sub so all pages are visible
-        if (sub) {
-          sub.classList.add('open');
-          var firstSub = panel.querySelector('.has-sub');
-          if (firstSub) firstSub.classList.add('active');
-        }
+      }
+      function openSub() {
+        if (!sub) return;
+        sub.classList.add('open');
+        var firstSub = panel.querySelector('.has-sub');
+        if (firstSub) firstSub.classList.add('active');
       }
       function closeMenu() {
         panel.classList.remove('open');
@@ -887,16 +887,27 @@
         isOpen() ? closeMenu() : openMenu();
       });
       backdrop.addEventListener('click', closeMenu);
-      // Submenu toggle — click the "Ceremonial Ketamine" parent
+      // Submenu: open on hover over "Ceremonial Ketamine", click toggles on touch
+      document.querySelectorAll('.menu-panel li.has-sub').forEach(function (li) {
+        li.addEventListener('mouseenter', openSub);
+      });
+      // Close sub when cursor leaves the submenu itself (but not the parent item)
+      if (sub) {
+        sub.addEventListener('mouseleave', closeSub);
+      }
+      // Close sub when hovering a non-has-sub row in the primary panel
+      document.querySelectorAll('.menu-panel li:not(.has-sub)').forEach(function (li) {
+        li.addEventListener('mouseenter', closeSub);
+      });
+      // Touch / click fallback — toggle on tap
       document.querySelectorAll('[data-submenu-toggle]').forEach(function (a) {
         a.addEventListener('click', function (e) {
           e.preventDefault();
           var li = a.parentNode;
-          var wasActive = li.classList.contains('active');
-          closeSub();
-          if (!wasActive && sub) {
-            sub.classList.add('open');
-            li.classList.add('active');
+          if (li.classList.contains('active')) {
+            closeSub();
+          } else {
+            openSub();
           }
         });
       });
