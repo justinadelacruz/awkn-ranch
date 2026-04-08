@@ -49,11 +49,10 @@
       <a href="../">Ceremonial Ketamine Therapy</a>
     </div>
   </nav>
-
   <div class="menu-backdrop" id="menuBackdrop"></div>
   <aside class="menu-panel" id="menuPanel" aria-hidden="true">
     <ul>
-      <li><a href="../" data-menu-link>Ceremonial Ketamine</a></li>
+      <li class="has-sub"><a href="../" data-submenu-toggle>Ceremonial Ketamine</a></li>
       <li><a href="../../#about" data-menu-link>About Us</a></li>
       <li><a href="https://awknranch.com" data-menu-link>Book a Stay at AWKN Ranch</a></li>
     </ul>
@@ -61,9 +60,16 @@
       A sacred container for inner work, held at AWKN Ranch &mdash; Austin, Texas.
     </div>
   </aside>
-
-
-  <header class="page-hero" style="background-color:var(--dark);">
+  <aside class="menu-sub" id="menuSub" aria-hidden="true">
+    <ul>
+      <li><a href="../" class="sub-lead" data-menu-link>What is Ceremonial Ketamine Therapy?</a></li>
+      <li><a href="../discover/" data-menu-link>Discover</a></li>
+      <li><a href="../heal/" data-menu-link>Heal</a></li>
+      <li><a href="../awkn/" data-menu-link>AWKN</a></li>
+      <li><a href="../twin-flame/" data-menu-link>Twin Flame</a></li>
+    </ul>
+  </aside>
+<header class="page-hero" style="background-color:var(--dark);">
     <div class="page-hero-bg" style="background-image:url('../../images/about.jpg');"></div>
     <div class="page-hero-inner">
       <span class="page-hero-eyebrow">Discover Package</span>
@@ -203,11 +209,9 @@
     <p><strong>MEDICAL DISCLAIMER</strong> &middot; This site is for informational purposes only, not medical advice. Consult your physician with health questions. In an emergency, call 911.</p>
     <p style="margin-top:0.6rem;">&copy; 2026 Hearth Space Health, Inc. <span class="disclaimer-sep">&middot;</span> Within Center is a sister practice to <a href="https://awknranch.com" style="color:rgba(255,255,255,0.55);">AWKN Ranch</a></p>
   </footer>
-
-
   <script>
     (function(){var n=document.getElementById('siteNav');function u(){if(window.scrollY>80)n.classList.add('scrolled');else n.classList.remove('scrolled');}window.addEventListener('scroll',u);u();})();
-    (function(){var n=document.getElementById('siteNav'),t=document.getElementById('menuToggle'),p=document.getElementById('menuPanel'),b=document.getElementById('menuBackdrop');function o(){return p.classList.contains('open');}function op(){p.classList.add('open');b.classList.add('open');n.classList.add('menu-is-open');p.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');}function cl(){p.classList.remove('open');b.classList.remove('open');n.classList.remove('menu-is-open');p.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');}t.addEventListener('click',function(){o()?cl():op();});b.addEventListener('click',cl);document.querySelectorAll('[data-menu-link]').forEach(function(a){a.addEventListener('click',cl);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o())cl();});})();
+    (function(){var n=document.getElementById('siteNav'),t=document.getElementById('menuToggle'),p=document.getElementById('menuPanel'),s=document.getElementById('menuSub'),b=document.getElementById('menuBackdrop');function o(){return p.classList.contains('open');}function cs(){if(s)s.classList.remove('open');document.querySelectorAll('.menu-panel li.has-sub').forEach(function(li){li.classList.remove('active');});}function op(){p.classList.add('open');b.classList.add('open');n.classList.add('menu-is-open');p.setAttribute('aria-hidden','false');document.body.classList.add('menu-open');if(s){s.classList.add('open');var f=p.querySelector('.has-sub');if(f)f.classList.add('active');}}function cl(){p.classList.remove('open');b.classList.remove('open');n.classList.remove('menu-is-open');p.setAttribute('aria-hidden','true');document.body.classList.remove('menu-open');cs();}t.addEventListener('click',function(){o()?cl():op();});b.addEventListener('click',cl);document.querySelectorAll('[data-submenu-toggle]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var li=a.parentNode;var wa=li.classList.contains('active');cs();if(!wa&&s){s.classList.add('open');li.classList.add('active');}});});document.querySelectorAll('[data-menu-link]').forEach(function(a){a.addEventListener('click',cl);});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&o())cl();});})();
   </script>
 </body>
 </html>

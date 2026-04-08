@@ -179,6 +179,68 @@ img { display: block; max-width: 100%; }
   background: rgba(201,148,62,0.05);
 }
 .menu-panel a:hover::after { color: var(--gold); transform: translateX(6px); }
+.menu-panel li.has-sub.active > a { color: var(--gold); background: rgba(201,148,62,0.06); }
+.menu-panel li.has-sub.active > a::after { color: var(--gold); transform: translateX(6px); }
+
+/* ── SUBMENU (slides out right of primary panel) ──── */
+.menu-sub {
+  position: fixed;
+  top: 0; bottom: 0;
+  left: min(520px, 42vw);
+  width: min(460px, 36vw);
+  background: #ede6d9;
+  z-index: 155;
+  padding: 9rem 0 3rem;
+  overflow-y: auto;
+  transform: translateX(-110%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.35s ease;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+.menu-sub.open {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+.menu-sub ul { list-style: none; padding: 0; margin: 0; }
+.menu-sub li { border-bottom: 1px solid rgba(28,22,24,0.08); }
+.menu-sub li:first-child { border-top: 1px solid rgba(28,22,24,0.08); }
+.menu-sub a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dark);
+  transition: color 0.3s, padding-left 0.3s, background 0.3s;
+}
+.menu-sub a.sub-lead {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--brown);
+}
+.menu-sub a::after {
+  content: '›';
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--grey);
+  transition: transform 0.3s, color 0.3s;
+}
+.menu-sub a:hover {
+  color: var(--gold);
+  padding-left: 3.5rem;
+  background: rgba(201,148,62,0.05);
+}
+.menu-sub a:hover::after { color: var(--gold); transform: translateX(5px); }
 .menu-panel-foot {
   padding: 3rem 3.5rem 1rem;
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -204,6 +266,9 @@ img { display: block; max-width: 100%; }
   .menu-panel a { padding: 1.3rem 1.5rem; font-size: 0.72rem; }
   .menu-panel a:hover { padding-left: 2rem; }
   .menu-panel-foot { padding: 2.5rem 1.5rem 1rem; }
+  .menu-sub { left: 0; width: 100%; padding-top: 7rem; }
+  .menu-sub a { padding: 1.2rem 1.5rem; font-size: 0.68rem; }
+  .menu-sub a:hover { padding-left: 2rem; }
 }
 body.menu-open { overflow: hidden; }
 
