@@ -236,6 +236,77 @@
       display: none;
     }
 
+    /* ── STAY QUESTION ──────────────────────── */
+    .stay-question {
+      padding: 1.3rem 1.75rem 0.3rem;
+      border-top: 1px solid rgba(28,22,24,0.08);
+      background: #fff;
+    }
+    .stay-question .q-label {
+      display: block;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.98rem;
+      color: var(--dark);
+      line-height: 1.4;
+      margin-bottom: 0.15rem;
+      font-weight: 500;
+    }
+    .stay-question .q-sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      color: var(--grey);
+      letter-spacing: 0.04em;
+      margin-bottom: 0.85rem;
+    }
+    .stay-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .stay-options label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 0.5rem;
+      border: 1px solid rgba(28,22,24,0.15);
+      background: #fff;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.64rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: all 0.25s;
+      position: relative;
+    }
+    .stay-options label:hover {
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+    .stay-options input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .stay-options input[type="radio"]:checked + .opt-text {
+      color: var(--gold);
+    }
+    .stay-options label:has(input[type="radio"]:checked) {
+      border-color: var(--gold);
+      background: rgba(201,148,62,0.06);
+      box-shadow: inset 0 0 0 1px var(--gold);
+    }
+    .stay-question .required-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.58rem;
+      color: rgba(28,22,24,0.35);
+      letter-spacing: 0.05em;
+      margin-top: 0.55rem;
+      text-align: center;
+    }
+    .stay-question .required-note .req { color: var(--gold); }
+
     /* Pay button + secure line */
     .pay-btn-wrap {
       padding: 1.2rem 1.75rem 1.75rem;
@@ -567,6 +638,22 @@
               '</div>' +
             '</div>' +
 
+            '<div class="stay-question">' +
+              '<span class="q-label">Interested in staying at AWKN Ranch during your sessions?</span>' +
+              '<span class="q-sub">Onsite lodging is available next door. We will follow up with details.</span>' +
+              '<div class="stay-options">' +
+                '<label>' +
+                  '<input type="radio" name="stay_at_ranch" value="yes" required>' +
+                  '<span class="opt-text">Yes, please</span>' +
+                '</label>' +
+                '<label>' +
+                  '<input type="radio" name="stay_at_ranch" value="no" required>' +
+                  '<span class="opt-text">No, thank you</span>' +
+                '</label>' +
+              '</div>' +
+              '<div class="required-note"><span class="req">*</span> required to continue</div>' +
+            '</div>' +
+
             '<div class="pay-btn-wrap">' +
               '<button class="pay-btn" id="payBtn">Reserve with ' + window.formatCurrency(deposit) + '</button>' +
               '<div class="secure-line">Secured by Stripe</div>' +
@@ -585,10 +672,25 @@
       var banner = document.getElementById('statusBanner');
 
       payBtn.addEventListener('click', async function () {
+        // Require stay-at-ranch answer before continuing
+        var stayChoice = document.querySelector('input[name="stay_at_ranch"]:checked');
+        if (!stayChoice) {
+          banner.style.display = 'block';
+          banner.textContent = 'Please let us know if you are interested in staying at AWKN Ranch.';
+          banner.style.color = 'var(--gold-dark)';
+          // scroll the question into view
+          var q = document.querySelector('.stay-question');
+          if (q) q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
         payBtn.disabled = true;
         payBtn.textContent = 'Redirecting to secure payment…';
         banner.style.display = 'block';
+        banner.style.color = '';
         banner.textContent = 'Connecting to Stripe…';
+        // Save the stay choice so we can pass it through to the backend later
+        window.__stayChoice = stayChoice.value;
 
         try {
           // TODO: Replace this with a fetch to your Supabase edge function:
