@@ -1,12 +1,12 @@
 {
-  "version": "v260407.02 3:36a",
-  "release": 2,
-  "sha": "539c4bf",
-  "fullSha": "539c4bf941d93eed1bb6b3b2af974987eb87a177",
+  "version": "v260408.01 2:53a",
+  "release": 1,
+  "sha": "0a9034b",
+  "fullSha": "0a9034bcc5e47926bbf105e0cbee6f4a1dc35f83",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-06T22:35:59-05:00",
-  "commits": [{"sha":"539c4bf","message":"Fix Image Studio auth: explicitly pass session JWT to Edge Function","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-07T21:53:25-05:00",
+  "commits": [{"sha":"0a9034b","message":"Add payroll optimization comparison and update expense ramp","author":"Justin DeLaCruz"}]
 }
