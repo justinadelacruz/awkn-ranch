@@ -529,86 +529,68 @@
       line-height: 1.75;
     }
 
-    /* ── CONTACT STRIP ───────────────────────────────── */
-    .contact-strip {
-      background: var(--cream);
-      padding: 3.5rem 2rem;
-      text-align: center;
-    }
+    /* ── CONTACT STRIP (inside dark CTA) ──────────────── */
     .contact-row {
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      gap: 3rem;
+      gap: clamp(2rem, 5vw, 4.5rem);
       flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 4rem auto 0;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
     .contact-item {
-      font-size: 0.85rem;
-      color: var(--dark);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
     }
     .contact-item a {
-      color: var(--dark);
-      border-bottom: 1px solid var(--border);
-      transition: border-color 0.2s;
+      color: rgba(255,255,255,0.78);
+      transition: color 0.25s;
+      text-decoration: none;
     }
-    .contact-item a:hover { border-color: var(--gold); }
+    .contact-item a:hover { color: var(--gold); }
     .contact-item .label {
+      font-family: 'Inter', sans-serif;
       font-size: 0.55rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--grey);
+      color: var(--gold);
       display: block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
     }
 
-    /* ── MEDICAL DISCLAIMER ───────────────────────────── */
+    /* ── MEDICAL DISCLAIMER (slim footer band) ────────── */
     .medical-disclaimer {
-      background: #2f4e41;
-      color: #ffffff;
-      padding: 5rem 1.5rem;
+      background: var(--dark);
+      color: rgba(255,255,255,0.4);
+      padding: 1.75rem 1.5rem;
       text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
-    .medical-disclaimer .container { max-width: 1100px; margin: 0 auto; }
-    .medical-disclaimer .disclaimer-lead {
+    .medical-disclaimer p {
       font-family: 'Inter', sans-serif;
-      font-size: 1.05rem;
+      font-size: 0.68rem;
       line-height: 1.7;
-      max-width: 950px;
-      margin: 0 auto 1.75rem;
-      color: #ffffff;
+      letter-spacing: 0.01em;
+      max-width: 880px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.4);
     }
-    .medical-disclaimer .disclaimer-lead strong {
-      font-weight: 700;
-      letter-spacing: 0.02em;
+    .medical-disclaimer .disclaimer-sep {
+      color: rgba(255,255,255,0.22);
+      margin: 0 0.55rem;
     }
-    .medical-disclaimer .disclaimer-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin: 0 auto 1.75rem;
-      color: #ffffff;
+    .medical-disclaimer strong {
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
     }
-    .medical-disclaimer .disclaimer-copy {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: #ffffff;
-      margin: 0;
-    }
-    @media (max-width: 700px) {
-      .medical-disclaimer { padding: 3.5rem 1.25rem; }
-      .medical-disclaimer .disclaimer-lead,
-      .medical-disclaimer .disclaimer-sub { font-size: 0.95rem; }
-    }
-
-    /* ── FOOTER ───────────────────────────────────────── */
-    .site-footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.7rem;
-      color: var(--grey);
-      border-top: 1px solid var(--border);
-    }
-    .site-footer a { color: var(--gold); }
 
     /* ── RESPONSIVE ───────────────────────────────────── */
     @media (max-width: 1100px) {
@@ -623,7 +605,12 @@
       .photo-strip { grid-template-columns: 1fr; }
       .photo-strip img { height: 240px; }
       section { padding: 4rem 1.25rem; }
-      .contact-row { gap: 2rem; }
+      .contact-row {
+        gap: 2rem;
+        margin-top: 3rem;
+        padding-top: 2.25rem;
+      }
+      .medical-disclaimer p { font-size: 0.64rem; }
     }
   </style>
 </head>
@@ -747,15 +734,12 @@
     </div>
   </div>
 
-  <!-- ══ CTA ═════════════════════════════════════════ -->
-  <section class="cta-section">
+  <!-- ══ CTA + CONTACT ═══════════════════════════════ -->
+  <section class="cta-section" id="contact">
     <h2>Begin Your Journey</h2>
     <p>Schedule a free consultation with our team to learn whether this work is right for you. We will listen first.</p>
     <a href="tel:5129692399" class="awknhero-cta">Call 512-969-2399</a>
-  </section>
 
-  <!-- ══ CONTACT STRIP ═══════════════════════════════ -->
-  <div class="contact-strip" id="contact">
     <div class="contact-row">
       <div class="contact-item">
         <span class="label">Phone</span>
@@ -766,7 +750,7 @@
         <a href="mailto:intake@within.center">intake@within.center</a>
       </div>
       <div class="contact-item">
-        <span class="label">Address</span>
+        <span class="label">Visit</span>
         7600 Stillridge Dr<br>Austin, TX 78736
       </div>
       <div class="contact-item">
@@ -774,20 +758,12 @@
         <a href="https://within.center">within.center</a>
       </div>
     </div>
-  </div>
-
-  <!-- ══ MEDICAL DISCLAIMER ══════════════════════════ -->
-  <section class="medical-disclaimer">
-    <div class="container">
-      <p class="disclaimer-lead"><strong>MEDICAL DISCLAIMER:</strong> This site is for informational purposes only, not medical advice. Consult your physician with health questions. In an emergency, call 911.</p>
-      <p class="disclaimer-sub">Within Center provides safe, transformative care held to the highest standards.</p>
-      <p class="disclaimer-copy">&copy; 2026 Hearth Space Health, Inc.</p>
-    </div>
   </section>
 
-  <!-- ══ FOOTER ══════════════════════════════════════ -->
-  <footer class="site-footer">
-    &copy; 2026 Within Center &middot; A sister practice to <a href="https://awknranch.com">AWKN Ranch</a>
+  <!-- ══ MEDICAL DISCLAIMER (slim footer) ════════════ -->
+  <footer class="medical-disclaimer">
+    <p><strong>MEDICAL DISCLAIMER</strong> &middot; This site is for informational purposes only, not medical advice. Consult your physician with health questions. In an emergency, call 911.</p>
+    <p style="margin-top:0.6rem;">&copy; 2026 Hearth Space Health, Inc. <span class="disclaimer-sep">·</span> Within Center is a sister practice to <a href="https://awknranch.com" style="color:rgba(255,255,255,0.55);">AWKN Ranch</a></p>
   </footer>
 
   <script>
