@@ -1,12 +1,12 @@
 {
-  "version": "v260408.03 3:18a",
-  "release": 3,
-  "sha": "2110361",
-  "fullSha": "2110361836f93c79e85e086cfec0731d71a0c306",
+  "version": "v260408.04 3:24a",
+  "release": 4,
+  "sha": "5cdd5d7",
+  "fullSha": "5cdd5d7354ad9fd05df23d3186fc0243ba5349ee",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T22:18:23-05:00",
-  "commits": [{"sha":"2110361","message":"Projections: align Phase 1 assumptions with new occupancy ramp model","author":"Claude"}]
+  "pushedAt": "2026-04-07T22:24:32-05:00",
+  "commits": [{"sha":"5cdd5d7","message":"Revert projections assumptions to pre-occupancy-reframe version (def7ed0)","author":"Claude"}]
 }
