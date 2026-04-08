@@ -1,12 +1,12 @@
 {
-  "version": "v260408.06 4:04a",
-  "release": 6,
-  "sha": "bc214dd",
-  "fullSha": "bc214dd1a81e782428b11aa842e20cc51e55cd3c",
+  "version": "v260408.07 4:13a",
+  "release": 7,
+  "sha": "ed7812b",
+  "fullSha": "ed7812bb205d75da1d4be36998df61795d8a97d5",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T23:03:43-05:00",
-  "commits": [{"sha":"bc214dd","message":"Projections: memberships baseline $2,500 ramping 10% MoM","author":"Claude"}]
+  "pushedAt": "2026-04-07T23:13:24-05:00",
+  "commits": [{"sha":"ed7812b","message":"Projections: Year 1 expense ramp $59K → $76K assumption","author":"Claude"}]
 }
