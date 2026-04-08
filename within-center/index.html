@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Within Center | Ceremonial Ketamine Therapy in Austin, TX</title>
-  <meta name="description" content="The Within Center offers ceremonial, guided ketamine therapy in an outpatient setting in Austin, Texas. A sister practice to AWKN Ranch.">
+  <title>Within Center | Ceremonial Ketamine Therapy in Austin, TX</title>
+  <meta name="description" content="Within Center offers ceremonial, guided ketamine therapy in an outpatient setting in Austin, Texas. A sister practice to AWKN Ranch.">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <meta property="og:title" content="The Within Center — Ceremonial Ketamine Therapy">
+  <meta property="og:title" content="Within Center — Ceremonial Ketamine Therapy">
   <meta property="og:description" content="Guided, ceremonial ketamine therapy in Austin, Texas. A sister practice to AWKN Ranch.">
   <meta property="og:type" content="website">
 
@@ -17,7 +17,7 @@
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
-    "name": "The Within Center",
+    "name": "Within Center",
     "description": "Ceremonial, guided ketamine therapy in an outpatient setting in Austin, Texas.",
     "url": "https://within.center",
     "telephone": "+1-512-969-2399",
@@ -172,108 +172,122 @@
       .nav-right a { font-size: 0.56rem; letter-spacing: 0.18em; }
     }
 
-    /* ── MENU OVERLAY ────────────────────────── */
-    .menu-overlay {
+    /* ── MENU: LEFT PANEL + BLUR BACKDROP (Chenot-style) ─────── */
+    .menu-backdrop {
       position: fixed;
       inset: 0;
-      background: linear-gradient(135deg, #1c1618 0%, #2c2225 100%);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: rgba(28,22,24,0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 150;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s;
+      transition: opacity 0.5s, visibility 0.5s;
     }
-    .menu-overlay.open { opacity: 1; visibility: visible; }
-    .menu-overlay-close {
-      position: absolute;
-      top: 1.7rem;
-      left: 3rem;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-    }
-    .menu-overlay-close:hover { color: var(--gold); }
-    .menu-overlay-close .x {
-      display: inline-block;
-      width: 26px; height: 18px;
-      position: relative;
-    }
-    .menu-overlay-close .x::before,
-    .menu-overlay-close .x::after {
-      content: '';
-      position: absolute;
-      top: 50%; left: 0;
-      width: 100%; height: 1.5px;
-      background: currentColor;
-    }
-    .menu-overlay-close .x::before { transform: rotate(45deg); }
-    .menu-overlay-close .x::after { transform: rotate(-45deg); }
+    .menu-backdrop.open { opacity: 1; visibility: visible; }
 
-    .menu-overlay-brand {
-      position: absolute;
-      top: 1.65rem; left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: #fff;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-align: center;
+    .menu-panel {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: min(520px, 42vw);
+      background: #f5f1ea;
+      z-index: 160;
+      transform: translateX(-100%);
+      transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+      padding: 9rem 0 3rem;
+      overflow-y: auto;
+      border-right: 1px solid rgba(0,0,0,0.05);
     }
-    .menu-overlay-brand small {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      margin-top: 4px;
-      font-size: 0.54rem;
-      font-weight: 500;
-      letter-spacing: 0.28em;
-      color: rgba(255,255,255,0.6);
-    }
+    .menu-panel.open { transform: translateX(0); }
 
-    .menu-overlay ul {
+    .menu-panel ul {
       list-style: none;
-      text-align: center;
       padding: 0;
+      margin: 0;
     }
-    .menu-overlay li {
-      margin: 1.25rem 0;
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.5s, transform 0.5s;
+    .menu-panel li {
+      border-bottom: 1px solid rgba(28,22,24,0.08);
     }
-    .menu-overlay.open li { opacity: 1; transform: translateY(0); }
-    .menu-overlay.open li:nth-child(1) { transition-delay: 0.15s; }
-    .menu-overlay.open li:nth-child(2) { transition-delay: 0.25s; }
-    .menu-overlay.open li:nth-child(3) { transition-delay: 0.35s; }
-    .menu-overlay a {
+    .menu-panel li:first-child { border-top: 1px solid rgba(28,22,24,0.08); }
+    .menu-panel a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 3.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dark);
+      text-decoration: none;
+      transition: color 0.3s, padding-left 0.3s, background 0.3s;
+    }
+    .menu-panel a::after {
+      content: '›';
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      font-size: 1.6rem;
       font-weight: 300;
-      color: #fff;
-      letter-spacing: 0.02em;
-      transition: color 0.3s, letter-spacing 0.3s;
-      display: inline-block;
+      color: var(--grey);
+      transition: transform 0.3s, color 0.3s;
     }
-    .menu-overlay a:hover {
+    .menu-panel a:hover {
       color: var(--gold);
-      letter-spacing: 0.06em;
+      padding-left: 4rem;
+      background: rgba(201,148,62,0.05);
     }
+    .menu-panel a:hover::after {
+      color: var(--gold);
+      transform: translateX(6px);
+    }
+
+    .menu-panel-foot {
+      padding: 3rem 3.5rem 1rem;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--grey);
+      line-height: 1.6;
+    }
+
+    /* When menu is open, force nav into its scrolled (cream) state
+       so the brand and CTAs stay visible. Swap hamburger to X. */
+    .site-nav.menu-is-open {
+      background: rgba(245,241,234,0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 170;
+    }
+    .site-nav.menu-is-open .menu-toggle,
+    .site-nav.menu-is-open .nav-brand-mark,
+    .site-nav.menu-is-open .nav-right a { color: var(--dark); }
+    .site-nav.menu-is-open .nav-brand-sub { color: var(--grey); }
+
+    .site-nav.menu-is-open .menu-toggle-bars span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .site-nav.menu-is-open .menu-toggle-bars span:nth-child(2) {
+      opacity: 0;
+    }
+    .site-nav.menu-is-open .menu-toggle-bars span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+    .menu-toggle-bars span {
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .site-nav.menu-is-open .menu-label::before {
+      content: 'Close';
+    }
+    .menu-label::before { content: 'Menu'; }
+    .menu-label { visibility: hidden; position: relative; }
+    .menu-label::before { visibility: visible; position: absolute; left: 0; top: 0; white-space: nowrap; }
 
     @media (max-width: 768px) {
-      .menu-overlay-close { left: 1.25rem; top: 1.2rem; }
-      .menu-overlay-brand { top: 1.25rem; font-size: 1.05rem; }
+      .menu-panel { width: 100%; padding-top: 7rem; }
+      .menu-panel a { padding: 1.3rem 1.5rem; font-size: 0.72rem; }
+      .menu-panel a:hover { padding-left: 2rem; }
+      .menu-panel-foot { padding: 2.5rem 1.5rem 1rem; }
     }
 
     body.menu-open { overflow: hidden; }
@@ -575,13 +589,13 @@
   <!-- ══ NAV ═══════════════════════════════════════════ -->
   <nav class="site-nav" id="siteNav">
     <div class="nav-left">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
         <span class="menu-toggle-bars"><span></span><span></span><span></span></span>
-        <span class="menu-label">Menu</span>
+        <span class="menu-label"></span>
       </button>
     </div>
     <a href="/within-center/" class="nav-brand">
-      <span class="nav-brand-mark">The Within Center</span>
+      <span class="nav-brand-mark">Within Center</span>
       <span class="nav-brand-sub">At AWKN Ranch &middot; Austin, TX</span>
     </a>
     <div class="nav-right">
@@ -590,22 +604,18 @@
     </div>
   </nav>
 
-  <!-- ══ MENU OVERLAY ══════════════════════════════════ -->
-  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-    <button class="menu-overlay-close" id="menuClose" aria-label="Close menu">
-      <span class="x"></span>
-      <span>Close</span>
-    </button>
-    <div class="menu-overlay-brand">
-      The Within Center
-      <small>At AWKN Ranch &middot; Austin, TX</small>
-    </div>
+  <!-- ══ MENU: blurred backdrop + left panel ══════════════ -->
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+  <aside class="menu-panel" id="menuPanel" aria-hidden="true">
     <ul>
       <li><a href="#ceremony" data-menu-link>Ceremonial Ketamine</a></li>
       <li><a href="#about" data-menu-link>About Us</a></li>
       <li><a href="https://awknranch.com" data-menu-link>Book a Stay at AWKN Ranch</a></li>
     </ul>
-  </div>
+    <div class="menu-panel-foot">
+      A sacred container for inner work, held at AWKN Ranch &mdash; Austin, Texas.
+    </div>
+  </aside>
 
   <!-- ══ HERO ═══════════════════════════════════════════ -->
   <header class="awknhero">
@@ -636,7 +646,7 @@
 
   <!-- ══ CEREMONIAL KETAMINE (split) ══════════════════ -->
   <div class="split-block reverse" id="ceremony">
-    <img src="../pricing/images/lounge.jpeg" alt="Ceremony space at The Within Center" class="split-img">
+    <img src="../pricing/images/lounge.jpeg" alt="Ceremony space at Within Center" class="split-img">
     <div class="split-text">
       <div class="s-eyebrow">Ceremonial Ketamine</div>
       <div class="s-title">A Guided Experience, Held with Care</div>
@@ -684,7 +694,7 @@
     <div class="split-text">
       <div class="s-eyebrow">About Us</div>
       <div class="s-title">Sacred Medicine, Met with Rigor</div>
-      <p>The Within Center was built by people who believe medicine and meaning belong in the same room. We hold ketamine as the sacred tool it is &mdash; and we hold the people in our care with the discernment, training, and intention that the work deserves.</p>
+      <p>Within Center was built by people who believe medicine and meaning belong in the same room. We hold ketamine as the sacred tool it is &mdash; and we hold the people in our care with the discernment, training, and intention that the work deserves.</p>
       <p>We are a sister practice to AWKN Ranch, sharing values of intentional living, embodied healing, and quiet reverence for the inner journey. Clients may choose to extend their experience by staying at the ranch &mdash; not as treatment, but as a supportive environment for integration, regulation, and reflection.</p>
     </div>
   </div>
@@ -720,7 +730,7 @@
 
   <!-- ══ FOOTER ══════════════════════════════════════ -->
   <footer class="site-footer">
-    &copy; 2026 The Within Center &middot; A sister practice to <a href="https://awknranch.com">AWKN Ranch</a>
+    &copy; 2026 Within Center &middot; A sister practice to <a href="https://awknranch.com">AWKN Ranch</a>
   </footer>
 
   <script>
@@ -735,28 +745,36 @@
       update();
     })();
 
-    // Menu overlay
+    // Menu: left panel + blurred backdrop, hamburger toggles to X
     (function () {
-      var overlay = document.getElementById('menuOverlay');
-      var openBtn = document.getElementById('menuToggle');
-      var closeBtn = document.getElementById('menuClose');
-      function open() {
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden', 'false');
+      var nav = document.getElementById('siteNav');
+      var toggle = document.getElementById('menuToggle');
+      var panel = document.getElementById('menuPanel');
+      var backdrop = document.getElementById('menuBackdrop');
+      function isOpen() { return panel.classList.contains('open'); }
+      function openMenu() {
+        panel.classList.add('open');
+        backdrop.classList.add('open');
+        nav.classList.add('menu-is-open');
+        panel.setAttribute('aria-hidden', 'false');
         document.body.classList.add('menu-open');
       }
-      function close() {
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
+      function closeMenu() {
+        panel.classList.remove('open');
+        backdrop.classList.remove('open');
+        nav.classList.remove('menu-is-open');
+        panel.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('menu-open');
       }
-      openBtn.addEventListener('click', open);
-      closeBtn.addEventListener('click', close);
+      toggle.addEventListener('click', function () {
+        isOpen() ? closeMenu() : openMenu();
+      });
+      backdrop.addEventListener('click', closeMenu);
       document.querySelectorAll('[data-menu-link]').forEach(function (a) {
-        a.addEventListener('click', close);
+        a.addEventListener('click', closeMenu);
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+        if (e.key === 'Escape' && isOpen()) closeMenu();
       });
     })();
   </script>
