@@ -1,12 +1,12 @@
 {
-  "version": "v260408.04 3:24a",
-  "release": 4,
-  "sha": "5cdd5d7",
-  "fullSha": "5cdd5d7354ad9fd05df23d3186fc0243ba5349ee",
+  "version": "v260408.05 3:51a",
+  "release": 5,
+  "sha": "37f0193",
+  "fullSha": "37f019343a5156ffad9bf792a438e1ee53b06823",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T22:24:32-05:00",
-  "commits": [{"sha":"5cdd5d7","message":"Revert projections assumptions to pre-occupancy-reframe version (def7ed0)","author":"Claude"}]
+  "pushedAt": "2026-04-07T22:51:33-05:00",
+  "commits": [{"sha":"37f0193","message":"Projections: Phase 1 assumptions reflect honest Y1 occupancy ramp (15→40%)","author":"Claude"}]
 }
