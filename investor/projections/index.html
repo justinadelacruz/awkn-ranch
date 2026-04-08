@@ -413,36 +413,63 @@
             </table>
         </div>
 
-        <!-- Detailed Monthly Expense Breakdown -->
+        <!-- Payroll Optimization: Historical vs. New Model -->
         <div style="margin-top: 64px;">
-            <h3 style="font-size: 20px; margin-bottom: 8px;">Monthly Expense Breakdown</h3>
-            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">Line-item operating costs by month. Ramp-up months (1&ndash;3) show reduced costs as staffing and marketing scale up.</p>
+            <h3 style="font-size: 20px; margin-bottom: 8px;">Payroll Optimization &mdash; Historical vs. New Model</h3>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 24px;">
+                Operating the business before this raise taught us exactly which roles we need. We've restructured payroll from <strong>$37,210/mo</strong> to <strong>$23,000/mo</strong> &mdash; eliminating 6 cash roles, converting 2 to live-in trade positions, and replacing our marketing vendor with AI-driven Google Ads management under direct founder oversight. Net annual savings: <strong>$170,520</strong>.
+            </p>
 
-            <p class="expense-mobile-note" style="display:none; padding:16px; background:var(--bg-secondary); border-radius:var(--radius); font-size:12px; color:var(--text-muted); text-align:center; line-height:1.6;">Detailed monthly expense breakdown available on desktop. Summary: operating expenses range from <strong id="exp-mobile-low"></strong> (ramp) to <strong id="exp-mobile-high"></strong> (stabilized) per month.</p>
             <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                <table class="data-table" id="expense-detail-table" style="table-layout: fixed; min-width: 900px;">
-                    <thead>
-                        <tr>
-                            <th style="width:22%; white-space:nowrap;">Expense Category</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m1">M1</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m2">M2</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m3">M3</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m4">M4</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m5">M5</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m6">M6</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m7">M7</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m8">M8</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m9">M9</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m10">M10</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m11">M11</th>
-                            <th style="text-align:right; font-size:10px;" id="exp-m12">M12</th>
-                            <th style="text-align:right;">Annual</th>
-                        </tr>
-                    </thead>
-                    <tbody id="expense-detail-tbody"></tbody>
-                </table>
+            <table class="data-table" style="min-width: 600px;">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th style="text-align:right;">Historical</th>
+                        <th style="text-align:right;">New Model</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>David &mdash; Chairman / Founder</td><td style="text-align:right;">$0</td><td style="text-align:right;"><strong>$4,000</strong></td><td style="font-size:11px; color:var(--accent-green);">Added</td></tr>
+                    <tr><td>GM &mdash; Lead Manager</td><td style="text-align:right;">$6,500</td><td style="text-align:right;"><strong>$4,000</strong></td><td style="font-size:11px; color:var(--accent-gold);">Reduced</td></tr>
+                    <tr><td>House mom / overnight</td><td style="text-align:right;">$1,500</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-blue);">Trade</td></tr>
+                    <tr><td>Admissions</td><td style="text-align:right;">$500</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">Eliminated</td></tr>
+                    <tr><td>Head Nurse</td><td style="text-align:right;">$3,000</td><td style="text-align:right;">$3,000</td><td style="font-size:11px; color:var(--text-muted);">&mdash;</td></tr>
+                    <tr><td>Ranch Operations</td><td style="text-align:right;">$2,800</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-blue);">Trade</td></tr>
+                    <tr><td>Retreat Manager</td><td style="text-align:right;">$4,000</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">Eliminated</td></tr>
+                    <tr><td>Accounting</td><td style="text-align:right;">$500</td><td style="text-align:right;">$500</td><td style="font-size:11px; color:var(--text-muted);">&mdash;</td></tr>
+                    <tr><td>Retreat staff + chef</td><td style="text-align:right;">$2,500</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">Eliminated</td></tr>
+                    <tr><td>Retreat staff</td><td style="text-align:right;">$2,660</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">Eliminated</td></tr>
+                    <tr><td>Scheduling</td><td style="text-align:right;">$2,250</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">AI system</td></tr>
+                    <tr><td>Marketing vendor</td><td style="text-align:right;">$3,000</td><td style="text-align:right;"><strong>$0</strong></td><td style="font-size:11px; color:var(--accent-terracotta);">AI-replaced</td></tr>
+                    <tr><td>Head of Marketing</td><td style="text-align:right;">$4,500</td><td style="text-align:right;">$4,500</td><td style="font-size:11px; color:var(--text-muted);">&mdash;</td></tr>
+                    <tr><td>Medical Director</td><td style="text-align:right;">$3,500</td><td style="text-align:right;"><strong>$2,000</strong></td><td style="font-size:11px; color:var(--accent-gold);">Reduced</td></tr>
+                    <tr><td>7-Day Concierge/Housekeeping (2 staff)</td><td style="text-align:right; color:var(--text-muted);">&mdash;</td><td style="text-align:right;"><strong>$5,000</strong></td><td style="font-size:11px; color:var(--accent-green);">New role</td></tr>
+                    <tr class="total">
+                        <td>Monthly Total</td>
+                        <td style="text-align:right;">$37,210</td>
+                        <td style="text-align:right;">$23,000</td>
+                        <td style="font-size:11px; color:var(--accent-green);">&minus;$14,210</td>
+                    </tr>
+                    <tr class="total">
+                        <td>Annual Total</td>
+                        <td style="text-align:right;">$446,520</td>
+                        <td style="text-align:right;">$276,000</td>
+                        <td style="font-size:11px; color:var(--accent-green);">&minus;$170,520</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div style="margin-top: 24px; padding: 20px 24px; background: var(--bg-secondary); border-left: 3px solid var(--accent-gold); border-radius: 6px;">
+                <div style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px;">AI-Powered Marketing Replaces $3K/mo Vendor</div>
+                <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+                    Instead of paying a marketing vendor $3,000/mo with opaque reporting and slow iteration, we run Google Ads through an AI-managed workflow with direct founder oversight. This gives us real-time visibility on every dollar of ad spend, daily data-driven optimization, and the ability for AI to adjust campaigns automatically based on conversion data &mdash; scaling without adding headcount.
+                </div>
             </div>
         </div>
+
     </section>
 
     <div class="divider"></div>
@@ -616,11 +643,11 @@
 
     // Detailed expense line items (low / high steady-state from investor deck)
     const expenseItems = [
-        { name: 'Hospitality Manager (live-in, FT)', low: 4000, high: 5000, rampStart: 1 },
+        { name: 'Hospitality Manager (live-in, FT)', low: 4000, high: 5000, rampStart: 1, fullFromStart: true },
         { name: 'Operations Manager', low: 4000, high: 4000, rampStart: 1, fullFromStart: true },
         { name: 'Medical / Clinical Staff (2 days/wk)', low: 3000, high: 5000, rampStart: 1, fullFromStart: true },
-        { name: 'Executive / Management', low: 10000, high: 12000, rampStart: 1 },
-        { name: 'Shannon Cohen — Advisory', low: 3000, high: 3000, rampStart: 1 },
+        { name: 'Executive / Management', low: 10000, high: 12000, rampStart: 1, fullFromStart: true },
+        { name: 'Shannon Cohen — Advisory', low: 3000, high: 3000, rampStart: 1, fullFromStart: true },
         { name: 'Property Lease', low: 12800, high: 12800, rampStart: 1, fullFromStart: true },
         { name: 'Maintenance & Utilities', low: 4000, high: 6000, rampStart: 1 },
         { name: 'Breakfast & Guest Supplies', low: 2500, high: 3500, rampStart: 2, fullFromStart: true },
