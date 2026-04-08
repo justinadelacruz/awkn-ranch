@@ -1,12 +1,12 @@
 {
-  "version": "v260408.05 3:51a",
-  "release": 5,
-  "sha": "37f0193",
-  "fullSha": "37f019343a5156ffad9bf792a438e1ee53b06823",
+  "version": "v260408.06 4:04a",
+  "release": 6,
+  "sha": "bc214dd",
+  "fullSha": "bc214dd1a81e782428b11aa842e20cc51e55cd3c",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T22:51:33-05:00",
-  "commits": [{"sha":"37f0193","message":"Projections: Phase 1 assumptions reflect honest Y1 occupancy ramp (15→40%)","author":"Claude"}]
+  "pushedAt": "2026-04-07T23:03:43-05:00",
+  "commits": [{"sha":"bc214dd","message":"Projections: memberships baseline $2,500 ramping 10% MoM","author":"Claude"}]
 }
