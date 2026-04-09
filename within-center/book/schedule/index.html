@@ -11,125 +11,180 @@
   <style>
     body { background: var(--cream); }
     .schedule-wrap {
-      max-width: 820px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 9rem 2rem 5rem;
+      padding: 7rem 2rem 5rem;
     }
-    .confirm-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .confirm-title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      text-align: center;
-      color: var(--dark);
-      font-weight: 500;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .confirm-sub {
-      text-align: center;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: 1.2rem;
-      color: var(--brown);
-      max-width: 600px;
-      margin: 0 auto 3rem;
-      line-height: 1.5;
-    }
-    .confirm-card {
-      background: #fff;
-      border: 1px solid rgba(28,22,24,0.08);
-      border-radius: 4px;
-      padding: 2.5rem 2.25rem;
-      box-shadow: 0 4px 32px rgba(28,22,24,0.06);
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .confirm-card .check {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: rgba(201,148,62,0.12);
-      color: var(--gold);
+
+    /* ── Slim deposit confirmation banner ── */
+    .deposit-banner {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.2rem;
-      font-size: 1.8rem;
-    }
-    .confirm-card .paid-amount {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 2.4rem;
-      color: var(--gold);
-      margin-bottom: 0.3rem;
-    }
-    .confirm-card .paid-label {
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      background: #fff;
+      border: 1px solid rgba(28,22,24,0.08);
+      border-radius: 4px;
+      padding: 1rem 1.6rem;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+      box-shadow: 0 2px 16px rgba(28,22,24,0.04);
       font-family: 'Inter', sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.85rem;
+      color: var(--dark);
+    }
+    .deposit-banner .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(201,148,62,0.14);
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .deposit-banner .label {
+      font-size: 0.65rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--grey);
-      margin-bottom: 1.5rem;
     }
-    .confirm-card .package-name {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.3rem;
+    .deposit-banner .amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .deposit-banner .sep {
+      width: 1px;
+      height: 22px;
+      background: rgba(28,22,24,0.12);
+    }
+    .deposit-banner .pkg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
       color: var(--dark);
-      padding-top: 1.2rem;
-      border-top: 1px solid rgba(28,22,24,0.08);
     }
-    .next-step-eyebrow {
+
+    /* ── Action-required hero ── */
+    .action-required {
+      display: inline-block;
       font-family: 'Inter', sans-serif;
       font-size: 0.7rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--gold);
-      text-align: center;
-      margin: 3rem 0 0.8rem;
+      background: rgba(201,148,62,0.12);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
     }
-    .next-step-title {
+    .action-required::before {
+      content: '●';
+      margin-right: 0.5rem;
+      animation: pulse 2s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+    .hero-block { text-align: center; margin-bottom: 2rem; }
+    .hero-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.9rem;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       color: var(--dark);
-      text-align: center;
-      margin-bottom: 1rem;
       font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
     }
-    .next-step-copy {
-      text-align: center;
+    .hero-sub {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--brown);
       max-width: 620px;
-      margin: 0 auto 2.5rem;
-      font-size: 0.92rem;
-      line-height: 1.8;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* ── Scheduler steps ── */
+    .scheduler-steps {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin: 0 auto 2rem;
+      max-width: 720px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
       color: var(--grey);
     }
+    .scheduler-steps .step {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .scheduler-steps .num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(201,148,62,0.14);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Big scheduler frame ── */
     .scheduler-frame {
       background: #fff;
-      border: 1px solid rgba(28,22,24,0.08);
-      border-radius: 4px;
-      padding: 2rem;
-      box-shadow: 0 4px 32px rgba(28,22,24,0.06);
-      min-height: 600px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 48px rgba(201,148,62,0.18), 0 2px 12px rgba(28,22,24,0.06);
+      min-height: 640px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      position: relative;
+    }
+    .scheduler-frame::before {
+      content: 'BOOK YOUR CONSULTATION';
+      position: absolute;
+      top: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--cream);
+      padding: 0 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      font-weight: 600;
     }
     .scheduler-placeholder {
-      max-width: 440px;
+      max-width: 460px;
       color: var(--grey);
       font-size: 0.9rem;
       line-height: 1.75;
       font-family: 'Inter', sans-serif;
     }
-    .scheduler-placeholder strong { color: var(--dark); display: block; margin-bottom: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
+    .scheduler-placeholder .icon {
+      font-size: 2.4rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+    .scheduler-placeholder strong { color: var(--dark); display: block; margin-bottom: 0.6rem; font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; }
+
     .refund-note {
       margin-top: 2.5rem;
       padding: 1.4rem 1.5rem;
@@ -144,6 +199,12 @@
       margin-right: auto;
     }
     .refund-note strong { color: var(--gold-dark); }
+
+    @media (max-width: 600px) {
+      .schedule-wrap { padding: 6rem 1.2rem 4rem; }
+      .scheduler-frame { min-height: 520px; padding: 2rem 1rem; }
+      .scheduler-steps { gap: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -219,25 +280,35 @@
       // if (!paid) { /* show error */ return; }
 
       root.innerHTML = '' +
-        '<div class="confirm-eyebrow">Deposit Received' + (isDemo ? ' (Demo)' : '') + '</div>' +
-        '<h1 class="confirm-title">Your spot is held.</h1>' +
-        '<p class="confirm-sub">Thank you for taking this first step. One more thing before we begin &mdash; a brief medical consultation to make sure this work is safe and right for you.</p>' +
-
-        '<div class="confirm-card">' +
-          '<div class="check">&#10003;</div>' +
-          '<div class="paid-amount">' + window.formatCurrency(deposit) + '</div>' +
-          '<div class="paid-label">Deposit Paid</div>' +
-          '<div class="package-name">' + pkg.name + ' Package</div>' +
+        // Slim deposit confirmation banner
+        '<div class="deposit-banner">' +
+          '<span class="check">&#10003;</span>' +
+          '<span class="label">Deposit Received' + (isDemo ? ' (Demo)' : '') + '</span>' +
+          '<span class="amount">' + window.formatCurrency(deposit) + '</span>' +
+          '<span class="sep"></span>' +
+          '<span class="pkg">' + pkg.name + ' Package</span>' +
         '</div>' +
 
-        '<div class="next-step-eyebrow">Next Step</div>' +
-        '<h2 class="next-step-title">Schedule Your Medical Consultation</h2>' +
-        '<p class="next-step-copy">Our MAPS-trained nurse practitioner will meet with you for a 30-minute screening to review your health history, answer your questions, and confirm you are a medical fit for ceremonial ketamine work.</p>' +
+        // Hero — action required
+        '<div class="hero-block">' +
+          '<div class="action-required">Action Required &middot; Final Step</div>' +
+          '<h1 class="hero-title">Book Your Medical Consultation</h1>' +
+          '<p class="hero-sub">Choose a time below for a 30-minute screening with our MAPS-trained nurse practitioner. Your spot is held until you book &mdash; please schedule within 7 days.</p>' +
+        '</div>' +
 
+        // Three quick steps
+        '<div class="scheduler-steps">' +
+          '<div class="step"><span class="num">1</span>Pick a time below</div>' +
+          '<div class="step"><span class="num">2</span>30-min video call</div>' +
+          '<div class="step"><span class="num">3</span>Begin your work</div>' +
+        '</div>' +
+
+        // Big bordered scheduler frame
         '<div class="scheduler-frame">' +
           '<div class="scheduler-placeholder">' +
-            '<strong>Scheduler will load here</strong>' +
-            'Once you provide a Calendly (or Cal.com / Acuity) link for the medical consultation, we will embed it in this space so clients can book directly after paying their deposit.' +
+            '<div class="icon">&#128197;</div>' +
+            '<strong>Select a date &amp; time</strong>' +
+            'Calendar will appear here. Once a Calendly / Cal.com / Acuity link is provided, the booking widget will embed in this space so you can choose your consultation time directly.' +
           '</div>' +
         '</div>' +
 
