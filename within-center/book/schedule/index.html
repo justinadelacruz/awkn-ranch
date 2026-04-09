@@ -16,68 +16,74 @@
       padding: 7rem 2rem 5rem;
     }
 
-    /* ── Celebratory deposit confirmation card ── */
+    /* ── Compact deposit confirmation card ── */
     .deposit-banner {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
       background: #fff;
       border: 1px solid rgba(28,22,24,0.08);
       border-radius: 6px;
-      padding: 2.4rem 2rem 2.2rem;
-      max-width: 560px;
-      margin: 0 auto 3.5rem;
-      box-shadow: 0 6px 32px rgba(28,22,24,0.07);
+      padding: 1.1rem 1.6rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 4px 20px rgba(28,22,24,0.05);
       font-family: 'Inter', sans-serif;
       color: var(--dark);
-      text-align: center;
+      text-align: left;
     }
     .deposit-banner .check {
-      width: 64px;
-      height: 64px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       background: rgba(201,148,62,0.14);
       color: var(--gold);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      margin-bottom: 1.1rem;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .deposit-banner .info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
     }
     .deposit-banner .label {
-      display: block;
-      font-size: 0.68rem;
-      letter-spacing: 0.24em;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.15rem;
     }
     .deposit-banner .headline {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.7rem, 3.4vw, 2.2rem);
+      font-size: 1.15rem;
       color: var(--dark);
       font-weight: 500;
-      line-height: 1.15;
-      margin-bottom: 0.4rem;
+      line-height: 1.2;
     }
-    .deposit-banner .amount {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
-      color: var(--gold);
-      font-weight: 500;
-      line-height: 1.1;
-      margin: 0.2rem 0 0.3rem;
-    }
-    .deposit-banner .pkg {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.15rem;
+    .deposit-banner .meta {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 0.95rem;
       color: var(--brown);
       font-style: italic;
-      margin-top: 0.4rem;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(28,22,24,0.08);
-      max-width: 280px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 0.15rem;
+    }
+    .deposit-banner .amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      font-weight: 500;
+      line-height: 1;
+      flex-shrink: 0;
+      padding-left: 1rem;
+      border-left: 1px solid rgba(28,22,24,0.1);
+    }
+    @media (max-width: 480px) {
+      .deposit-banner { flex-wrap: wrap; padding: 1rem 1.2rem; gap: 0.9rem; }
+      .deposit-banner .amount { padding-left: 0; border-left: none; border-top: 1px solid rgba(28,22,24,0.1); padding-top: 0.6rem; width: 100%; text-align: center; }
     }
 
     /* ── Action-required hero ── */
@@ -297,13 +303,15 @@
       // if (!paid) { /* show error */ return; }
 
       root.innerHTML = '' +
-        // Celebratory deposit confirmation card
+        // Compact deposit confirmation card
         '<div class="deposit-banner">' +
           '<div class="check">&#10003;</div>' +
-          '<span class="label">Deposit Received' + (isDemo ? ' (Demo)' : '') + '</span>' +
-          '<div class="headline">Your spot is held.</div>' +
-          '<span class="amount">' + window.formatCurrency(deposit) + '</span>' +
-          '<span class="pkg">' + pkg.name + ' Package</span>' +
+          '<div class="info">' +
+            '<span class="label">Deposit Received' + (isDemo ? ' (Demo)' : '') + '</span>' +
+            '<div class="headline">Your spot is held</div>' +
+            '<div class="meta">' + pkg.name + ' Package</div>' +
+          '</div>' +
+          '<div class="amount">' + window.formatCurrency(deposit) + '</div>' +
         '</div>' +
 
         // Hero — action required
