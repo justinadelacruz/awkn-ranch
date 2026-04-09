@@ -104,22 +104,22 @@
     }
     .panel-pkg-label {
       text-align: center;
-      padding: 1rem 1.5rem 0.85rem;
+      padding: 0.7rem 1.5rem 0.6rem;
       border-bottom: 1px solid rgba(28,22,24,0.08);
       background: #fbf8f2;
     }
     .panel-pkg-label .eyebrow {
       font-family: 'Inter', sans-serif;
-      font-size: 0.56rem;
+      font-size: 0.5rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--grey);
       display: block;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.18rem;
     }
     .panel-pkg-label .name {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       color: var(--dark);
       font-weight: 500;
       letter-spacing: 0.01em;
@@ -128,16 +128,16 @@
       display: block;
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-style: italic;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       color: var(--brown);
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
     }
 
     /* The hero deposit — the thing we want to draw the eye */
     .deposit-hero {
       position: relative;
       text-align: center;
-      padding: 1.3rem 1.5rem 1.2rem;
+      padding: 0.95rem 1.5rem 0.9rem;
       background:
         radial-gradient(ellipse at center top, rgba(201,148,62,0.14), transparent 70%),
         #fff;
@@ -145,18 +145,18 @@
     .deposit-hero .tag {
       display: inline-block;
       font-family: 'Inter', sans-serif;
-      font-size: 0.54rem;
+      font-size: 0.5rem;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--gold);
       background: rgba(201,148,62,0.1);
-      padding: 0.4rem 0.95rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.5rem;
     }
     .deposit-hero .amount {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(3rem, 5.5vw, 3.8rem);
+      font-size: clamp(2.2rem, 4.2vw, 2.8rem);
       color: var(--gold);
       font-weight: 400;
       line-height: 0.95;
@@ -172,24 +172,24 @@
     }
     .deposit-hero .caption {
       font-family: 'Inter', sans-serif;
-      font-size: 0.56rem;
+      font-size: 0.52rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--dark);
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
       display: block;
     }
     .deposit-hero .refundable-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      margin-top: 0.8rem;
-      padding: 0.4rem 0.85rem;
+      margin-top: 0.55rem;
+      padding: 0.3rem 0.75rem;
       background: rgba(28,22,24,0.04);
       border: 1px solid rgba(28,22,24,0.08);
       border-radius: 999px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.54rem;
+      font-size: 0.5rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--brown);
@@ -203,7 +203,7 @@
 
     /* Secondary breakdown — muted, smaller, context only */
     .breakdown {
-      padding: 0.7rem 1.75rem;
+      padding: 0.5rem 1.75rem;
       border-top: 1px solid rgba(28,22,24,0.08);
       background: #fbf8f2;
     }
@@ -211,7 +211,7 @@
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 0.28rem 0;
+      padding: 0.2rem 0;
       font-family: 'Inter', sans-serif;
       font-size: 0.58rem;
       letter-spacing: 0.16em;
@@ -238,7 +238,7 @@
 
     /* ── STAY QUESTION (compact) ─────────────── */
     .stay-question {
-      padding: 0.75rem 1.75rem;
+      padding: 0.6rem 1.75rem;
       border-top: 1px solid rgba(28,22,24,0.08);
       background: #fff;
       display: flex;
@@ -324,7 +324,7 @@
 
     /* ── CONTACT FIELDS (compact 2x2 grid) ───── */
     .contact-fields {
-      padding: 0.85rem 1.75rem 0.4rem;
+      padding: 0.7rem 1.75rem 0.3rem;
       border-top: 1px solid rgba(28,22,24,0.08);
       background: #fff;
     }
@@ -336,6 +336,10 @@
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 0.55rem;
+    }
+    .contact-fields .ct-eyebrow .req {
+      color: var(--gold);
+      font-weight: 600;
     }
     .contact-fields .ct-grid {
       display: grid;
@@ -351,11 +355,16 @@
       color: var(--grey);
       margin-bottom: 0.18rem;
     }
+    .contact-fields label .req {
+      color: var(--gold);
+      margin-left: 0.2em;
+      font-size: 0.85em;
+    }
     .contact-fields input {
       width: 100%;
-      padding: 0.5rem 0.65rem;
+      padding: 0.42rem 0.6rem;
       font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--dark);
       background: #fafaf7;
       border: 1px solid rgba(28,22,24,0.12);
@@ -378,16 +387,16 @@
 
     /* Pay button + secure line */
     .pay-btn-wrap {
-      padding: 0.95rem 1.75rem 1.4rem;
+      padding: 0.7rem 1.75rem 1.1rem;
     }
     .pay-btn {
-      padding: 1rem 1rem !important;
-      font-size: 0.64rem !important;
+      padding: 0.85rem 1rem !important;
+      font-size: 0.62rem !important;
       letter-spacing: 0.22em !important;
     }
     .secure-line {
-      font-size: 0.56rem !important;
-      margin-top: 0.7rem !important;
+      font-size: 0.54rem !important;
+      margin-top: 0.5rem !important;
     }
 
     .pay-btn {
@@ -719,12 +728,12 @@
             '</div>' +
 
             '<div class="contact-fields">' +
-              '<span class="ct-eyebrow">Your Information</span>' +
+              '<span class="ct-eyebrow">Your Information <span class="req">*</span> all required</span>' +
               '<div class="ct-grid">' +
-                '<div><label for="ct-first">First Name</label><input id="ct-first" type="text" autocomplete="given-name" required></div>' +
-                '<div><label for="ct-last">Last Name</label><input id="ct-last" type="text" autocomplete="family-name" required></div>' +
-                '<div><label for="ct-email">Email</label><input id="ct-email" type="email" autocomplete="email" required></div>' +
-                '<div><label for="ct-phone">Phone</label><input id="ct-phone" type="tel" autocomplete="tel" required></div>' +
+                '<div><label for="ct-first">First Name<span class="req">*</span></label><input id="ct-first" type="text" autocomplete="given-name" required></div>' +
+                '<div><label for="ct-last">Last Name<span class="req">*</span></label><input id="ct-last" type="text" autocomplete="family-name" required></div>' +
+                '<div><label for="ct-email">Email<span class="req">*</span></label><input id="ct-email" type="email" autocomplete="email" required></div>' +
+                '<div><label for="ct-phone">Phone<span class="req">*</span></label><input id="ct-phone" type="tel" autocomplete="tel" required></div>' +
               '</div>' +
             '</div>' +
 
