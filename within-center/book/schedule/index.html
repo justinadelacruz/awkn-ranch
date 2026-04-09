@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule Your Medical Consultation | Within Center</title>
-  <meta name="description" content="Schedule your medical consultation with Within Center.">
+  <title>Complete Your Patient Application | Within Center</title>
+  <meta name="description" content="Complete your patient application to begin your work with Within Center.">
   <link rel="icon" type="image/png" href="/awkn-ranch/favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../css/within.css">
@@ -182,7 +182,7 @@
       position: relative;
     }
     .scheduler-frame::before {
-      content: 'BOOK YOUR CONSULTATION';
+      content: 'PATIENT APPLICATION';
       position: absolute;
       top: -11px;
       left: 50%;
@@ -297,23 +297,7 @@
       }
 
       var deposit = Math.round(pkg.price * pkg.depositPct);
-
-      // Verify the Stripe session actually completed before showing the success state.
-      // (Demo mode skips this for legacy/test links.)
-      if (sessionId && !isDemo) {
-        root.innerHTML = '<div style="text-align:center;padding:3rem 1rem;color:var(--ink-soft);font-family:Inter,sans-serif;">Confirming your payment&hellip;</div>';
-        try {
-          var verifyRes = await fetch('https://lnqxarwqckpmirpmixcw.supabase.co/functions/v1/verify-deposit-session?session_id=' + encodeURIComponent(sessionId));
-          var verifyData = await verifyRes.json();
-          if (!verifyRes.ok || !verifyData.paid) {
-            root.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><h2 style="font-family:Cormorant Garamond,serif;font-size:1.6rem;color:var(--gold-dark);">Payment not confirmed</h2><p>We could not verify your deposit. If you believe this is an error, please call us at <a href="tel:5129692399" style="color:var(--gold);">512-969-2399</a>.</p><p style="margin-top:1rem;"><a href="../?pkg=' + slug + '" style="color:var(--gold);">Return to booking</a></p></div>';
-            return;
-          }
-        } catch (err) {
-          root.innerHTML = '<div style="text-align:center;padding:3rem 1rem;"><h2 style="font-family:Cormorant Garamond,serif;font-size:1.6rem;color:var(--gold-dark);">Could not verify payment</h2><p>' + (err.message || err) + '</p><p>Please call us at <a href="tel:5129692399" style="color:var(--gold);">512-969-2399</a>.</p></div>';
-          return;
-        }
-      }
+      var firstName = params.get('first_name') || '';
 
       root.innerHTML = '' +
         // Compact deposit confirmation card
@@ -321,7 +305,7 @@
           '<div class="check">&#10003;</div>' +
           '<div class="info">' +
             '<span class="label">Deposit Received' + (isDemo ? ' (Demo)' : '') + '</span>' +
-            '<div class="headline">Your spot is held</div>' +
+            '<div class="headline">' + (firstName ? 'Thank you, ' + firstName + ' &mdash; your spot is held' : 'Your spot is held') + '</div>' +
             '<div class="meta">' + pkg.name + ' Package</div>' +
           '</div>' +
           '<div class="amount">' + window.formatCurrency(deposit) + '</div>' +
@@ -330,28 +314,28 @@
         // Hero — action required
         '<div class="hero-block">' +
           '<div class="action-required">Action Required &middot; Final Step</div>' +
-          '<h1 class="hero-title">Book Your Medical Consultation</h1>' +
-          '<p class="hero-sub">Choose a time below for a 30-minute screening with our MAPS-trained nurse practitioner. Your spot is held until you book &mdash; please schedule within 7 days.</p>' +
+          '<h1 class="hero-title">Complete Your Patient Application</h1>' +
+          '<p class="hero-sub">Before we can confirm your container, we need a complete picture of your history. Our intake coordinators will review your application and reach out within 1&ndash;2 business days to schedule your medical consultation.</p>' +
         '</div>' +
 
         // Three quick steps
         '<div class="scheduler-steps">' +
-          '<div class="step"><span class="num">1</span>Pick a time below</div>' +
-          '<div class="step"><span class="num">2</span>30-min video call</div>' +
-          '<div class="step"><span class="num">3</span>Begin your work</div>' +
+          '<div class="step"><span class="num">1</span>Complete the application below</div>' +
+          '<div class="step"><span class="num">2</span>Our team reviews &amp; reaches out</div>' +
+          '<div class="step"><span class="num">3</span>Medical consultation &amp; clearance</div>' +
         '</div>' +
 
-        // Big bordered scheduler frame
+        // Big bordered patient application frame
         '<div class="scheduler-frame">' +
           '<div class="scheduler-placeholder">' +
-            '<div class="icon">&#128197;</div>' +
-            '<strong>Select a date &amp; time</strong>' +
-            'Calendar will appear here. Once a Calendly / Cal.com / Acuity link is provided, the booking widget will embed in this space so you can choose your consultation time directly.' +
+            '<div class="icon">&#128221;</div>' +
+            '<strong>Patient Application</strong>' +
+            'A confidential intake form covering personal information, medical history, current medications, and your goals for this work. This is the same depth of clinical screening used by leading ketamine therapy programs &mdash; it ensures the work is safe and the right fit for you.' +
           '</div>' +
         '</div>' +
 
         '<div class="refund-note">' +
-          '<strong>Your deposit is fully refundable.</strong> If our clinician determines during your consultation that you are not a medical fit for this work, your ' + window.formatCurrency(deposit) + ' deposit will be refunded in full within 3&ndash;5 business days. No questions, no friction.' +
+          '<strong>Your deposit is fully refundable.</strong> If our clinician determines during the application review or consultation that you are not a medical fit for this work, your ' + window.formatCurrency(deposit) + ' deposit will be refunded in full within 3&ndash;5 business days. No questions, no friction.' +
         '</div>';
     })();
   </script>
