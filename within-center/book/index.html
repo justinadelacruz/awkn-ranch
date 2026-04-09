@@ -322,6 +322,62 @@
       .stay-question { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
     }
 
+    /* ── CONTACT FIELDS ──────────────────────── */
+    .contact-fields {
+      padding: 1.1rem 1.75rem 0.5rem;
+      border-top: 1px solid rgba(28,22,24,0.08);
+      background: #fff;
+    }
+    .contact-fields .ct-eyebrow {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .contact-fields .ct-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+    .contact-fields .ct-row.single { grid-template-columns: 1fr; }
+    .contact-fields label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 0.25rem;
+    }
+    .contact-fields input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--dark);
+      background: #fafaf7;
+      border: 1px solid rgba(28,22,24,0.12);
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+      box-sizing: border-box;
+    }
+    .contact-fields input:focus {
+      outline: none;
+      border-color: var(--gold);
+      background: #fff;
+    }
+    .contact-fields input.invalid {
+      border-color: #b04a3a;
+      background: #fff7f5;
+    }
+    @media (max-width: 520px) {
+      .contact-fields .ct-row { grid-template-columns: 1fr; }
+    }
+
     /* Pay button + secure line */
     .pay-btn-wrap {
       padding: 1.2rem 1.75rem 1.75rem;
@@ -664,6 +720,20 @@
               '</div>' +
             '</div>' +
 
+            '<div class="contact-fields">' +
+              '<span class="ct-eyebrow">Your Information</span>' +
+              '<div class="ct-row">' +
+                '<div><label for="ct-first">First Name</label><input id="ct-first" type="text" autocomplete="given-name" required></div>' +
+                '<div><label for="ct-last">Last Name</label><input id="ct-last" type="text" autocomplete="family-name" required></div>' +
+              '</div>' +
+              '<div class="ct-row single">' +
+                '<div><label for="ct-email">Email</label><input id="ct-email" type="email" autocomplete="email" required></div>' +
+              '</div>' +
+              '<div class="ct-row single">' +
+                '<div><label for="ct-phone">Phone</label><input id="ct-phone" type="tel" autocomplete="tel" required></div>' +
+              '</div>' +
+            '</div>' +
+
             '<div class="pay-btn-wrap">' +
               '<button class="pay-btn" id="payBtn">Reserve with ' + window.formatCurrency(deposit) + '</button>' +
               '<div class="secure-line">Secured by Stripe</div>' +
@@ -682,15 +752,41 @@
       var banner = document.getElementById('statusBanner');
 
       payBtn.addEventListener('click', async function () {
+        // Reset previous validation state
+        ['ct-first','ct-last','ct-email','ct-phone'].forEach(function(id){
+          var el = document.getElementById(id);
+          if (el) el.classList.remove('invalid');
+        });
+
         // Require stay-at-ranch answer before continuing
         var stayChoice = document.querySelector('input[name="stay_at_ranch"]:checked');
         if (!stayChoice) {
           banner.style.display = 'block';
           banner.textContent = 'Please let us know if you are interested in staying at AWKN Ranch.';
           banner.style.color = 'var(--gold-dark)';
-          // scroll the question into view
           var q = document.querySelector('.stay-question');
           if (q) q.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        // Validate contact fields
+        var firstName = (document.getElementById('ct-first').value || '').trim();
+        var lastName  = (document.getElementById('ct-last').value || '').trim();
+        var email     = (document.getElementById('ct-email').value || '').trim();
+        var phone     = (document.getElementById('ct-phone').value || '').trim();
+        var emailOk   = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var phoneOk   = phone.replace(/\D/g, '').length >= 10;
+        var missing = [];
+        if (!firstName) { document.getElementById('ct-first').classList.add('invalid'); missing.push('first name'); }
+        if (!lastName)  { document.getElementById('ct-last').classList.add('invalid');  missing.push('last name'); }
+        if (!emailOk)   { document.getElementById('ct-email').classList.add('invalid'); missing.push('a valid email'); }
+        if (!phoneOk)   { document.getElementById('ct-phone').classList.add('invalid'); missing.push('a valid phone number'); }
+        if (missing.length) {
+          banner.style.display = 'block';
+          banner.style.color = 'var(--gold-dark)';
+          banner.textContent = 'Please enter ' + missing.join(', ') + '.';
+          var ct = document.querySelector('.contact-fields');
+          if (ct) ct.scrollIntoView({ behavior: 'smooth', block: 'center' });
           return;
         }
 
@@ -699,7 +795,6 @@
         banner.style.display = 'block';
         banner.style.color = '';
         banner.textContent = 'Connecting to Stripe…';
-        // Save the stay choice so we can pass it through to the backend later
         window.__stayChoice = stayChoice.value;
 
         try {
@@ -710,6 +805,10 @@
             body: JSON.stringify({
               package_slug: slug,
               stay_at_ranch: window.__stayChoice,
+              first_name: firstName,
+              last_name: lastName,
+              email: email,
+              phone: phone,
               success_url: successBase,
               cancel_url: window.location.href,
             }),
