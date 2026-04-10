@@ -600,7 +600,10 @@ async function openLeadDetail(leadId) {
     <div class="crm-modal-overlay" id="crm-modal-overlay">
       <div class="crm-modal-content crm-modal-large">
         <div class="crm-modal-header">
-          <h2>${name}</h2>
+          <div style="display:flex;align-items:center;gap:10px">
+            <h2>${name}</h2>
+            <button class="crm-btn crm-btn-sm" id="btn-edit-lead" style="font-size:11px">Edit</button>
+          </div>
           <button class="crm-modal-close" id="crm-modal-close-btn">&times;</button>
         </div>
         <div class="crm-modal-body crm-detail-layout">
@@ -702,6 +705,12 @@ function setupLeadDetailListeners(lead) {
   document.getElementById('crm-modal-close-btn')?.addEventListener('click', closeModal);
   document.getElementById('crm-modal-overlay')?.addEventListener('click', (e) => {
     if (e.target.id === 'crm-modal-overlay') closeModal();
+  });
+
+  // Edit lead — close detail and open edit modal
+  document.getElementById('btn-edit-lead')?.addEventListener('click', () => {
+    closeModal();
+    openLeadModal(lead);
   });
 
   // Stage change
