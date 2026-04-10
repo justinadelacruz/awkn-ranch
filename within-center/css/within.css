@@ -680,6 +680,44 @@ section { padding: 6rem 2rem; }
   .protocol-step h3 { font-size: 1.05rem; }
 }
 
+/* Numbered single-row variant (package pages) */
+.protocol-list--numbered {
+  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+}
+.protocol-list--numbered .protocol-step {
+  flex: 1 1 0;
+  min-width: 140px;
+  max-width: 200px;
+}
+.protocol-list--numbered .protocol-step .step-icon { display: none; }
+.protocol-list--numbered .protocol-step::before {
+  display: block;
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.45;
+  line-height: 1;
+  margin-bottom: 0.6rem;
+}
+.protocol-list--numbered .protocol-step h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+@media (max-width: 768px) {
+  .protocol-list--numbered { gap: 1.5rem 1rem; }
+  .protocol-list--numbered .protocol-step { min-width: 120px; }
+}
+@media (max-width: 480px) {
+  .protocol-list--numbered .protocol-step { min-width: 100px; flex: 0 1 calc(50% - 1rem); max-width: none; }
+}
+
 /* Testimonial / quote */
 .pkg-quote {
   max-width: 640px;
