@@ -337,13 +337,7 @@ function renderPipeline() {
   const panel = document.getElementById('crm-panel-pipeline');
   if (!panel) return;
 
-  const filteredStages = stages.filter(s => currentBizLine === 'all' || s.business_line === currentBizLine);
   const filtered = getFilteredLeads().filter(l => l.status === 'open');
-
-  if (filteredStages.length === 0) {
-    panel.innerHTML = '<div class="crm-empty">No pipeline stages configured for this business line.</div>';
-    return;
-  }
 
   let html = `
     <div class="crm-pipeline-toolbar">
@@ -352,22 +346,81 @@ function renderPipeline() {
     <div class="crm-kanban">
   `;
 
-  for (const stage of filteredStages) {
-    const stageLeads = filtered.filter(l => l.stage_id === stage.id);
-    html += `
-      <div class="crm-kanban-col" data-stage-id="${stage.id}">
-        <div class="crm-kanban-header" style="border-bottom: 3px solid ${escapeHtml(stage.color || '#6b7280')}">
-          <div>
-            ${currentBizLine === 'all' ? `<span class="crm-biz-tag crm-biz-tag-${stage.business_line === 'within' ? 'within' : 'ranch'}" style="margin-bottom:2px">${stage.business_line === 'within' ? 'Within' : 'Ranch'}</span><br>` : ''}
-            <span class="crm-kanban-title">${escapeHtml(stage.name)}</span>
+  if (currentBizLine === 'all') {
+    // Merged "All" view — combine equivalent stages into shared columns
+    const MERGED_COLUMNS = [
+      { label: 'New Lead / Inquiry', slugs: ['new_lead', 'inquiry'], color: '#3B82F6' },
+      { label: 'Contacted', slugs: ['contacted'], color: '#8B5CF6' },
+      { label: 'Intake Forms Sent', slugs: ['intake_forms_sent'], color: '#A855F7', biz: 'within' },
+      { label: 'Intake Forms Complete', slugs: ['intake_forms_complete'], color: '#D946EF', biz: 'within' },
+      { label: 'Tour / Call', slugs: ['tour_call'], color: '#A855F7', biz: 'ranch' },
+      { label: 'Consultation Scheduled', slugs: ['consultation_scheduled'], color: '#EC4899', biz: 'within' },
+      { label: 'Consultation Complete', slugs: ['consultation_complete'], color: '#F97316', biz: 'within' },
+      { label: 'Proposal Sent', slugs: ['proposal_sent'], color: '#EAB308', biz: 'ranch' },
+      { label: 'Invoice Sent', slugs: ['invoice_sent'], color: '#EAB308', biz: 'within' },
+      { label: 'Invoice Paid', slugs: ['invoice_paid'], color: '#22C55E' },
+      { label: 'Client Scheduled', slugs: ['client_scheduled'], color: '#14B8A6', biz: 'within' },
+      { label: 'Event Scheduled', slugs: ['event_scheduled'], color: '#14B8A6', biz: 'ranch' },
+      { label: 'Active Client', slugs: ['active_client'], color: '#10B981', biz: 'within' },
+      { label: 'Event Complete', slugs: ['event_complete'], color: '#10B981', biz: 'ranch' },
+      { label: 'Feedback Form Sent', slugs: ['feedback_form_sent'], color: '#6366F1' },
+    ];
+
+    for (const col of MERGED_COLUMNS) {
+      // Find matching stage IDs for this merged column
+      const matchingStageIds = stages
+        .filter(s => col.slugs.includes(s.slug) && (!col.biz || (col.biz === 'within' ? s.business_line === 'within' : s.business_line === 'awkn_ranch')))
+        .map(s => s.id);
+      const colLeads = filtered.filter(l => matchingStageIds.includes(l.stage_id));
+
+      // Skip empty columns for biz-specific stages
+      if (col.biz && colLeads.length === 0) continue;
+
+      // For drag-drop, use the first matching stage id
+      const primaryStageId = matchingStageIds[0] || '';
+
+      const bizLabel = col.biz === 'within' ? '<span class="crm-biz-tag crm-biz-tag-within" style="margin-bottom:2px">Within</span> '
+                      : col.biz === 'ranch' ? '<span class="crm-biz-tag crm-biz-tag-ranch" style="margin-bottom:2px">Ranch</span> '
+                      : '';
+
+      html += `
+        <div class="crm-kanban-col" data-stage-id="${primaryStageId}" data-stage-ids="${matchingStageIds.join(',')}">
+          <div class="crm-kanban-header" style="border-bottom: 3px solid ${col.color}">
+            <div>
+              ${bizLabel}
+              <span class="crm-kanban-title">${escapeHtml(col.label)}</span>
+            </div>
+            <span class="crm-kanban-count">${colLeads.length}</span>
           </div>
-          <span class="crm-kanban-count">${stageLeads.length}</span>
+          <div class="crm-kanban-cards" data-stage-id="${primaryStageId}" data-stage-ids="${matchingStageIds.join(',')}">
+            ${colLeads.map(l => renderKanbanCard(l)).join('')}
+          </div>
         </div>
-        <div class="crm-kanban-cards" data-stage-id="${stage.id}">
-          ${stageLeads.map(l => renderKanbanCard(l)).join('')}
+      `;
+    }
+  } else {
+    // Single business line view — show stages as-is
+    const filteredStages = stages.filter(s => s.business_line === currentBizLine);
+
+    if (filteredStages.length === 0) {
+      panel.innerHTML = '<div class="crm-empty">No pipeline stages configured for this business line.</div>';
+      return;
+    }
+
+    for (const stage of filteredStages) {
+      const stageLeads = filtered.filter(l => l.stage_id === stage.id);
+      html += `
+        <div class="crm-kanban-col" data-stage-id="${stage.id}">
+          <div class="crm-kanban-header" style="border-bottom: 3px solid ${escapeHtml(stage.color || '#6b7280')}">
+            <span class="crm-kanban-title">${escapeHtml(stage.name)}</span>
+            <span class="crm-kanban-count">${stageLeads.length}</span>
+          </div>
+          <div class="crm-kanban-cards" data-stage-id="${stage.id}">
+            ${stageLeads.map(l => renderKanbanCard(l)).join('')}
+          </div>
         </div>
-      </div>
-    `;
+      `;
+    }
   }
 
   html += '</div>';
@@ -430,7 +483,22 @@ function setupKanbanDragDrop() {
       e.preventDefault();
       zone.classList.remove('drag-over');
       const leadId = e.dataTransfer.getData('text/plain');
-      const newStageId = zone.dataset.stageId;
+      let newStageId = zone.dataset.stageId;
+
+      // For merged columns in All view, pick the stage matching the lead's business line
+      const mergedIds = zone.dataset.stageIds;
+      if (mergedIds && leadId) {
+        const lead = leads.find(l => l.id === leadId);
+        if (lead) {
+          const ids = mergedIds.split(',');
+          const match = ids.find(sid => {
+            const st = stages.find(s => s.id === sid);
+            return st && st.business_line === lead.business_line;
+          });
+          if (match) newStageId = match;
+        }
+      }
+
       if (leadId && newStageId) {
         await moveLeadToStage(leadId, newStageId);
       }
