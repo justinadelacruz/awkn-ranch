@@ -379,15 +379,10 @@ function renderPipeline() {
       // For drag-drop, use the first matching stage id
       const primaryStageId = matchingStageIds[0] || '';
 
-      const bizLabel = col.biz === 'within' ? '<span class="crm-biz-tag crm-biz-tag-within" style="margin-bottom:2px">Within</span> '
-                      : col.biz === 'ranch' ? '<span class="crm-biz-tag crm-biz-tag-ranch" style="margin-bottom:2px">Ranch</span> '
-                      : '';
-
       html += `
         <div class="crm-kanban-col" data-stage-id="${primaryStageId}" data-stage-ids="${matchingStageIds.join(',')}">
           <div class="crm-kanban-header" style="border-bottom: 3px solid ${col.color}">
             <div>
-              ${bizLabel}
               <span class="crm-kanban-title">${escapeHtml(col.label)}</span>
             </div>
             <span class="crm-kanban-count">${colLeads.length}</span>
@@ -438,10 +433,11 @@ function renderKanbanCard(lead) {
   const eventInfo = lead.event_date ? formatDate(lead.event_date) : '';
 
   const bizTag = lead.business_line === 'within' ? 'within' : 'ranch';
+  const bizLabel = lead.business_line === 'within' ? 'Within' : 'Ranch';
 
   return `
     <div class="crm-kanban-card crm-card-biz-${bizTag}" draggable="true" data-lead-id="${lead.id}">
-      <div class="crm-kanban-card-name">${name}</div>
+      <div class="crm-kanban-card-top">${currentBizLine === 'all' ? `<span class="crm-biz-tag crm-biz-tag-${bizTag}">${bizLabel}</span>` : ''}<span class="crm-kanban-card-name">${name}</span></div>
       ${spaceName ? `<div class="crm-kanban-card-space"><span class="crm-space-tag">${escapeHtml(spaceName)}</span>${eventInfo ? ` · ${eventInfo}` : ''}</div>` : ''}
       <div class="crm-kanban-card-meta">
         ${sourceName ? `<span class="crm-source-badge">${escapeHtml(sourceName)}</span>` : ''}

@@ -160,7 +160,8 @@
 }
 .crm-kanban-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,.08); }
 .crm-kanban-card.dragging { opacity: .5; transform: rotate(2deg); }
-.crm-kanban-card-name { font-size: 13px; font-weight: 600; color: var(--text, #2a1f23); margin-bottom: 4px; }
+.crm-kanban-card-top { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+.crm-kanban-card-name { font-size: 13px; font-weight: 600; color: var(--text, #2a1f23); }
 .crm-kanban-card-meta { font-size: 11px; color: var(--text-muted, #888); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .crm-card-value { font-weight: 600; color: var(--accent, #d4883a); }
 .crm-kanban-card-age { font-size: 10px; color: var(--text-muted, #aaa); margin-top: 4px; }
