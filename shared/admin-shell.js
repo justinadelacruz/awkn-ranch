@@ -19,6 +19,7 @@ import { getEnabledFeatures } from './feature-registry.js';
 const STAFF_PERMISSION_KEYS = [
   'view_spaces', 'view_rentals', 'view_events', 'view_media', 'view_sms',
   'view_purchases', 'view_hours', 'view_faq', 'view_voice', 'view_todo', 'view_appdev', 'view_inventory',
+  'view_crm',
 ];
 const ADMIN_PERMISSION_KEYS = [
   'view_users', 'view_passwords', 'view_settings', 'view_templates', 'view_accounting', 'view_testdev', 'view_openclaw', 'view_devcontrol',
@@ -53,6 +54,7 @@ const TAB_ICONS = {
   lifeofpai:  _i('<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>'),
   openclaw:   _i('<path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1"/>'),
   devcontrol: _i('<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>'),
+  crm:        _i('<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'),
 };
 
 // Tab definitions with optional `feature` key for config-driven visibility.
@@ -63,6 +65,7 @@ export const ALL_ADMIN_TABS = [
   // Staff section — primary admin tabs (Mindbody-style)
   { id: 'reservations', label: 'Schedule', href: 'reservations.html', permission: 'view_rentals', section: 'staff', feature: 'rentals' },
   { id: 'memberships', label: 'Memberships', href: 'memberships.html', permission: 'view_rentals', section: 'staff', feature: 'rentals' },
+  { id: 'crm', label: 'CRM', href: 'crm.html', permission: 'view_crm', section: 'staff' },
   { id: 'events', label: 'Events', href: 'events.html', permission: 'view_events', section: 'staff', feature: 'events' },
   { id: 'purchases', label: 'Sales', href: 'purchases.html', permission: 'view_purchases', section: 'staff' },
   { id: 'inventory', label: 'Inventory', href: 'inventory.html', permission: 'view_inventory', section: 'staff' },
