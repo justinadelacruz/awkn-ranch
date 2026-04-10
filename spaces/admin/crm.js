@@ -1201,7 +1201,7 @@ async function openInvoiceModal(invoice = null, lead = null) {
   let invoiceNumber = invoice?.invoice_number || '';
   if (!isEdit) {
     try {
-      const { data, error } = await supabase.rpc('generate_crm_number', { prefix: 'INV' });
+      const { data, error } = await supabase.rpc('generate_crm_number', { p_prefix: 'INV' });
       if (!error && data) invoiceNumber = data;
     } catch (e) {
       invoiceNumber = `INV-${Date.now()}`;
@@ -1602,7 +1602,7 @@ async function openProposalModal(proposal = null, lead = null) {
   let proposalNumber = proposal?.proposal_number || '';
   if (!isEdit) {
     try {
-      const { data, error } = await supabase.rpc('generate_crm_number', { prefix: 'PROP' });
+      const { data, error } = await supabase.rpc('generate_crm_number', { p_prefix: 'PROP' });
       if (!error && data) proposalNumber = data;
     } catch (e) {
       proposalNumber = `PROP-${Date.now()}`;
