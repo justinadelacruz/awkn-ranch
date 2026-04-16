@@ -1,12 +1,12 @@
 {
-  "version": "v260408.07 4:13a",
-  "release": 7,
-  "sha": "ed7812b",
-  "fullSha": "ed7812bb205d75da1d4be36998df61795d8a97d5",
+  "version": "v260416.01 2:45a",
+  "release": 1,
+  "sha": "2d38e18",
+  "fullSha": "2d38e181607a6f3a219bc05076c9110d3297b450",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
-  "machine": "runnervm727z3",
-  "pushedAt": "2026-04-07T23:13:24-05:00",
-  "commits": [{"sha":"ed7812b","message":"Projections: Year 1 expense ramp $59K → $76K assumption","author":"Claude"}]
+  "machine": "runnervm35a4x",
+  "pushedAt": "2026-04-15T21:45:11-05:00",
+  "commits": [{"sha":"2d38e18","message":"Update 6-day retreat pricing: private $3,999, shared $3,499","author":"Justin DeLaCruz"}]
 }
