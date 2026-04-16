@@ -1,12 +1,12 @@
 {
-  "version": "v260416.02 3:00a",
-  "release": 2,
-  "sha": "62cd664",
-  "fullSha": "62cd664ae0738210ac1aae8dd88f76860eb23554",
+  "version": "v260416.03 2:28p",
+  "release": 3,
+  "sha": "185a366",
+  "fullSha": "185a366f33c9d4d386a3ada095eb676f0fb9f2b6",
   "actor": "justinadelacruz",
   "source": "github-main-push",
   "model": "ci",
   "machine": "runnervm35a4x",
-  "pushedAt": "2026-04-15T22:00:42-05:00",
-  "commits": [{"sha":"62cd664","message":"Update 6-day retreat pricing on investor page: private $3,999, shared $3,499","author":"Justin DeLaCruz"}]
+  "pushedAt": "2026-04-16T09:28:15-05:00",
+  "commits": [{"sha":"185a366","message":"Add column sorting to memberships table","author":"Justin DeLaCruz"}]
 }
